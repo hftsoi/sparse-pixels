@@ -1,5 +1,6 @@
 import tensorflow as tf
 from qkeras import QConv2D
+from tensorflow.keras.layers import AveragePooling2D, MaxPooling2D
 
 class InputReduce(tf.keras.layers.Layer):
     def __init__(self, n_max_pixels, threshold, **kwargs):
@@ -80,6 +81,29 @@ class QConv2DSparse(tf.keras.layers.Layer):
     def from_config(cls, config):
         conv_cfg = config.pop("conv_config")
         return cls(**conv_cfg)
+
+
+class AveragePooling2DSparse(tf.keras.layers.Layer):
+    def __init__(self, *pool_args, **pool_kwargs):
+        super().__init__(name=pool_kwargs.get("name", None))
+        self.avg_pool = AveragePooling2D(*pool_args, **pool_kwargs)
+        self.max_pool = MaxPooling2D(*pool_args, **pool_kwargs)
+
+    def call(self, inputs, **kwargs):
+        x, keep_mask = inputs
+        y = self.avg_pool(x, **kwargs)
+        keep_mask_pooled = self.max_pool(keep_mask)
+        return y, keep_mask_pooled
+
+    def get_config(self):
+        cfg = super().get_config()
+        cfg["pool_config"] = self.avg_pool.get_config()
+        return cfg
+
+    @classmethod
+    def from_config(cls, config):
+        pool_cfg = config.pop("pool_config")
+        return cls(**pool_cfg)
     
 
 # if (acc != 0) { acc += b[i_filt]; } // FIX: may not be exact as input can be zero due to relu etc instead of being inactive. easier to fix from keras side
