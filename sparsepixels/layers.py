@@ -56,3 +56,9 @@ class RemoveDilatedPixels(tf.keras.layers.Layer):
     def get_config(self):
         config = super(RemoveDilatedPixels, self).get_config()
         return config
+
+
+# if (acc != 0) { acc += b[i_filt]; } // FIX: may not be exact as input can be zero due to relu etc instead of being inactive. easier to fix from keras side
+# modify qconv2d to incorporate ^
+# i.e. add bias only when acc is nonzero
+

@@ -195,7 +195,7 @@ void sparse_conv(data_T sparse_arr_feat_in[N_sparse * n_chan],
             }
 
             // Add bias.
-            if (acc != 0) { acc += b[i_filt]; }
+            if (acc != 0) { acc += b[i_filt]; } // FIX: may not be exact as input can be zero due to relu etc instead of being inactive. easier to fix from keras side
             sparse_arr_feat_out[n_filt * i_pixel_out + i_filt] = acc;
         }
     }
