@@ -1,4 +1,5 @@
 import tensorflow as tf
+from qkeras import QConv2D
 
 class InputReduce(tf.keras.layers.Layer):
     def __init__(self, n_max_pixels, threshold, **kwargs):
@@ -57,6 +58,29 @@ class RemoveDilatedPixels(tf.keras.layers.Layer):
         config = super(RemoveDilatedPixels, self).get_config()
         return config
 
+
+class QConv2DSparse(tf.keras.layers.Layer):
+    def __init__(self, *conv_args, **conv_kwargs):
+        super().__init__(name=conv_kwargs.get("name", None))
+        self.conv = QConv2D(*conv_args, **conv_kwargs)
+        self.masker = RemoveDilatedPixels()
+
+    def call(self, inputs, **kwargs):
+        x, keep_mask = inputs
+        y = self.conv(x, **kwargs)
+        y = self.masker((y, keep_mask))
+        return y
+
+    def get_config(self):
+        cfg = super().get_config()
+        cfg["conv_config"] = self.conv.get_config()
+        return cfg
+
+    @classmethod
+    def from_config(cls, config):
+        conv_cfg = config.pop("conv_config")
+        return cls(**conv_cfg)
+    
 
 # if (acc != 0) { acc += b[i_filt]; } // FIX: may not be exact as input can be zero due to relu etc instead of being inactive. easier to fix from keras side
 # modify qconv2d to incorporate ^
