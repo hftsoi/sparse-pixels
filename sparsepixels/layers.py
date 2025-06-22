@@ -1,5 +1,5 @@
 import tensorflow as tf
-from qkeras import QConv2D
+from qkeras import QConv2D, quantizers
 from tensorflow.keras.layers import AveragePooling2D, MaxPooling2D
 
 class InputReduce(tf.keras.layers.Layer):
@@ -63,24 +63,47 @@ class RemoveDilatedPixels(tf.keras.layers.Layer):
 class QConv2DSparse(tf.keras.layers.Layer):
     def __init__(self, *conv_args, **conv_kwargs):
         super().__init__(name=conv_kwargs.get("name", None))
+        self._bias_quant_cfg = conv_kwargs.pop("bias_quantizer", None)
+        self._bias_quantizer = (quantizers.get_quantizer(self._bias_quant_cfg) if self._bias_quant_cfg is not None else None)
+
+        conv_kwargs["use_bias"] = False
         self.conv = QConv2D(*conv_args, **conv_kwargs)
+        self.bias = self.add_weight(
+            name = "bias",
+            shape = (self.conv.filters,),
+            initializer = "zeros",
+            trainable = True,
+            dtype = self.conv.dtype,
+        )
         self.masker = RemoveDilatedPixels()
 
     def call(self, inputs, **kwargs):
         x, keep_mask = inputs
         y = self.conv(x, **kwargs)
+
+        b = self.bias
+        if self._bias_quantizer is not None:
+            b = self._bias_quantizer(b)
+        b = tf.reshape(b, shape=(1, 1, 1, -1))
+
+        non_zero = tf.cast(tf.not_equal(y, 0), y.dtype)
+        y = y + b * non_zero
+
         y = self.masker((y, keep_mask))
         return y
 
     def get_config(self):
         cfg = super().get_config()
         cfg["conv_config"] = self.conv.get_config()
+        cfg["bias_quantizer"] = self._bias_quant_cfg
         return cfg
 
     @classmethod
     def from_config(cls, config):
         conv_cfg = config.pop("conv_config")
-        return cls(**conv_cfg)
+        bias_quant_cfg = config.pop("bias_quantizer", None)
+        layer = cls(**conv_cfg, bias_quantizer=bias_quant_cfg)
+        return layer
 
 
 class AveragePooling2DSparse(tf.keras.layers.Layer):
@@ -126,9 +149,4 @@ class MaxPooling2DSparse(tf.keras.layers.Layer):
     def from_config(cls, config):
         pool_cfg = config.pop("pool_config")
         return cls(**pool_cfg)
-    
-
-# if (acc != 0) { acc += b[i_filt]; } // FIX: may not be exact as input can be zero due to relu etc instead of being inactive. easier to fix from keras side
-# modify qconv2d to incorporate ^
-# i.e. add bias only when acc is nonzero
 
