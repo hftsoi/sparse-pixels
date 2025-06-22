@@ -79,6 +79,7 @@ class QConv2DSparse(tf.keras.layers.Layer):
 
     def call(self, inputs, **kwargs):
         x, keep_mask = inputs
+        x = self.masker((x, keep_mask))
         y = self.conv(x, **kwargs)
 
         b = self.bias
