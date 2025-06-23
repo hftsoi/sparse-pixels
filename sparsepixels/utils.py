@@ -84,7 +84,7 @@ def pool_pad_noise_inflate(img, pool_size, pool_type, target_size=None, noise_ty
 
     return padded.numpy()
 
-def plot_sparse(x_original, x_modified1, x_modified2, x_modified3, n_example, threshold):
+def plot_sparsemnist(x_original, x_modified1, x_modified2, x_modified3, n_example, threshold):
     img1 = x_original[n_example+1011]
     img2 = x_modified1[n_example+1011]
     img3 = x_modified2[n_example+1011]
@@ -111,3 +111,36 @@ def plot_sparse(x_original, x_modified1, x_modified2, x_modified3, n_example, th
     axes[4].set_title(f'[4] noised (threshold>{threshold})', fontsize=fontsize)
     plt.tight_layout()
     plt.show()
+
+
+def plot_jetimage(x, y, n_examples, threshold=0):
+    classes = ['g','q','W','Z','t']
+    class_indices = []
+    for i in range(5):
+        idx = np.where(y[:, i]==1)[0][:n_examples]
+        class_indices.append(idx)
+    class_indices = np.array(class_indices).T.flatten()
+
+    fig, axes = plt.subplots(n_examples, 5, figsize=(25, n_examples*5), constrained_layout=True)
+    for i, ax in enumerate(axes.flat):
+        img = x[class_indices[i]]
+        img = np.where(img>threshold, img, 0)
+        nonzero_count = np.count_nonzero(img)
+
+        im = ax.imshow(
+            img,
+            cmap='viridis',
+            norm=colors.LogNorm(vmin=(threshold if threshold>0 else 1e-2), vmax=5e2),
+            origin='lower',
+            extent=[0, img.shape[0], 0, img.shape[1]]
+        )
+        ax.set_title(f'{classes[i % 5]} [active={nonzero_count}/({img.shape[0]}*{img.shape[1]})]', fontsize=16)
+        #ax.set_xlabel("delta eta", fontsize=16)
+        #ax.set_ylabel("delta phi", fontsize=16)
+
+        cbar = fig.colorbar(im, ax=ax, fraction=0.05, pad=0.01)
+        cbar.ax.tick_params(labelsize=16)
+    plt.show()
+
+
+    
