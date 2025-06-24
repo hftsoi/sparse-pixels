@@ -1,6 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
+import matplotlib.colors as colors
 
 def pool_pad_noise_inflate(img, pool_size, pool_type, target_size=None, noise_type=None, noise_level=0, inflate_factor=1):
     x = tf.convert_to_tensor(img, dtype=tf.float32)
@@ -143,4 +144,3 @@ def plot_jetimage(x, y, n_examples, threshold=0):
     plt.show()
 
 
-    
