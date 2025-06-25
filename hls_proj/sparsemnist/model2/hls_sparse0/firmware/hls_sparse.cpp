@@ -375,37 +375,37 @@ void hls_sparse(
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_hash_reduce_out complete dim=0
     sparse_input_reduce<input_t, ap_uint<10>, N_INPUT_1_1, N_INPUT_2_1, N_INPUT_3_1, N_MAX_PIXELS>(x_in, active_threshold, sparse_arr_feat_reduce_out, sparse_arr_hash_reduce_out); // sparse array creation
 
-    model_default_t sparse_arr_feat_conv1_out[N_MAX_PIXELS * 1];
+    model_default_t sparse_arr_feat_conv1_out[N_MAX_PIXELS * 2];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_conv1_out complete dim=0
-    sparse_conv<input_t, model_default_t, ap_uint<10>, weight2_t, bias2_t, N_MAX_PIXELS, 1, 1>(sparse_arr_feat_reduce_out, sparse_arr_feat_conv1_out, sparse_arr_hash_reduce_out, w2, b2); // sparse conv1
+    sparse_conv<input_t, model_default_t, ap_uint<10>, weight2_t, bias2_t, N_MAX_PIXELS, 1, 2>(sparse_arr_feat_reduce_out, sparse_arr_feat_conv1_out, sparse_arr_hash_reduce_out, w2, b2); // sparse conv1
 
-    model_default_t sparse_arr_feat_act1_out[N_MAX_PIXELS * 1];
+    model_default_t sparse_arr_feat_act1_out[N_MAX_PIXELS * 2];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_act1_out complete dim=0
-    sparse_relu<model_default_t, model_default_t, N_MAX_PIXELS, 1>(sparse_arr_feat_conv1_out, sparse_arr_feat_act1_out); // sparse relu1
+    sparse_relu<model_default_t, model_default_t, N_MAX_PIXELS, 2>(sparse_arr_feat_conv1_out, sparse_arr_feat_act1_out); // sparse relu1
 
-    model_default_t sparse_arr_feat_pool1_out[N_MAX_PIXELS * 1];
+    model_default_t sparse_arr_feat_pool1_out[N_MAX_PIXELS * 2];
     ap_uint<10> sparse_arr_hash_pool1_out[N_MAX_PIXELS * 2];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_pool1_out complete dim=0
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_hash_pool1_out complete dim=0
-    sparse_pooling_avg<model_default_t, model_default_t, ap_uint<10>, N_MAX_PIXELS, 1, 2>(sparse_arr_feat_act1_out, sparse_arr_feat_pool1_out, sparse_arr_hash_reduce_out, sparse_arr_hash_pool1_out); // sparse pool1
+    sparse_pooling_avg<model_default_t, model_default_t, ap_uint<10>, N_MAX_PIXELS, 2, 2>(sparse_arr_feat_act1_out, sparse_arr_feat_pool1_out, sparse_arr_hash_reduce_out, sparse_arr_hash_pool1_out); // sparse pool1
 
-    model_default_t sparse_arr_feat_conv2_out[N_MAX_PIXELS * 1];
+    model_default_t sparse_arr_feat_conv2_out[N_MAX_PIXELS * 2];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_conv2_out complete dim=0
-    sparse_conv<model_default_t, model_default_t, ap_uint<10>, weight6_t, bias6_t, N_MAX_PIXELS, 1, 1>(sparse_arr_feat_pool1_out, sparse_arr_feat_conv2_out, sparse_arr_hash_pool1_out, w6, b6); // sparse conv2
+    sparse_conv<model_default_t, model_default_t, ap_uint<10>, weight6_t, bias6_t, N_MAX_PIXELS, 2, 2>(sparse_arr_feat_pool1_out, sparse_arr_feat_conv2_out, sparse_arr_hash_pool1_out, w6, b6); // sparse conv2
 
-    model_default_t sparse_arr_feat_act2_out[N_MAX_PIXELS * 1];
+    model_default_t sparse_arr_feat_act2_out[N_MAX_PIXELS * 2];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_act2_out complete dim=0
-    sparse_relu<model_default_t, model_default_t, N_MAX_PIXELS, 1>(sparse_arr_feat_conv2_out, sparse_arr_feat_act2_out); // sparse relu2
+    sparse_relu<model_default_t, model_default_t, N_MAX_PIXELS, 2>(sparse_arr_feat_conv2_out, sparse_arr_feat_act2_out); // sparse relu2
 
-    model_default_t sparse_arr_feat_pool2_out[N_MAX_PIXELS * 1];
+    model_default_t sparse_arr_feat_pool2_out[N_MAX_PIXELS * 2];
     ap_uint<10> sparse_arr_hash_pool2_out[N_MAX_PIXELS * 2];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_pool2_out complete dim=0
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_hash_pool2_out complete dim=0
-    sparse_pooling_avg<model_default_t, model_default_t, ap_uint<10>, N_MAX_PIXELS, 1, 2>(sparse_arr_feat_act2_out, sparse_arr_feat_pool2_out, sparse_arr_hash_pool1_out, sparse_arr_hash_pool2_out); // sparse pool2
+    sparse_pooling_avg<model_default_t, model_default_t, ap_uint<10>, N_MAX_PIXELS, 2, 2>(sparse_arr_feat_act2_out, sparse_arr_feat_pool2_out, sparse_arr_hash_pool1_out, sparse_arr_hash_pool2_out); // sparse pool2
 
-    model_default_t flatten_out[10 * 10 * 1];
+    model_default_t flatten_out[10 * 10 * 2];
     #pragma HLS ARRAY_PARTITION variable=flatten_out complete dim=0
-    sparse_flatten<model_default_t, ap_uint<10>, 10, 10, 1, N_MAX_PIXELS>(sparse_arr_feat_pool2_out, sparse_arr_hash_pool2_out, flatten_out); // sparse flatten
+    sparse_flatten<model_default_t, ap_uint<10>, 10, 10, 2, N_MAX_PIXELS>(sparse_arr_feat_pool2_out, sparse_arr_hash_pool2_out, flatten_out); // sparse flatten
 
     //auto& layer10_out = layer9_out;
     dense1_result_t layer11_out[N_LAYER_11];
