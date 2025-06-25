@@ -73,6 +73,6 @@ typedef ap_fixed<18,8> softmax_table_t;
 typedef ap_fixed<18,8,AP_RND,AP_SAT,0> softmax_exp_table_t;
 typedef ap_fixed<18,8,AP_RND,AP_SAT,0> softmax_inv_table_t;
 
-typedef ap_fixed<16,6> model_default_t;
+typedef ap_ufixed<6,0,AP_RND_CONV,AP_SAT,0> model_default_t;
 
 #endif
