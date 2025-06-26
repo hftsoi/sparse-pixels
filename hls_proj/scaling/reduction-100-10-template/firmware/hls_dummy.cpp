@@ -362,10 +362,16 @@ void hls_dummy(
 
     // hls-fpga-machine-learning insert layers
 
-    input_t active_threshold = 0;
+    input_t active_threshold = 1.5;
+    input_t sparse_arr_feat_reduce_out[N_MAX_PIXELS];
     ap_uint<10> sparse_arr_hash_reduce_out[N_MAX_PIXELS * 2];
+    #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_reduce_out complete dim=0
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_hash_reduce_out complete dim=0
-    sparse_input_reduce<input_t, ap_uint<10>, N_INPUT_1_1, N_INPUT_2_1, N_INPUT_3_1, N_MAX_PIXELS>(x_in, active_threshold, layer2_out, sparse_arr_hash_reduce_out); // sparse array creation
+    sparse_input_reduce<input_t, ap_uint<10>, N_INPUT_1_1, N_INPUT_2_1, N_INPUT_3_1, N_MAX_PIXELS>(x_in, active_threshold, sparse_arr_feat_reduce_out, sparse_arr_hash_reduce_out); // sparse array creation
 
+    for (int i = 0; i < 10; i++) {
+        #pragma HLS UNROLL
+        layer2_out[i] = sparse_arr_feat_reduce_out[i];
+    }
 }
 

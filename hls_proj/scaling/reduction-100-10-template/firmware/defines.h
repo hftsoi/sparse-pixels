@@ -21,6 +21,8 @@
 typedef ap_fixed<16,6> input_t;
 typedef ap_fixed<16,6> result_t;
 
+typedef ap_fixed<27,12> conv1_accum_t;
+
 typedef ap_fixed<6,1> weight2_t;
 typedef ap_fixed<6,1> bias2_t;
 
