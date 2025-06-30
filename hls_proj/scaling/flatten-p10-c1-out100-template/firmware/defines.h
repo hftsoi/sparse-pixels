@@ -12,7 +12,7 @@
 #define N_INPUT_2_1 10
 #define N_INPUT_3_1 1
 #define OUT_HEIGHT_2 10
-#define OUT_WIDTH_2 1
+#define OUT_WIDTH_2 10
 #define N_FILT_2 1
 
 #define N_MAX_PIXELS 10
