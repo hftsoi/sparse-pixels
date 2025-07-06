@@ -368,12 +368,16 @@ void hls_dummy(
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_reduce_out complete dim=0
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_hash_reduce_out complete dim=0
     sparse_input_reduce<input_t, ap_uint<10>, N_INPUT_1_1, N_INPUT_2_1, N_INPUT_3_1, N_MAX_PIXELS>(x_in, active_threshold, sparse_arr_feat_reduce_out, sparse_arr_hash_reduce_out); // sparse array creation
+    
+    result_t sparse_arr_feat_conv1_out[N_MAX_PIXELS * 1];
+    #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_conv1_out complete dim=0
+    sparse_conv<input_t, result_t, ap_uint<10>, weight2_t, bias2_t, N_MAX_PIXELS, 1, 1>(sparse_arr_feat_reduce_out, sparse_arr_feat_conv1_out, sparse_arr_hash_reduce_out, w2, b2); // sparse conv1
 
     result_t sparse_arr_feat_pool1_out[N_MAX_PIXELS * 1];
     ap_uint<10> sparse_arr_hash_pool1_out[N_MAX_PIXELS * 2];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_pool1_out complete dim=0
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_hash_pool1_out complete dim=0
-    sparse_pooling_avg<input_t, result_t, ap_uint<10>, N_MAX_PIXELS, 1, 2>(sparse_arr_feat_reduce_out, sparse_arr_feat_pool1_out, sparse_arr_hash_reduce_out, sparse_arr_hash_pool1_out); // sparse pool1
+    sparse_pooling_avg<result_t, result_t, ap_uint<10>, N_MAX_PIXELS, 1, 2>(sparse_arr_feat_conv1_out, sparse_arr_feat_pool1_out, sparse_arr_hash_reduce_out, sparse_arr_hash_pool1_out); // sparse pool1
 
     for (int i = 0; i < N_MAX_PIXELS; i++) {
         #pragma HLS UNROLL

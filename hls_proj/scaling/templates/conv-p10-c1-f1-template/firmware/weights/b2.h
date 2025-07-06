@@ -9,7 +9,7 @@
 #ifndef __SYNTHESIS__
 bias2_t b2[1];
 #else
-bias2_t b2[1] = {0.34250};
+bias2_t b2[1] = {0.859375};
 
 #endif
 

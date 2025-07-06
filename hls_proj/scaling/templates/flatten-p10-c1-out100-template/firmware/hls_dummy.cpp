@@ -368,12 +368,16 @@ void hls_dummy(
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_reduce_out complete dim=0
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_hash_reduce_out complete dim=0
     sparse_input_reduce<input_t, ap_uint<10>, N_INPUT_1_1, N_INPUT_2_1, N_INPUT_3_1, N_MAX_PIXELS>(x_in, active_threshold, sparse_arr_feat_reduce_out, sparse_arr_hash_reduce_out); // sparse array creation
+    
+    result_t sparse_arr_feat_conv1_out[N_MAX_PIXELS * 1];
+    #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_conv1_out complete dim=0
+    sparse_conv<input_t, result_t, ap_uint<10>, weight2_t, bias2_t, N_MAX_PIXELS, 1, 1>(sparse_arr_feat_reduce_out, sparse_arr_feat_conv1_out, sparse_arr_hash_reduce_out, w2, b2); // sparse conv1
 
-    result_t flatten_out[N_INPUT_1_1*N_INPUT_2_1*N_INPUT_3_1];
+    result_t flatten_out[OUT_HEIGHT_2*OUT_WIDTH_2*N_FILT_2];
     #pragma HLS ARRAY_PARTITION variable=flatten_out complete dim=0
-    sparse_flatten<result_t, ap_uint<10>, N_INPUT_1_1, N_INPUT_2_1, N_INPUT_3_1, N_MAX_PIXELS>(sparse_arr_feat_reduce_out, sparse_arr_hash_reduce_out, flatten_out); // sparse flatten
+    sparse_flatten<result_t, ap_uint<10>, OUT_HEIGHT_2, OUT_WIDTH_2, N_FILT_2, N_MAX_PIXELS>(sparse_arr_feat_conv1_out, sparse_arr_hash_reduce_out, flatten_out); // sparse flatten
 
-    for (int i = 0; i < N_INPUT_1_1*N_INPUT_2_1*N_INPUT_3_1; i++) {
+    for (int i = 0; i < OUT_HEIGHT_2*OUT_WIDTH_2*N_FILT_2; i++) {
         #pragma HLS UNROLL
         layer2_out[i] = flatten_out[i];
     }
