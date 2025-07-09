@@ -318,7 +318,7 @@ void sparse_flatten(data_T sparse_arr_feat[N_sparse * n_chan],
 
     FillFlatArr:
     for (int i = 0; i < N_sparse; i++) {
-        #pragma HLS UNROLL
+        #pragma HLS UNROLL factor=4
         // Compute the pixel number from its height and width indices.
         int i_h = sparse_arr_hash[2 * i];
         int i_w = sparse_arr_hash[2 * i + 1];
