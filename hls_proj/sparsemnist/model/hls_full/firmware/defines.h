@@ -37,7 +37,7 @@
 
 
 // hls-fpga-machine-learning insert layer-precision
-typedef ap_fixed<16,6> input_t;
+typedef ap_fixed<9,2> input_t;
 typedef ap_fixed<27,12> conv1_accum_t;
 typedef ap_fixed<27,12> conv1_result_t;
 typedef ap_fixed<6,1> weight2_t;

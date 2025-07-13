@@ -38,7 +38,7 @@
 #define N_MAX_PIXELS 16
 
 // hls-fpga-machine-learning insert layer-precision
-typedef ap_fixed<16,6> input_t;
+typedef ap_fixed<9,2> input_t;
 typedef ap_fixed<27,12> conv1_accum_t;
 typedef ap_fixed<27,12> conv1_result_t;
 typedef ap_fixed<6,1> weight2_t;
@@ -72,6 +72,7 @@ typedef ap_fixed<18,8> softmax_table_t;
 typedef ap_fixed<18,8,AP_RND,AP_SAT,0> softmax_exp_table_t;
 typedef ap_fixed<18,8,AP_RND,AP_SAT,0> softmax_inv_table_t;
 
-typedef ap_ufixed<10,2,AP_RND_CONV,AP_SAT,0> model_default_t;
+typedef ap_ufixed<9,2,AP_RND_CONV,AP_SAT,0> conv_default_t;
+typedef ap_ufixed<6,2,AP_RND_CONV,AP_SAT,0> model_default_t;
 
 #endif
