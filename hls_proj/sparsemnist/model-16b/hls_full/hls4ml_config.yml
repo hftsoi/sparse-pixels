@@ -1,0 +1,143 @@
+Backend: Vitis
+ClockPeriod: 5
+ClockUncertainty: 27%
+HLSConfig:
+  LayerName:
+    conv1:
+      ConvImplementation: LineBuffer
+      ParallelizationFactor: 800
+      Precision:
+        accum: auto
+        bias: fixed<16,7,TRN,WRAP,0>
+        result: auto
+        weight: fixed<16,7,TRN,WRAP,0>
+      ReuseFactor: 1
+      Trace: false
+    conv1_linear:
+      Precision:
+        result: auto
+        table: fixed<18,8,TRN,WRAP,0>
+      ReuseFactor: 1
+      TableSize: 1024
+      Trace: false
+    conv2:
+      ConvImplementation: LineBuffer
+      ParallelizationFactor: 50
+      Precision:
+        accum: auto
+        bias: fixed<16,7,TRN,WRAP,0>
+        result: auto
+        weight: fixed<16,7,TRN,WRAP,0>
+      ReuseFactor: 1
+      Trace: false
+    conv2_linear:
+      Precision:
+        result: auto
+        table: fixed<18,8,TRN,WRAP,0>
+      ReuseFactor: 1
+      TableSize: 1024
+      Trace: false
+    dense1:
+      Precision:
+        accum: auto
+        bias: fixed<16,7,TRN,WRAP,0>
+        result: auto
+        weight: fixed<16,7,TRN,WRAP,0>
+      ReuseFactor: 1
+      Trace: false
+    dense1_linear:
+      Precision:
+        result: auto
+        table: fixed<18,8,TRN,WRAP,0>
+      ReuseFactor: 1
+      TableSize: 1024
+      Trace: false
+    dense2:
+      Precision:
+        accum: auto
+        bias: fixed<16,7,TRN,WRAP,0>
+        result: auto
+        weight: fixed<16,7,TRN,WRAP,0>
+      ReuseFactor: 1
+      Trace: false
+    dense2_linear:
+      Precision:
+        result: auto
+        table: fixed<18,8,TRN,WRAP,0>
+      ReuseFactor: 1
+      TableSize: 1024
+      Trace: false
+    flatten:
+      Precision:
+        result: auto
+      Trace: false
+    pool1:
+      ConvImplementation: LineBuffer
+      Precision:
+        accum: auto
+        result: auto
+      ReuseFactor: 1
+      Trace: false
+    pool2:
+      ConvImplementation: LineBuffer
+      Precision:
+        accum: auto
+        result: auto
+      ReuseFactor: 1
+      Trace: false
+    relu1:
+      Precision:
+        result: ufixed<16,6,RND_CONV,SAT,0>
+        table: fixed<18,8,TRN,WRAP,0>
+      ReuseFactor: 1
+      TableSize: 1024
+      Trace: false
+    relu2:
+      Precision:
+        result: ufixed<16,6,RND_CONV,SAT,0>
+        table: fixed<18,8,TRN,WRAP,0>
+      ReuseFactor: 1
+      TableSize: 1024
+      Trace: false
+    relu3:
+      Precision:
+        result: ufixed<16,6,RND_CONV,SAT,0>
+        table: fixed<18,8,TRN,WRAP,0>
+      ReuseFactor: 1
+      TableSize: 1024
+      Trace: false
+    softmax:
+      Implementation: stable
+      Precision:
+        exp_table: fixed<18,8,RND,SAT,0>
+        inv_table: fixed<18,8,RND,SAT,0>
+        result: auto
+        table: fixed<18,8,TRN,WRAP,0>
+      ReuseFactor: 1
+      Skip: false
+      TableSize: 1024
+      Trace: false
+    x_in:
+      Precision:
+        result: auto
+      Trace: false
+  Model:
+    BramFactor: 1000000000
+    Precision:
+      default: fixed<16,6>
+    ReuseFactor: 1
+    Strategy: Latency
+    TraceOutput: false
+IOType: io_parallel
+InputData: null
+KerasModel: !keras_model 'hls_proj/sparsemnist/model-16b/hls_full/keras_model.keras'
+OutputDir: hls_proj/sparsemnist/model-16b/hls_full
+OutputPredictions: null
+Part: xcu250-figd2104-2L-e
+ProjectName: myhls
+Stamp: 0fd7b5e7
+Version: 1.0.0
+WriterConfig:
+  Namespace: null
+  WriteTar: false
+  WriteWeightsTxt: true
