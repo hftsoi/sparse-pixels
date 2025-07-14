@@ -114,7 +114,7 @@ def plot_sparsemnist(x_original, x_modified1, x_modified2, x_modified3, n_exampl
     plt.show()
 
 
-def plot_jetimage(x, y, n_examples, threshold=0):
+def plot_jetimage(x, y, n_examples, threshold=0, normalized=False):
     classes = ['g','q','W','Z','t']
     class_indices = []
     for i in range(5):
@@ -128,13 +128,22 @@ def plot_jetimage(x, y, n_examples, threshold=0):
         img = np.where(img>threshold, img, 0)
         nonzero_count = np.count_nonzero(img)
 
-        im = ax.imshow(
-            img,
-            cmap='viridis',
-            norm=colors.LogNorm(vmin=(threshold if threshold>0 else 1e-2), vmax=5e2),
-            origin='lower',
-            extent=[0, img.shape[0], 0, img.shape[1]]
-        )
+        if normalized is False:
+            im = ax.imshow(
+                img,
+                cmap='viridis',
+                norm=colors.LogNorm(vmin=(threshold if threshold>0 else 1e-2), vmax=5e2),
+                origin='lower',
+                extent=[0, img.shape[0], 0, img.shape[1]]
+            )
+        else:
+            im = ax.imshow(
+                img,
+                cmap='viridis',
+                norm=colors.LogNorm(vmin=(threshold if threshold>0 else 1e-5), vmax=1),
+                origin='lower',
+                extent=[0, img.shape[0], 0, img.shape[1]]
+            )
         ax.set_title(f'{classes[i % 5]} [active={nonzero_count}/({img.shape[0]}*{img.shape[1]})]', fontsize=16)
         #ax.set_xlabel("delta eta", fontsize=16)
         #ax.set_ylabel("delta phi", fontsize=16)
