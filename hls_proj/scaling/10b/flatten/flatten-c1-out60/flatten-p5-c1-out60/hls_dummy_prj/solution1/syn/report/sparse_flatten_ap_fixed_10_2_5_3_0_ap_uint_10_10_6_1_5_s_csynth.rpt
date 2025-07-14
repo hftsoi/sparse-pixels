@@ -1,0 +1,397 @@
+
+
+================================================================
+== Vitis HLS Report for 'sparse_flatten_ap_fixed_10_2_5_3_0_ap_uint_10_10_6_1_5_s'
+================================================================
+* Date:           Wed Jul  9 05:30:59 2025
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        hls_dummy_prj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  2.528 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        6|        6|  30.000 ns|  30.000 ns|    6|    6|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------------------------------------------------------------+------------------------------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+        |                                                                             |                                                                  |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+        |                                   Instance                                  |                              Module                              |   min   |   max   |    min    |    max    | min | max |   Type  |
+        +-----------------------------------------------------------------------------+------------------------------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+        |grp_sparse_flatten_ap_fixed_ap_uint_10_10_6_1_5_Pipeline_FillFlatArr_fu_626  |sparse_flatten_ap_fixed_ap_uint_10_10_6_1_5_Pipeline_FillFlatArr  |        4|        4|  20.000 ns|  20.000 ns|    4|    4|       no|
+        +-----------------------------------------------------------------------------+------------------------------------------------------------------+---------+---------+-----------+-----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K|  DSP  |    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        0|      602|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        -|      -|     2420|     5582|     -|
+|Memory               |        -|      -|        -|        -|     -|
+|Multiplexer          |        -|      -|        -|      119|     -|
+|Register             |        -|      -|      636|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        0|      0|     3056|     6303|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        0|      0|       ~0|        1|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    +-----------------------------------------------------------------------------+------------------------------------------------------------------+---------+----+------+------+-----+
+    |                                   Instance                                  |                              Module                              | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +-----------------------------------------------------------------------------+------------------------------------------------------------------+---------+----+------+------+-----+
+    |grp_sparse_flatten_ap_fixed_ap_uint_10_10_6_1_5_Pipeline_FillFlatArr_fu_626  |sparse_flatten_ap_fixed_ap_uint_10_10_6_1_5_Pipeline_FillFlatArr  |        0|   0|  2420|  5582|    0|
+    +-----------------------------------------------------------------------------+------------------------------------------------------------------+---------+----+------+------+-----+
+    |Total                                                                        |                                                                  |        0|   0|  2420|  5582|    0|
+    +-----------------------------------------------------------------------------+------------------------------------------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------+----------+----+---+----+------------+------------+
+    |        Variable Name       | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------+----------+----+---+----+------------+------------+
+    |ap_block_state1             |        or|   0|  0|   2|           1|           1|
+    |select_ln319_10_fu_1210_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_11_fu_1217_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_12_fu_1224_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_13_fu_1231_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_14_fu_1238_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_15_fu_1245_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_16_fu_1252_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_17_fu_1259_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_18_fu_1266_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_19_fu_1273_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_1_fu_1147_p3   |    select|   0|  0|  10|           1|          10|
+    |select_ln319_20_fu_1280_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_21_fu_1287_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_22_fu_1294_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_23_fu_1301_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_24_fu_1308_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_25_fu_1315_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_26_fu_1322_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_27_fu_1329_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_28_fu_1336_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_29_fu_1343_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_2_fu_1154_p3   |    select|   0|  0|  10|           1|          10|
+    |select_ln319_30_fu_1350_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_31_fu_1357_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_32_fu_1364_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_33_fu_1371_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_34_fu_1378_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_35_fu_1385_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_36_fu_1392_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_37_fu_1399_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_38_fu_1406_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_39_fu_1413_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_3_fu_1161_p3   |    select|   0|  0|  10|           1|          10|
+    |select_ln319_40_fu_1420_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_41_fu_1427_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_42_fu_1434_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_43_fu_1441_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_44_fu_1448_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_45_fu_1455_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_46_fu_1462_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_47_fu_1469_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_48_fu_1476_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_49_fu_1483_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_4_fu_1168_p3   |    select|   0|  0|  10|           1|          10|
+    |select_ln319_50_fu_1490_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_51_fu_1497_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_52_fu_1504_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_53_fu_1511_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_54_fu_1518_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_55_fu_1525_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_56_fu_1532_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_57_fu_1539_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_58_fu_1546_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_59_fu_1553_p3  |    select|   0|  0|  10|           1|          10|
+    |select_ln319_5_fu_1175_p3   |    select|   0|  0|  10|           1|          10|
+    |select_ln319_6_fu_1182_p3   |    select|   0|  0|  10|           1|          10|
+    |select_ln319_7_fu_1189_p3   |    select|   0|  0|  10|           1|          10|
+    |select_ln319_8_fu_1196_p3   |    select|   0|  0|  10|           1|          10|
+    |select_ln319_9_fu_1203_p3   |    select|   0|  0|  10|           1|          10|
+    |select_ln319_fu_1140_p3     |    select|   0|  0|  10|           1|          10|
+    +----------------------------+----------+----+---+----+------------+------------+
+    |Total                       |          |   0|  0| 602|          61|         601|
+    +----------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                |  20|          4|    1|          4|
+    |ap_done                  |   9|          2|    1|          2|
+    |sparse_arr_hash_0_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_1_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_2_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_3_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_4_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_5_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_6_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_7_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_8_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_9_blk_n  |   9|          2|    1|          2|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    | 119|         26|   12|         26|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                           Name                                           | FF | LUT| Bits| Const Bits|
+    +------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                                                 |   3|   0|    3|          0|
+    |ap_done_reg                                                                               |   1|   0|    1|          0|
+    |grp_sparse_flatten_ap_fixed_ap_uint_10_10_6_1_5_Pipeline_FillFlatArr_fu_626_ap_start_reg  |   1|   0|    1|          0|
+    |p_0_0_011_3100_loc_fu_332                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_310_loc_fu_296                                                                  |  10|   0|   10|          0|
+    |p_0_0_011_3110_loc_fu_336                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3120_loc_fu_340                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3130_loc_fu_344                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3140_loc_fu_348                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3150_loc_fu_352                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3160_loc_fu_356                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3170_loc_fu_360                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3180_loc_fu_364                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3190_loc_fu_368                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3200_loc_fu_372                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_320_loc_fu_300                                                                  |  10|   0|   10|          0|
+    |p_0_0_011_3210_loc_fu_376                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3220_loc_fu_380                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3230_loc_fu_384                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3240_loc_fu_388                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3250_loc_fu_392                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3260_loc_fu_396                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3270_loc_fu_400                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3280_loc_fu_404                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3290_loc_fu_408                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3300_loc_fu_412                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_330_loc_fu_304                                                                  |  10|   0|   10|          0|
+    |p_0_0_011_3310_loc_fu_416                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3320_loc_fu_420                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3330_loc_fu_424                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3340_loc_fu_428                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3350_loc_fu_432                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3360_loc_fu_436                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3370_loc_fu_440                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3380_loc_fu_444                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3390_loc_fu_448                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3400_loc_fu_452                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_340_loc_fu_308                                                                  |  10|   0|   10|          0|
+    |p_0_0_011_3410_loc_fu_456                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3420_loc_fu_460                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3430_loc_fu_464                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3440_loc_fu_468                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3450_loc_fu_472                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3460_loc_fu_476                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3470_loc_fu_480                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3480_loc_fu_484                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3490_loc_fu_488                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3500_loc_fu_492                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_350_loc_fu_312                                                                  |  10|   0|   10|          0|
+    |p_0_0_011_3510_loc_fu_496                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3520_loc_fu_500                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3530_loc_fu_504                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3540_loc_fu_508                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3550_loc_fu_512                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3560_loc_fu_516                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3570_loc_fu_520                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3580_loc_fu_524                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3590_loc_fu_528                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_3600_loc_fu_532                                                                 |  10|   0|   10|          0|
+    |p_0_0_011_360_loc_fu_316                                                                  |  10|   0|   10|          0|
+    |p_0_0_011_370_loc_fu_320                                                                  |  10|   0|   10|          0|
+    |p_0_0_011_380_loc_fu_324                                                                  |  10|   0|   10|          0|
+    |p_0_0_011_390_loc_fu_328                                                                  |  10|   0|   10|          0|
+    |sparse_arr_hash_0_read_reg_2710                                                           |   3|   0|    3|          0|
+    |sparse_arr_hash_1_read_reg_2705                                                           |   3|   0|    3|          0|
+    |sparse_arr_hash_2_read_reg_2700                                                           |   3|   0|    3|          0|
+    |sparse_arr_hash_3_read_reg_2695                                                           |   3|   0|    3|          0|
+    |sparse_arr_hash_4_read_reg_2690                                                           |   3|   0|    3|          0|
+    |sparse_arr_hash_5_read_reg_2685                                                           |   3|   0|    3|          0|
+    |sparse_arr_hash_6_read_reg_2680                                                           |   3|   0|    3|          0|
+    |sparse_arr_hash_7_read_reg_2675                                                           |   3|   0|    3|          0|
+    |sparse_arr_hash_8_read_reg_2670                                                           |   3|   0|    3|          0|
+    |sparse_arr_hash_9_read_reg_2665                                                           |   3|   0|    3|          0|
+    |targetBlock_reg_2715                                                                      |   1|   0|    1|          0|
+    +------------------------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                                     | 636|   0|  636|          0|
+    +------------------------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|             RTL Ports            | Dir | Bits|  Protocol  |                            Source Object                           |    C Type    |
++----------------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|ap_clk                            |   in|    1|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_rst                            |   in|    1|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_start                          |   in|    1|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_done                           |  out|    1|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_continue                       |   in|    1|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_idle                           |  out|    1|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_ready                          |  out|    1|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_0                       |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_1                       |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_2                       |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_3                       |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_4                       |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_5                       |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_6                       |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_7                       |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_8                       |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_9                       |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_10                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_11                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_12                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_13                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_14                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_15                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_16                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_17                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_18                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_19                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_20                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_21                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_22                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_23                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_24                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_25                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_26                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_27                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_28                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_29                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_30                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_31                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_32                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_33                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_34                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_35                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_36                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_37                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_38                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_39                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_40                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_41                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_42                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_43                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_44                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_45                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_46                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_47                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_48                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_49                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_50                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_51                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_52                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_53                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_54                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_55                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_56                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_57                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_58                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|ap_return_59                      |  out|   10|  ap_ctrl_hs|  sparse_flatten<ap_fixed<10, 2, 5, 3, 0>, ap_uint<10>, 10, 6, 1, 5>|  return value|
+|p_read                            |   in|   10|     ap_none|                                                              p_read|        scalar|
+|p_read1                           |   in|   10|     ap_none|                                                             p_read1|        scalar|
+|p_read2                           |   in|   10|     ap_none|                                                             p_read2|        scalar|
+|p_read3                           |   in|   10|     ap_none|                                                             p_read3|        scalar|
+|p_read4                           |   in|   10|     ap_none|                                                             p_read4|        scalar|
+|sparse_arr_hash_0_dout            |   in|    3|     ap_fifo|                                                   sparse_arr_hash_0|       pointer|
+|sparse_arr_hash_0_num_data_valid  |   in|    2|     ap_fifo|                                                   sparse_arr_hash_0|       pointer|
+|sparse_arr_hash_0_fifo_cap        |   in|    2|     ap_fifo|                                                   sparse_arr_hash_0|       pointer|
+|sparse_arr_hash_0_empty_n         |   in|    1|     ap_fifo|                                                   sparse_arr_hash_0|       pointer|
+|sparse_arr_hash_0_read            |  out|    1|     ap_fifo|                                                   sparse_arr_hash_0|       pointer|
+|sparse_arr_hash_1_dout            |   in|    3|     ap_fifo|                                                   sparse_arr_hash_1|       pointer|
+|sparse_arr_hash_1_num_data_valid  |   in|    2|     ap_fifo|                                                   sparse_arr_hash_1|       pointer|
+|sparse_arr_hash_1_fifo_cap        |   in|    2|     ap_fifo|                                                   sparse_arr_hash_1|       pointer|
+|sparse_arr_hash_1_empty_n         |   in|    1|     ap_fifo|                                                   sparse_arr_hash_1|       pointer|
+|sparse_arr_hash_1_read            |  out|    1|     ap_fifo|                                                   sparse_arr_hash_1|       pointer|
+|sparse_arr_hash_2_dout            |   in|    3|     ap_fifo|                                                   sparse_arr_hash_2|       pointer|
+|sparse_arr_hash_2_num_data_valid  |   in|    2|     ap_fifo|                                                   sparse_arr_hash_2|       pointer|
+|sparse_arr_hash_2_fifo_cap        |   in|    2|     ap_fifo|                                                   sparse_arr_hash_2|       pointer|
+|sparse_arr_hash_2_empty_n         |   in|    1|     ap_fifo|                                                   sparse_arr_hash_2|       pointer|
+|sparse_arr_hash_2_read            |  out|    1|     ap_fifo|                                                   sparse_arr_hash_2|       pointer|
+|sparse_arr_hash_3_dout            |   in|    3|     ap_fifo|                                                   sparse_arr_hash_3|       pointer|
+|sparse_arr_hash_3_num_data_valid  |   in|    2|     ap_fifo|                                                   sparse_arr_hash_3|       pointer|
+|sparse_arr_hash_3_fifo_cap        |   in|    2|     ap_fifo|                                                   sparse_arr_hash_3|       pointer|
+|sparse_arr_hash_3_empty_n         |   in|    1|     ap_fifo|                                                   sparse_arr_hash_3|       pointer|
+|sparse_arr_hash_3_read            |  out|    1|     ap_fifo|                                                   sparse_arr_hash_3|       pointer|
+|sparse_arr_hash_4_dout            |   in|    3|     ap_fifo|                                                   sparse_arr_hash_4|       pointer|
+|sparse_arr_hash_4_num_data_valid  |   in|    2|     ap_fifo|                                                   sparse_arr_hash_4|       pointer|
+|sparse_arr_hash_4_fifo_cap        |   in|    2|     ap_fifo|                                                   sparse_arr_hash_4|       pointer|
+|sparse_arr_hash_4_empty_n         |   in|    1|     ap_fifo|                                                   sparse_arr_hash_4|       pointer|
+|sparse_arr_hash_4_read            |  out|    1|     ap_fifo|                                                   sparse_arr_hash_4|       pointer|
+|sparse_arr_hash_5_dout            |   in|    3|     ap_fifo|                                                   sparse_arr_hash_5|       pointer|
+|sparse_arr_hash_5_num_data_valid  |   in|    2|     ap_fifo|                                                   sparse_arr_hash_5|       pointer|
+|sparse_arr_hash_5_fifo_cap        |   in|    2|     ap_fifo|                                                   sparse_arr_hash_5|       pointer|
+|sparse_arr_hash_5_empty_n         |   in|    1|     ap_fifo|                                                   sparse_arr_hash_5|       pointer|
+|sparse_arr_hash_5_read            |  out|    1|     ap_fifo|                                                   sparse_arr_hash_5|       pointer|
+|sparse_arr_hash_6_dout            |   in|    3|     ap_fifo|                                                   sparse_arr_hash_6|       pointer|
+|sparse_arr_hash_6_num_data_valid  |   in|    2|     ap_fifo|                                                   sparse_arr_hash_6|       pointer|
+|sparse_arr_hash_6_fifo_cap        |   in|    2|     ap_fifo|                                                   sparse_arr_hash_6|       pointer|
+|sparse_arr_hash_6_empty_n         |   in|    1|     ap_fifo|                                                   sparse_arr_hash_6|       pointer|
+|sparse_arr_hash_6_read            |  out|    1|     ap_fifo|                                                   sparse_arr_hash_6|       pointer|
+|sparse_arr_hash_7_dout            |   in|    3|     ap_fifo|                                                   sparse_arr_hash_7|       pointer|
+|sparse_arr_hash_7_num_data_valid  |   in|    2|     ap_fifo|                                                   sparse_arr_hash_7|       pointer|
+|sparse_arr_hash_7_fifo_cap        |   in|    2|     ap_fifo|                                                   sparse_arr_hash_7|       pointer|
+|sparse_arr_hash_7_empty_n         |   in|    1|     ap_fifo|                                                   sparse_arr_hash_7|       pointer|
+|sparse_arr_hash_7_read            |  out|    1|     ap_fifo|                                                   sparse_arr_hash_7|       pointer|
+|sparse_arr_hash_8_dout            |   in|    3|     ap_fifo|                                                   sparse_arr_hash_8|       pointer|
+|sparse_arr_hash_8_num_data_valid  |   in|    2|     ap_fifo|                                                   sparse_arr_hash_8|       pointer|
+|sparse_arr_hash_8_fifo_cap        |   in|    2|     ap_fifo|                                                   sparse_arr_hash_8|       pointer|
+|sparse_arr_hash_8_empty_n         |   in|    1|     ap_fifo|                                                   sparse_arr_hash_8|       pointer|
+|sparse_arr_hash_8_read            |  out|    1|     ap_fifo|                                                   sparse_arr_hash_8|       pointer|
+|sparse_arr_hash_9_dout            |   in|    3|     ap_fifo|                                                   sparse_arr_hash_9|       pointer|
+|sparse_arr_hash_9_num_data_valid  |   in|    2|     ap_fifo|                                                   sparse_arr_hash_9|       pointer|
+|sparse_arr_hash_9_fifo_cap        |   in|    2|     ap_fifo|                                                   sparse_arr_hash_9|       pointer|
+|sparse_arr_hash_9_empty_n         |   in|    1|     ap_fifo|                                                   sparse_arr_hash_9|       pointer|
+|sparse_arr_hash_9_read            |  out|    1|     ap_fifo|                                                   sparse_arr_hash_9|       pointer|
++----------------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+
