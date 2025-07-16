@@ -1,0 +1,142 @@
+================================================================
+== Design Size Report
+================================================================
+
+* Total Instructions per Compilation Phase
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+| Phase         | Step                        | Instructions | Description                                                                            |
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+| Compile/Link  |                             |    73,775    | After all functions are compiled and linked into a single design                       |
+|               |                             |              |                                                                                        |
+| Unroll/Inline |                             |              | After user unroll and inline pragmas are applied                                       |
+|               | (1) unroll                  | 1,011,259 *  | user unroll pragmas are applied                                                        |
+|               | (2) simplification          |   392,077 *  | simplification of applied user unroll pragmas                                          |
+|               | (3) inline                  |   385,314 *  | user inline pragmas are applied                                                        |
+|               | (4) simplification          |   384,981 *  | simplification of applied user inline pragmas                                          |
+|               |                             |              |                                                                                        |
+| Array/Struct  |                             |              | After user array partition and struct aggregate/disaggregate pragmas are applied       |
+|               | (1) array partition         |   361,783 *  | user array partition pragmas are applied                                               |
+|               | (2) simplification          |   321,257 *  | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
+|               | (3) aggregate/disaggregate  |   321,257 *  | user struct aggregate/disaggregate pragmas are applied                                 |
+|               | (4) array reshape           |   322,057 *  | apply array reshape pragmas                                                            |
+|               | (5) access patterns         |   320,852 *  | array access pattern optmizations                                                      |
+|               |                             |              |                                                                                        |
+| Performance   |                             |              | After transformations are applied to meet performance pragma targets                   |
+|               | (1) loop simplification     |   314,304 *  | loop and instruction simplification                                                    |
+|               | (2) parallelization         |   313,918 *  | loops are unrolled or pipelined to meet performance targets                            |
+|               | (3) array partition         |   313,918 *  | arrays are partitioned to meet performance targets                                     |
+|               | (4) simplification          |   313,914 *  | simplification of design after performance transformations                             |
+|               |                             |              |                                                                                        |
+| HW Transforms |                             |              | After hardware transfomations                                                          |
+|               | (1) lowering                |   313,920 *  | initial conversion to HW specific instructions                                         |
+|               | (2) optimizations           |   311,940 *  | high level synthesis optimizations                                                     |
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+    * - Exceeded design size warning message threshold
+
+* Instructions per Function for each Compilation Phase
++---------------------------------------------+-------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+| Function                                    | Location                | Compile/Link       | Unroll/Inline      | Array/Struct       | Performance        | HW Transforms      |
++---------------------------------------------+-------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+| + myhls                                     | myhls.cpp:340           | 73,775             | 384,981 *          | 320,852 *          | 313,914 *          | 311,940 *          |
+|  + sparse_input_reduce<ap_ufixe...          | myhls.cpp:54            | 55,731             | 20,802             | 17,753             | 11,358             |  9,367             |
+|   + find_active<value_idx_pair<a...         | myhls.cpp:34            | 55,259             |                    |                    |                    |                    |
+|    + find_active<value_idx_pair<a...        | myhls.cpp:34            | 35,315             |                    |                    |                    |                    |
+|     + find_active<value_idx_pair<a...       | myhls.cpp:34            | 35,174 (2 calls)   |                    |                    |                    |                    |
+|      + find_active<value_idx_pair<a...      | myhls.cpp:34            | 34,892 (4 calls)   |                    |                    |                    |                    |
+|       + find_active<value_idx_pair<a...     | myhls.cpp:34            | 34,328 (8 calls)   |                    |                    |                    |                    |
+|        + find_active<value_idx_pair<a...    | myhls.cpp:34            | 33,200 (16 calls)  |                    |                    |                    |                    |
+|         + find_active<value_idx_pair<a...   | myhls.cpp:34            | 30,944 (32 calls)  |                    |                    |                    |                    |
+|          + find_active<value_idx_pair<a...  | myhls.cpp:34            | 26,432 (64 calls)  |                    |                    |                    |                    |
+|           + find_active<value_idx_pair<a... | myhls.cpp:34            | 17,408 (128 calls) |                    |                    |                    |                    |
+|              operator()                     | myhls.cpp:13            | 15,744 (128 calls) |                    |                    |                    |                    |
+|             operator()                      | myhls.cpp:13            | 7,872 (64 calls)   |                    |                    |                    |                    |
+|            operator()                       | myhls.cpp:13            | 3,936 (32 calls)   |                    |                    |                    |                    |
+|           operator()                        | myhls.cpp:13            | 1,968 (16 calls)   |                    |                    |                    |                    |
+|          operator()                         | myhls.cpp:13            |   984 (8 calls)    |                    |                    |                    |                    |
+|         operator()                          | myhls.cpp:13            |   492 (4 calls)    |                    |                    |                    |                    |
+|        operator()                           | myhls.cpp:13            |   246 (2 calls)    |                    |                    |                    |                    |
+|       operator()                            | myhls.cpp:13            |   123              |                    |                    |                    |                    |
+|    + find_active<value_idx_pair<a...        | myhls.cpp:34            | 19,803             |                    |                    |                    |                    |
+|     + find_active<value_idx_pair<a...       | myhls.cpp:34            | 17,587             |                    |                    |                    |                    |
+|      + find_active<value_idx_pair<a...      | myhls.cpp:34            | 17,446 (2 calls)   |                    |                    |                    |                    |
+|       + find_active<value_idx_pair<a...     | myhls.cpp:34            | 17,164 (4 calls)   |                    |                    |                    |                    |
+|        + find_active<value_idx_pair<a...    | myhls.cpp:34            | 16,600 (8 calls)   |                    |                    |                    |                    |
+|         + find_active<value_idx_pair<a...   | myhls.cpp:34            | 15,472 (16 calls)  |                    |                    |                    |                    |
+|          + find_active<value_idx_pair<a...  | myhls.cpp:34            | 13,216 (32 calls)  |                    |                    |                    |                    |
+|           + find_active<value_idx_pair<a... | myhls.cpp:34            | 8,704 (64 calls)   |                    |                    |                    |                    |
+|              operator()                     | myhls.cpp:13            | 7,872 (64 calls)   |                    |                    |                    |                    |
+|             operator()                      | myhls.cpp:13            | 3,936 (32 calls)   |                    |                    |                    |                    |
+|            operator()                       | myhls.cpp:13            | 1,968 (16 calls)   |                    |                    |                    |                    |
+|           operator()                        | myhls.cpp:13            |   984 (8 calls)    |                    |                    |                    |                    |
+|          operator()                         | myhls.cpp:13            |   492 (4 calls)    |                    |                    |                    |                    |
+|         operator()                          | myhls.cpp:13            |   246 (2 calls)    |                    |                    |                    |                    |
+|        operator()                           | myhls.cpp:13            |   123              |                    |                    |                    |                    |
+|     + find_active<value_idx_pair<a...       | myhls.cpp:34            | 2,075              |                    |                    |                    |                    |
+|      + find_active<value_idx_pair<a...      | myhls.cpp:34            | 1,934 (2 calls)    |                    |                    |                    |                    |
+|       + find_active<value_idx_pair<a...     | myhls.cpp:34            | 1,652 (4 calls)    |                    |                    |                    |                    |
+|        + find_active<value_idx_pair<a...    | myhls.cpp:34            | 1,088 (8 calls)    |                    |                    |                    |                    |
+|           operator()                        | myhls.cpp:13            |   984 (8 calls)    |                    |                    |                    |                    |
+|          operator()                         | myhls.cpp:13            |   492 (4 calls)    |                    |                    |                    |                    |
+|         operator()                          | myhls.cpp:13            |   246 (2 calls)    |                    |                    |                    |                    |
+|        operator()                           | myhls.cpp:13            |   123              |                    |                    |                    |                    |
+|       operator()                            | myhls.cpp:13            |   123              |                    |                    |                    |                    |
+|      operator()                             | myhls.cpp:13            |   123              |                    |                    |                    |                    |
+|     operator()                              | myhls.cpp:13            |                    |  7,581 (399 calls) |  7,581 (399 calls) |  5,586 (399 calls) |  5,586 (399 calls) |
+|  + sparse_conv<ap_ufixed<8, 1, ...          | myhls.cpp:158           | 3,366              | 110,101            | 108,781            | 108,781            | 108,781            |
+|     mult_for_sparse_conv_kernel3...         | myhls.cpp:124           | 1,157              |                    |                    |                    |                    |
+|    sparse_relu<ap_ufixed<8, 2, ...          | myhls.cpp:210           |   429              |    539             |    421             |    421             |    422             |
+|    sparse_pooling_avg<ap_ufixed...          | myhls.cpp:224           | 2,543              | 16,268             | 12,051             | 12,047             | 12,047             |
+|  + sparse_conv<ap_ufixed<8, 2, ...          | myhls.cpp:158           | 3,366              | 104,318            | 105,781            | 105,781            | 105,781            |
+|     mult_for_sparse_conv_kernel3...         | myhls.cpp:124           | 1,157              |                    |                    |                    |                    |
+|    sparse_relu<ap_ufixed<8, 2, ...          | myhls.cpp:210           |   429              |    179             |    141             |    141             |    142             |
+|    sparse_flatten<ap_ufixed<8, ...          | myhls.cpp:307           |   477              |    296             |  1,232             |  1,232             |  1,237             |
+|  + dense<ap_ufixed<8, 2, AP_RND...          | nnet_dense.h:41         |   604              |                    |                    |                    |                    |
+|   + dense                                   | nnet_dense.h:50         |   602              |                    |                    |                    |                    |
+|    + dense_latency<ap_ufixed<8, 2...        | nnet_dense_latency.h:13 |   600              |                    |                    |                    |                    |
+|       product                               | nnet_mult.h:70          |   141              |                    |                    |                    |                    |
+|       cast<ap_ufixed<8, 2, AP_RND_...       | nnet_mult.h:110         |     3              |                    |                    |                    |                    |
+|    relu<ap_fixed<24, 9, AP_TRN,...          | nnet_activation.h:39    |   811              |  3,326             |  3,393             |  3,393             |  3,394             |
+|  + dense<ap_ufixed<8, 0, AP_RND...          | nnet_dense.h:41         |   590              |                    |                    |                    |                    |
+|   + dense                                   | nnet_dense.h:50         |   588              |                    |                    |                    |                    |
+|    + dense_latency<ap_ufixed<8, 0...        | nnet_dense_latency.h:13 |   586              |                    |                    |                    |                    |
+|       product                               | nnet_mult.h:70          |   141              |                    |                    |                    |                    |
+|       cast<ap_ufixed<8, 0, AP_RND_...       | nnet_mult.h:110         |     3              |                    |                    |                    |                    |
+|  + softmax<ap_fixed<23, 8, AP_T...          | nnet_activation.h:379   | 5,208              |                    |                    |                    |                    |
+|   + softmax_stable<ap_fixed<23, ...         | nnet_activation.h:216   | 5,206              |                    |                    |                    |                    |
+|    + init_exp_table<ap_fixed<23, ...        | nnet_activation.h:149   | 1,162              |                    |                    |                    |                    |
+|       softmax_real_val_from_idx<ap...       | nnet_activation.h:133   |   414              |                    |                    |                    |                    |
+|       exp_fcn_float                         | nnet_activation.h:131   |     4              |                    |                    |                    |                    |
+|    + init_invert_table<ap_fixed<1...        | nnet_activation.h:160   | 1,410              |                    |                    |                    |                    |
+|       softmax_real_val_from_idx<ap...       | nnet_activation.h:133   |   666              |                    |                    |                    |                    |
+|    + reduce<ap_fixed<23, 8, AP_TR...        | nnet_common.h:37        |   122              |                    |                    |                    |                    |
+|     + reduce<ap_fixed<23, 8, AP_TR...       | nnet_common.h:37        |    89              |                    |                    |                    |                    |
+|      + reduce<ap_fixed<23, 8, AP_TR...      | nnet_common.h:37        |    60 (2 calls)    |                    |                    |                    |                    |
+|         operator()                          | nnet_common.h:66        |    40 (2 calls)    |                    |                    |                    |                    |
+|        operator()                           | nnet_common.h:66        |    20              |                    |                    |                    |                    |
+|       reduce<ap_fixed<23, 8, AP_TR...       | nnet_common.h:37        |     4              |                    |                    |                    |                    |
+|       operator()                            | nnet_common.h:66        |    20              |                    |                    |                    |                    |
+|      softmax_idx_from_real_val<ap...        | nnet_activation.h:141   |    98              |                    |                    |                    |                    |
+|    + reduce<ap_fixed<18, 8, AP_RN...        | nnet_common.h:37        | 1,318              |                    |                    |                    |                    |
+|     + reduce<ap_fixed<18, 8, AP_RN...       | nnet_common.h:37        |   986              |                    |                    |                    |                    |
+|      + reduce<ap_fixed<18, 8, AP_RN...      | nnet_common.h:37        |   658 (2 calls)    |                    |                    |                    |                    |
+|         operator()                          | nnet_common.h:51        |   638 (2 calls)    |                    |                    |                    |                    |
+|        operator()                           | nnet_common.h:51        |   319              |                    |                    |                    |                    |
+|       reduce<ap_fixed<18, 8, AP_RN...       | nnet_common.h:37        |     4              |                    |                    |                    |                    |
+|       operator()                            | nnet_common.h:51        |   319              |                    |                    |                    |                    |
+|      softmax_idx_from_real_val<ap...        | nnet_activation.h:141   |    98              |                    |                    |                    |                    |
+|  + dense_latency<ap_ufixed<8, 2...          | nnet_dense_latency.h:13 |                    | 122,946            | 67,178             | 66,663             | 66,664             |
+|     cast<ap_ufixed<8, 2, AP_RND_...         | nnet_mult.h:110         |                    |    192 (64 calls)  |    192 (64 calls)  |                    |                    |
+|    dense_latency<ap_ufixed<8, 0...          | nnet_dense_latency.h:13 |                    |  5,726             |  3,232             |  3,232             |  3,233             |
+|  + softmax_stable<ap_fixed<23, ...          | nnet_activation.h:216   |                    |    380             |    318             |    294             |    292             |
+|     reduce<ap_fixed<18, 8, AP_RN...         | nnet_common.h:37        |                    |     83             |     80             |     76             |     76             |
++---------------------------------------------+-------------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+    * - Exceeded design size warning message threshold
+
+* Design Size Message Settings
++---------------------------------------------+--------+------------------------------------------------------------------+
+| Message Setting                             | Value  | Description                                                      |
++---------------------------------------------+--------+------------------------------------------------------------------+
+| config_compile -design_size_maximum_warning | 100000 | Show a warning when total design instructions exceeds this value |
++---------------------------------------------+--------+------------------------------------------------------------------+
+
+

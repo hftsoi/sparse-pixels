@@ -1,0 +1,224 @@
+
+
+================================================================
+== Vitis HLS Report for 'sparse_relu_ap_ufixed_8_2_4_0_0_ap_ufixed_8_2_4_0_0_8_3_s'
+================================================================
+* Date:           Tue Jul 15 19:58:11 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        myhls_prj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  1.429 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K|  DSP  |    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        0|        2|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        -|      -|        -|        -|     -|
+|Memory               |        -|      -|        -|        -|     -|
+|Multiplexer          |        -|      -|        -|      225|     -|
+|Register             |        -|      -|      194|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        0|      0|      194|      227|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------+----+-----------+-----+-----------+
+    |     Name     | LUT| Input Size| Bits| Total Bits|
+    +--------------+----+-----------+-----+-----------+
+    |ap_done       |   9|          2|    1|          2|
+    |ap_return_0   |   9|          2|    8|         16|
+    |ap_return_1   |   9|          2|    8|         16|
+    |ap_return_10  |   9|          2|    8|         16|
+    |ap_return_11  |   9|          2|    8|         16|
+    |ap_return_12  |   9|          2|    8|         16|
+    |ap_return_13  |   9|          2|    8|         16|
+    |ap_return_14  |   9|          2|    8|         16|
+    |ap_return_15  |   9|          2|    8|         16|
+    |ap_return_16  |   9|          2|    8|         16|
+    |ap_return_17  |   9|          2|    8|         16|
+    |ap_return_18  |   9|          2|    8|         16|
+    |ap_return_19  |   9|          2|    8|         16|
+    |ap_return_2   |   9|          2|    8|         16|
+    |ap_return_20  |   9|          2|    8|         16|
+    |ap_return_21  |   9|          2|    8|         16|
+    |ap_return_22  |   9|          2|    8|         16|
+    |ap_return_23  |   9|          2|    8|         16|
+    |ap_return_3   |   9|          2|    8|         16|
+    |ap_return_4   |   9|          2|    8|         16|
+    |ap_return_5   |   9|          2|    8|         16|
+    |ap_return_6   |   9|          2|    8|         16|
+    |ap_return_7   |   9|          2|    8|         16|
+    |ap_return_8   |   9|          2|    8|         16|
+    |ap_return_9   |   9|          2|    8|         16|
+    +--------------+----+-----------+-----+-----------+
+    |Total         | 225|         50|  193|        386|
+    +--------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------+---+----+-----+-----------+
+    |        Name       | FF| LUT| Bits| Const Bits|
+    +-------------------+---+----+-----+-----------+
+    |ap_CS_fsm          |  1|   0|    1|          0|
+    |ap_done_reg        |  1|   0|    1|          0|
+    |ap_return_0_preg   |  8|   0|    8|          0|
+    |ap_return_10_preg  |  8|   0|    8|          0|
+    |ap_return_11_preg  |  8|   0|    8|          0|
+    |ap_return_12_preg  |  8|   0|    8|          0|
+    |ap_return_13_preg  |  8|   0|    8|          0|
+    |ap_return_14_preg  |  8|   0|    8|          0|
+    |ap_return_15_preg  |  8|   0|    8|          0|
+    |ap_return_16_preg  |  8|   0|    8|          0|
+    |ap_return_17_preg  |  8|   0|    8|          0|
+    |ap_return_18_preg  |  8|   0|    8|          0|
+    |ap_return_19_preg  |  8|   0|    8|          0|
+    |ap_return_1_preg   |  8|   0|    8|          0|
+    |ap_return_20_preg  |  8|   0|    8|          0|
+    |ap_return_21_preg  |  8|   0|    8|          0|
+    |ap_return_22_preg  |  8|   0|    8|          0|
+    |ap_return_23_preg  |  8|   0|    8|          0|
+    |ap_return_2_preg   |  8|   0|    8|          0|
+    |ap_return_3_preg   |  8|   0|    8|          0|
+    |ap_return_4_preg   |  8|   0|    8|          0|
+    |ap_return_5_preg   |  8|   0|    8|          0|
+    |ap_return_6_preg   |  8|   0|    8|          0|
+    |ap_return_7_preg   |  8|   0|    8|          0|
+    |ap_return_8_preg   |  8|   0|    8|          0|
+    |ap_return_9_preg   |  8|   0|    8|          0|
+    +-------------------+---+----+-----+-----------+
+    |Total              |194|   0|  194|          0|
+    +-------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------+-----+-----+------------+-----------------------------------------------------------------------+--------------+
+|   RTL Ports  | Dir | Bits|  Protocol  |                             Source Object                             |    C Type    |
++--------------+-----+-----+------------+-----------------------------------------------------------------------+--------------+
+|ap_clk        |   in|    1|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_rst        |   in|    1|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_start      |   in|    1|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_done       |  out|    1|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_continue   |   in|    1|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_idle       |  out|    1|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_ready      |  out|    1|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_0   |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_1   |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_2   |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_3   |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_4   |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_5   |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_6   |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_7   |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_8   |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_9   |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_10  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_11  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_12  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_13  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_14  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_15  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_16  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_17  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_18  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_19  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_20  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_21  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_22  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|ap_return_23  |  out|    8|  ap_ctrl_hs|  sparse_relu<ap_ufixed<8, 2, 4, 0, 0>, ap_ufixed<8, 2, 4, 0, 0>, 8, 3>|  return value|
+|p_read        |   in|    8|     ap_none|                                                                 p_read|        scalar|
+|p_read1       |   in|    8|     ap_none|                                                                p_read1|        scalar|
+|p_read2       |   in|    8|     ap_none|                                                                p_read2|        scalar|
+|p_read3       |   in|    8|     ap_none|                                                                p_read3|        scalar|
+|p_read4       |   in|    8|     ap_none|                                                                p_read4|        scalar|
+|p_read5       |   in|    8|     ap_none|                                                                p_read5|        scalar|
+|p_read6       |   in|    8|     ap_none|                                                                p_read6|        scalar|
+|p_read7       |   in|    8|     ap_none|                                                                p_read7|        scalar|
+|p_read8       |   in|    8|     ap_none|                                                                p_read8|        scalar|
+|p_read9       |   in|    8|     ap_none|                                                                p_read9|        scalar|
+|p_read10      |   in|    8|     ap_none|                                                               p_read10|        scalar|
+|p_read11      |   in|    8|     ap_none|                                                               p_read11|        scalar|
+|p_read12      |   in|    8|     ap_none|                                                               p_read12|        scalar|
+|p_read13      |   in|    8|     ap_none|                                                               p_read13|        scalar|
+|p_read14      |   in|    8|     ap_none|                                                               p_read14|        scalar|
+|p_read15      |   in|    8|     ap_none|                                                               p_read15|        scalar|
+|p_read16      |   in|    8|     ap_none|                                                               p_read16|        scalar|
+|p_read17      |   in|    8|     ap_none|                                                               p_read17|        scalar|
+|p_read18      |   in|    8|     ap_none|                                                               p_read18|        scalar|
+|p_read19      |   in|    8|     ap_none|                                                               p_read19|        scalar|
+|p_read20      |   in|    8|     ap_none|                                                               p_read20|        scalar|
+|p_read21      |   in|    8|     ap_none|                                                               p_read21|        scalar|
+|p_read22      |   in|    8|     ap_none|                                                               p_read22|        scalar|
+|p_read23      |   in|    8|     ap_none|                                                               p_read23|        scalar|
++--------------+-----+-----+------------+-----------------------------------------------------------------------+--------------+
+
