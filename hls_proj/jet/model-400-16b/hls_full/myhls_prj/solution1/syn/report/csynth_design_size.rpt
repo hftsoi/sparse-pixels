@@ -1,0 +1,107 @@
+================================================================
+== Design Size Report
+================================================================
+
+* Total Instructions per Compilation Phase
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+| Phase         | Step                        | Instructions | Description                                                                            |
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+| Compile/Link  |                             |   162,630 *  | After all functions are compiled and linked into a single design                       |
+|               |                             |              |                                                                                        |
+| Unroll/Inline |                             |              | After user unroll and inline pragmas are applied                                       |
+|               | (1) unroll                  | 1,045,330 *  | user unroll pragmas are applied                                                        |
+|               | (2) simplification          |   307,987 *  | simplification of applied user unroll pragmas                                          |
+|               | (3) inline                  |   299,452 *  | user inline pragmas are applied                                                        |
+|               | (4) simplification          |   299,217 *  | simplification of applied user inline pragmas                                          |
+|               |                             |              |                                                                                        |
+| Array/Struct  |                             |              | After user array partition and struct aggregate/disaggregate pragmas are applied       |
+|               | (1) array partition         |   233,522 *  | user array partition pragmas are applied                                               |
+|               | (2) simplification          |   207,909 *  | simplification of applied user array partition & struct aggregate/disaggregate pragmas |
+|               | (3) aggregate/disaggregate  |   207,909 *  | user struct aggregate/disaggregate pragmas are applied                                 |
+|               | (4) array reshape           |   208,787 *  | apply array reshape pragmas                                                            |
+|               | (5) access patterns         |   207,463 *  | array access pattern optmizations                                                      |
+|               |                             |              |                                                                                        |
+| Performance   |                             |              | After transformations are applied to meet performance pragma targets                   |
+|               | (1) loop simplification     |   201,139 *  | loop and instruction simplification                                                    |
+|               | (2) parallelization         |   195,044 *  | loops are unrolled or pipelined to meet performance targets                            |
+|               | (3) array partition         |   195,044 *  | arrays are partitioned to meet performance targets                                     |
+|               | (4) simplification          |   185,621 *  | simplification of design after performance transformations                             |
+|               |                             |              |                                                                                        |
+| HW Transforms |                             |              | After hardware transfomations                                                          |
+|               | (1) lowering                |   184,577 *  | initial conversion to HW specific instructions                                         |
+|               | (2) optimizations           |   184,594 *  | high level synthesis optimizations                                                     |
++---------------+-----------------------------+--------------+----------------------------------------------------------------------------------------+
+    * - Exceeded design size warning message threshold
+
+* Instructions per Function for each Compilation Phase
++----------------------------------------+--------------------------+------------------+--------------------+--------------------+-------------+---------------+
+| Function                               | Location                 | Compile/Link     | Unroll/Inline      | Array/Struct       | Performance | HW Transforms |
++----------------------------------------+--------------------------+------------------+--------------------+--------------------+-------------+---------------+
+| + myhls                                | myhls.cpp:7              | 162,630 *        | 299,217 *          | 207,463 *          | 185,621 *   | 184,594 *     |
+|  + conv_2d_cl<ap_fixed<16, 6, A...     | nnet_conv2d.h:42         | 31,606           | 84,736             | 47,270             | 38,864      | 38,869        |
+|   + conv_2d_latency_cl<ap_fixed<...    | nnet_conv2d_latency.h:11 | 31,604           | 84,734             | 47,268             | 38,861      | 38,866        |
+|      fill_buffer                       | nnet_code_gen.h:28       | 30,987           |  8,083             |  4,046             |             |               |
+|      product                           | nnet_mult.h:70           |    137           |                    |                    |             |               |
+|      cast<ap_fixed<16, 6, AP_TRN,...   | nnet_mult.h:110          |      3           |  1,800 (600 calls) |  1,800 (600 calls) |             |               |
+|    relu<ap_fixed<37, 18, AP_TRN...     | nnet_activation.h:39     |    804           | 61,198             | 62,401             | 62,401      | 62,402        |
+|  + pooling2d_cl<ap_ufixed<16, 6...     | nnet_pooling.h:173       |  1,155           | 30,308             | 29,111             | 22,501      | 22,502        |
+|     pool_op_limit<config5>             | nnet_pooling.h:168       |      1           |                    |                    |             |               |
+|     pad_val<ap_ufixed<16, 6, AP_...    | nnet_pooling.h:45        |    304           |                    |                    |             |               |
+|   + pool_op<ap_ufixed<16, 6, AP_...    | nnet_pooling.h:31        |    347           | 14,400 (300 calls) | 13,200 (300 calls) |             |               |
+|      avg<ap_ufixed<16, 6, AP_RND_...   | nnet_pooling.h:20        |    345           |                    |                    |             |               |
+|  + conv_2d_cl<ap_ufixed<16, 6, ...     | nnet_conv2d.h:42         | 120,962          | 18,899             | 15,882             |  9,595      |  8,550        |
+|   + conv_2d_latency_cl<ap_ufixed...    | nnet_conv2d_latency.h:11 | 120,960          | 18,897             | 15,880             |  9,293      |  8,248        |
+|      fill_buffer                       | nnet_code_gen.h:444      | 120,343          |  6,123             |  3,064             |             |               |
+|      product                           | nnet_mult.h:70           |    137           |                    |                    |             |               |
+|      cast<ap_ufixed<16, 6, AP_RND...   | nnet_mult.h:110          |      3           |    150 (50 calls)  |    150 (50 calls)  |             |               |
+|    relu<ap_fixed<38, 19, AP_TRN...     | nnet_activation.h:39     |    804           |  5,098             |  5,201             |  5,201      |  5,202        |
+|  + dense<ap_ufixed<16, 6, AP_RN...     | nnet_dense.h:41          |    587           |                    |                    |             |               |
+|   + dense                              | nnet_dense.h:50          |    585           |                    |                    |             |               |
+|    + dense_latency<ap_ufixed<16, ...   | nnet_dense_latency.h:13  |    583           |                    |                    |             |               |
+|       product                          | nnet_mult.h:70           |    137           |                    |                    |             |               |
+|       cast<ap_ufixed<16, 6, AP_RND...  | nnet_mult.h:110          |      3           |                    |                    |             |               |
+|    relu<ap_fixed<40, 21, AP_TRN...     | nnet_activation.h:39     |    804           |  3,262             |  3,329             |  3,329      |  3,330        |
+|  + dense<ap_ufixed<16, 6, AP_RN...     | nnet_dense.h:41          |    586           |                    |                    |             |               |
+|   + dense                              | nnet_dense.h:50          |    584           |                    |                    |             |               |
+|    + dense_latency<ap_ufixed<16, ...   | nnet_dense_latency.h:13  |    582           |                    |                    |             |               |
+|       product                          | nnet_mult.h:70           |    137           |                    |                    |             |               |
+|       cast<ap_ufixed<16, 6, AP_RND...  | nnet_mult.h:110          |      3           |                    |                    |             |               |
+|  + softmax<ap_fixed<29, 10, AP_...     | nnet_activation.h:379    |  5,208           |                    |                    |             |               |
+|   + softmax_stable<ap_fixed<29, ...    | nnet_activation.h:216    |  5,206           |                    |                    |             |               |
+|    + init_exp_table<ap_fixed<29, ...   | nnet_activation.h:149    |  1,162           |                    |                    |             |               |
+|       softmax_real_val_from_idx<ap...  | nnet_activation.h:133    |    414           |                    |                    |             |               |
+|       exp_fcn_float                    | nnet_activation.h:131    |      4           |                    |                    |             |               |
+|    + init_invert_table<ap_fixed<1...   | nnet_activation.h:160    |  1,410           |                    |                    |             |               |
+|       softmax_real_val_from_idx<ap...  | nnet_activation.h:133    |    666           |                    |                    |             |               |
+|    + reduce<ap_fixed<29, 10, AP_T...   | nnet_common.h:37         |    122           |                    |                    |             |               |
+|     + reduce<ap_fixed<29, 10, AP_T...  | nnet_common.h:37         |     89           |                    |                    |             |               |
+|      + reduce<ap_fixed<29, 10, AP_T... | nnet_common.h:37         |     60 (2 calls) |                    |                    |             |               |
+|         operator()                     | nnet_common.h:66         |     40 (2 calls) |                    |                    |             |               |
+|        operator()                      | nnet_common.h:66         |     20           |                    |                    |             |               |
+|       reduce<ap_fixed<29, 10, AP_T...  | nnet_common.h:37         |      4           |                    |                    |             |               |
+|       operator()                       | nnet_common.h:66         |     20           |                    |                    |             |               |
+|      softmax_idx_from_real_val<ap...   | nnet_activation.h:141    |     98           |                    |                    |             |               |
+|    + reduce<ap_fixed<18, 8, AP_RN...   | nnet_common.h:37         |  1,318           |                    |                    |             |               |
+|     + reduce<ap_fixed<18, 8, AP_RN...  | nnet_common.h:37         |    986           |                    |                    |             |               |
+|      + reduce<ap_fixed<18, 8, AP_RN... | nnet_common.h:37         |    658 (2 calls) |                    |                    |             |               |
+|         operator()                     | nnet_common.h:51         |    638 (2 calls) |                    |                    |             |               |
+|        operator()                      | nnet_common.h:51         |    319           |                    |                    |             |               |
+|       reduce<ap_fixed<18, 8, AP_RN...  | nnet_common.h:37         |      4           |                    |                    |             |               |
+|       operator()                       | nnet_common.h:51         |    319           |                    |                    |             |               |
+|      softmax_idx_from_real_val<ap...   | nnet_activation.h:141    |     98           |                    |                    |             |               |
+|  + dense_latency<ap_ufixed<16, ...     | nnet_dense_latency.h:13  |                  | 89,829             | 37,899             | 37,384      | 37,385        |
+|     cast<ap_ufixed<16, 6, AP_RND...    | nnet_mult.h:110          |                  |    192 (64 calls)  |    192 (64 calls)  |             |               |
+|    dense_latency<ap_ufixed<16, ...     | nnet_dense_latency.h:13  |                  |  5,429             |  3,003             |  3,003      |  3,004        |
+|  + softmax_stable<ap_fixed<29, ...     | nnet_activation.h:216    |                  |    380             |    318             |    294      |    292        |
+|     reduce<ap_fixed<18, 8, AP_RN...    | nnet_common.h:37         |                  |     83             |     80             |     76      |     76        |
++----------------------------------------+--------------------------+------------------+--------------------+--------------------+-------------+---------------+
+    * - Exceeded design size warning message threshold
+
+* Design Size Message Settings
++---------------------------------------------+--------+------------------------------------------------------------------+
+| Message Setting                             | Value  | Description                                                      |
++---------------------------------------------+--------+------------------------------------------------------------------+
+| config_compile -design_size_maximum_warning | 100000 | Show a warning when total design instructions exceeds this value |
++---------------------------------------------+--------+------------------------------------------------------------------+
+
+
