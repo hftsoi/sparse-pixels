@@ -1,0 +1,172 @@
+
+
+================================================================
+== Vivado HLS Report for 'zeropad2d_cl_array_array_ap_ufixed_8_1_5_3_0_1u_config17_s'
+================================================================
+* Date:           Fri Jul 18 02:28:47 2025
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        myhls_prj
+* Solution:       solution1
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 5.00 ns | 1.458 ns |   0.62 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+------+------+---------+
+    |  Latency (cycles) |  Latency (absolute) |   Interval  | Pipeline|
+    |   min   |   max   |    min   |    max   |  min |  max |   Type  |
+    +---------+---------+----------+----------+------+------+---------+
+    |     1767|     1767| 8.835 us | 8.835 us |  1767|  1767|   none  |
+    +---------+---------+----------+----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                  |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |     Loop Name    |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- PadTopWidth     |       42|       42|         1|          -|          -|    42|    no    |
+        |- PadMain         |     1680|     1680|        42|          -|          -|    40|    no    |
+        | + CopyMain       |       40|       40|         1|          -|          -|    40|    no    |
+        |- PadBottomWidth  |       42|       42|         1|          -|          -|    42|    no    |
+        +------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K| DSP48E|    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        0|      114|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        -|      -|        -|        -|     -|
+|Memory               |        -|      -|        -|        -|     -|
+|Multiplexer          |        -|      -|        -|      120|     -|
+|Register             |        -|      -|       37|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        0|      0|       37|      234|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        0|      0|    ~0   |    ~0   |     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |        0|      0|    ~0   |    ~0   |     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------+----------+-------+---+----+------------+------------+
+    |    Variable Name    | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------+----------+-------+---+----+------------+------------+
+    |i_fu_153_p2          |     +    |      0|  0|  15|           6|           1|
+    |j_1_fu_177_p2        |     +    |      0|  0|  15|           6|           1|
+    |j_2_fu_165_p2        |     +    |      0|  0|  15|           6|           1|
+    |j_fu_141_p2          |     +    |      0|  0|  15|           6|           1|
+    |ap_block_state2      |    and   |      0|  0|   2|           1|           1|
+    |ap_block_state3      |    and   |      0|  0|   2|           1|           1|
+    |ap_block_state5      |    and   |      0|  0|   2|           1|           1|
+    |icmp_ln53_fu_135_p2  |   icmp   |      0|  0|  11|           6|           6|
+    |icmp_ln59_fu_147_p2  |   icmp   |      0|  0|  11|           6|           6|
+    |icmp_ln65_fu_159_p2  |   icmp   |      0|  0|  11|           6|           6|
+    |icmp_ln77_fu_171_p2  |   icmp   |      0|  0|  11|           6|           6|
+    |ap_block_state1      |    or    |      0|  0|   2|           1|           1|
+    |ap_block_state4      |    or    |      0|  0|   2|           1|           1|
+    +---------------------+----------+-------+---+----+------------+------------+
+    |Total                |          |      0|  0| 114|          53|          33|
+    +---------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------------+----+-----------+-----+-----------+
+    |            Name           | LUT| Input Size| Bits| Total Bits|
+    +---------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                  |  33|          6|    1|          6|
+    |ap_done                    |   9|          2|    1|          2|
+    |data_V_data_V_TDATA_blk_n  |   9|          2|    1|          2|
+    |i1_0_reg_102               |   9|          2|    6|         12|
+    |j3_0_reg_113               |   9|          2|    6|         12|
+    |j6_0_reg_124               |   9|          2|    6|         12|
+    |j_0_reg_91                 |   9|          2|    6|         12|
+    |real_start                 |   9|          2|    1|          2|
+    |res_V_data_V_blk_n         |   9|          2|    1|          2|
+    |res_V_data_V_din           |  15|          3|    8|         24|
+    +---------------------------+----+-----------+-----+-----------+
+    |Total                      | 120|         25|   37|         86|
+    +---------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------+---+----+-----+-----------+
+    |      Name      | FF| LUT| Bits| Const Bits|
+    +----------------+---+----+-----+-----------+
+    |ap_CS_fsm       |  5|   0|    5|          0|
+    |ap_done_reg     |  1|   0|    1|          0|
+    |i1_0_reg_102    |  6|   0|    6|          0|
+    |i_reg_194       |  6|   0|    6|          0|
+    |j3_0_reg_113    |  6|   0|    6|          0|
+    |j6_0_reg_124    |  6|   0|    6|          0|
+    |j_0_reg_91      |  6|   0|    6|          0|
+    |start_once_reg  |  1|   0|    1|          0|
+    +----------------+---+----+-----+-----------+
+    |Total           | 37|   0|   37|          0|
+    +----------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------+-----+-----+------------+-------------------------------------------------------------+--------------+
+|       RTL Ports      | Dir | Bits|  Protocol  |                        Source Object                        |    C Type    |
++----------------------+-----+-----+------------+-------------------------------------------------------------+--------------+
+|ap_clk                |  in |    1| ap_ctrl_hs | zeropad2d_cl<array,array<ap_ufixed<8,1,5,3,0>,1u>,config17> | return value |
+|ap_rst                |  in |    1| ap_ctrl_hs | zeropad2d_cl<array,array<ap_ufixed<8,1,5,3,0>,1u>,config17> | return value |
+|ap_start              |  in |    1| ap_ctrl_hs | zeropad2d_cl<array,array<ap_ufixed<8,1,5,3,0>,1u>,config17> | return value |
+|start_full_n          |  in |    1| ap_ctrl_hs | zeropad2d_cl<array,array<ap_ufixed<8,1,5,3,0>,1u>,config17> | return value |
+|ap_done               | out |    1| ap_ctrl_hs | zeropad2d_cl<array,array<ap_ufixed<8,1,5,3,0>,1u>,config17> | return value |
+|ap_continue           |  in |    1| ap_ctrl_hs | zeropad2d_cl<array,array<ap_ufixed<8,1,5,3,0>,1u>,config17> | return value |
+|ap_idle               | out |    1| ap_ctrl_hs | zeropad2d_cl<array,array<ap_ufixed<8,1,5,3,0>,1u>,config17> | return value |
+|ap_ready              | out |    1| ap_ctrl_hs | zeropad2d_cl<array,array<ap_ufixed<8,1,5,3,0>,1u>,config17> | return value |
+|start_out             | out |    1| ap_ctrl_hs | zeropad2d_cl<array,array<ap_ufixed<8,1,5,3,0>,1u>,config17> | return value |
+|start_write           | out |    1| ap_ctrl_hs | zeropad2d_cl<array,array<ap_ufixed<8,1,5,3,0>,1u>,config17> | return value |
+|data_V_data_V_TDATA   |  in |    8|    axis    |                        data_V_data_V                        |    pointer   |
+|data_V_data_V_TVALID  |  in |    1|    axis    |                        data_V_data_V                        |    pointer   |
+|data_V_data_V_TREADY  | out |    1|    axis    |                        data_V_data_V                        |    pointer   |
+|res_V_data_V_din      | out |    8|   ap_fifo  |                         res_V_data_V                        |    pointer   |
+|res_V_data_V_full_n   |  in |    1|   ap_fifo  |                         res_V_data_V                        |    pointer   |
+|res_V_data_V_write    | out |    1|   ap_fifo  |                         res_V_data_V                        |    pointer   |
++----------------------+-----+-----+------------+-------------------------------------------------------------+--------------+
+
