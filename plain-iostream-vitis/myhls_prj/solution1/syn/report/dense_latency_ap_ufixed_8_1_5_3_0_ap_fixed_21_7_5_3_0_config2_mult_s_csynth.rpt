@@ -1,0 +1,157 @@
+
+
+================================================================
+== Vitis HLS Report for 'dense_latency_ap_ufixed_8_1_5_3_0_ap_fixed_21_7_5_3_0_config2_mult_s'
+================================================================
+* Date:           Fri Jul 18 02:21:53 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        myhls_prj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.036 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        1|        1|  5.000 ns|  5.000 ns|    1|    1|      yes|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K|  DSP  |    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        0|      255|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        -|      0|        0|      200|     -|
+|Memory               |        -|      -|        -|        -|     -|
+|Multiplexer          |        -|      -|        -|       14|     -|
+|Register             |        -|      -|       52|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        0|      0|       52|      469|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    +------------------------+--------------------+---------+----+---+----+-----+
+    |        Instance        |       Module       | BRAM_18K| DSP| FF| LUT| URAM|
+    +------------------------+--------------------+---------+----+---+----+-----+
+    |mul_8ns_8ns_15_1_0_U19  |mul_8ns_8ns_15_1_0  |        0|   0|  0|  40|    0|
+    |mul_8ns_8ns_15_1_0_U20  |mul_8ns_8ns_15_1_0  |        0|   0|  0|  40|    0|
+    |mul_8ns_8ns_15_1_0_U21  |mul_8ns_8ns_15_1_0  |        0|   0|  0|  40|    0|
+    |mul_8ns_8ns_15_1_0_U22  |mul_8ns_8ns_15_1_0  |        0|   0|  0|  40|    0|
+    |mul_8ns_8ns_15_1_0_U23  |mul_8ns_8ns_15_1_0  |        0|   0|  0|  40|    0|
+    +------------------------+--------------------+---------+----+---+----+-----+
+    |Total                   |                    |        0|   0|  0| 200|    0|
+    +------------------------+--------------------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-------------------------+----------+----+---+----+------------+------------+
+    |      Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-------------------------+----------+----+---+----+------------+------------+
+    |add_ln58_4320_fu_372_p2  |         +|   0|  0|  16|          16|          16|
+    |add_ln58_4321_fu_469_p2  |         +|   0|  0|  24|          17|          17|
+    |add_ln58_4322_fu_386_p2  |         +|   0|  0|  23|          16|          16|
+    |add_ln58_4323_fu_482_p2  |         +|   0|  0|  25|          18|          18|
+    |add_ln58_4324_fu_504_p2  |         +|   0|  0|  19|          19|          19|
+    |add_ln58_4325_fu_510_p2  |         +|   0|  0|  23|          16|          16|
+    |add_ln58_4326_fu_520_p2  |         +|   0|  0|  19|          19|          19|
+    |add_ln58_fu_366_p2       |         +|   0|  0|  16|          16|          16|
+    |add_ln73_319_fu_321_p2   |         +|   0|  0|  22|          15|          15|
+    |add_ln73_fu_287_p2       |         +|   0|  0|  22|          15|          15|
+    |sub_ln73_1350_fu_438_p2  |         -|   0|  0|  23|          16|          16|
+    |sub_ln73_fu_412_p2       |         -|   0|  0|  23|          16|          16|
+    +-------------------------+----------+----+---+----+------------+------------+
+    |Total                    |          |   0|  0| 255|         199|         199|
+    +-------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------+----+-----------+-----+-----------+
+    |    Name   | LUT| Input Size| Bits| Total Bits|
+    +-----------+----+-----------+-----+-----------+
+    |ap_return  |  14|          3|   19|         57|
+    +-----------+----+-----------+-----+-----------+
+    |Total      |  14|          3|   19|         57|
+    +-----------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------------------+----+----+-----+-----------+
+    |          Name         | FF | LUT| Bits| Const Bits|
+    +-----------------------+----+----+-----+-----------+
+    |add_ln58_4320_reg_526  |  16|   0|   16|          0|
+    |add_ln58_4322_reg_531  |  16|   0|   16|          0|
+    |ap_ce_reg              |   1|   0|    1|          0|
+    |ap_return_int_reg      |  19|   0|   19|          0|
+    +-----------------------+----+----+-----+-----------+
+    |Total                  |  52|   0|   52|          0|
+    +-----------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------------------------------------------------------------+-----+-----+------------+---------------------------------------------------------------------------------+--------------+
+|                                  RTL Ports                                  | Dir | Bits|  Protocol  |                                  Source Object                                  |    C Type    |
++-----------------------------------------------------------------------------+-----+-----+------------+---------------------------------------------------------------------------------+--------------+
+|ap_clk                                                                       |   in|    1|  ap_ctrl_hs|  dense_latency<ap_ufixed<8, 1, 5, 3, 0>, ap_fixed<21, 7, 5, 3, 0>, config2_mult>|  return value|
+|ap_rst                                                                       |   in|    1|  ap_ctrl_hs|  dense_latency<ap_ufixed<8, 1, 5, 3, 0>, ap_fixed<21, 7, 5, 3, 0>, config2_mult>|  return value|
+|ap_return                                                                    |  out|   19|  ap_ctrl_hs|  dense_latency<ap_ufixed<8, 1, 5, 3, 0>, ap_fixed<21, 7, 5, 3, 0>, config2_mult>|  return value|
+|ap_ce                                                                        |   in|    1|  ap_ctrl_hs|  dense_latency<ap_ufixed<8, 1, 5, 3, 0>, ap_fixed<21, 7, 5, 3, 0>, config2_mult>|  return value|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_8  |   in|    8|     ap_none|      void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_8|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_7  |   in|    8|     ap_none|      void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_7|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_6  |   in|    8|     ap_none|      void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_6|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_5  |   in|    8|     ap_none|      void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_5|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_4  |   in|    8|     ap_none|      void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_4|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_3  |   in|    8|     ap_none|      void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_3|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_2  |   in|    8|     ap_none|      void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_2|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_1  |   in|    8|     ap_none|      void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_1|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig    |   in|    8|     ap_none|        void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig|       pointer|
++-----------------------------------------------------------------------------+-----+-----+------------+---------------------------------------------------------------------------------+--------------+
+

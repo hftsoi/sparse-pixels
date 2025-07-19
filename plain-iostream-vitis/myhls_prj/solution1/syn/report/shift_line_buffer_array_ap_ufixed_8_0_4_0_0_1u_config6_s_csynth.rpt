@@ -1,0 +1,158 @@
+
+
+================================================================
+== Vitis HLS Report for 'shift_line_buffer_array_ap_ufixed_8_0_4_0_0_1u_config6_s'
+================================================================
+* Date:           Fri Jul 18 02:22:07 2025
+
+* Version:        2023.2 (Build 4023990 on Oct 11 2023)
+* Project:        myhls_prj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  1.222 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    1|    1|      yes|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K|  DSP  |    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        -|        -|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        -|      -|        -|        -|     -|
+|Memory               |        -|      -|      128|       64|     -|
+|Multiplexer          |        -|      -|        -|       54|     -|
+|Register             |        -|      -|        1|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        0|      0|      129|      118|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +------------------------------------------------------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |                                    Memory                                    |                                      Module                                      | BRAM_18K| FF | LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +------------------------------------------------------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |void_conv_2d_buffer_latency_cl_stream_stream_weight_t_bias_t_line_buffer_3_U  |shift_line_buffer_array_ap_ufixed_8_0_4_0_0_1u_config6_s_void_conv_2d_buffer_g8j  |        0|  64|  32|    0|    12|    8|     1|           96|
+    |void_conv_2d_buffer_latency_cl_stream_stream_weight_t_bias_t_line_buffer_2_U  |shift_line_buffer_array_ap_ufixed_8_0_4_0_0_1u_config6_s_void_conv_2d_buffer_g8j  |        0|  64|  32|    0|    12|    8|     1|           96|
+    +------------------------------------------------------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |Total                                                                         |                                                                                  |        0| 128|  64|    0|    24|   16|     2|          192|
+    +------------------------------------------------------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    +--------------------------------------------------------------------------------+----+-----------+-----+-----------+
+    |                                      Name                                      | LUT| Input Size| Bits| Total Bits|
+    +--------------------------------------------------------------------------------+----+-----------+-----+-----------+
+    |void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_10_o  |   9|          2|    8|         16|
+    |void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_12_o  |   9|          2|    8|         16|
+    |void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_13_o  |   9|          2|    8|         16|
+    |void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_15_o  |   9|          2|    8|         16|
+    |void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_16_o  |   9|          2|    8|         16|
+    |void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_9_o   |   9|          2|    8|         16|
+    +--------------------------------------------------------------------------------+----+-----------+-----+-----------+
+    |Total                                                                           |  54|         12|   48|         96|
+    +--------------------------------------------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-----------+---+----+-----+-----------+
+    |    Name   | FF| LUT| Bits| Const Bits|
+    +-----------+---+----+-----+-----------+
+    |ap_CS_fsm  |  1|   0|    1|          0|
+    +-----------+---+----+-----+-----------+
+    |Total      |  1|   0|    1|          0|
+    +-----------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------------------------------------------------------------------------+-----+-----+------------+------------------------------------------------------------------------------+--------------+
+|                                       RTL Ports                                       | Dir | Bits|  Protocol  |                                 Source Object                                |    C Type    |
++---------------------------------------------------------------------------------------+-----+-----+------------+------------------------------------------------------------------------------+--------------+
+|ap_clk                                                                                 |   in|    1|  ap_ctrl_hs|               shift_line_buffer<array<ap_ufixed<8, 0, 4, 0, 0>, 1u>, config6>|  return value|
+|ap_rst                                                                                 |   in|    1|  ap_ctrl_hs|               shift_line_buffer<array<ap_ufixed<8, 0, 4, 0, 0>, 1u>, config6>|  return value|
+|ap_start                                                                               |   in|    1|  ap_ctrl_hs|               shift_line_buffer<array<ap_ufixed<8, 0, 4, 0, 0>, 1u>, config6>|  return value|
+|ap_done                                                                                |  out|    1|  ap_ctrl_hs|               shift_line_buffer<array<ap_ufixed<8, 0, 4, 0, 0>, 1u>, config6>|  return value|
+|ap_idle                                                                                |  out|    1|  ap_ctrl_hs|               shift_line_buffer<array<ap_ufixed<8, 0, 4, 0, 0>, 1u>, config6>|  return value|
+|ap_ready                                                                               |  out|    1|  ap_ctrl_hs|               shift_line_buffer<array<ap_ufixed<8, 0, 4, 0, 0>, 1u>, config6>|  return value|
+|ap_ce                                                                                  |   in|    1|  ap_ctrl_hs|               shift_line_buffer<array<ap_ufixed<8, 0, 4, 0, 0>, 1u>, config6>|  return value|
+|in_elem_0_0_0_0_0_val                                                                  |   in|    8|     ap_none|                                                         in_elem_0_0_0_0_0_val|        scalar|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_16_i         |   in|    8|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_16|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_16_o         |  out|    8|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_16|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_16_o_ap_vld  |  out|    1|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_16|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_17           |  out|    8|      ap_vld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_17|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_17_ap_vld    |  out|    1|      ap_vld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_17|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_13_i         |   in|    8|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_13|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_13_o         |  out|    8|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_13|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_13_o_ap_vld  |  out|    1|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_13|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_14           |  out|    8|      ap_vld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_14|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_14_ap_vld    |  out|    1|      ap_vld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_14|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_10_i         |   in|    8|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_10|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_10_o         |  out|    8|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_10|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_10_o_ap_vld  |  out|    1|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_10|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_11           |  out|    8|      ap_vld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_11|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_11_ap_vld    |  out|    1|      ap_vld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_11|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_15_i         |   in|    8|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_15|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_15_o         |  out|    8|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_15|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_15_o_ap_vld  |  out|    1|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_15|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_12_i         |   in|    8|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_12|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_12_o         |  out|    8|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_12|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_12_o_ap_vld  |  out|    1|     ap_ovld|  void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_12|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_9_i          |   in|    8|     ap_ovld|   void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_9|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_9_o          |  out|    8|     ap_ovld|   void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_9|       pointer|
+|void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_9_o_ap_vld   |  out|    1|     ap_ovld|   void_compute_output_buffer_2d_array_const_ap_shift_reg_n_chan_stream_weig_9|       pointer|
++---------------------------------------------------------------------------------------+-----+-----+------------+------------------------------------------------------------------------------+--------------+
+
