@@ -1,0 +1,375 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Sun Jul 20 03:35:57 2025
+# Process ID: 135175
+# Current directory: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15
+# Command line: vivado -mode batch -source vivado_synth.tcl
+# Log file: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/vivado.log
+# Journal file: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/vivado.jou
+# Running On: coder-hftsoi-hls3, OS: Linux, CPU Frequency: 2250.000 MHz, CPU Physical cores: 32, Host memory: 1081985 MB
+#-----------------------------------------------------------
+source vivado_synth.tcl
+# set tcldir [file dirname [info script]]
+# source [file join $tcldir project.tcl]
+## variable project_name
+## set project_name "hls_dummy"
+## variable backend
+## set backend "vitis"
+## variable part
+## set part "xcu250-figd2104-2L-e"
+## variable clock_period
+## set clock_period 5
+## variable clock_uncertainty
+## set clock_uncertainty 27%
+## variable version
+## set version "1.0.0"
+## variable maximum_size
+## set maximum_size 4096
+# add_files ${project_name}_prj/solution1/syn/verilog
+add_files: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2408.863 ; gain = 114.992 ; free physical = 525275 ; free virtual = 617308
+# synth_design -top ${project_name} -part $part
+Command: synth_design -top hls_dummy -part xcu250-figd2104-2L-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu250'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu250'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 135186
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2823.383 ; gain = 390.684 ; free physical = 526440 ; free virtual = 618473
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_20_20_1_15_4' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_20_20_1_15_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_operator_s' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy_operator_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_operator_s' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy_operator_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_20_20_1_15_4' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_20_20_1_15_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_Block_entry24_proc' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy_Block_entry24_proc.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_Block_entry24_proc' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy_Block_entry24_proc.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w16_d2_S' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:11]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w16_d2_S_ShiftReg' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:120]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter ADDR_WIDTH bound to: 1 - type: integer 
+	Parameter DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w16_d2_S_ShiftReg' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:120]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w16_d2_S' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in400/reduction-in400-out15/hls_dummy_prj/solution1/syn/verilog/hls_dummy.v:9]
+WARNING: [Synth 8-7129] Port reset in module hls_dummy_fifo_w16_d2_S_ShiftReg is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2991.445 ; gain = 558.746 ; free physical = 520575 ; free virtual = 612611
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:13 . Memory (MB): peak = 2991.445 ; gain = 558.746 ; free physical = 524336 ; free virtual = 616372
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu250-figd2104-2L-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xcu250-figd2104-2L-e
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 2999.449 ; gain = 566.750 ; free physical = 524333 ; free virtual = 616369
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 3131.770 ; gain = 699.070 ; free physical = 526083 ; free virtual = 618121
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    4 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 30    
++---XORs : 
+	   2 Input      1 Bit         XORs := 30    
++---Registers : 
+	               16 Bit    Registers := 566   
+	               12 Bit    Registers := 106   
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                2 Bit    Registers := 15    
+	                1 Bit    Registers := 51    
++---Muxes : 
+	   2 Input   16 Bit        Muxes := 631   
+	   2 Input   15 Bit        Muxes := 578   
+	   2 Input   12 Bit        Muxes := 752   
+	   2 Input    9 Bit        Muxes := 12    
+	   3 Input    5 Bit        Muxes := 1     
+	   6 Input    5 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 16    
+	   2 Input    1 Bit        Muxes := 84    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 12288 (col length:96)
+BRAMs: 5376 (col length: RAMB18 384 RAMB36 192)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:58 ; elapsed = 00:00:59 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 525049 ; free virtual = 617111
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:02 ; elapsed = 00:01:03 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 521281 ; free virtual = 613343
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:08 ; elapsed = 00:01:09 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 525031 ; free virtual = 617093
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:15 ; elapsed = 00:01:17 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 523236 ; free virtual = 615298
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:15 ; elapsed = 00:01:17 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 522684 ; free virtual = 614746
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:16 ; elapsed = 00:01:18 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 519375 ; free virtual = 611438
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:17 ; elapsed = 00:01:18 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 519316 ; free virtual = 611378
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:20 ; elapsed = 00:01:22 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 515154 ; free virtual = 607216
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:20 ; elapsed = 00:01:22 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 514396 ; free virtual = 606458
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY8 |   578|
+|3     |LUT1   |    68|
+|4     |LUT2   |  2387|
+|5     |LUT3   |  2351|
+|6     |LUT4   |  6970|
+|7     |LUT5   |  7085|
+|8     |LUT6   |  6907|
+|9     |MUXF7  |    44|
+|10    |FDRE   |  9462|
+|11    |FDSE   |    46|
+|12    |IBUF   |  6404|
+|13    |OBUF   |   258|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------------------------------------------------------------------+--------------------------------------------------------------------------+------+
+|      |Instance                                                             |Module                                                                    |Cells |
++------+---------------------------------------------------------------------+--------------------------------------------------------------------------+------+
+|1     |top                                                                  |                                                                          | 42561|
+|2     |  Block_entry24_proc_U0                                              |hls_dummy_Block_entry24_proc                                              |   225|
+|3     |  sparse_arr_feat_reduce_out_10_U                                    |hls_dummy_fifo_w16_d2_S                                                   |    70|
+|4     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_27                                       |    61|
+|5     |  sparse_arr_feat_reduce_out_11_U                                    |hls_dummy_fifo_w16_d2_S_0                                                 |    71|
+|6     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_26                                       |    61|
+|7     |  sparse_arr_feat_reduce_out_12_U                                    |hls_dummy_fifo_w16_d2_S_1                                                 |    70|
+|8     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_25                                       |    61|
+|9     |  sparse_arr_feat_reduce_out_13_U                                    |hls_dummy_fifo_w16_d2_S_2                                                 |    70|
+|10    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_24                                       |    61|
+|11    |  sparse_arr_feat_reduce_out_14_U                                    |hls_dummy_fifo_w16_d2_S_3                                                 |    70|
+|12    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_23                                       |    61|
+|13    |  sparse_arr_feat_reduce_out_1_U                                     |hls_dummy_fifo_w16_d2_S_4                                                 |    71|
+|14    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_22                                       |    61|
+|15    |  sparse_arr_feat_reduce_out_2_U                                     |hls_dummy_fifo_w16_d2_S_5                                                 |    70|
+|16    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_21                                       |    61|
+|17    |  sparse_arr_feat_reduce_out_3_U                                     |hls_dummy_fifo_w16_d2_S_6                                                 |    73|
+|18    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_20                                       |    61|
+|19    |  sparse_arr_feat_reduce_out_4_U                                     |hls_dummy_fifo_w16_d2_S_7                                                 |    69|
+|20    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_19                                       |    61|
+|21    |  sparse_arr_feat_reduce_out_5_U                                     |hls_dummy_fifo_w16_d2_S_8                                                 |    70|
+|22    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_18                                       |    61|
+|23    |  sparse_arr_feat_reduce_out_6_U                                     |hls_dummy_fifo_w16_d2_S_9                                                 |    88|
+|24    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_17                                       |    61|
+|25    |  sparse_arr_feat_reduce_out_7_U                                     |hls_dummy_fifo_w16_d2_S_10                                                |    70|
+|26    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_16                                       |    61|
+|27    |  sparse_arr_feat_reduce_out_8_U                                     |hls_dummy_fifo_w16_d2_S_11                                                |    70|
+|28    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_15                                       |    61|
+|29    |  sparse_arr_feat_reduce_out_9_U                                     |hls_dummy_fifo_w16_d2_S_12                                                |    70|
+|30    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_14                                       |    61|
+|31    |  sparse_arr_feat_reduce_out_U                                       |hls_dummy_fifo_w16_d2_S_13                                                |    69|
+|32    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg                                          |    60|
+|33    |  sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_20_20_1_15_4_U0 |hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_20_20_1_15_4 | 34586|
++------+---------------------------------------------------------------------+--------------------------------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:20 ; elapsed = 00:01:22 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 514039 ; free virtual = 606102
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:20 ; elapsed = 00:01:22 . Memory (MB): peak = 4171.285 ; gain = 1738.586 ; free physical = 513880 ; free virtual = 605943
+Synthesis Optimization Complete : Time (s): cpu = 00:01:20 ; elapsed = 00:01:22 . Memory (MB): peak = 4171.293 ; gain = 1738.586 ; free physical = 513866 ; free virtual = 605929
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.3 ; elapsed = 00:00:00.29 . Memory (MB): peak = 4171.293 ; gain = 0.000 ; free physical = 509025 ; free virtual = 601088
+INFO: [Netlist 29-17] Analyzing 7027 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'hls_dummy' is not ideal for floorplanning, since the cellview 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_20_20_1_15_4' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4254.062 ; gain = 0.000 ; free physical = 474198 ; free virtual = 566260
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 6405 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  IBUF => IBUF (IBUFCTRL, INBUF): 6404 instances
+
+Synth Design complete | Checksum: 832bba6c
+INFO: [Common 17-83] Releasing license: Synthesis
+27 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:35 ; elapsed = 00:01:34 . Memory (MB): peak = 4254.062 ; gain = 1845.199 ; free physical = 472620 ; free virtual = 564683
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3824.016; main = 3561.571; forked = 369.723
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 5138.648; main = 4254.066; forked = 967.359
+# opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Command: opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Attempting to get a license for feature 'Implementation' and/or device 'xcu250'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcu250'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 4318.094 ; gain = 64.031 ; free physical = 473285 ; free virtual = 565348
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: b74b3c82
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:03 . Memory (MB): peak = 4383.484 ; gain = 65.391 ; free physical = 474817 ; free virtual = 566880
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-1566] Pulled 22 inverters resulting in an inversion of 51 pins
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 1 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 172d4b756
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:02 . Memory (MB): peak = 4558.422 ; gain = 0.000 ; free physical = 525237 ; free virtual = 617299
+INFO: [Opt 31-389] Phase Retarget created 11 cells and removed 34 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 10779dff5
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 4558.422 ; gain = 0.000 ; free physical = 525777 ; free virtual = 617840
+INFO: [Opt 31-389] Phase Constant propagation created 11 cells and removed 24 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 11140be19
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 4558.422 ; gain = 0.000 ; free physical = 525648 ; free virtual = 617711
+INFO: [Opt 31-389] Phase Sweep created 1 cells and removed 0 cells
+
+Phase 4 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 4 Shift Register Optimization | Checksum: 154517512
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 4558.422 ; gain = 0.000 ; free physical = 525712 ; free virtual = 617775
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 5 Post Processing Netlist
+Phase 5 Post Processing Netlist | Checksum: ebab5934
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 4558.422 ; gain = 0.000 ; free physical = 525714 ; free virtual = 617777
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |              11  |              34  |                                              0  |
+|  Constant propagation         |              11  |              24  |                                              0  |
+|  Sweep                        |               1  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: a2bf6f0d
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 4558.422 ; gain = 0.000 ; free physical = 525663 ; free virtual = 617726
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: a2bf6f0d
+
+Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 4558.422 ; gain = 0.000 ; free physical = 525541 ; free virtual = 617603
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: a2bf6f0d
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4558.422 ; gain = 0.000 ; free physical = 525592 ; free virtual = 617655
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4558.422 ; gain = 0.000 ; free physical = 525529 ; free virtual = 617592
+Ending Netlist Obfuscation Task | Checksum: a2bf6f0d
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4558.422 ; gain = 0.000 ; free physical = 525495 ; free virtual = 617558
+INFO: [Common 17-83] Releasing license: Implementation
+17 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:16 ; elapsed = 00:00:12 . Memory (MB): peak = 4558.422 ; gain = 304.359 ; free physical = 525487 ; free virtual = 617550
+# report_utilization -file vivado_synth.rpt -hierarchical -hierarchical_depth 1
+INFO: [Common 17-206] Exiting Vivado at Sun Jul 20 03:37:58 2025...

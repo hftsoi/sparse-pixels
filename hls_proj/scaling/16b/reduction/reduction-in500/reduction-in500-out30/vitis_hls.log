@@ -1,0 +1,826 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+  **** SW Build 3854077 on May  4 2023
+  **** IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+  **** SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /tools/Xilinx/Vitis_HLS/2023.1/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/tools/Xilinx/Vitis_HLS/2023.1/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'coder' on host 'coder-hftsoi-hls3' (Linux_x86_64 version 5.15.0-140-generic) on Sun Jul 20 04:19:52 UTC 2025
+INFO: [HLS 200-10] On os Ubuntu 20.04.6 LTS
+INFO: [HLS 200-10] In directory '/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30'
+Sourcing Tcl script 'build_prj.tcl'
+INFO: [HLS 200-1510] Running: open_project -reset hls_dummy_prj 
+INFO: [HLS 200-10] Creating and opening project '/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj'.
+INFO: [HLS 200-1510] Running: set_top hls_dummy 
+INFO: [HLS 200-1510] Running: add_files firmware/hls_dummy.cpp -cflags -std=c++0x 
+INFO: [HLS 200-10] Adding design file 'firmware/hls_dummy.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb hls_dummy_test.cpp -cflags -std=c++0x 
+INFO: [HLS 200-10] Adding test bench file 'hls_dummy_test.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb firmware/weights 
+INFO: [HLS 200-10] Adding test bench file 'firmware/weights' to the project
+INFO: [HLS 200-1510] Running: add_files -tb tb_data 
+INFO: [HLS 200-10] Adding test bench file 'tb_data' to the project
+INFO: [HLS 200-1510] Running: open_solution -reset solution1 
+INFO: [HLS 200-10] Creating and opening solution '/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1510] Running: config_array_partition -maximum_size 4096 
+INFO: [XFORM 203-101] Allowed max sub elements number after partition is 4096.
+ERROR: [HLS 200-642] The 'config_array_partition -maximum_size' command is not supported.
+INFO: [HLS 200-1510] Running: config_compile -name_max_length 80 
+INFO: [XFORM 203-1161] The maximum of name length is set to 80.
+INFO: [HLS 200-1510] Running: set_part xcu250-figd2104-2L-e 
+INFO: [HLS 200-1611] Setting target device to 'xcu250-figd2104-2L-e'
+INFO: [XFORM 203-1161] The maximum of name length is set to 80.
+INFO: [HLS 200-1510] Running: config_schedule -enable_dsp_full_reg=false 
+INFO: [HLS 200-1510] Running: create_clock -period 5 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [HLS 200-1510] Running: set_clock_uncertainty 27% default 
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.35ns.
+***** C/RTL SYNTHESIS *****
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.07 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.09 seconds; current allocated memory: 1.449 GB.
+INFO: [HLS 200-10] Analyzing design file 'firmware/hls_dummy.cpp' ... 
+WARNING: [HLS 207-5531] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (firmware/nnet_utils/nnet_dense_resource.h:33:9)
+WARNING: [HLS 207-5531] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (firmware/nnet_utils/nnet_dense_resource.h:107:9)
+WARNING: [HLS 207-5531] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (firmware/nnet_utils/nnet_dense_resource.h:189:9)
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region (firmware/hls_dummy.cpp:349:9)
+Resolution: For help on HLS 214-114 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=214-114.html
+WARNING: [HLS 200-471] Dataflow form checks found 1 issue(s) in file firmware/hls_dummy.cpp
+Resolution: For help on HLS 200-471 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-471.html
+WARNING: [HLS 207-5292] unused parameter 'keep' (firmware/nnet_utils/nnet_helpers.h:285:99)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:14:36)
+WARNING: [HLS 207-5292] unused parameter 'buffer' (firmware/nnet_utils/nnet_function_stubs.h:15:36)
+WARNING: [HLS 207-5292] unused parameter 'partition' (firmware/nnet_utils/nnet_function_stubs.h:16:44)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:24:24)
+WARNING: [HLS 207-5292] unused parameter 'buffer' (firmware/nnet_utils/nnet_function_stubs.h:25:24)
+WARNING: [HLS 207-5292] unused parameter 'partition' (firmware/nnet_utils/nnet_function_stubs.h:26:32)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:33:30)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_function_stubs.h:33:58)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_function_stubs.h:34:51)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_function_stubs.h:35:49)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:42:30)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_function_stubs.h:42:58)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_function_stubs.h:43:51)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_function_stubs.h:44:49)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:51:29)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_function_stubs.h:51:80)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_function_stubs.h:52:50)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_function_stubs.h:53:48)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_code_gen.h:16:39)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_code_gen.h:17:38)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_code_gen.h:18:60)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_code_gen.h:19:58)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 6.42 seconds. CPU system time: 1.2 seconds. Elapsed time: 10.63 seconds; current allocated memory: 1.454 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 83,582 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 34,693 instructions in the design after the 'Unroll/Inline' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 15,103 instructions in the design after the 'Performance/Pipeline' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 11,973 instructions in the design after the 'Optimizations' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 2, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 2, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 128, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 128, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 128, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 256, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 128, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 256, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 20, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 20, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 52, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 20, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 52, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 116, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 52, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 116, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 128, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 244, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 116, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 244, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 256, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 500, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 244, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 500, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 500, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'void sparse_input_reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 50, 10, 1, 30>(ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_uint<10>*)' (firmware/hls_dummy.cpp:97:32)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_372_1' (firmware/hls_dummy.cpp:372:23) in function 'hls_dummy' completely with a factor of 30 (firmware/hls_dummy.cpp:343:0)
+INFO: [HLS 214-186] Unrolling loop 'DataPrepareLoop' (firmware/hls_dummy.cpp:74:5) in function 'sparse_input_reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 50, 10, 1, 30>' completely with a factor of 500 (firmware/hls_dummy.cpp:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'pair_arr.value': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:65:28)
+INFO: [HLS 214-248] Applying array_partition to 'pair_arr.index': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:65:28)
+INFO: [HLS 214-248] Applying array_partition to 'j_h_arr': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:66:9)
+INFO: [HLS 214-248] Applying array_partition to 'j_w_arr': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:67:9)
+INFO: [HLS 214-248] Applying array_partition to 'sparse_arr_feat_reduce_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:366:13)
+INFO: [HLS 214-248] Applying array_partition to 'sparse_arr_hash_reduce_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:367:17)
+INFO: [HLS 214-248] Applying array_partition to 'layer2_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:343:0)
+WARNING: [HLS 214-292] Unsupported reshape pragma/directive on variable 'x_in'. The port size might be shrunk or fail cosim as the bit-width after reshape (8000) is larger than 4096
+INFO: [HLS 214-248] Applying array_reshape to 'x_in': Complete reshaping on dimension 1. (firmware/hls_dummy.cpp:343:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 56.58 seconds. CPU system time: 1.21 seconds. Elapsed time: 62.04 seconds; current allocated memory: 1.456 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 1.456 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 1.06 seconds. CPU system time: 0.03 seconds. Elapsed time: 1.21 seconds; current allocated memory: 1.484 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.96 seconds. CPU system time: 0.02 seconds. Elapsed time: 1.03 seconds; current allocated memory: 1.509 GB.
+INFO: [XFORM 203-712] Applying dataflow to function 'hls_dummy' (firmware/hls_dummy.cpp:366:1), detected/extracted 2 process function(s): 
+	 'sparse_input_reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 50, 10, 1, 30>4'
+	 'Block_entry24_proc'.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (firmware/hls_dummy.cpp:14:21) to (firmware/hls_dummy.cpp:22:7) in function 'Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::operator()'... converting 3 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 9.46 seconds. CPU system time: 0.08 seconds. Elapsed time: 9.52 seconds; current allocated memory: 1.638 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 12.69 seconds. CPU system time: 0.09 seconds. Elapsed time: 12.78 seconds; current allocated memory: 1.773 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'hls_dummy' ...
+WARNING: [SYN 201-103] Legalizing function name 'operator()' to 'operator_s'.
+WARNING: [SYN 201-103] Legalizing function name 'sparse_input_reduce<ap_fixed<16, 6, 5, 3, 0>, ap_uint<10>, 50, 10, 1, 30>4' to 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'operator_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'operator()'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 1, function 'operator()'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.23 seconds. CPU system time: 0.13 seconds. Elapsed time: 1.93 seconds; current allocated memory: 1.773 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0.05 seconds. Elapsed time: 0.45 seconds; current allocated memory: 1.773 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'MaxPixelsLoop'.
+WARNING: [HLS 200-880] The II Violation in module 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4' (loop 'MaxPixelsLoop'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 0) between 'store' operation ('pair_arr_value_write_ln115', firmware/hls_dummy.cpp:115) of constant 0 on local variable 'pair_arr.value' and 'load' operation ('pair_arr_value_load', firmware/hls_dummy.cpp:47->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:97) on local variable 'pair_arr.value'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
+WARNING: [HLS 200-880] The II Violation in module 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4' (loop 'MaxPixelsLoop'): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0) between 'store' operation ('pair_arr_value_write_ln115', firmware/hls_dummy.cpp:115) of constant 0 on local variable 'pair_arr.value' and 'load' operation ('pair_arr_value_load', firmware/hls_dummy.cpp:47->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:97) on local variable 'pair_arr.value'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 3, Depth = 4, loop 'MaxPixelsLoop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 23.69 seconds. CPU system time: 0.1 seconds. Elapsed time: 24.43 seconds; current allocated memory: 1.885 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 2.67 seconds. CPU system time: 0.06 seconds. Elapsed time: 2.94 seconds; current allocated memory: 1.885 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'Block_entry24_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.68 seconds. CPU system time: 0.04 seconds. Elapsed time: 2.1 seconds; current allocated memory: 1.885 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.04 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.36 seconds; current allocated memory: 1.885 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hls_dummy' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.11 seconds. CPU system time: 0 seconds. Elapsed time: 0.51 seconds; current allocated memory: 1.885 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.13 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.52 seconds; current allocated memory: 1.885 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'operator_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'operator_s'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.26 seconds. CPU system time: 0 seconds. Elapsed time: 0.5 seconds; current allocated memory: 1.885 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-104] Estimated max fanout for 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4' is 8007 from HDL expression: (~((x_in_ap_vld == 1'b0) | (ap_done_reg == 1'b1) | (ap_start == 1'b0)) & (1'b1 == ap_CS_fsm_state1))
+INFO: [RTGEN 206-100] Finished creating RTL model for 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 2.23 seconds. CPU system time: 0.02 seconds. Elapsed time: 2.78 seconds; current allocated memory: 1.885 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Block_entry24_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Block_entry24_proc'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 3.02 seconds. CPU system time: 0.19 seconds. Elapsed time: 3.6 seconds; current allocated memory: 1.940 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hls_dummy' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/x_in' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_0' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_1' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_2' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_3' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_4' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_5' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_6' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_7' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_8' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_9' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_10' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_11' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_12' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_13' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_14' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_15' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_16' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_17' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_18' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_19' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_20' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_21' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_22' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_23' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_24' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_25' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_26' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_27' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_28' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_29' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'hls_dummy' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hls_dummy'.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_1_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_2_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_3_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_4_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_5_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_6_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_7_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_8_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_9_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_10_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_11_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_12_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_13_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_14_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_15_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_16_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_17_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_18_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_19_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_20_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_21_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_22_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_23_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_24_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_25_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_26_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_27_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_28_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_29_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.23 seconds. CPU system time: 0.04 seconds. Elapsed time: 12.31 seconds; current allocated memory: 1.943 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2.52 seconds. CPU system time: 0.04 seconds. Elapsed time: 2.6 seconds; current allocated memory: 1.947 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 2.22 seconds. CPU system time: 0 seconds. Elapsed time: 2.23 seconds; current allocated memory: 1.958 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for hls_dummy.
+INFO: [VLOG 209-307] Generating Verilog RTL for hls_dummy.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 307.50 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 127.35 seconds. CPU system time: 3.34 seconds. Elapsed time: 156.59 seconds; current allocated memory: 521.500 MB.
+***** C/RTL SYNTHESIS COMPLETED IN 0h2m36s *****
+***** VIVADO SYNTHESIS *****
+
+****** Vivado v2023.1 (64-bit)
+  **** SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+  **** IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+  **** SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source vivado_synth.tcl
+# set tcldir [file dirname [info script]]
+# source [file join $tcldir project.tcl]
+## variable project_name
+## set project_name "hls_dummy"
+## variable backend
+## set backend "vitis"
+## variable part
+## set part "xcu250-figd2104-2L-e"
+## variable clock_period
+## set clock_period 5
+## variable clock_uncertainty
+## set clock_uncertainty 27%
+## variable version
+## set version "1.0.0"
+## variable maximum_size
+## set maximum_size 4096
+# add_files ${project_name}_prj/solution1/syn/verilog
+add_files: Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2408.109 ; gain = 114.992 ; free physical = 595675 ; free virtual = 686887
+# synth_design -top ${project_name} -part $part
+Command: synth_design -top hls_dummy -part xcu250-figd2104-2L-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu250'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu250'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 138679
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2822.598 ; gain = 390.645 ; free physical = 587908 ; free virtual = 679119
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_operator_s' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy_operator_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_operator_s' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy_operator_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_Block_entry24_proc' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy_Block_entry24_proc.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_Block_entry24_proc' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy_Block_entry24_proc.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w16_d2_S' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:11]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w16_d2_S_ShiftReg' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:120]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter ADDR_WIDTH bound to: 1 - type: integer 
+	Parameter DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w16_d2_S_ShiftReg' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:120]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w16_d2_S' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out30/hls_dummy_prj/solution1/syn/verilog/hls_dummy.v:9]
+WARNING: [Synth 8-7129] Port reset in module hls_dummy_fifo_w16_d2_S_ShiftReg is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 3023.520 ; gain = 591.566 ; free physical = 614131 ; free virtual = 705345
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 3023.520 ; gain = 591.566 ; free physical = 613938 ; free virtual = 705151
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu250-figd2104-2L-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xcu250-figd2104-2L-e
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 3031.523 ; gain = 599.570 ; free physical = 613937 ; free virtual = 705150
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:15 . Memory (MB): peak = 3141.961 ; gain = 710.008 ; free physical = 613517 ; free virtual = 704733
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    5 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 60    
++---XORs : 
+	   2 Input      1 Bit         XORs := 60    
++---Registers : 
+	               16 Bit    Registers := 755   
+	               12 Bit    Registers := 135   
+	                5 Bit    Registers := 3     
+	                2 Bit    Registers := 30    
+	                1 Bit    Registers := 96    
++---Muxes : 
+	   2 Input   16 Bit        Muxes := 801   
+	   2 Input   15 Bit        Muxes := 746   
+	   2 Input   12 Bit        Muxes := 953   
+	   6 Input    5 Bit        Muxes := 1     
+	   3 Input    5 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 31    
+	   2 Input    1 Bit        Muxes := 132   
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 12288 (col length:96)
+BRAMs: 5376 (col length: RAMB18 384 RAMB36 192)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i312_i_i_reg_30786_reg[15]' (FDE) to 'agg_tmp_i311_i_i312_i_reg_30776_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i_i_i_reg_29646_reg[15]' (FDE) to 'agg_tmp3_i33_i_i107_i_i_i_i_reg_29636_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_reg_30126_reg[15]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_30131_reg[2]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_30131_reg[3]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_30131_reg[4]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_30131_reg[5]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_30131_reg[6]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_30131_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_30131_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_30131_reg[10]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_30131_reg[11]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_reg_30136_reg[15]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_30141_reg[2]' (FDE) to 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_30141_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_30141_reg[3]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_30141_reg[4]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_30141_reg[5]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_30141_reg[6]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_30141_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_30141_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_30141_reg[10]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_30141_reg[11]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i139_i139_i_i140_i_1_reg_30371_reg[2]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i_i142_i_1_reg_30381_reg[2]' (FDE) to 'agg_tmp3_i_i_i141_i141_i_i142_i_1_reg_30381_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i185_i_i186_i_1_reg_30351_reg[2]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i_i259_i_i260_i_1_reg_30311_reg[2]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i_i380_i_1_reg_30251_reg[2]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i_i_i382_i_1_reg_30261_reg[2]' (FDE) to 'agg_tmp3_i_i67_i67_i_i_i382_i_1_reg_30261_reg[4]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_30271_reg[2]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[2]' (FDE) to 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[3]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i_i_i261_i_i262_i_1_reg_30321_reg[2]' (FDE) to 'agg_tmp3_i33_i_i_i261_i_i262_i_1_reg_30321_reg[3]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[2]' (FDE) to 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[3]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i219_i_i220_i_1_reg_30331_reg[2]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i139_i139_i_i140_i_1_reg_30371_reg[3]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i_i142_i_1_reg_30381_reg[3]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i185_i_i186_i_1_reg_30351_reg[3]' (FDE) to 'agg_tmp_i31_i31_i_i185_i_i186_i_1_reg_30351_reg[4]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i_i259_i_i260_i_1_reg_30311_reg[3]' (FDE) to 'agg_tmp_i31_i_i_i259_i_i260_i_1_reg_30311_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i_i380_i_1_reg_30251_reg[3]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i_i_i382_i_1_reg_30261_reg[3]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_30271_reg[3]' (FDE) to 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_30271_reg[4]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[3]' (FDE) to 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[4]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i_i_i261_i_i262_i_1_reg_30321_reg[3]' (FDE) to 'agg_tmp3_i33_i_i_i261_i_i262_i_1_reg_30321_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[3]' (FDE) to 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[4]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i219_i_i220_i_1_reg_30331_reg[3]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i139_i139_i_i140_i_1_reg_30371_reg[4]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i_i142_i_1_reg_30381_reg[4]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i185_i_i186_i_1_reg_30351_reg[4]' (FDE) to 'agg_tmp_i31_i31_i_i185_i_i186_i_1_reg_30351_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i_i259_i_i260_i_1_reg_30311_reg[4]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i_i380_i_1_reg_30251_reg[4]' (FDE) to 'agg_tmp_i_i65_i65_i_i_i380_i_1_reg_30251_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i_i_i382_i_1_reg_30261_reg[4]' (FDE) to 'agg_tmp3_i_i67_i67_i_i_i382_i_1_reg_30261_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_30271_reg[4]' (FDE) to 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_30271_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[4]' (FDE) to 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i_i_i261_i_i262_i_1_reg_30321_reg[4]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[4]' (FDE) to 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i219_i_i220_i_1_reg_30331_reg[4]' (FDE) to 'agg_tmp_i_i65_i_i219_i_i220_i_1_reg_30331_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i139_i139_i_i140_i_1_reg_30371_reg[5]' (FDE) to 'agg_tmp_i_i_i139_i139_i_i140_i_1_reg_30371_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i_i142_i_1_reg_30381_reg[5]' (FDE) to 'agg_tmp3_i_i_i141_i141_i_i142_i_1_reg_30381_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i185_i_i186_i_1_reg_30351_reg[5]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i_i259_i_i260_i_1_reg_30311_reg[5]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i_i380_i_1_reg_30251_reg[5]' (FDE) to 'agg_tmp_i_i65_i65_i_i_i380_i_1_reg_30251_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i_i_i382_i_1_reg_30261_reg[5]' (FDE) to 'agg_tmp3_i_i67_i67_i_i_i382_i_1_reg_30261_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_30271_reg[5]' (FDE) to 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_30271_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[5]' (FDE) to 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i_i_i261_i_i262_i_1_reg_30321_reg[5]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[5]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i219_i_i220_i_1_reg_30331_reg[5]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i139_i139_i_i140_i_1_reg_30371_reg[6]' (FDE) to 'agg_tmp_i_i_i139_i139_i_i140_i_1_reg_30371_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i_i142_i_1_reg_30381_reg[6]' (FDE) to 'agg_tmp3_i_i_i141_i141_i_i142_i_1_reg_30381_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i185_i_i186_i_1_reg_30351_reg[6]' (FDE) to 'agg_tmp_i31_i31_i_i185_i_i186_i_1_reg_30351_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i_i259_i_i260_i_1_reg_30311_reg[6]' (FDE) to 'agg_tmp_i31_i_i_i259_i_i260_i_1_reg_30311_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i_i380_i_1_reg_30251_reg[6]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i_i_i382_i_1_reg_30261_reg[6]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_30271_reg[6]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[6]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i_i_i261_i_i262_i_1_reg_30321_reg[6]' (FDE) to 'agg_tmp3_i33_i_i_i261_i_i262_i_1_reg_30321_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[6]' (FDE) to 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i219_i_i220_i_1_reg_30331_reg[6]' (FDE) to 'agg_tmp_i_i65_i_i219_i_i220_i_1_reg_30331_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i139_i139_i_i140_i_1_reg_30371_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i_i142_i_1_reg_30381_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i185_i_i186_i_1_reg_30351_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i_i259_i_i260_i_1_reg_30311_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i_i380_i_1_reg_30251_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i_i_i382_i_1_reg_30261_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_30271_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i_i_i261_i_i262_i_1_reg_30321_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i219_i_i220_i_1_reg_30331_reg[7]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i139_i139_i_i140_i_1_reg_30371_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i_i142_i_1_reg_30381_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i185_i_i186_i_1_reg_30351_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i_i259_i_i260_i_1_reg_30311_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i_i380_i_1_reg_30251_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i_i_i382_i_1_reg_30261_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_30271_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i33_i_i_i348_i_1_reg_30281_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i_i_i261_i_i262_i_1_reg_30321_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i_i187_i_i188_i_1_reg_30361_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i219_i_i220_i_1_reg_30331_reg[9]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i139_i139_i_i140_i_1_reg_30371_reg[10]' (FDE) to 'agg_tmp3_i_i67_i67_i_i381_i_i_reg_29936_reg[15]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i_i_i628_i_reg_30766_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i_i_i139_i_i_i_i_reg_29606_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i31_i_i105_i_i106_i_i_reg_30546_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i31_i31_i_i185_i_i_i_1_reg_29731_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i31_i_i105_i105_i_i_i_reg_29766_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i_i65_i65_i_i379_i_i_1_reg_29931_reg[11] )
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_2_copy_fu_6198_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_4_copy_fu_6190_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_5_copy_fu_6186_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_6_copy_fu_6182_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_7_copy_fu_6178_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_8_copy_fu_6174_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_9_copy_fu_6170_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_10_copy_fu_6166_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_11_copy_fu_6162_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_12_copy_fu_6158_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_13_copy_fu_6154_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_14_copy_fu_6150_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_15_copy_fu_6146_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_16_copy_fu_6142_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_17_copy_fu_6138_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_18_copy_fu_6134_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_19_copy_fu_6130_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_20_copy_fu_6126_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_21_copy_fu_6122_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_22_copy_fu_6118_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_23_copy_fu_6114_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_arr_feat_29_copy_fu_6090_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\reg_10940_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i_i314_i_i_reg_30796_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i_i67_i_i_i535_i_i_reg_29856_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i33_i33_i33_i33_i_i_i_reg_29806_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\reg_10904_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i_i_i_i_i609_i_i_reg_29826_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i_i_i139_i139_i139_i_i_1_reg_30051_reg[11] )
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i33_i_i_i108_i_i_i_1_reg_30641_reg[11] )
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i_i_i141_i_i142_i_i_reg_30536_reg[15] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:01:12 . Memory (MB): peak = 4035.113 ; gain = 1603.160 ; free physical = 569816 ; free virtual = 661067
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:47 ; elapsed = 00:01:24 . Memory (MB): peak = 4035.113 ; gain = 1603.160 ; free physical = 599873 ; free virtual = 691155
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4_U0/agg_tmp_i_i_i_i293_i_i_i_1_reg_29681_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4_U0/agg_tmp3_i_i_i_i_i609_i_i_1_reg_29831_reg[5] )
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:50 ; elapsed = 00:01:27 . Memory (MB): peak = 4051.125 ; gain = 1619.172 ; free physical = 588155 ; free virtual = 679442
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:00 ; elapsed = 00:01:37 . Memory (MB): peak = 4057.133 ; gain = 1625.180 ; free physical = 593966 ; free virtual = 685283
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:00 ; elapsed = 00:01:38 . Memory (MB): peak = 4057.133 ; gain = 1625.180 ; free physical = 593033 ; free virtual = 684351
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:02 ; elapsed = 00:01:39 . Memory (MB): peak = 4057.133 ; gain = 1625.180 ; free physical = 586135 ; free virtual = 677453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:02 ; elapsed = 00:01:39 . Memory (MB): peak = 4057.133 ; gain = 1625.180 ; free physical = 585235 ; free virtual = 676552
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:20 ; elapsed = 00:01:57 . Memory (MB): peak = 4057.133 ; gain = 1625.180 ; free physical = 598295 ; free virtual = 689612
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:20 ; elapsed = 00:01:57 . Memory (MB): peak = 4057.133 ; gain = 1625.180 ; free physical = 597773 ; free virtual = 689091
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY8 |   746|
+|3     |LUT1   |    90|
+|4     |LUT2   |  2522|
+|5     |LUT3   |  3334|
+|6     |LUT4   |  8544|
+|7     |LUT5   |  8829|
+|8     |LUT6   |  8963|
+|9     |MUXF7  |    60|
+|10    |FDRE   | 12548|
+|11    |FDSE   |    91|
+|12    |IBUF   |  8004|
+|13    |OBUF   |   513|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------------------------------------------------------------------+--------------------------------------------------------------------------+------+
+|      |Instance                                                             |Module                                                                    |Cells |
++------+---------------------------------------------------------------------+--------------------------------------------------------------------------+------+
+|1     |top                                                                  |                                                                          | 54245|
+|2     |  Block_entry24_proc_U0                                              |hls_dummy_Block_entry24_proc                                              |   450|
+|3     |  sparse_arr_feat_reduce_out_10_U                                    |hls_dummy_fifo_w16_d2_S                                                   |    55|
+|4     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_57                                       |    45|
+|5     |  sparse_arr_feat_reduce_out_11_U                                    |hls_dummy_fifo_w16_d2_S_0                                                 |    54|
+|6     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_56                                       |    45|
+|7     |  sparse_arr_feat_reduce_out_12_U                                    |hls_dummy_fifo_w16_d2_S_1                                                 |    55|
+|8     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_55                                       |    45|
+|9     |  sparse_arr_feat_reduce_out_13_U                                    |hls_dummy_fifo_w16_d2_S_2                                                 |    55|
+|10    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_54                                       |    45|
+|11    |  sparse_arr_feat_reduce_out_14_U                                    |hls_dummy_fifo_w16_d2_S_3                                                 |    54|
+|12    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_53                                       |    45|
+|13    |  sparse_arr_feat_reduce_out_15_U                                    |hls_dummy_fifo_w16_d2_S_4                                                 |    54|
+|14    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_52                                       |    45|
+|15    |  sparse_arr_feat_reduce_out_16_U                                    |hls_dummy_fifo_w16_d2_S_5                                                 |    56|
+|16    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_51                                       |    45|
+|17    |  sparse_arr_feat_reduce_out_17_U                                    |hls_dummy_fifo_w16_d2_S_6                                                 |    57|
+|18    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_50                                       |    45|
+|19    |  sparse_arr_feat_reduce_out_18_U                                    |hls_dummy_fifo_w16_d2_S_7                                                 |    55|
+|20    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_49                                       |    45|
+|21    |  sparse_arr_feat_reduce_out_19_U                                    |hls_dummy_fifo_w16_d2_S_8                                                 |    54|
+|22    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_48                                       |    45|
+|23    |  sparse_arr_feat_reduce_out_1_U                                     |hls_dummy_fifo_w16_d2_S_9                                                 |    56|
+|24    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_47                                       |    45|
+|25    |  sparse_arr_feat_reduce_out_20_U                                    |hls_dummy_fifo_w16_d2_S_10                                                |    54|
+|26    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_46                                       |    45|
+|27    |  sparse_arr_feat_reduce_out_21_U                                    |hls_dummy_fifo_w16_d2_S_11                                                |    55|
+|28    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_45                                       |    45|
+|29    |  sparse_arr_feat_reduce_out_22_U                                    |hls_dummy_fifo_w16_d2_S_12                                                |    58|
+|30    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_44                                       |    45|
+|31    |  sparse_arr_feat_reduce_out_23_U                                    |hls_dummy_fifo_w16_d2_S_13                                                |    54|
+|32    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_43                                       |    45|
+|33    |  sparse_arr_feat_reduce_out_24_U                                    |hls_dummy_fifo_w16_d2_S_14                                                |    54|
+|34    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_42                                       |    45|
+|35    |  sparse_arr_feat_reduce_out_25_U                                    |hls_dummy_fifo_w16_d2_S_15                                                |    55|
+|36    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_41                                       |    45|
+|37    |  sparse_arr_feat_reduce_out_26_U                                    |hls_dummy_fifo_w16_d2_S_16                                                |    55|
+|38    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_40                                       |    45|
+|39    |  sparse_arr_feat_reduce_out_27_U                                    |hls_dummy_fifo_w16_d2_S_17                                                |    55|
+|40    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_39                                       |    45|
+|41    |  sparse_arr_feat_reduce_out_28_U                                    |hls_dummy_fifo_w16_d2_S_18                                                |    54|
+|42    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_38                                       |    45|
+|43    |  sparse_arr_feat_reduce_out_29_U                                    |hls_dummy_fifo_w16_d2_S_19                                                |    54|
+|44    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_37                                       |    45|
+|45    |  sparse_arr_feat_reduce_out_2_U                                     |hls_dummy_fifo_w16_d2_S_20                                                |    54|
+|46    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_36                                       |    45|
+|47    |  sparse_arr_feat_reduce_out_3_U                                     |hls_dummy_fifo_w16_d2_S_21                                                |    54|
+|48    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_35                                       |    45|
+|49    |  sparse_arr_feat_reduce_out_4_U                                     |hls_dummy_fifo_w16_d2_S_22                                                |    54|
+|50    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_34                                       |    45|
+|51    |  sparse_arr_feat_reduce_out_5_U                                     |hls_dummy_fifo_w16_d2_S_23                                                |    66|
+|52    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_33                                       |    45|
+|53    |  sparse_arr_feat_reduce_out_6_U                                     |hls_dummy_fifo_w16_d2_S_24                                                |    55|
+|54    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_32                                       |    45|
+|55    |  sparse_arr_feat_reduce_out_7_U                                     |hls_dummy_fifo_w16_d2_S_25                                                |    54|
+|56    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_31                                       |    45|
+|57    |  sparse_arr_feat_reduce_out_8_U                                     |hls_dummy_fifo_w16_d2_S_26                                                |    54|
+|58    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_30                                       |    45|
+|59    |  sparse_arr_feat_reduce_out_9_U                                     |hls_dummy_fifo_w16_d2_S_27                                                |    55|
+|60    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_29                                       |    45|
+|61    |  sparse_arr_feat_reduce_out_U                                       |hls_dummy_fifo_w16_d2_S_28                                                |    57|
+|62    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg                                          |    45|
+|63    |  sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4_U0 |hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4 | 43591|
++------+---------------------------------------------------------------------+--------------------------------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:20 ; elapsed = 00:01:58 . Memory (MB): peak = 4057.133 ; gain = 1625.180 ; free physical = 597745 ; free virtual = 689063
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:23 ; elapsed = 00:02:03 . Memory (MB): peak = 4061.043 ; gain = 1629.090 ; free physical = 612762 ; free virtual = 704079
+Synthesis Optimization Complete : Time (s): cpu = 00:01:23 ; elapsed = 00:02:03 . Memory (MB): peak = 4061.043 ; gain = 1629.090 ; free physical = 612770 ; free virtual = 704079
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.44 ; elapsed = 00:00:00.44 . Memory (MB): peak = 4072.070 ; gain = 0.000 ; free physical = 605622 ; free virtual = 696931
+INFO: [Netlist 29-17] Analyzing 8811 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'hls_dummy' is not ideal for floorplanning, since the cellview 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_30_4' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4288.117 ; gain = 0.000 ; free physical = 585240 ; free virtual = 676549
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 8005 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  IBUF => IBUF (IBUFCTRL, INBUF): 8004 instances
+
+Synth Design complete | Checksum: 2e748515
+INFO: [Common 17-83] Releasing license: Synthesis
+171 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:39 ; elapsed = 00:02:19 . Memory (MB): peak = 4288.117 ; gain = 1880.008 ; free physical = 583393 ; free virtual = 674702
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 16366.370; main = 3570.604; forked = 13192.310
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 21404.031; main = 4288.121; forked = 17346.895
+# opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Command: opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Attempting to get a license for feature 'Implementation' and/or device 'xcu250'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcu250'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 4352.148 ; gain = 64.031 ; free physical = 582560 ; free virtual = 673869
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: cc1e93e1
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 4419.539 ; gain = 67.391 ; free physical = 605207 ; free virtual = 696516
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-1566] Pulled 20 inverters resulting in an inversion of 42 pins
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 1298924c1
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:02 . Memory (MB): peak = 4608.477 ; gain = 0.000 ; free physical = 606743 ; free virtual = 698052
+INFO: [Opt 31-389] Phase Retarget created 5 cells and removed 25 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 1b04b4652
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 4608.477 ; gain = 0.000 ; free physical = 606743 ; free virtual = 698052
+INFO: [Opt 31-389] Phase Constant propagation created 1 cells and removed 1 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 148c75682
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 4608.477 ; gain = 0.000 ; free physical = 612865 ; free virtual = 704174
+INFO: [Opt 31-389] Phase Sweep created 1 cells and removed 0 cells
+
+Phase 4 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 4 Shift Register Optimization | Checksum: 114bf755a
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 4608.477 ; gain = 0.000 ; free physical = 612621 ; free virtual = 703930
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 5 Post Processing Netlist
+Phase 5 Post Processing Netlist | Checksum: e26b09d9
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 4608.477 ; gain = 0.000 ; free physical = 612411 ; free virtual = 703720
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               5  |              25  |                                              0  |
+|  Constant propagation         |               1  |               1  |                                              0  |
+|  Sweep                        |               1  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: 11d38afb4
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 4608.477 ; gain = 0.000 ; free physical = 612521 ; free virtual = 703829
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: 11d38afb4
+
+Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.06 . Memory (MB): peak = 4608.477 ; gain = 0.000 ; free physical = 612511 ; free virtual = 703820
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 11d38afb4
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4608.477 ; gain = 0.000 ; free physical = 612511 ; free virtual = 703820
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4608.477 ; gain = 0.000 ; free physical = 612512 ; free virtual = 703821
+Ending Netlist Obfuscation Task | Checksum: 11d38afb4
+
+Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 4608.477 ; gain = 0.000 ; free physical = 612512 ; free virtual = 703821
+INFO: [Common 17-83] Releasing license: Implementation
+17 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:14 . Memory (MB): peak = 4608.477 ; gain = 320.359 ; free physical = 612512 ; free virtual = 703821
+# report_utilization -file vivado_synth.rpt -hierarchical -hierarchical_depth 1
+INFO: [Common 17-206] Exiting Vivado at Sun Jul 20 04:25:27 2025...
+***** VIVADO SYNTHESIS COMPLETED IN 0h3m2s *****
+INFO: [HLS 200-112] Total CPU user time: 269.67 seconds. Total CPU system time: 19.76 seconds. Total elapsed time: 347.42 seconds; peak allocated memory: 1.958 GB.
+INFO: [Common 17-206] Exiting vitis_hls at Sun Jul 20 04:25:38 2025...

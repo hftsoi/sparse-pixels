@@ -1,0 +1,216 @@
+
+
+================================================================
+== Vitis HLS Report for 'hls_dummy'
+================================================================
+* Date:           Sat Jul 19 20:30:40 2025
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        hls_dummy_prj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.252 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |       43|       43|  0.215 us|  0.215 us|   43|   43|  dataflow|
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +--------------------------------------------------------------------+-----------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                                                                    |                                                                 |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |                              Instance                              |                              Module                             |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +--------------------------------------------------------------------+-----------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+        |sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_60_1_10_4_U0  |sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_60_1_10_4  |       42|       42|  0.210 us|  0.210 us|   42|   42|       no|
+        |Block_entry24_proc_U0                                               |Block_entry24_proc                                               |        0|        0|      0 ns|      0 ns|    0|    0|       no|
+        +--------------------------------------------------------------------+-----------------------------------------------------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K|  DSP  |    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        0|       46|     -|
+|FIFO                 |        -|      -|      360|      230|     -|
+|Instance             |        -|      -|    66148|   264894|     -|
+|Memory               |        -|      -|        -|        -|     -|
+|Multiplexer          |        -|      -|        -|       90|     -|
+|Register             |        -|      -|       10|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        0|      0|    66518|   265260|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        0|      0|        7|       61|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |        0|      0|        1|       15|     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    +--------------------------------------------------------------------+-----------------------------------------------------------------+---------+----+-------+--------+-----+
+    |                              Instance                              |                              Module                             | BRAM_18K| DSP|   FF  |   LUT  | URAM|
+    +--------------------------------------------------------------------+-----------------------------------------------------------------+---------+----+-------+--------+-----+
+    |Block_entry24_proc_U0                                               |Block_entry24_proc                                               |        0|   0|    162|     101|    0|
+    |sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_60_1_10_4_U0  |sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_60_1_10_4  |        0|   0|  65986|  264793|    0|
+    +--------------------------------------------------------------------+-----------------------------------------------------------------+---------+----+-------+--------+-----+
+    |Total                                                               |                                                                 |        0|   0|  66148|  264894|    0|
+    +--------------------------------------------------------------------+-----------------------------------------------------------------+---------+----+-------+--------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    +--------------------------------+---------+----+----+-----+------+-----+---------+
+    |              Name              | BRAM_18K| FF | LUT| URAM| Depth| Bits| Size:D*B|
+    +--------------------------------+---------+----+----+-----+------+-----+---------+
+    |sparse_arr_feat_reduce_out_1_U  |        0|  36|   0|    -|     2|   16|       32|
+    |sparse_arr_feat_reduce_out_2_U  |        0|  36|   0|    -|     2|   16|       32|
+    |sparse_arr_feat_reduce_out_3_U  |        0|  36|   0|    -|     2|   16|       32|
+    |sparse_arr_feat_reduce_out_4_U  |        0|  36|   0|    -|     2|   16|       32|
+    |sparse_arr_feat_reduce_out_5_U  |        0|  36|   0|    -|     2|   16|       32|
+    |sparse_arr_feat_reduce_out_6_U  |        0|  36|   0|    -|     2|   16|       32|
+    |sparse_arr_feat_reduce_out_7_U  |        0|  36|   0|    -|     2|   16|       32|
+    |sparse_arr_feat_reduce_out_8_U  |        0|  36|   0|    -|     2|   16|       32|
+    |sparse_arr_feat_reduce_out_9_U  |        0|  36|   0|    -|     2|   16|       32|
+    |sparse_arr_feat_reduce_out_U    |        0|  36|   0|    -|     2|   16|       32|
+    +--------------------------------+---------+----+----+-----+------+-----+---------+
+    |Total                           |        0| 360|   0|    0|    20|  160|      320|
+    +--------------------------------+---------+----+----+-----+------+-----+---------+
+
+    * Expression: 
+    +--------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |                                  Variable Name                                 | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |Block_entry24_proc_U0_ap_start                                                  |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_sparse_arr_feat_reduce_out                                      |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_sparse_arr_feat_reduce_out_1                                    |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_sparse_arr_feat_reduce_out_2                                    |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_sparse_arr_feat_reduce_out_3                                    |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_sparse_arr_feat_reduce_out_4                                    |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_sparse_arr_feat_reduce_out_5                                    |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_sparse_arr_feat_reduce_out_6                                    |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_sparse_arr_feat_reduce_out_7                                    |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_sparse_arr_feat_reduce_out_8                                    |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_sparse_arr_feat_reduce_out_9                                    |       and|   0|  0|   2|           1|           1|
+    |ap_idle                                                                         |       and|   0|  0|   2|           1|           1|
+    |sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_60_1_10_4_U0_ap_continue  |       and|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_sparse_arr_feat_reduce_out                                |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_sparse_arr_feat_reduce_out_1                              |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_sparse_arr_feat_reduce_out_2                              |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_sparse_arr_feat_reduce_out_3                              |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_sparse_arr_feat_reduce_out_4                              |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_sparse_arr_feat_reduce_out_5                              |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_sparse_arr_feat_reduce_out_6                              |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_sparse_arr_feat_reduce_out_7                              |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_sparse_arr_feat_reduce_out_8                              |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_sparse_arr_feat_reduce_out_9                              |        or|   0|  0|   2|           1|           1|
+    +--------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+    |Total                                                                           |          |   0|  0|  46|          23|          23|
+    +--------------------------------------------------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------------------------------------------+----+-----------+-----+-----------+
+    |                          Name                          | LUT| Input Size| Bits| Total Bits|
+    +--------------------------------------------------------+----+-----------+-----+-----------+
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out    |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_1  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_2  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_3  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_4  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_5  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_6  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_7  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_8  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_9  |   9|          2|    1|          2|
+    +--------------------------------------------------------+----+-----------+-----+-----------+
+    |Total                                                   |  90|         20|   10|         20|
+    +--------------------------------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +--------------------------------------------------------+---+----+-----+-----------+
+    |                          Name                          | FF| LUT| Bits| Const Bits|
+    +--------------------------------------------------------+---+----+-----+-----------+
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out    |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_1  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_2  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_3  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_4  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_5  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_6  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_7  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_8  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_sparse_arr_feat_reduce_out_9  |  1|   0|    1|          0|
+    +--------------------------------------------------------+---+----+-----+-----------+
+    |Total                                                   | 10|   0|   10|          0|
+    +--------------------------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-------+------------+--------------+--------------+
+|      RTL Ports      | Dir |  Bits |  Protocol  | Source Object|    C Type    |
++---------------------+-----+-------+------------+--------------+--------------+
+|x_in                 |   in|  48000|      ap_vld|          x_in|       pointer|
+|x_in_ap_vld          |   in|      1|      ap_vld|          x_in|       pointer|
+|layer2_out_0         |  out|     16|      ap_vld|  layer2_out_0|       pointer|
+|layer2_out_0_ap_vld  |  out|      1|      ap_vld|  layer2_out_0|       pointer|
+|layer2_out_1         |  out|     16|      ap_vld|  layer2_out_1|       pointer|
+|layer2_out_1_ap_vld  |  out|      1|      ap_vld|  layer2_out_1|       pointer|
+|layer2_out_2         |  out|     16|      ap_vld|  layer2_out_2|       pointer|
+|layer2_out_2_ap_vld  |  out|      1|      ap_vld|  layer2_out_2|       pointer|
+|layer2_out_3         |  out|     16|      ap_vld|  layer2_out_3|       pointer|
+|layer2_out_3_ap_vld  |  out|      1|      ap_vld|  layer2_out_3|       pointer|
+|layer2_out_4         |  out|     16|      ap_vld|  layer2_out_4|       pointer|
+|layer2_out_4_ap_vld  |  out|      1|      ap_vld|  layer2_out_4|       pointer|
+|layer2_out_5         |  out|     16|      ap_vld|  layer2_out_5|       pointer|
+|layer2_out_5_ap_vld  |  out|      1|      ap_vld|  layer2_out_5|       pointer|
+|layer2_out_6         |  out|     16|      ap_vld|  layer2_out_6|       pointer|
+|layer2_out_6_ap_vld  |  out|      1|      ap_vld|  layer2_out_6|       pointer|
+|layer2_out_7         |  out|     16|      ap_vld|  layer2_out_7|       pointer|
+|layer2_out_7_ap_vld  |  out|      1|      ap_vld|  layer2_out_7|       pointer|
+|layer2_out_8         |  out|     16|      ap_vld|  layer2_out_8|       pointer|
+|layer2_out_8_ap_vld  |  out|      1|      ap_vld|  layer2_out_8|       pointer|
+|layer2_out_9         |  out|     16|      ap_vld|  layer2_out_9|       pointer|
+|layer2_out_9_ap_vld  |  out|      1|      ap_vld|  layer2_out_9|       pointer|
+|ap_clk               |   in|      1|  ap_ctrl_hs|     hls_dummy|  return value|
+|ap_rst               |   in|      1|  ap_ctrl_hs|     hls_dummy|  return value|
+|ap_start             |   in|      1|  ap_ctrl_hs|     hls_dummy|  return value|
+|ap_done              |  out|      1|  ap_ctrl_hs|     hls_dummy|  return value|
+|ap_ready             |  out|      1|  ap_ctrl_hs|     hls_dummy|  return value|
+|ap_idle              |  out|      1|  ap_ctrl_hs|     hls_dummy|  return value|
++---------------------+-----+-------+------------+--------------+--------------+
+

@@ -1,0 +1,474 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Sun Jul 20 04:28:09 2025
+# Process ID: 139090
+# Current directory: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5
+# Command line: vivado -mode batch -source vivado_synth.tcl
+# Log file: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/vivado.log
+# Journal file: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/vivado.jou
+# Running On: coder-hftsoi-hls3, OS: Linux, CPU Frequency: 3083.645 MHz, CPU Physical cores: 32, Host memory: 1081985 MB
+#-----------------------------------------------------------
+source vivado_synth.tcl
+# set tcldir [file dirname [info script]]
+# source [file join $tcldir project.tcl]
+## variable project_name
+## set project_name "hls_dummy"
+## variable backend
+## set backend "vitis"
+## variable part
+## set part "xcu250-figd2104-2L-e"
+## variable clock_period
+## set clock_period 5
+## variable clock_uncertainty
+## set clock_uncertainty 27%
+## variable version
+## set version "1.0.0"
+## variable maximum_size
+## set maximum_size 4096
+# add_files ${project_name}_prj/solution1/syn/verilog
+add_files: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 2408.109 ; gain = 113.023 ; free physical = 614437 ; free virtual = 705645
+# synth_design -top ${project_name} -part $part
+Command: synth_design -top hls_dummy -part xcu250-figd2104-2L-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu250'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu250'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 139102
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2823.598 ; gain = 391.648 ; free physical = 613765 ; free virtual = 704974
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_5_4' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_5_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_operator_s' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy_operator_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_operator_s' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy_operator_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_5_4' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_5_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_Block_entry24_proc' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy_Block_entry24_proc.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_Block_entry24_proc' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy_Block_entry24_proc.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w16_d2_S' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:11]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w16_d2_S_ShiftReg' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:120]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter ADDR_WIDTH bound to: 1 - type: integer 
+	Parameter DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w16_d2_S_ShiftReg' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:120]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w16_d2_S' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in500/reduction-in500-out5/hls_dummy_prj/solution1/syn/verilog/hls_dummy.v:9]
+WARNING: [Synth 8-7129] Port reset in module hls_dummy_fifo_w16_d2_S_ShiftReg is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 3020.551 ; gain = 588.602 ; free physical = 610136 ; free virtual = 701347
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 3020.551 ; gain = 588.602 ; free physical = 606998 ; free virtual = 698209
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu250-figd2104-2L-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+INFO: [Device 21-403] Loading part xcu250-figd2104-2L-e
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 3028.555 ; gain = 596.605 ; free physical = 606907 ; free virtual = 698118
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:14 . Memory (MB): peak = 3138.992 ; gain = 707.043 ; free physical = 588735 ; free virtual = 679949
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    3 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 10    
++---XORs : 
+	   2 Input      1 Bit         XORs := 10    
++---Registers : 
+	               16 Bit    Registers := 655   
+	               12 Bit    Registers := 135   
+	                5 Bit    Registers := 1     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 5     
+	                1 Bit    Registers := 21    
++---Muxes : 
+	   2 Input   16 Bit        Muxes := 726   
+	   2 Input   15 Bit        Muxes := 746   
+	   2 Input   12 Bit        Muxes := 953   
+	   6 Input    5 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 6     
+	   2 Input    1 Bit        Muxes := 32    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 12288 (col length:96)
+BRAMs: 5376 (col length: RAMB18 384 RAMB36 192)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i_i_i534_i_1_reg_29521_reg[2]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_29481_reg[2]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_29491_reg[2]' (FDE) to 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_29491_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i31_i31_i_i_1_reg_29461_reg[2]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i141_i_i_1_reg_29411_reg[2]' (FDE) to 'agg_tmp3_i_i_i141_i141_i141_i_i_1_reg_29411_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i65_i65_i_i_1_reg_29441_reg[2]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i67_i67_i_i_1_reg_29451_reg[2]' (FDE) to 'agg_tmp3_i_i67_i67_i67_i67_i_i_1_reg_29451_reg[4]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i_i_i500_i_1_reg_29541_reg[2]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i32_i_i_i_i_1_reg_30061_reg[2]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i379_i_i_1_reg_29281_reg[2]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i_i455_i_i_1_reg_29251_reg[2]' (FDE) to 'agg_tmp3_i_i_i141_i_i455_i_i_1_reg_29251_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i_i_i534_i_1_reg_29521_reg[3]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_29481_reg[3]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_29491_reg[3]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i31_i31_i_i_1_reg_29461_reg[3]' (FDE) to 'agg_tmp_i31_i31_i31_i31_i31_i_i_1_reg_29461_reg[4]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i141_i_i_1_reg_29411_reg[3]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i65_i65_i_i_1_reg_29441_reg[3]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i67_i67_i_i_1_reg_29451_reg[3]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i_i_i500_i_1_reg_29541_reg[3]' (FDE) to 'agg_tmp_i31_i31_i_i_i_i500_i_1_reg_29541_reg[4]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i32_i_i_i_i_1_reg_30061_reg[3]' (FDE) to 'agg_tmp_i31_i_i32_i_i_i_i_1_reg_30061_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i379_i_i_1_reg_29281_reg[3]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i_i455_i_i_1_reg_29251_reg[3]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i_i_i534_i_1_reg_29521_reg[4]' (FDE) to 'agg_tmp_i_i65_i_i_i_i534_i_1_reg_29521_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_29481_reg[4]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_29491_reg[4]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i31_i31_i_i_1_reg_29461_reg[4]' (FDE) to 'agg_tmp_i31_i31_i31_i31_i31_i_i_1_reg_29461_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i141_i_i_1_reg_29411_reg[4]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i65_i65_i_i_1_reg_29441_reg[4]' (FDE) to 'agg_tmp_i_i65_i65_i65_i65_i_i_1_reg_29441_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i67_i67_i_i_1_reg_29451_reg[4]' (FDE) to 'agg_tmp3_i_i67_i67_i67_i67_i_i_1_reg_29451_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i_i_i500_i_1_reg_29541_reg[4]' (FDE) to 'agg_tmp_i31_i31_i_i_i_i500_i_1_reg_29541_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i32_i_i_i_i_1_reg_30061_reg[4]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i379_i_i_1_reg_29281_reg[4]' (FDE) to 'agg_tmp_i_i65_i65_i_i379_i_i_1_reg_29281_reg[5]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i_i455_i_i_1_reg_29251_reg[4]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i_i_i534_i_1_reg_29521_reg[5]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_29481_reg[5]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_29491_reg[5]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i31_i31_i_i_1_reg_29461_reg[5]' (FDE) to 'agg_tmp_i31_i31_i31_i31_i31_i_i_1_reg_29461_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i141_i_i_1_reg_29411_reg[5]' (FDE) to 'agg_tmp3_i_i_i141_i141_i141_i_i_1_reg_29411_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i65_i65_i_i_1_reg_29441_reg[5]' (FDE) to 'agg_tmp_i_i65_i65_i65_i65_i_i_1_reg_29441_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i67_i67_i_i_1_reg_29451_reg[5]' (FDE) to 'agg_tmp3_i_i67_i67_i67_i67_i_i_1_reg_29451_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i_i_i500_i_1_reg_29541_reg[5]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i32_i_i_i_i_1_reg_30061_reg[5]' (FDE) to 'agg_tmp_i31_i_i32_i_i_i_i_1_reg_30061_reg[6]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i379_i_i_1_reg_29281_reg[5]' (FDE) to 'agg_tmp_i_i65_i65_i_i379_i_i_1_reg_29281_reg[7]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i_i455_i_i_1_reg_29251_reg[5]' (FDE) to 'agg_tmp3_i_i_i141_i_i455_i_i_1_reg_29251_reg[7]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i_i_i534_i_1_reg_29521_reg[6]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_29481_reg[6]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_29491_reg[6]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i31_i31_i_i_1_reg_29461_reg[6]' (FDE) to 'agg_tmp_i31_i31_i31_i31_i31_i_i_1_reg_29461_reg[7]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i141_i_i_1_reg_29411_reg[6]' (FDE) to 'agg_tmp3_i_i_i141_i141_i141_i_i_1_reg_29411_reg[7]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i65_i65_i_i_1_reg_29441_reg[6]' (FDE) to 'agg_tmp_i_i65_i65_i65_i65_i_i_1_reg_29441_reg[7]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i67_i67_i_i_1_reg_29451_reg[6]' (FDE) to 'agg_tmp3_i_i67_i67_i67_i67_i_i_1_reg_29451_reg[7]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i_i_i500_i_1_reg_29541_reg[6]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i32_i_i_i_i_1_reg_30061_reg[6]' (FDE) to 'agg_tmp_i31_i_i32_i_i_i_i_1_reg_30061_reg[7]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i379_i_i_1_reg_29281_reg[6]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i_i455_i_i_1_reg_29251_reg[6]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i_i_i534_i_1_reg_29521_reg[7]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_1_reg_29481_reg[7]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_1_reg_29491_reg[7]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i_i_i500_i_1_reg_29541_reg[7]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i32_i_i_i_i_1_reg_30061_reg[7]' (FDE) to 'agg_tmp_i31_i_i32_i_i_i_i_1_reg_30061_reg[8]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i31_i31_i_i_1_reg_29461_reg[8]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i141_i_i_1_reg_29411_reg[8]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i65_i65_i_i_1_reg_29441_reg[8]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i67_i67_i_i_1_reg_29451_reg[8]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i379_i_i_1_reg_29281_reg[8]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i_i455_i_i_1_reg_29251_reg[8]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i32_i_i_i_i_reg_30056_reg[15]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i_i_i534_i_reg_29516_reg[15]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i_i_i610_i_reg_29486_reg[15]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i_i_i608_i_reg_29476_reg[15]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i_i_i500_i_reg_29536_reg[15]' (FDE) to 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i33_i33_i33_i33_i_i_reg_29466_reg[15]' (FDE) to 'agg_tmp_i31_i31_i31_i31_i31_i_i_reg_29456_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i31_i31_i31_i_i_reg_29456_reg[15]' (FDE) to 'agg_tmp_i_i65_i65_i_i379_i_i_reg_29276_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i67_i67_i67_i_i_reg_29446_reg[15]' (FDE) to 'agg_tmp_i_i65_i65_i_i379_i_i_reg_29276_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i65_i65_i_i_reg_29436_reg[15]' (FDE) to 'agg_tmp_i_i65_i65_i_i379_i_i_reg_29276_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i141_i141_i_i_reg_29406_reg[15]' (FDE) to 'agg_tmp_i_i65_i65_i_i379_i_i_reg_29276_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i379_i_i_reg_29276_reg[15]' (FDE) to 'agg_tmp3_i_i_i141_i_i455_i_i_reg_29246_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i_i455_i_i_reg_29246_reg[15]' (FDE) to 'agg_tmp_i31_i31_i_i_i499_i_i_reg_29216_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i_i499_i_i_reg_29216_reg[15]' (FDE) to 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_29621_reg[2]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i_i_i535_i_i_reg_29206_reg[15]' (FDE) to 'agg_tmp_i31_i31_i31_i_i_i346_i_1_reg_29621_reg[2]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i_i_i_i575_i_i_reg_29186_reg[15]' (FDE) to 'agg_tmp_i31_i31_i_i185_i_i_i_reg_29076_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i_i_i261_i_i_i_reg_29056_reg[15]' (FDE) to 'agg_tmp_i31_i31_i_i185_i_i_i_reg_29076_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i_i259_i_i_i_reg_29046_reg[15]' (FDE) to 'agg_tmp_i31_i31_i_i185_i_i_i_reg_29076_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i_i295_i_i_i_reg_29036_reg[15]' (FDE) to 'agg_tmp_i31_i31_i_i185_i_i_i_reg_29076_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i_i293_i_i_i_reg_29026_reg[15]' (FDE) to 'agg_tmp_i31_i31_i_i185_i_i_i_reg_29076_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i31_i_i185_i_i_i_reg_29076_reg[15]' (FDE) to 'agg_tmp_i_i65_i65_i_i_i_i_reg_28996_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i160_i_i_i_reg_30156_reg[15]' (FDE) to 'agg_tmp3_i_i_i628_i_reg_30116_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i65_i_i_i_i_reg_28996_reg[15]' (FDE) to 'agg_tmp3_i33_i_i107_i_i_i_i_reg_28986_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i33_i_i107_i_i_i_i_reg_28986_reg[15]' (FDE) to 'agg_tmp_i31_i_i105_i_i_i_i_reg_28976_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i31_i_i105_i_i_i_i_reg_28976_reg[15]' (FDE) to 'agg_tmp3_i_i_i141_i_i_i_i_reg_28966_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i628_i_reg_30116_reg[15]' (FDE) to 'agg_tmp3_i313_i313_i_i_reg_30106_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i_i141_i_i_i_i_reg_28966_reg[15]' (FDE) to 'agg_tmp_i_i_i139_i_i_i_i_reg_28956_reg[15]'
+INFO: [Synth 8-3886] merging instance 'reg_10754_reg[15]' (FDE) to 'reg_10742_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i_i139_i_i_i_i_reg_28956_reg[15]' (FDE) to 'agg_tmp3_i_i67_i_i_i_i_i_reg_28936_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i313_i313_i_i_reg_30106_reg[15]' (FDE) to 'agg_tmp_i311_i311_i_i_reg_30096_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i311_i311_i_i_reg_30096_reg[15]' (FDE) to 'agg_tmp_i_i625_i_i_reg_30086_reg[15]'
+INFO: [Synth 8-3886] merging instance 'reg_10742_reg[15]' (FDE) to 'reg_10730_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp3_i_i67_i_i_i_i_i_reg_28936_reg[15]' (FDE) to 'agg_tmp_i_i65_i_i_i_i_i_reg_28926_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i625_i_i_reg_30086_reg[15]' (FDE) to 'agg_tmp3_i313_i_i_i_reg_30076_reg[15]'
+INFO: [Synth 8-3886] merging instance 'agg_tmp_i_i65_i_i_i_i_i_reg_28926_reg[15]' (FDE) to 'agg_tmp3_i33_i_i_i_i_i_i_reg_28916_reg[15]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i313_i_i_i_reg_30076_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\reg_10730_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i_i_i_i_i_i_i_reg_28886_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\reg_10790_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i31_i31_i31_i_i_i346_i_reg_29616_reg[15] )
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i_i_i_i_i607_i_i_reg_29166_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i_i65_i_i219_i_i220_i_reg_29676_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i_i314_i_i_reg_30146_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\reg_10778_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i311_i_i312_i_reg_30126_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i33_i33_i_i187_i_i_i_reg_29086_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\reg_10766_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i31_i31_i_i185_i185_i_i_reg_29376_reg[15] )
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i31_i31_i_i_i186_i_i_1_reg_29861_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp_i_i65_i_i_i533_i_i_1_reg_29201_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\agg_tmp3_i_i67_i67_i_i68_i_i_1_reg_29931_reg[11] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:01:12 . Memory (MB): peak = 4024.988 ; gain = 1593.039 ; free physical = 594226 ; free virtual = 685472
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:01:19 . Memory (MB): peak = 4024.988 ; gain = 1593.039 ; free physical = 587139 ; free virtual = 678416
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_5_4_U0/agg_tmp_i_i_i_i293_i_i_i_1_reg_29031_reg[4] )
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:45 ; elapsed = 00:01:22 . Memory (MB): peak = 4049.008 ; gain = 1617.059 ; free physical = 574855 ; free virtual = 666137
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:53 ; elapsed = 00:01:31 . Memory (MB): peak = 4049.008 ; gain = 1617.059 ; free physical = 598258 ; free virtual = 689564
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:53 ; elapsed = 00:01:31 . Memory (MB): peak = 4049.008 ; gain = 1617.059 ; free physical = 600096 ; free virtual = 691403
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:55 ; elapsed = 00:01:32 . Memory (MB): peak = 4049.008 ; gain = 1617.059 ; free physical = 599323 ; free virtual = 690630
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:55 ; elapsed = 00:01:32 . Memory (MB): peak = 4049.008 ; gain = 1617.059 ; free physical = 598979 ; free virtual = 690286
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:13 ; elapsed = 00:01:50 . Memory (MB): peak = 4049.008 ; gain = 1617.059 ; free physical = 595020 ; free virtual = 686327
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:13 ; elapsed = 00:01:51 . Memory (MB): peak = 4049.008 ; gain = 1617.059 ; free physical = 594378 ; free virtual = 685685
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY8 |   746|
+|3     |LUT1   |    65|
+|4     |LUT2   |  2692|
+|5     |LUT3   |  3039|
+|6     |LUT4   |  9216|
+|7     |LUT5   |  8539|
+|8     |LUT6   |  8472|
+|9     |MUXF7  |    61|
+|10    |FDRE   | 10992|
+|11    |FDSE   |    16|
+|12    |IBUF   |  8004|
+|13    |OBUF   |    88|
++------+-------+------+
+
+Report Instance Areas: 
++------+--------------------------------------------------------------------+-------------------------------------------------------------------------+------+
+|      |Instance                                                            |Module                                                                   |Cells |
++------+--------------------------------------------------------------------+-------------------------------------------------------------------------+------+
+|1     |top                                                                 |                                                                         | 51931|
+|2     |  Block_entry24_proc_U0                                             |hls_dummy_Block_entry24_proc                                             |    75|
+|3     |  sparse_arr_feat_reduce_out_1_U                                    |hls_dummy_fifo_w16_d2_S                                                  |    69|
+|4     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                              |hls_dummy_fifo_w16_d2_S_ShiftReg_7                                       |    61|
+|5     |  sparse_arr_feat_reduce_out_2_U                                    |hls_dummy_fifo_w16_d2_S_0                                                |    69|
+|6     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                              |hls_dummy_fifo_w16_d2_S_ShiftReg_6                                       |    61|
+|7     |  sparse_arr_feat_reduce_out_3_U                                    |hls_dummy_fifo_w16_d2_S_1                                                |    75|
+|8     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                              |hls_dummy_fifo_w16_d2_S_ShiftReg_5                                       |    61|
+|9     |  sparse_arr_feat_reduce_out_4_U                                    |hls_dummy_fifo_w16_d2_S_2                                                |    74|
+|10    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                              |hls_dummy_fifo_w16_d2_S_ShiftReg_4                                       |    61|
+|11    |  sparse_arr_feat_reduce_out_U                                      |hls_dummy_fifo_w16_d2_S_3                                                |    70|
+|12    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                              |hls_dummy_fifo_w16_d2_S_ShiftReg                                         |    61|
+|13    |  sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_5_4_U0 |hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_5_4 | 43400|
++------+--------------------------------------------------------------------+-------------------------------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:13 ; elapsed = 00:01:51 . Memory (MB): peak = 4049.008 ; gain = 1617.059 ; free physical = 595599 ; free virtual = 686906
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:16 ; elapsed = 00:01:55 . Memory (MB): peak = 4049.008 ; gain = 1617.059 ; free physical = 596636 ; free virtual = 687943
+Synthesis Optimization Complete : Time (s): cpu = 00:01:16 ; elapsed = 00:01:55 . Memory (MB): peak = 4049.008 ; gain = 1617.059 ; free physical = 596678 ; free virtual = 687977
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.35 ; elapsed = 00:00:00.36 . Memory (MB): peak = 4054.992 ; gain = 0.000 ; free physical = 591277 ; free virtual = 682576
+INFO: [Netlist 29-17] Analyzing 8812 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'hls_dummy' is not ideal for floorplanning, since the cellview 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_50_10_1_5_4' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4274.039 ; gain = 0.000 ; free physical = 610311 ; free virtual = 701610
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 8005 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  IBUF => IBUF (IBUFCTRL, INBUF): 8004 instances
+
+Synth Design complete | Checksum: b25c9eb5
+INFO: [Common 17-83] Releasing license: Synthesis
+148 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:30 ; elapsed = 00:02:09 . Memory (MB): peak = 4274.039 ; gain = 1865.930 ; free physical = 612311 ; free virtual = 703610
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 16357.834; main = 3551.570; forked = 13197.876
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 21405.703; main = 4274.043; forked = 17360.613
+# opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Command: opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Attempting to get a license for feature 'Implementation' and/or device 'xcu250'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcu250'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 4338.070 ; gain = 64.031 ; free physical = 612846 ; free virtual = 704145
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 19d8f64a4
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:04 . Memory (MB): peak = 4403.461 ; gain = 65.391 ; free physical = 608687 ; free virtual = 699985
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-1566] Pulled 17 inverters resulting in an inversion of 44 pins
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 1 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: e990a314
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 4597.430 ; gain = 0.000 ; free physical = 607676 ; free virtual = 698974
+INFO: [Opt 31-389] Phase Retarget created 4 cells and removed 22 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 13f4f4088
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 4597.430 ; gain = 0.000 ; free physical = 606695 ; free virtual = 697994
+INFO: [Opt 31-389] Phase Constant propagation created 1 cells and removed 3 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: ae489053
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 4597.430 ; gain = 0.000 ; free physical = 606726 ; free virtual = 698025
+INFO: [Opt 31-389] Phase Sweep created 1 cells and removed 0 cells
+
+Phase 4 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 4 Shift Register Optimization | Checksum: 117143be8
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 4597.430 ; gain = 0.000 ; free physical = 612414 ; free virtual = 703713
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 5 Post Processing Netlist
+Phase 5 Post Processing Netlist | Checksum: b09a65b2
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 4597.430 ; gain = 0.000 ; free physical = 612411 ; free virtual = 703710
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               4  |              22  |                                              0  |
+|  Constant propagation         |               1  |               3  |                                              0  |
+|  Sweep                        |               1  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: 1186e0efb
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 4597.430 ; gain = 0.000 ; free physical = 612370 ; free virtual = 703669
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: 1186e0efb
+
+Time (s): cpu = 00:00:00.1 ; elapsed = 00:00:00.09 . Memory (MB): peak = 4597.430 ; gain = 0.000 ; free physical = 612351 ; free virtual = 703650
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 1186e0efb
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4597.430 ; gain = 0.000 ; free physical = 612351 ; free virtual = 703650
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 4597.430 ; gain = 0.000 ; free physical = 612351 ; free virtual = 703650
+Ending Netlist Obfuscation Task | Checksum: 1186e0efb
+
+Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.05 . Memory (MB): peak = 4597.430 ; gain = 0.000 ; free physical = 612351 ; free virtual = 703650
+INFO: [Common 17-83] Releasing license: Implementation
+17 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:15 . Memory (MB): peak = 4597.430 ; gain = 323.391 ; free physical = 612351 ; free virtual = 703650
+# report_utilization -file vivado_synth.rpt -hierarchical -hierarchical_depth 1
+INFO: [Common 17-206] Exiting Vivado at Sun Jul 20 04:30:49 2025...

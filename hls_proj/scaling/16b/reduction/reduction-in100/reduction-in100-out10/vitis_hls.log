@@ -1,0 +1,589 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+  **** SW Build 3854077 on May  4 2023
+  **** IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+  **** SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /tools/Xilinx/Vitis_HLS/2023.1/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/tools/Xilinx/Vitis_HLS/2023.1/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'coder' on host 'coder-hftsoi-hls3' (Linux_x86_64 version 5.15.0-140-generic) on Sat Jul 19 04:15:43 UTC 2025
+INFO: [HLS 200-10] On os Ubuntu 20.04.6 LTS
+INFO: [HLS 200-10] In directory '/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10'
+Sourcing Tcl script 'build_prj.tcl'
+INFO: [HLS 200-1510] Running: open_project -reset hls_dummy_prj 
+INFO: [HLS 200-10] Creating and opening project '/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj'.
+INFO: [HLS 200-1510] Running: set_top hls_dummy 
+INFO: [HLS 200-1510] Running: add_files firmware/hls_dummy.cpp -cflags -std=c++0x 
+INFO: [HLS 200-10] Adding design file 'firmware/hls_dummy.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb hls_dummy_test.cpp -cflags -std=c++0x 
+INFO: [HLS 200-10] Adding test bench file 'hls_dummy_test.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb firmware/weights 
+INFO: [HLS 200-10] Adding test bench file 'firmware/weights' to the project
+INFO: [HLS 200-1510] Running: add_files -tb tb_data 
+INFO: [HLS 200-10] Adding test bench file 'tb_data' to the project
+INFO: [HLS 200-1510] Running: open_solution -reset solution1 
+INFO: [HLS 200-10] Creating and opening solution '/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1510] Running: config_array_partition -maximum_size 4096 
+INFO: [XFORM 203-101] Allowed max sub elements number after partition is 4096.
+ERROR: [HLS 200-642] The 'config_array_partition -maximum_size' command is not supported.
+INFO: [HLS 200-1510] Running: config_compile -name_max_length 80 
+INFO: [XFORM 203-1161] The maximum of name length is set to 80.
+INFO: [HLS 200-1510] Running: set_part xcu250-figd2104-2L-e 
+INFO: [HLS 200-1611] Setting target device to 'xcu250-figd2104-2L-e'
+INFO: [XFORM 203-1161] The maximum of name length is set to 80.
+INFO: [HLS 200-1510] Running: config_schedule -enable_dsp_full_reg=false 
+INFO: [HLS 200-1510] Running: create_clock -period 5 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [HLS 200-1510] Running: set_clock_uncertainty 27% default 
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.35ns.
+***** C/RTL SYNTHESIS *****
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.08 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.1 seconds; current allocated memory: 1.449 GB.
+INFO: [HLS 200-10] Analyzing design file 'firmware/hls_dummy.cpp' ... 
+WARNING: [HLS 207-5531] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (firmware/nnet_utils/nnet_dense_resource.h:33:9)
+WARNING: [HLS 207-5531] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (firmware/nnet_utils/nnet_dense_resource.h:107:9)
+WARNING: [HLS 207-5531] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (firmware/nnet_utils/nnet_dense_resource.h:189:9)
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region (firmware/hls_dummy.cpp:349:9)
+Resolution: For help on HLS 214-114 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=214-114.html
+WARNING: [HLS 200-471] Dataflow form checks found 1 issue(s) in file firmware/hls_dummy.cpp
+Resolution: For help on HLS 200-471 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-471.html
+WARNING: [HLS 207-5292] unused parameter 'keep' (firmware/nnet_utils/nnet_helpers.h:285:99)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:14:36)
+WARNING: [HLS 207-5292] unused parameter 'buffer' (firmware/nnet_utils/nnet_function_stubs.h:15:36)
+WARNING: [HLS 207-5292] unused parameter 'partition' (firmware/nnet_utils/nnet_function_stubs.h:16:44)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:24:24)
+WARNING: [HLS 207-5292] unused parameter 'buffer' (firmware/nnet_utils/nnet_function_stubs.h:25:24)
+WARNING: [HLS 207-5292] unused parameter 'partition' (firmware/nnet_utils/nnet_function_stubs.h:26:32)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:33:30)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_function_stubs.h:33:58)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_function_stubs.h:34:51)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_function_stubs.h:35:49)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:42:30)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_function_stubs.h:42:58)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_function_stubs.h:43:51)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_function_stubs.h:44:49)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:51:29)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_function_stubs.h:51:80)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_function_stubs.h:52:50)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_function_stubs.h:53:48)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_code_gen.h:16:39)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_code_gen.h:17:38)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_code_gen.h:18:60)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_code_gen.h:19:58)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 6.95 seconds. CPU system time: 1.53 seconds. Elapsed time: 16.68 seconds; current allocated memory: 1.454 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 17,382 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 7,013 instructions in the design after the 'Unroll/Inline' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 3,103 instructions in the design after the 'Performance/Pipeline' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 2,473 instructions in the design after the 'Optimizations' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 2, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 2, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 36, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 36, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 100, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 36, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 100, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, 100, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'void sparse_input_reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 10, 1, 10>(ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_uint<10>*)' (firmware/hls_dummy.cpp:97:32)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_372_1' (firmware/hls_dummy.cpp:372:23) in function 'hls_dummy' completely with a factor of 10 (firmware/hls_dummy.cpp:343:0)
+INFO: [HLS 214-186] Unrolling loop 'DataPrepareLoop' (firmware/hls_dummy.cpp:74:5) in function 'sparse_input_reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 10, 1, 10>' completely with a factor of 100 (firmware/hls_dummy.cpp:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'pair_arr.value': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:65:28)
+INFO: [HLS 214-248] Applying array_partition to 'pair_arr.index': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:65:28)
+INFO: [HLS 214-248] Applying array_partition to 'j_h_arr': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:66:9)
+INFO: [HLS 214-248] Applying array_partition to 'j_w_arr': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:67:9)
+INFO: [HLS 214-248] Applying array_partition to 'sparse_arr_feat_reduce_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:366:13)
+INFO: [HLS 214-248] Applying array_partition to 'sparse_arr_hash_reduce_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:367:17)
+INFO: [HLS 214-248] Applying array_partition to 'layer2_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:343:0)
+INFO: [HLS 214-248] Applying array_reshape to 'x_in': Complete reshaping on dimension 1. (firmware/hls_dummy.cpp:343:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 14.67 seconds. CPU system time: 0.86 seconds. Elapsed time: 22.77 seconds; current allocated memory: 1.455 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 1.455 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.09 seconds. CPU system time: 0 seconds. Elapsed time: 0.14 seconds; current allocated memory: 1.458 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.09 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.17 seconds; current allocated memory: 1.461 GB.
+INFO: [XFORM 203-712] Applying dataflow to function 'hls_dummy' (firmware/hls_dummy.cpp:366:1), detected/extracted 2 process function(s): 
+	 'sparse_input_reduce<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 10, 1, 10>4'
+	 'Block_entry24_proc'.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (firmware/hls_dummy.cpp:14:21) to (firmware/hls_dummy.cpp:22:7) in function 'Op_active<value_idx_pair<ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<16, 6, (ap_q_mode)5, (ap_o_mode)3, 0> >::operator()'... converting 3 basic blocks.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0.6 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.69 seconds; current allocated memory: 1.490 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0.45 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.46 seconds; current allocated memory: 1.524 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'hls_dummy' ...
+WARNING: [SYN 201-103] Legalizing function name 'operator()' to 'operator_s'.
+WARNING: [SYN 201-103] Legalizing function name 'sparse_input_reduce<ap_fixed<16, 6, 5, 3, 0>, ap_uint<10>, 10, 10, 1, 10>4' to 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'operator_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'operator()'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 1, function 'operator()'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.12 seconds. CPU system time: 0.09 seconds. Elapsed time: 0.82 seconds; current allocated memory: 1.525 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.38 seconds; current allocated memory: 1.525 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'MaxPixelsLoop'.
+WARNING: [HLS 200-880] The II Violation in module 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4' (loop 'MaxPixelsLoop'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 0) between 'store' operation ('pair_arr_value_write_ln115', firmware/hls_dummy.cpp:115) of constant 0 on local variable 'pair_arr.value' and 'load' operation ('pair_arr_value_load', firmware/hls_dummy.cpp:47->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:97) on local variable 'pair_arr.value'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 2, Depth = 3, loop 'MaxPixelsLoop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.01 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.37 seconds; current allocated memory: 1.539 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.27 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.6 seconds; current allocated memory: 1.539 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'Block_entry24_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.21 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.43 seconds; current allocated memory: 1.539 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0 seconds. Elapsed time: 0.39 seconds; current allocated memory: 1.539 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hls_dummy' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.05 seconds. CPU system time: 0 seconds. Elapsed time: 0.33 seconds; current allocated memory: 1.539 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.06 seconds. CPU system time: 0 seconds. Elapsed time: 0.38 seconds; current allocated memory: 1.539 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'operator_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'operator_s'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.07 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.37 seconds; current allocated memory: 1.539 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.23 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.4 seconds; current allocated memory: 1.554 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Block_entry24_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Block_entry24_proc'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.66 seconds. CPU system time: 0.05 seconds. Elapsed time: 1.45 seconds; current allocated memory: 1.573 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hls_dummy' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/x_in' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_0' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_1' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_2' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_3' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_4' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_5' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_6' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_7' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_8' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_9' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'hls_dummy' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hls_dummy'.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_1_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_2_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_3_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_4_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_5_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_6_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_7_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_8_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_9_U(hls_dummy_fifo_w16_d2_S)' using Shift Registers.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.14 seconds. CPU system time: 0 seconds. Elapsed time: 2.5 seconds; current allocated memory: 1.575 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1.05 seconds. CPU system time: 0.03 seconds. Elapsed time: 1.22 seconds; current allocated memory: 1.578 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0.69 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.78 seconds; current allocated memory: 1.586 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for hls_dummy.
+INFO: [VLOG 209-307] Generating Verilog RTL for hls_dummy.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 307.50 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 27.59 seconds. CPU system time: 2.69 seconds. Elapsed time: 53.54 seconds; current allocated memory: 139.859 MB.
+***** C/RTL SYNTHESIS COMPLETED IN 0h0m53s *****
+***** VIVADO SYNTHESIS *****
+
+****** Vivado v2023.1 (64-bit)
+  **** SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+  **** IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+  **** SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source vivado_synth.tcl
+# set tcldir [file dirname [info script]]
+# source [file join $tcldir project.tcl]
+## variable project_name
+## set project_name "hls_dummy"
+## variable backend
+## set backend "vitis"
+## variable part
+## set part "xcu250-figd2104-2L-e"
+## variable clock_period
+## set clock_period 5
+## variable clock_uncertainty
+## set clock_uncertainty 27%
+## variable version
+## set version "1.0.0"
+## variable maximum_size
+## set maximum_size 4096
+# add_files ${project_name}_prj/solution1/syn/verilog
+add_files: Time (s): cpu = 00:00:09 ; elapsed = 00:00:17 . Memory (MB): peak = 2424.367 ; gain = 115.992 ; free physical = 639566 ; free virtual = 721486
+# synth_design -top ${project_name} -part $part
+Command: synth_design -top hls_dummy -part xcu250-figd2104-2L-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu250'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu250'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 98470
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2838.855 ; gain = 390.664 ; free physical = 626738 ; free virtual = 708919
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_operator_s' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy_operator_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_operator_s' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy_operator_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_Block_entry24_proc' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy_Block_entry24_proc.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_Block_entry24_proc' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy_Block_entry24_proc.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w16_d2_S' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:11]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w16_d2_S_ShiftReg' [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:120]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter ADDR_WIDTH bound to: 1 - type: integer 
+	Parameter DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w16_d2_S_ShiftReg' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:120]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w16_d2_S' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w16_d2_S.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/16b/reduction/reduction-in100/reduction-in100-out10/hls_dummy_prj/solution1/syn/verilog/hls_dummy.v:9]
+WARNING: [Synth 8-7129] Port reset in module hls_dummy_fifo_w16_d2_S_ShiftReg is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 2925.793 ; gain = 477.602 ; free physical = 627949 ; free virtual = 710170
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 2937.668 ; gain = 489.477 ; free physical = 624104 ; free virtual = 706334
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xcu250-figd2104-2L-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 2945.672 ; gain = 497.480 ; free physical = 623559 ; free virtual = 705801
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xcu250-figd2104-2L-e
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 2951.609 ; gain = 503.418 ; free physical = 626848 ; free virtual = 709123
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    4 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 20    
++---XORs : 
+	   2 Input      1 Bit         XORs := 20    
++---Registers : 
+	               16 Bit    Registers := 166   
+	               12 Bit    Registers := 26    
+	                4 Bit    Registers := 3     
+	                2 Bit    Registers := 10    
+	                1 Bit    Registers := 36    
++---Muxes : 
+	   2 Input   16 Bit        Muxes := 171   
+	   2 Input   15 Bit        Muxes := 150   
+	   2 Input   12 Bit        Muxes := 187   
+	   2 Input    7 Bit        Muxes := 4     
+	   7 Input    4 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 11    
+	   2 Input    1 Bit        Muxes := 52    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 12288 (col length:96)
+BRAMs: 5376 (col length: RAMB18 384 RAMB36 192)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:01:19 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 629995 ; free virtual = 717844
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:01:20 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 631677 ; free virtual = 719530
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:01:21 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 629161 ; free virtual = 717014
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:34 ; elapsed = 00:01:26 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 630155 ; free virtual = 718007
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:34 ; elapsed = 00:01:26 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 630155 ; free virtual = 718007
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:35 ; elapsed = 00:01:27 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 630369 ; free virtual = 718221
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:35 ; elapsed = 00:01:27 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 630393 ; free virtual = 718245
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:01:27 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 630593 ; free virtual = 718445
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:35 ; elapsed = 00:01:27 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 630438 ; free virtual = 718291
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY8 |   150|
+|3     |LUT1   |    30|
+|4     |LUT2   |   805|
+|5     |LUT3   |  1012|
+|6     |LUT4   |  2379|
+|7     |LUT5   |   264|
+|8     |LUT6   |  1983|
+|9     |MUXF7  |    25|
+|10    |FDRE   |  2740|
+|11    |FDSE   |    31|
+|12    |IBUF   |  1604|
+|13    |OBUF   |   173|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------------------------------------------------------------------+--------------------------------------------------------------------------+------+
+|      |Instance                                                             |Module                                                                    |Cells |
++------+---------------------------------------------------------------------+--------------------------------------------------------------------------+------+
+|1     |top                                                                  |                                                                          | 11197|
+|2     |  Block_entry24_proc_U0                                              |hls_dummy_Block_entry24_proc                                              |   150|
+|3     |  sparse_arr_feat_reduce_out_1_U                                     |hls_dummy_fifo_w16_d2_S                                                   |    54|
+|4     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_17                                       |    45|
+|5     |  sparse_arr_feat_reduce_out_2_U                                     |hls_dummy_fifo_w16_d2_S_0                                                 |    54|
+|6     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_16                                       |    45|
+|7     |  sparse_arr_feat_reduce_out_3_U                                     |hls_dummy_fifo_w16_d2_S_1                                                 |    55|
+|8     |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_15                                       |    45|
+|9     |  sparse_arr_feat_reduce_out_4_U                                     |hls_dummy_fifo_w16_d2_S_2                                                 |    55|
+|10    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_14                                       |    45|
+|11    |  sparse_arr_feat_reduce_out_5_U                                     |hls_dummy_fifo_w16_d2_S_3                                                 |    57|
+|12    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_13                                       |    45|
+|13    |  sparse_arr_feat_reduce_out_6_U                                     |hls_dummy_fifo_w16_d2_S_4                                                 |    54|
+|14    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_12                                       |    45|
+|15    |  sparse_arr_feat_reduce_out_7_U                                     |hls_dummy_fifo_w16_d2_S_5                                                 |    54|
+|16    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_11                                       |    45|
+|17    |  sparse_arr_feat_reduce_out_8_U                                     |hls_dummy_fifo_w16_d2_S_6                                                 |    55|
+|18    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_10                                       |    45|
+|19    |  sparse_arr_feat_reduce_out_9_U                                     |hls_dummy_fifo_w16_d2_S_7                                                 |    54|
+|20    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg_9                                        |    45|
+|21    |  sparse_arr_feat_reduce_out_U                                       |hls_dummy_fifo_w16_d2_S_8                                                 |    54|
+|22    |    U_hls_dummy_fifo_w16_d2_S_ShiftReg                               |hls_dummy_fifo_w16_d2_S_ShiftReg                                          |    45|
+|23    |  sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4_U0 |hls_dummy_sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4 |  8713|
++------+---------------------------------------------------------------------+--------------------------------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:01:27 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 630367 ; free virtual = 718219
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:35 ; elapsed = 00:01:27 . Memory (MB): peak = 4021.328 ; gain = 1573.137 ; free physical = 630220 ; free virtual = 718072
+Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:01:27 . Memory (MB): peak = 4021.336 ; gain = 1573.137 ; free physical = 630206 ; free virtual = 718058
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.07 . Memory (MB): peak = 4021.336 ; gain = 0.000 ; free physical = 625764 ; free virtual = 713656
+INFO: [Netlist 29-17] Analyzing 1780 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4138.855 ; gain = 0.000 ; free physical = 623132 ; free virtual = 711152
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1605 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  IBUF => IBUF (IBUFCTRL, INBUF): 1604 instances
+
+Synth Design complete | Checksum: 77b9d825
+INFO: [Common 17-83] Releasing license: Synthesis
+27 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:45 ; elapsed = 00:01:35 . Memory (MB): peak = 4138.855 ; gain = 1714.488 ; free physical = 623414 ; free virtual = 711435
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 3659.446; main = 3428.071; forked = 369.812
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 4988.566; main = 4138.859; forked = 967.234
+# opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Command: opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Attempting to get a license for feature 'Implementation' and/or device 'xcu250'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcu250'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 4202.887 ; gain = 64.031 ; free physical = 631861 ; free virtual = 720006
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 156b6cb59
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 4263.277 ; gain = 60.391 ; free physical = 623307 ; free virtual = 712008
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-1566] Pulled 7 inverters resulting in an inversion of 19 pins
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: bab01f0a
+
+Time (s): cpu = 00:00:00.75 ; elapsed = 00:00:00.59 . Memory (MB): peak = 4480.277 ; gain = 0.000 ; free physical = 630976 ; free virtual = 719684
+INFO: [Opt 31-389] Phase Retarget created 3 cells and removed 10 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: be7d3212
+
+Time (s): cpu = 00:00:00.86 ; elapsed = 00:00:00.7 . Memory (MB): peak = 4480.277 ; gain = 0.000 ; free physical = 630976 ; free virtual = 719684
+INFO: [Opt 31-389] Phase Constant propagation created 8 cells and removed 21 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 127ea2600
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.86 . Memory (MB): peak = 4480.277 ; gain = 0.000 ; free physical = 630765 ; free virtual = 719473
+INFO: [Opt 31-389] Phase Sweep created 1 cells and removed 0 cells
+
+Phase 4 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 4 Shift Register Optimization | Checksum: 5a18f7fe
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 4480.277 ; gain = 0.000 ; free physical = 627652 ; free virtual = 716360
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 5 Post Processing Netlist
+Phase 5 Post Processing Netlist | Checksum: 5a18f7fe
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 4480.277 ; gain = 0.000 ; free physical = 627296 ; free virtual = 716005
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               3  |              10  |                                              0  |
+|  Constant propagation         |               8  |              21  |                                              0  |
+|  Sweep                        |               1  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: 5a18f7fe
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 4480.277 ; gain = 0.000 ; free physical = 627104 ; free virtual = 715813
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: 5a18f7fe
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4480.277 ; gain = 0.000 ; free physical = 625859 ; free virtual = 714572
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 5a18f7fe
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4480.277 ; gain = 0.000 ; free physical = 625849 ; free virtual = 714562
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4480.277 ; gain = 0.000 ; free physical = 625831 ; free virtual = 714543
+Ending Netlist Obfuscation Task | Checksum: 5a18f7fe
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 4480.277 ; gain = 0.000 ; free physical = 625822 ; free virtual = 714534
+INFO: [Common 17-83] Releasing license: Implementation
+17 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:10 ; elapsed = 00:00:15 . Memory (MB): peak = 4480.277 ; gain = 341.422 ; free physical = 625816 ; free virtual = 714529
+# report_utilization -file vivado_synth.rpt -hierarchical -hierarchical_depth 1
+INFO: [Common 17-206] Exiting Vivado at Sat Jul 19 04:19:40 2025...
+***** VIVADO SYNTHESIS COMPLETED IN 0h2m58s *****
+INFO: [HLS 200-112] Total CPU user time: 105.77 seconds. Total CPU system time: 16.85 seconds. Total elapsed time: 264.6 seconds; peak allocated memory: 1.586 GB.
+INFO: [Common 17-206] Exiting vitis_hls at Sat Jul 19 04:19:52 2025...
