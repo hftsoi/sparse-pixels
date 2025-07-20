@@ -149,6 +149,60 @@ res_T mult_for_sparse_conv_kernel3(int offset_h, int offset_w, data_T sparse_arr
     return acc;
 }
 
+template <class data_T, class res_T, class w_T, int n_chan, int n_filt, int N_sparse>
+res_T mult_for_sparse_conv_kernel5(int offset_h, int offset_w, data_T sparse_arr_feat_in[n_chan * N_sparse], w_T filt_w[5 * 5 * n_chan * n_filt], int i_filt, int i_pixel_in) {
+    // Helper function for sparse_conv, for a kernel size of 5.
+    // It picks the correct filter weights when multiplying the input features over channels, given a filter position and a pixel position.
+
+    #pragma HLS INLINE
+    res_T acc = 0;
+    MultLoopPerFilter:
+    for (int i_chan = 0; i_chan < n_chan; i_chan++) {
+        #pragma HLS UNROLL
+        w_T w = 0;
+        // Note the ordering in weight array: [p1-f1-c1, p1-f1-c2, p1-f2-c1, p1-f2-c2, p2-f1-c1,...],
+        // if there are two input channels and two output filters.
+        // Here w_idx computes the relative weight index for a given filter and channel, disregarding the pixel offset position.
+        int w_idx = n_chan * i_filt + i_chan;
+
+        // Now figure out the pixel offset position given the offset values in height and width.
+        // Here offset_h (offset_w) is the relative position between the output and input pixel locations in height (width).
+        if ((offset_h == 2) && (offset_w == 2))        { w = filt_w[w_idx]; } // Top left filter weight.
+        else if ((offset_h == 2) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan]; }
+        else if ((offset_h == 2) && (offset_w == 0))   { w = filt_w[w_idx + n_filt * n_chan * 2]; }
+        else if ((offset_h == 2) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 3]; }
+        else if ((offset_h == 2) && (offset_w == -2))  { w = filt_w[w_idx + n_filt * n_chan * 4]; } // Top right filter weight.
+
+        else if ((offset_h == 1) && (offset_w == 2))   { w = filt_w[w_idx + n_filt * n_chan * 5]; }
+        else if ((offset_h == 1) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan * 6]; }
+        else if ((offset_h == 1) && (offset_w == 0))   { w = filt_w[w_idx + n_filt * n_chan * 7]; }
+        else if ((offset_h == 1) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 8]; }
+        else if ((offset_h == 1) && (offset_w == -2))  { w = filt_w[w_idx + n_filt * n_chan * 9]; }
+
+        else if ((offset_h == 0) && (offset_w == 2))   { w = filt_w[w_idx + n_filt * n_chan * 10]; }
+        else if ((offset_h == 0) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan * 11]; }
+        // The central one has been done outside this, as it is always multiplied so needs no extra offset check, hence saving some LUTs.
+        else if ((offset_h == 0) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 13]; }
+        else if ((offset_h == 0) && (offset_w == -2))  { w = filt_w[w_idx + n_filt * n_chan * 14]; }
+
+        else if ((offset_h == -1) && (offset_w == 2))   { w = filt_w[w_idx + n_filt * n_chan * 15]; }
+        else if ((offset_h == -1) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan * 16]; }
+        else if ((offset_h == -1) && (offset_w == 0))   { w = filt_w[w_idx + n_filt * n_chan * 17]; }
+        else if ((offset_h == -1) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 18]; }
+        else if ((offset_h == -1) && (offset_w == -2))  { w = filt_w[w_idx + n_filt * n_chan * 19]; }
+
+        else if ((offset_h == -2) && (offset_w == 2))   { w = filt_w[w_idx + n_filt * n_chan * 20]; } // Bottom left filter weight.
+        else if ((offset_h == -2) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan * 21]; }
+        else if ((offset_h == -2) && (offset_w == 0))   { w = filt_w[w_idx + n_filt * n_chan * 22]; }
+        else if ((offset_h == -2) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 23]; }
+        else if ((offset_h == -2) && (offset_w == -2))  { w = filt_w[w_idx + n_filt * n_chan * 24]; } // Bottom right filter weight.
+        
+        // Dot product between the feature vector at a given input pixel and the corresponding weight vector, for a given filter.
+        acc += w * sparse_arr_feat_in[n_chan * i_pixel_in + i_chan];
+    }
+    return acc;
+}
+
 template <class data_T, class res_T, class hash_T, class w_T, class b_T, int N_sparse, int n_chan, int n_filt>
 void sparse_conv(data_T sparse_arr_feat_in[N_sparse * n_chan],
                  res_T sparse_arr_feat_out[N_sparse * n_filt],
