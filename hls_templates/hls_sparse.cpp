@@ -121,99 +121,41 @@ void sparse_input_reduce(data_T input_arr[N_h * N_w * N_c],
     // These "zero-padded" pixels will be ignored as the following sparse operations will only be effective on nonzero elements in sparse_arr_feat.
 }
 
-template <class data_T, class res_T, class w_T, int n_chan, int n_filt, int N_sparse>
-res_T mult_for_sparse_conv_kernel3(int offset_h, int offset_w, data_T sparse_arr_feat_in[n_chan * N_sparse], w_T filt_w[3 * 3 * n_chan * n_filt], int i_filt, int i_pixel_in) {
+template <class data_T, class res_T, class w_T, int n_chan, int n_filt, int N_sparse, int ker_size>
+res_T mult_for_sparse_conv_kernel(int offset_h, int offset_w, data_T sparse_arr_feat_in[n_chan * N_sparse], w_T filt_w[ker_size * ker_size * n_chan * n_filt], int i_filt, int i_pixel_in) {
     // Helper function for sparse_conv, for a kernel size of 3.
     // It picks the correct filter weights when multiplying the input features over channels, given a filter position and a pixel position.
-
+    // Note the ordering in weight array: [p1-f1-c1, p1-f1-c2, p1-f2-c1, p1-f2-c2, p2-f1-c1,...],
+    // if there are two input channels and two output filters.
+    // Here w_idx computes the relative weight index for a given filter and channel, disregarding the pixel offset position.
     #pragma HLS INLINE
+
+    // Valid offset positions.
+    constexpr int R = (ker_size - 1) / 2;
+    if ( (unsigned)(offset_h + R) >= ker_size || (unsigned)(offset_w + R) >= ker_size ) { return (res_T)0; }
+    ap_uint<4> row = R - offset_h;
+    ap_uint<4> col = R - offset_w;
+    // Unroll 2d filter location into flat index like 0..8 for ker_size=3 (from top left to right and top to down, so center is 4)
+    ap_uint<7> pos = row * ker_size + col;
+
+    // Weights per spatial position
+    const int w_idx = n_chan * i_filt + n_filt * n_chan * pos;
+
+    // Accumulate over channels
     res_T acc = 0;
     MultLoopPerFilter:
     for (int i_chan = 0; i_chan < n_chan; i_chan++) {
         #pragma HLS UNROLL
-        w_T w = 0;
-        // Note the ordering in weight array: [p1-f1-c1, p1-f1-c2, p1-f2-c1, p1-f2-c2, p2-f1-c1,...],
-        // if there are two input channels and two output filters.
-        // Here w_idx computes the relative weight index for a given filter and channel, disregarding the pixel offset position.
-        int w_idx = n_chan * i_filt + i_chan;
-
-        // Now figure out the pixel offset position given the offset values in height and width.
-        // Here offset_h (offset_w) is the relative position between the output and input pixel locations in height (width).
-        if ((offset_h == 1) && (offset_w == 1))        { w = filt_w[w_idx]; } // Top left filter weight.
-        else if ((offset_h == 1) && (offset_w == 0))   { w = filt_w[w_idx + n_filt * n_chan]; }
-        else if ((offset_h == 1) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 2]; } // Top right filter weight.
-        else if ((offset_h == 0) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan * 3]; }
-        // The central one has been done outside this, as it is always multiplied so needs no extra offset check, hence saving some LUTs.
-        else if ((offset_h == 0) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 5]; }
-        else if ((offset_h == -1) && (offset_w == 1))  { w = filt_w[w_idx + n_filt * n_chan * 6]; } // Bottom left filter weight.
-        else if ((offset_h == -1) && (offset_w == 0))  { w = filt_w[w_idx + n_filt * n_chan * 7]; }
-        else if ((offset_h == -1) && (offset_w == -1)) { w = filt_w[w_idx + n_filt * n_chan * 8]; } // Bottom right filter weight.
-        
-        // Dot product between the feature vector at a given input pixel and the corresponding weight vector, for a given filter.
-        acc += w * sparse_arr_feat_in[n_chan * i_pixel_in + i_chan];
+        acc += filt_w[w_idx + i_chan] * sparse_arr_feat_in[n_chan * i_pixel_in + i_chan];
     }
     return acc;
 }
 
-template <class data_T, class res_T, class w_T, int n_chan, int n_filt, int N_sparse>
-res_T mult_for_sparse_conv_kernel5(int offset_h, int offset_w, data_T sparse_arr_feat_in[n_chan * N_sparse], w_T filt_w[5 * 5 * n_chan * n_filt], int i_filt, int i_pixel_in) {
-    // Helper function for sparse_conv, for a kernel size of 5.
-    // It picks the correct filter weights when multiplying the input features over channels, given a filter position and a pixel position.
-
-    #pragma HLS INLINE
-    res_T acc = 0;
-    MultLoopPerFilter:
-    for (int i_chan = 0; i_chan < n_chan; i_chan++) {
-        #pragma HLS UNROLL
-        w_T w = 0;
-        // Note the ordering in weight array: [p1-f1-c1, p1-f1-c2, p1-f2-c1, p1-f2-c2, p2-f1-c1,...],
-        // if there are two input channels and two output filters.
-        // Here w_idx computes the relative weight index for a given filter and channel, disregarding the pixel offset position.
-        int w_idx = n_chan * i_filt + i_chan;
-
-        // Now figure out the pixel offset position given the offset values in height and width.
-        // Here offset_h (offset_w) is the relative position between the output and input pixel locations in height (width).
-        if ((offset_h == 2) && (offset_w == 2))        { w = filt_w[w_idx]; } // Top left filter weight.
-        else if ((offset_h == 2) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan]; }
-        else if ((offset_h == 2) && (offset_w == 0))   { w = filt_w[w_idx + n_filt * n_chan * 2]; }
-        else if ((offset_h == 2) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 3]; }
-        else if ((offset_h == 2) && (offset_w == -2))  { w = filt_w[w_idx + n_filt * n_chan * 4]; } // Top right filter weight.
-
-        else if ((offset_h == 1) && (offset_w == 2))   { w = filt_w[w_idx + n_filt * n_chan * 5]; }
-        else if ((offset_h == 1) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan * 6]; }
-        else if ((offset_h == 1) && (offset_w == 0))   { w = filt_w[w_idx + n_filt * n_chan * 7]; }
-        else if ((offset_h == 1) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 8]; }
-        else if ((offset_h == 1) && (offset_w == -2))  { w = filt_w[w_idx + n_filt * n_chan * 9]; }
-
-        else if ((offset_h == 0) && (offset_w == 2))   { w = filt_w[w_idx + n_filt * n_chan * 10]; }
-        else if ((offset_h == 0) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan * 11]; }
-        // The central one has been done outside this, as it is always multiplied so needs no extra offset check, hence saving some LUTs.
-        else if ((offset_h == 0) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 13]; }
-        else if ((offset_h == 0) && (offset_w == -2))  { w = filt_w[w_idx + n_filt * n_chan * 14]; }
-
-        else if ((offset_h == -1) && (offset_w == 2))   { w = filt_w[w_idx + n_filt * n_chan * 15]; }
-        else if ((offset_h == -1) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan * 16]; }
-        else if ((offset_h == -1) && (offset_w == 0))   { w = filt_w[w_idx + n_filt * n_chan * 17]; }
-        else if ((offset_h == -1) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 18]; }
-        else if ((offset_h == -1) && (offset_w == -2))  { w = filt_w[w_idx + n_filt * n_chan * 19]; }
-
-        else if ((offset_h == -2) && (offset_w == 2))   { w = filt_w[w_idx + n_filt * n_chan * 20]; } // Bottom left filter weight.
-        else if ((offset_h == -2) && (offset_w == 1))   { w = filt_w[w_idx + n_filt * n_chan * 21]; }
-        else if ((offset_h == -2) && (offset_w == 0))   { w = filt_w[w_idx + n_filt * n_chan * 22]; }
-        else if ((offset_h == -2) && (offset_w == -1))  { w = filt_w[w_idx + n_filt * n_chan * 23]; }
-        else if ((offset_h == -2) && (offset_w == -2))  { w = filt_w[w_idx + n_filt * n_chan * 24]; } // Bottom right filter weight.
-        
-        // Dot product between the feature vector at a given input pixel and the corresponding weight vector, for a given filter.
-        acc += w * sparse_arr_feat_in[n_chan * i_pixel_in + i_chan];
-    }
-    return acc;
-}
-
-template <class data_T, class res_T, class hash_T, class w_T, class b_T, int N_sparse, int n_chan, int n_filt>
+template <class data_T, class res_T, class hash_T, class w_T, class b_T, int N_sparse, int n_chan, int n_filt, int ker_size>
 void sparse_conv(data_T sparse_arr_feat_in[N_sparse * n_chan],
                  res_T sparse_arr_feat_out[N_sparse * n_filt],
                  hash_T sparse_arr_hash[N_sparse * 2],
-                 w_T w[3 * 3 * n_chan * n_filt],
+                 w_T w[ker_size * ker_size * n_chan * n_filt],
                  b_T b[n_filt]) {
     // Note the ordering of filter weights stored by hls4ml,
     // pixel_loop->filter_loop->channel_loop, so shape=(h, w, f, c) fattened.
@@ -229,18 +171,17 @@ void sparse_conv(data_T sparse_arr_feat_in[N_sparse * n_chan],
     for (int i_pixel_out = 0; i_pixel_out < N_sparse; i_pixel_out++) {
         #pragma HLS UNROLL
 
+        bool nonzero = false;
+        for (int i_chan = 0; i_chan < n_chan; i_chan++) {
+            #pragma HLS UNROLL
+            nonzero |= (sparse_arr_feat_in[i_pixel_out * n_chan + i_chan] != (data_T)0);
+        }
+
         // Loop over output filters.
         OutputFilterLoop:
         for (int i_filt = 0; i_filt < n_filt; i_filt++) {
             #pragma HLS UNROLL
             res_T acc = 0;
-
-            // Multiplication for the central pixel, which is always happening without checking the offsets.
-            InputChannelLoopForCentralField:
-            for (int i_chan = 0; i_chan < n_chan; i_chan++) {
-                #pragma HLS UNROLL
-                acc += sparse_arr_feat_in[n_chan * i_pixel_out + i_chan] * w[4 * n_chan * n_filt + n_chan * i_filt + i_chan];
-            }
         
             // Loop over input pixels for the current output pixel.
             InputPixelLoop:
@@ -251,11 +192,12 @@ void sparse_conv(data_T sparse_arr_feat_in[N_sparse * n_chan],
                 int offset_h = sparse_arr_hash[2 * i_pixel_out] - sparse_arr_hash[2 * i_pixel_in];
                 int offset_w = sparse_arr_hash[2 * i_pixel_out + 1] - sparse_arr_hash[2 * i_pixel_in + 1];
 
-                acc += mult_for_sparse_conv_kernel3<data_T, res_T, w_T, n_chan, n_filt, N_sparse>(offset_h, offset_w, sparse_arr_feat_in, w, i_filt, i_pixel_in);
+                acc += mult_for_sparse_conv_kernel<data_T, res_T, w_T, n_chan, n_filt, N_sparse, ker_size>(offset_h, offset_w, sparse_arr_feat_in, w, i_filt, i_pixel_in);
             }
 
             // Add bias.
             if (acc != 0) { acc += b[i_filt]; }
+            if (nonzero == false) { acc = 0; }
             sparse_arr_feat_out[n_filt * i_pixel_out + i_filt] = acc;
         }
     }
@@ -432,7 +374,7 @@ void hls_sparse(
 
     model_default_t sparse_arr_feat_conv1_out[N_MAX_PIXELS * 1];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_conv1_out complete dim=0
-    sparse_conv<input_t, model_default_t, ap_uint<10>, weight2_t, bias2_t, N_MAX_PIXELS, 1, 1>(sparse_arr_feat_reduce_out, sparse_arr_feat_conv1_out, sparse_arr_hash_reduce_out, w2, b2); // sparse conv1
+    sparse_conv<input_t, model_default_t, ap_uint<10>, weight2_t, bias2_t, N_MAX_PIXELS, 1, 1, 3>(sparse_arr_feat_reduce_out, sparse_arr_feat_conv1_out, sparse_arr_hash_reduce_out, w2, b2); // sparse conv1
 
     model_default_t sparse_arr_feat_act1_out[N_MAX_PIXELS * 1];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_act1_out complete dim=0
@@ -446,7 +388,7 @@ void hls_sparse(
 
     model_default_t sparse_arr_feat_conv2_out[N_MAX_PIXELS * 1];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_conv2_out complete dim=0
-    sparse_conv<model_default_t, model_default_t, ap_uint<10>, weight6_t, bias6_t, N_MAX_PIXELS, 1, 1>(sparse_arr_feat_pool1_out, sparse_arr_feat_conv2_out, sparse_arr_hash_pool1_out, w6, b6); // sparse conv2
+    sparse_conv<model_default_t, model_default_t, ap_uint<10>, weight6_t, bias6_t, N_MAX_PIXELS, 1, 1, 3>(sparse_arr_feat_pool1_out, sparse_arr_feat_conv2_out, sparse_arr_hash_pool1_out, w6, b6); // sparse conv2
 
     model_default_t sparse_arr_feat_act2_out[N_MAX_PIXELS * 1];
     #pragma HLS ARRAY_PARTITION variable=sparse_arr_feat_act2_out complete dim=0
