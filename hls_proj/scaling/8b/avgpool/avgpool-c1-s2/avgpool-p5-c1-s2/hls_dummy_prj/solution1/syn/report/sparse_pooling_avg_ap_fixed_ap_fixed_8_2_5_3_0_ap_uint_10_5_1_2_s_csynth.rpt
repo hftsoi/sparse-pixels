@@ -1,0 +1,353 @@
+
+
+================================================================
+== Vitis HLS Report for 'sparse_pooling_avg_ap_fixed_ap_fixed_8_2_5_3_0_ap_uint_10_5_1_2_s'
+================================================================
+* Date:           Wed Jul 23 18:29:09 2025
+
+* Version:        2023.1 (Build 3854077 on May  4 2023)
+* Project:        hls_dummy_prj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  3.590 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        2|        2|  10.000 ns|  10.000 ns|    2|    2|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K|  DSP  |    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        0|     1767|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        -|      -|        -|        -|     -|
+|Memory               |        -|      -|        -|        -|     -|
+|Multiplexer          |        -|      -|        -|      164|     -|
+|Register             |        -|      -|      193|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        0|      0|      193|     1931|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |        0|      0|       ~0|       ~0|     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------+----------+----+---+----+------------+------------+
+    |        Variable Name       | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------+----------+----+---+----+------------+------------+
+    |acc_10_fu_1318_p2           |         +|   0|  0|  15|           8|           8|
+    |acc_12_fu_1328_p2           |         +|   0|  0|  15|           8|           8|
+    |acc_14_fu_1390_p2           |         +|   0|  0|  15|           8|           8|
+    |acc_16_fu_1406_p2           |         +|   0|  0|  15|           8|           8|
+    |acc_18_fu_1468_p2           |         +|   0|  0|  15|           8|           8|
+    |acc_2_fu_1060_p2            |         +|   0|  0|  15|           8|           8|
+    |acc_4_fu_1248_p2            |         +|   0|  0|  15|           8|           8|
+    |acc_6_fu_1258_p2            |         +|   0|  0|  15|           8|           8|
+    |acc_8_fu_1136_p2            |         +|   0|  0|  15|           8|           8|
+    |acc_fu_1024_p2              |         +|   0|  0|  15|           8|           8|
+    |add_ln246_2_fu_348_p2       |         +|   0|  0|  12|           5|           2|
+    |add_ln246_4_fu_516_p2       |         +|   0|  0|  12|           5|           2|
+    |add_ln246_6_fu_720_p2       |         +|   0|  0|  12|           5|           2|
+    |add_ln246_8_fu_847_p2       |         +|   0|  0|  12|           5|           2|
+    |add_ln246_fu_180_p2         |         +|   0|  0|  12|           5|           2|
+    |add_ln247_2_fu_432_p2       |         +|   0|  0|  12|           5|           2|
+    |add_ln247_4_fu_600_p2       |         +|   0|  0|  12|           5|           2|
+    |add_ln247_6_fu_782_p2       |         +|   0|  0|  12|           5|           2|
+    |add_ln247_8_fu_930_p2       |         +|   0|  0|  12|           5|           2|
+    |add_ln247_fu_264_p2         |         +|   0|  0|  12|           5|           2|
+    |h_in_5_fu_590_p2            |         +|   0|  0|  20|          13|           1|
+    |h_in_6_fu_776_p2            |         +|   0|  0|  20|          13|           1|
+    |h_in_7_fu_921_p2            |         +|   0|  0|  20|          13|           1|
+    |h_in_fu_422_p2              |         +|   0|  0|  20|          13|           1|
+    |h_out_4_fu_254_p2           |         +|   0|  0|  20|          13|           1|
+    |w_in_5_fu_674_p2            |         +|   0|  0|  20|          13|           1|
+    |w_in_6_fu_838_p2            |         +|   0|  0|  20|          13|           1|
+    |w_in_7_fu_1004_p2           |         +|   0|  0|  20|          13|           1|
+    |w_in_fu_506_p2              |         +|   0|  0|  20|          13|           1|
+    |w_out_4_fu_338_p2           |         +|   0|  0|  20|          13|           1|
+    |sub_ln246_1_fu_218_p2       |         -|   0|  0|  19|           1|          12|
+    |sub_ln246_2_fu_362_p2       |         -|   0|  0|  12|           1|           5|
+    |sub_ln246_3_fu_386_p2       |         -|   0|  0|  19|           1|          12|
+    |sub_ln246_4_fu_530_p2       |         -|   0|  0|  12|           1|           5|
+    |sub_ln246_5_fu_554_p2       |         -|   0|  0|  19|           1|          12|
+    |sub_ln246_6_fu_684_p2       |         -|   0|  0|  12|           1|           5|
+    |sub_ln246_7_fu_740_p2       |         -|   0|  0|  19|           1|          12|
+    |sub_ln246_8_fu_861_p2       |         -|   0|  0|  12|           1|           5|
+    |sub_ln246_9_fu_885_p2       |         -|   0|  0|  19|           1|          12|
+    |sub_ln246_fu_194_p2         |         -|   0|  0|  12|           1|           5|
+    |sub_ln247_1_fu_302_p2       |         -|   0|  0|  19|           1|          12|
+    |sub_ln247_2_fu_446_p2       |         -|   0|  0|  12|           1|           5|
+    |sub_ln247_3_fu_470_p2       |         -|   0|  0|  19|           1|          12|
+    |sub_ln247_4_fu_614_p2       |         -|   0|  0|  12|           1|           5|
+    |sub_ln247_5_fu_638_p2       |         -|   0|  0|  19|           1|          12|
+    |sub_ln247_6_fu_704_p2       |         -|   0|  0|  12|           1|           5|
+    |sub_ln247_7_fu_802_p2       |         -|   0|  0|  19|           1|          12|
+    |sub_ln247_8_fu_944_p2       |         -|   0|  0|  12|           1|           5|
+    |sub_ln247_9_fu_968_p2       |         -|   0|  0|  19|           1|          12|
+    |sub_ln247_fu_278_p2         |         -|   0|  0|  12|           1|           5|
+    |sub_ln291_1_fu_1298_p2      |         -|   0|  0|  33|           1|          26|
+    |sub_ln291_2_fu_1356_p2      |         -|   0|  0|  24|           1|          17|
+    |sub_ln291_3_fu_1370_p2      |         -|   0|  0|  33|           1|          26|
+    |sub_ln291_4_fu_1434_p2      |         -|   0|  0|  24|           1|          17|
+    |sub_ln291_5_fu_1448_p2      |         -|   0|  0|  33|           1|          26|
+    |sub_ln291_6_fu_1489_p2      |         -|   0|  0|  24|           1|          17|
+    |sub_ln291_7_fu_1503_p2      |         -|   0|  0|  33|           1|          26|
+    |sub_ln291_8_fu_1538_p2      |         -|   0|  0|  24|           1|          17|
+    |sub_ln291_9_fu_1552_p2      |         -|   0|  0|  33|           1|          26|
+    |sub_ln291_fu_1284_p2        |         -|   0|  0|  24|           1|          17|
+    |and_ln284_1_fu_1054_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln284_2_fu_1092_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln284_3_fu_1116_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln284_4_fu_1130_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln284_5_fu_1168_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln284_6_fu_1192_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln284_7_fu_1208_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln284_8_fu_1224_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln284_9_fu_1242_p2      |       and|   0|  0|   2|           1|           1|
+    |and_ln284_fu_1018_p2        |       and|   0|  0|   2|           1|           1|
+    |icmp_ln284_10_fu_1158_p2    |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_11_fu_1163_p2    |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_12_fu_1182_p2    |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_13_fu_1187_p2    |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_14_fu_1198_p2    |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_15_fu_1203_p2    |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_16_fu_1214_p2    |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_17_fu_1219_p2    |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_18_fu_1230_p2    |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_19_fu_1236_p2    |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_1_fu_1014_p2     |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_2_fu_1046_p2     |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_3_fu_1050_p2     |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_4_fu_1082_p2     |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_5_fu_1087_p2     |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_6_fu_1106_p2     |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_7_fu_1111_p2     |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_8_fu_1122_p2     |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_9_fu_1126_p2     |      icmp|   0|  0|  20|          13|          13|
+    |icmp_ln284_fu_1010_p2       |      icmp|   0|  0|  20|          13|          13|
+    |ap_block_state1             |        or|   0|  0|   2|           1|           1|
+    |acc_11_fu_1322_p3           |    select|   0|  0|   8|           1|           8|
+    |acc_15_fu_1400_p3           |    select|   0|  0|   8|           1|           8|
+    |acc_1_fu_1038_p3            |    select|   0|  0|   8|           1|           8|
+    |acc_3_fu_1074_p3            |    select|   0|  0|   8|           1|           8|
+    |acc_5_fu_1252_p3            |    select|   0|  0|   8|           1|           8|
+    |acc_9_fu_1150_p3            |    select|   0|  0|   8|           1|           8|
+    |data_10_fu_1142_p3          |    select|   0|  0|   8|           1|           1|
+    |data_11_fu_1394_p3          |    select|   0|  0|   8|           1|           1|
+    |data_2_fu_1263_p3           |    select|   0|  0|   8|           1|           1|
+    |data_3_fu_1066_p3           |    select|   0|  0|   8|           1|           1|
+    |data_4_fu_1174_p3           |    select|   0|  0|   8|           1|           1|
+    |data_5_fu_1334_p3           |    select|   0|  0|   8|           1|           1|
+    |data_7_fu_1412_p3           |    select|   0|  0|   8|           1|           1|
+    |data_9_fu_1030_p3           |    select|   0|  0|   8|           1|           1|
+    |data_fu_1098_p3             |    select|   0|  0|   8|           1|           1|
+    |select_ln246_1_fu_410_p3    |    select|   0|  0|  12|           1|          12|
+    |select_ln246_2_fu_578_p3    |    select|   0|  0|  12|           1|          12|
+    |select_ln246_3_fu_764_p3    |    select|   0|  0|  12|           1|          12|
+    |select_ln246_4_fu_909_p3    |    select|   0|  0|  12|           1|          12|
+    |select_ln246_fu_242_p3      |    select|   0|  0|  12|           1|          12|
+    |select_ln247_1_fu_494_p3    |    select|   0|  0|  12|           1|          12|
+    |select_ln247_2_fu_662_p3    |    select|   0|  0|  12|           1|          12|
+    |select_ln247_3_fu_826_p3    |    select|   0|  0|  12|           1|          12|
+    |select_ln247_4_fu_992_p3    |    select|   0|  0|  12|           1|          12|
+    |select_ln247_fu_326_p3      |    select|   0|  0|  12|           1|          12|
+    |select_ln284_10_fu_1341_p3  |    select|   0|  0|   8|           1|           8|
+    |select_ln284_13_fu_1419_p3  |    select|   0|  0|   8|           1|           8|
+    |select_ln284_14_fu_1523_p3  |    select|   0|  0|   8|           1|           1|
+    |select_ln284_5_fu_1269_p3   |    select|   0|  0|   8|           1|           8|
+    |select_ln284_fu_1474_p3     |    select|   0|  0|   8|           1|           8|
+    +----------------------------+----------+----+---+----+------------+------------+
+    |Total                       |          |   0|  0|1767|         591|         976|
+    +----------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------+----+-----------+-----+-----------+
+    |            Name            | LUT| Input Size| Bits| Total Bits|
+    +----------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                   |  20|          4|    1|          4|
+    |ap_done                     |   9|          2|    1|          2|
+    |ap_return_0                 |   9|          2|    8|         16|
+    |ap_return_1                 |   9|          2|    8|         16|
+    |ap_return_2                 |   9|          2|    8|         16|
+    |ap_return_3                 |   9|          2|    8|         16|
+    |ap_return_4                 |   9|          2|    8|         16|
+    |sparse_arr_hash_in_0_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_in_1_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_in_2_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_in_3_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_in_4_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_in_5_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_in_6_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_in_7_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_in_8_blk_n  |   9|          2|    1|          2|
+    |sparse_arr_hash_in_9_blk_n  |   9|          2|    1|          2|
+    +----------------------------+----+-----------+-----+-----------+
+    |Total                       | 164|         36|   52|        106|
+    +----------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------+----+----+-----+-----------+
+    |                Name                | FF | LUT| Bits| Const Bits|
+    +------------------------------------+----+----+-----+-----------+
+    |acc_3_reg_1691                      |   8|   0|    8|          0|
+    |acc_9_reg_1719                      |   8|   0|    8|          0|
+    |and_ln284_2_reg_1697                |   1|   0|    1|          0|
+    |and_ln284_3_reg_1707                |   1|   0|    1|          0|
+    |and_ln284_5_reg_1725                |   1|   0|    1|          0|
+    |and_ln284_6_reg_1736                |   1|   0|    1|          0|
+    |and_ln284_7_reg_1742                |   1|   0|    1|          0|
+    |and_ln284_8_reg_1748                |   1|   0|    1|          0|
+    |and_ln284_9_reg_1754                |   1|   0|    1|          0|
+    |ap_CS_fsm                           |   3|   0|    3|          0|
+    |ap_done_reg                         |   1|   0|    1|          0|
+    |ap_return_0_preg                    |   8|   0|    8|          0|
+    |ap_return_1_preg                    |   8|   0|    8|          0|
+    |ap_return_2_preg                    |   8|   0|    8|          0|
+    |ap_return_3_preg                    |   8|   0|    8|          0|
+    |ap_return_4_preg                    |   8|   0|    8|          0|
+    |data_10_reg_1713                    |   8|   0|    8|          0|
+    |data_4_reg_1730                     |   8|   0|    8|          0|
+    |data_reg_1702                       |   8|   0|    8|          0|
+    |h_in_5_reg_1644                     |  13|   0|   13|          0|
+    |h_in_reg_1628                       |  13|   0|   13|          0|
+    |h_out_4_reg_1612                    |  13|   0|   13|          0|
+    |sparse_arr_hash_in_8_read_reg_1607  |   4|   0|    4|          0|
+    |sparse_arr_hash_in_9_read_reg_1602  |   4|   0|    4|          0|
+    |trunc_ln246_s_reg_1665              |   4|   0|    4|          0|
+    |trunc_ln247_s_reg_1675              |   4|   0|    4|          0|
+    |w_in_5_reg_1652                     |  13|   0|   13|          0|
+    |w_in_reg_1636                       |  13|   0|   13|          0|
+    |w_out_4_reg_1620                    |  13|   0|   13|          0|
+    |zext_ln246_3_reg_1660               |   4|   0|    5|          1|
+    |zext_ln247_3_reg_1670               |   4|   0|    5|          1|
+    +------------------------------------+----+----+-----+-----------+
+    |Total                               | 193|   0|  195|          2|
+    +------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|              RTL Ports              | Dir | Bits|  Protocol  |                            Source Object                           |    C Type    |
++-------------------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+|ap_clk                               |   in|    1|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_rst                               |   in|    1|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_start                             |   in|    1|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_done                              |  out|    1|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_continue                          |   in|    1|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_idle                              |  out|    1|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_ready                             |  out|    1|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_return_0                          |  out|    8|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_return_1                          |  out|    8|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_return_2                          |  out|    8|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_return_3                          |  out|    8|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|ap_return_4                          |  out|    8|  ap_ctrl_hs|  sparse_pooling_avg<ap_fixed,ap_fixed<8,2,5,3,0>,ap_uint<10>,5,1,2>|  return value|
+|p_read                               |   in|    8|     ap_none|                                                              p_read|        scalar|
+|p_read1                              |   in|    8|     ap_none|                                                             p_read1|        scalar|
+|p_read2                              |   in|    8|     ap_none|                                                             p_read2|        scalar|
+|p_read3                              |   in|    8|     ap_none|                                                             p_read3|        scalar|
+|p_read4                              |   in|    8|     ap_none|                                                             p_read4|        scalar|
+|sparse_arr_hash_in_0_dout            |   in|    4|     ap_fifo|                                                sparse_arr_hash_in_0|       pointer|
+|sparse_arr_hash_in_0_num_data_valid  |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_0|       pointer|
+|sparse_arr_hash_in_0_fifo_cap        |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_0|       pointer|
+|sparse_arr_hash_in_0_empty_n         |   in|    1|     ap_fifo|                                                sparse_arr_hash_in_0|       pointer|
+|sparse_arr_hash_in_0_read            |  out|    1|     ap_fifo|                                                sparse_arr_hash_in_0|       pointer|
+|sparse_arr_hash_in_1_dout            |   in|    4|     ap_fifo|                                                sparse_arr_hash_in_1|       pointer|
+|sparse_arr_hash_in_1_num_data_valid  |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_1|       pointer|
+|sparse_arr_hash_in_1_fifo_cap        |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_1|       pointer|
+|sparse_arr_hash_in_1_empty_n         |   in|    1|     ap_fifo|                                                sparse_arr_hash_in_1|       pointer|
+|sparse_arr_hash_in_1_read            |  out|    1|     ap_fifo|                                                sparse_arr_hash_in_1|       pointer|
+|sparse_arr_hash_in_2_dout            |   in|    4|     ap_fifo|                                                sparse_arr_hash_in_2|       pointer|
+|sparse_arr_hash_in_2_num_data_valid  |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_2|       pointer|
+|sparse_arr_hash_in_2_fifo_cap        |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_2|       pointer|
+|sparse_arr_hash_in_2_empty_n         |   in|    1|     ap_fifo|                                                sparse_arr_hash_in_2|       pointer|
+|sparse_arr_hash_in_2_read            |  out|    1|     ap_fifo|                                                sparse_arr_hash_in_2|       pointer|
+|sparse_arr_hash_in_3_dout            |   in|    4|     ap_fifo|                                                sparse_arr_hash_in_3|       pointer|
+|sparse_arr_hash_in_3_num_data_valid  |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_3|       pointer|
+|sparse_arr_hash_in_3_fifo_cap        |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_3|       pointer|
+|sparse_arr_hash_in_3_empty_n         |   in|    1|     ap_fifo|                                                sparse_arr_hash_in_3|       pointer|
+|sparse_arr_hash_in_3_read            |  out|    1|     ap_fifo|                                                sparse_arr_hash_in_3|       pointer|
+|sparse_arr_hash_in_4_dout            |   in|    4|     ap_fifo|                                                sparse_arr_hash_in_4|       pointer|
+|sparse_arr_hash_in_4_num_data_valid  |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_4|       pointer|
+|sparse_arr_hash_in_4_fifo_cap        |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_4|       pointer|
+|sparse_arr_hash_in_4_empty_n         |   in|    1|     ap_fifo|                                                sparse_arr_hash_in_4|       pointer|
+|sparse_arr_hash_in_4_read            |  out|    1|     ap_fifo|                                                sparse_arr_hash_in_4|       pointer|
+|sparse_arr_hash_in_5_dout            |   in|    4|     ap_fifo|                                                sparse_arr_hash_in_5|       pointer|
+|sparse_arr_hash_in_5_num_data_valid  |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_5|       pointer|
+|sparse_arr_hash_in_5_fifo_cap        |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_5|       pointer|
+|sparse_arr_hash_in_5_empty_n         |   in|    1|     ap_fifo|                                                sparse_arr_hash_in_5|       pointer|
+|sparse_arr_hash_in_5_read            |  out|    1|     ap_fifo|                                                sparse_arr_hash_in_5|       pointer|
+|sparse_arr_hash_in_6_dout            |   in|    4|     ap_fifo|                                                sparse_arr_hash_in_6|       pointer|
+|sparse_arr_hash_in_6_num_data_valid  |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_6|       pointer|
+|sparse_arr_hash_in_6_fifo_cap        |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_6|       pointer|
+|sparse_arr_hash_in_6_empty_n         |   in|    1|     ap_fifo|                                                sparse_arr_hash_in_6|       pointer|
+|sparse_arr_hash_in_6_read            |  out|    1|     ap_fifo|                                                sparse_arr_hash_in_6|       pointer|
+|sparse_arr_hash_in_7_dout            |   in|    4|     ap_fifo|                                                sparse_arr_hash_in_7|       pointer|
+|sparse_arr_hash_in_7_num_data_valid  |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_7|       pointer|
+|sparse_arr_hash_in_7_fifo_cap        |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_7|       pointer|
+|sparse_arr_hash_in_7_empty_n         |   in|    1|     ap_fifo|                                                sparse_arr_hash_in_7|       pointer|
+|sparse_arr_hash_in_7_read            |  out|    1|     ap_fifo|                                                sparse_arr_hash_in_7|       pointer|
+|sparse_arr_hash_in_8_dout            |   in|    4|     ap_fifo|                                                sparse_arr_hash_in_8|       pointer|
+|sparse_arr_hash_in_8_num_data_valid  |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_8|       pointer|
+|sparse_arr_hash_in_8_fifo_cap        |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_8|       pointer|
+|sparse_arr_hash_in_8_empty_n         |   in|    1|     ap_fifo|                                                sparse_arr_hash_in_8|       pointer|
+|sparse_arr_hash_in_8_read            |  out|    1|     ap_fifo|                                                sparse_arr_hash_in_8|       pointer|
+|sparse_arr_hash_in_9_dout            |   in|    4|     ap_fifo|                                                sparse_arr_hash_in_9|       pointer|
+|sparse_arr_hash_in_9_num_data_valid  |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_9|       pointer|
+|sparse_arr_hash_in_9_fifo_cap        |   in|    2|     ap_fifo|                                                sparse_arr_hash_in_9|       pointer|
+|sparse_arr_hash_in_9_empty_n         |   in|    1|     ap_fifo|                                                sparse_arr_hash_in_9|       pointer|
+|sparse_arr_hash_in_9_read            |  out|    1|     ap_fifo|                                                sparse_arr_hash_in_9|       pointer|
++-------------------------------------+-----+-----+------------+--------------------------------------------------------------------+--------------+
+
