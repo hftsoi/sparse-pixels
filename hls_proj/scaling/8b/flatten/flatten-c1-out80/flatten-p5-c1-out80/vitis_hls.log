@@ -1,0 +1,1255 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2023.1 (64-bit)
+  **** SW Build 3854077 on May  4 2023
+  **** IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+  **** SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source /tools/Xilinx/Vitis_HLS/2023.1/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/tools/Xilinx/Vitis_HLS/2023.1/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'coder' on host 'coder-hftsoi-hls1' (Linux_x86_64 version 5.15.0-141-generic) on Thu Jul 24 17:49:02 UTC 2025
+INFO: [HLS 200-10] On os Ubuntu 20.04.6 LTS
+INFO: [HLS 200-10] In directory '/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80'
+Sourcing Tcl script 'build_prj.tcl'
+INFO: [HLS 200-1510] Running: open_project -reset hls_dummy_prj 
+INFO: [HLS 200-10] Creating and opening project '/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj'.
+INFO: [HLS 200-1510] Running: set_top hls_dummy 
+INFO: [HLS 200-1510] Running: add_files firmware/hls_dummy.cpp -cflags -std=c++0x 
+INFO: [HLS 200-10] Adding design file 'firmware/hls_dummy.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb hls_dummy_test.cpp -cflags -std=c++0x 
+INFO: [HLS 200-10] Adding test bench file 'hls_dummy_test.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb firmware/weights 
+INFO: [HLS 200-10] Adding test bench file 'firmware/weights' to the project
+INFO: [HLS 200-1510] Running: add_files -tb tb_data 
+INFO: [HLS 200-10] Adding test bench file 'tb_data' to the project
+INFO: [HLS 200-1510] Running: open_solution -reset solution1 
+INFO: [HLS 200-10] Creating and opening solution '/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1'.
+INFO: [HLS 200-10] Cleaning up the solution database.
+INFO: [HLS 200-1505] Using default flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-1510] Running: config_array_partition -maximum_size 4096 
+INFO: [XFORM 203-101] Allowed max sub elements number after partition is 4096.
+ERROR: [HLS 200-642] The 'config_array_partition -maximum_size' command is not supported.
+INFO: [HLS 200-1510] Running: config_compile -name_max_length 80 
+INFO: [XFORM 203-1161] The maximum of name length is set to 80.
+INFO: [HLS 200-1510] Running: set_part xcu250-figd2104-2L-e 
+INFO: [HLS 200-1611] Setting target device to 'xcu250-figd2104-2L-e'
+INFO: [XFORM 203-1161] The maximum of name length is set to 80.
+INFO: [HLS 200-1510] Running: config_schedule -enable_dsp_full_reg=false 
+INFO: [HLS 200-1510] Running: create_clock -period 5 -name default 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 5ns.
+INFO: [HLS 200-1510] Running: set_clock_uncertainty 27% default 
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 1.35ns.
+***** C/RTL SYNTHESIS *****
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0.06 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.13 seconds; current allocated memory: 1.449 GB.
+INFO: [HLS 200-10] Analyzing design file 'firmware/hls_dummy.cpp' ... 
+WARNING: [HLS 207-5531] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (firmware/nnet_utils/nnet_dense_resource.h:33:9)
+WARNING: [HLS 207-5531] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (firmware/nnet_utils/nnet_dense_resource.h:107:9)
+WARNING: [HLS 207-5531] 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead (firmware/nnet_utils/nnet_dense_resource.h:189:9)
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (firmware/hls_dummy.cpp:370:161)
+Resolution: For help on HLS 214-113 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=214-113.html
+WARNING: [HLS 214-113] Either use an argument of the function or declare the variable inside the dataflow loop body (firmware/hls_dummy.cpp:370:165)
+Resolution: For help on HLS 214-113 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=214-113.html
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region (firmware/hls_dummy.cpp:345:9)
+Resolution: For help on HLS 214-114 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=214-114.html
+WARNING: [HLS 200-471] Dataflow form checks found 3 issue(s) in file firmware/hls_dummy.cpp
+Resolution: For help on HLS 200-471 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-471.html
+WARNING: [HLS 207-5292] unused parameter 'keep' (firmware/nnet_utils/nnet_helpers.h:285:99)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:14:36)
+WARNING: [HLS 207-5292] unused parameter 'buffer' (firmware/nnet_utils/nnet_function_stubs.h:15:36)
+WARNING: [HLS 207-5292] unused parameter 'partition' (firmware/nnet_utils/nnet_function_stubs.h:16:44)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:24:24)
+WARNING: [HLS 207-5292] unused parameter 'buffer' (firmware/nnet_utils/nnet_function_stubs.h:25:24)
+WARNING: [HLS 207-5292] unused parameter 'partition' (firmware/nnet_utils/nnet_function_stubs.h:26:32)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:33:30)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_function_stubs.h:33:58)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_function_stubs.h:34:51)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_function_stubs.h:35:49)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:42:30)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_function_stubs.h:42:58)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_function_stubs.h:43:51)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_function_stubs.h:44:49)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_function_stubs.h:51:29)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_function_stubs.h:51:80)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_function_stubs.h:52:50)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_function_stubs.h:53:48)
+WARNING: [HLS 207-5292] unused parameter 'data' (firmware/nnet_utils/nnet_code_gen.h:16:39)
+WARNING: [HLS 207-5292] unused parameter 'res' (firmware/nnet_utils/nnet_code_gen.h:17:38)
+WARNING: [HLS 207-5292] unused parameter 'weights' (firmware/nnet_utils/nnet_code_gen.h:18:60)
+WARNING: [HLS 207-5292] unused parameter 'biases' (firmware/nnet_utils/nnet_code_gen.h:19:58)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 6.04 seconds. CPU system time: 1.61 seconds. Elapsed time: 46.69 seconds; current allocated memory: 1.454 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 200-1995] There were 16,399 instructions in the design after the 'Compile/Link' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 9,319 instructions in the design after the 'Unroll/Inline' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 4,984 instructions in the design after the 'Performance/Pipeline' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 200-1995] There were 4,495 instructions in the design after the 'Optimizations' phase of compilation. See the Design Size Report for more details: /home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/report/csynth_design_size.rpt
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 2, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 2, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 4, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 8, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 32, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 64, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 80, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:15)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 16, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 80, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' (firmware/hls_dummy.cpp:49:63)
+INFO: [HLS 214-131] Inlining function 'value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> > find_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, 80, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >(value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >*, Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>)' into 'void sparse_input_reduce<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 8, 1, 5>(ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_uint<10>*)' (firmware/hls_dummy.cpp:97:32)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> mult_for_sparse_conv_kernel<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 1, 1, 5, 3>(int, int, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, int, int)' into 'void sparse_conv<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 5, 1, 1, 3>(ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_uint<10>*, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>*)' (firmware/hls_dummy.cpp:194:24)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_376_1' (firmware/hls_dummy.cpp:376:23) in function 'hls_dummy' completely with a factor of 80 (firmware/hls_dummy.cpp:339:0)
+INFO: [HLS 214-188] Unrolling loop 'FillFlatArr' (firmware/hls_dummy.cpp:315:5) in function 'sparse_flatten<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 8, 1, 5>' partially with a factor of 4 (firmware/hls_dummy.cpp:305:0)
+INFO: [HLS 214-186] Unrolling loop 'ChannelLoop' (firmware/hls_dummy.cpp:323:9) in function 'sparse_flatten<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 8, 1, 5>' completely with a factor of 1 (firmware/hls_dummy.cpp:305:0)
+INFO: [HLS 214-186] Unrolling loop 'InitFlatArr' (firmware/hls_dummy.cpp:309:5) in function 'sparse_flatten<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 8, 1, 5>' completely with a factor of 80 (firmware/hls_dummy.cpp:305:0)
+INFO: [HLS 214-186] Unrolling loop 'OutputPixelLoop' (firmware/hls_dummy.cpp:170:5) in function 'sparse_conv<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 5, 1, 1, 3>' completely with a factor of 5 (firmware/hls_dummy.cpp:158:0)
+INFO: [HLS 214-186] Unrolling loop 'OutputFilterLoop' (firmware/hls_dummy.cpp:181:9) in function 'sparse_conv<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 5, 1, 1, 3>' completely with a factor of 1 (firmware/hls_dummy.cpp:158:0)
+INFO: [HLS 214-186] Unrolling loop 'InputPixelLoop' (firmware/hls_dummy.cpp:187:13) in function 'sparse_conv<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 5, 1, 1, 3>' completely with a factor of 5 (firmware/hls_dummy.cpp:158:0)
+INFO: [HLS 214-186] Unrolling loop 'MultLoopPerFilter' (firmware/hls_dummy.cpp:146:5) in function 'sparse_conv<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 5, 1, 1, 3>' completely with a factor of 1 (firmware/hls_dummy.cpp:158:0)
+INFO: [HLS 214-186] Unrolling loop 'VITIS_LOOP_174_1' (firmware/hls_dummy.cpp:174:27) in function 'sparse_conv<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 5, 1, 1, 3>' completely with a factor of 1 (firmware/hls_dummy.cpp:158:0)
+INFO: [HLS 214-186] Unrolling loop 'DataPrepareLoop' (firmware/hls_dummy.cpp:74:5) in function 'sparse_input_reduce<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 8, 1, 5>' completely with a factor of 80 (firmware/hls_dummy.cpp:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'pair_arr.value': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:65:28)
+INFO: [HLS 214-248] Applying array_partition to 'pair_arr.index': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:65:28)
+INFO: [HLS 214-248] Applying array_partition to 'j_h_arr': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:66:9)
+INFO: [HLS 214-248] Applying array_partition to 'j_w_arr': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:67:9)
+INFO: [HLS 214-248] Applying array_partition to 'sparse_arr_feat_reduce_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:362:13)
+INFO: [HLS 214-248] Applying array_partition to 'sparse_arr_hash_reduce_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:363:17)
+INFO: [HLS 214-248] Applying array_partition to 'sparse_arr_feat_conv1_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:368:14)
+INFO: [HLS 214-248] Applying array_partition to 'flatten_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:372:14)
+INFO: [HLS 214-248] Applying array_partition to 'layer2_out': Complete partitioning on dimension 1. (firmware/hls_dummy.cpp:339:0)
+INFO: [HLS 214-248] Applying array_reshape to 'x_in': Complete reshaping on dimension 1. (firmware/hls_dummy.cpp:339:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 10.51 seconds. CPU system time: 1 seconds. Elapsed time: 20.17 seconds; current allocated memory: 1.456 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0 seconds; current allocated memory: 1.456 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0.2 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.23 seconds; current allocated memory: 1.461 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0.21 seconds. CPU system time: 0 seconds. Elapsed time: 0.23 seconds; current allocated memory: 1.467 GB.
+INFO: [XFORM 203-510] Pipelining loop 'FillFlatArr' (firmware/hls_dummy.cpp:315) in function 'sparse_flatten<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 8, 1, 5>' automatically.
+INFO: [XFORM 203-712] Applying dataflow to function 'hls_dummy' (firmware/hls_dummy.cpp:362:1), detected/extracted 4 process function(s): 
+	 'sparse_input_reduce<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 8, 1, 5>4'
+	 'sparse_conv<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 5, 1, 1, 3>'
+	 'sparse_flatten<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, 10, 8, 1, 5>'
+	 'Block_entry28_proc'.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock to (firmware/hls_dummy.cpp:203:1) in function 'sparse_conv<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 5, 1, 1, 3>'... converting 41 basic blocks.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (firmware/hls_dummy.cpp:14:21) to (firmware/hls_dummy.cpp:22:7) in function 'Op_active<value_idx_pair<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0> >::operator()'... converting 3 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'sparse_conv<ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_uint<10>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, ap_fixed<8, 2, (ap_q_mode)5, (ap_o_mode)3, 0>, 5, 1, 1, 3>' (firmware/hls_dummy.cpp:134:32)...35 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1.48 seconds. CPU system time: 0.01 seconds. Elapsed time: 1.5 seconds; current allocated memory: 1.499 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 1.66 seconds. CPU system time: 0.06 seconds. Elapsed time: 1.72 seconds; current allocated memory: 1.638 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'hls_dummy' ...
+WARNING: [SYN 201-103] Legalizing function name 'operator()' to 'operator_s'.
+WARNING: [SYN 201-103] Legalizing function name 'sparse_input_reduce<ap_fixed<8, 2, 5, 3, 0>, ap_uint<10>, 10, 8, 1, 5>4' to 'sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4'.
+WARNING: [SYN 201-103] Legalizing function name 'sparse_conv<ap_fixed,ap_fixed,ap_uint,ap_fixed,ap_fixed,5,1,1,3>' to 'sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s'.
+WARNING: [SYN 201-103] Legalizing function name 'sparse_flatten<ap_fixed,ap_uint<10>,10,8,1,5>_Pipeline_FillFlatArr' to 'sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr'.
+WARNING: [SYN 201-103] Legalizing function name 'sparse_flatten<ap_fixed<8, 2, 5, 3, 0>, ap_uint<10>, 10, 8, 1, 5>' to 'sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'operator_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining function 'operator()'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 1, function 'operator()'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.29 seconds. CPU system time: 0.09 seconds. Elapsed time: 1.18 seconds; current allocated memory: 1.643 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.02 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.14 seconds; current allocated memory: 1.643 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'MaxPixelsLoop'.
+WARNING: [HLS 200-880] The II Violation in module 'sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4' (loop 'MaxPixelsLoop'): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 0) between 'store' operation ('pair_arr_value_write_ln115', firmware/hls_dummy.cpp:115) of constant 0 on local variable 'pair_arr.value' and 'load' operation ('pair_arr_value_load', firmware/hls_dummy.cpp:47->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:49->firmware/hls_dummy.cpp:97) on local variable 'pair_arr.value'.
+Resolution: For help on HLS 200-880 see www.xilinx.com/cgi-bin/docs/rdoc?v=2023.1;t=hls+guidance;d=200-880.html
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 2, Depth = 3, loop 'MaxPixelsLoop'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.54 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.65 seconds; current allocated memory: 1.654 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.17 seconds. CPU system time: 0.02 seconds. Elapsed time: 0.22 seconds; current allocated memory: 1.654 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 1.58 seconds. CPU system time: 0 seconds. Elapsed time: 1.64 seconds; current allocated memory: 1.655 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.15 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.22 seconds; current allocated memory: 1.655 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'FillFlatArr'.
+INFO: [HLS 200-1470] Pipelining result : Target II = NA, Final II = 1, Depth = 3, loop 'FillFlatArr'
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 287.31 seconds. CPU system time: 0.31 seconds. Elapsed time: 287.75 seconds; current allocated memory: 1.793 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 4.88 seconds. CPU system time: 0.06 seconds. Elapsed time: 5.06 seconds; current allocated memory: 1.793 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 12.95 seconds. CPU system time: 0.05 seconds. Elapsed time: 13.14 seconds; current allocated memory: 1.793 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.09 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.2 seconds; current allocated memory: 1.793 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'Block_entry28_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.24 seconds. CPU system time: 0 seconds. Elapsed time: 0.37 seconds; current allocated memory: 1.793 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.03 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.23 seconds; current allocated memory: 1.793 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'hls_dummy' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0.18 seconds. CPU system time: 0 seconds. Elapsed time: 0.3 seconds; current allocated memory: 1.793 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0.14 seconds. CPU system time: 0 seconds. Elapsed time: 0.3 seconds; current allocated memory: 1.793 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'operator_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'operator_s'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.21 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.33 seconds; current allocated memory: 1.793 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Generating core module 'mux_80_7_4_1_1': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.15 seconds. CPU system time: 0.01 seconds. Elapsed time: 0.29 seconds; current allocated memory: 1.793 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SYN 201-210] Renamed object name 'sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTO_1R' to 'sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb' due to the length limit 80
+INFO: [RTGEN 206-100] Generating core module 'mul_8s_7ns_14_1_1': 5 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'mul_8s_8s_14_1_1': 20 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s'.
+INFO: [RTMG 210-279] Implementing memory 'hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb' using auto ROMs.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.45 seconds. CPU system time: 0.1 seconds. Elapsed time: 2.32 seconds; current allocated memory: 1.793 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-1030] Apply Unified Pipeline Control on module 'sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr' pipeline 'FillFlatArr' pipeline type 'loop pipeline'
+INFO: [RTGEN 206-100] Finished creating RTL model for 'sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 21.14 seconds. CPU system time: 0.13 seconds. Elapsed time: 21.4 seconds; current allocated memory: 1.856 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 14.02 seconds. CPU system time: 0.31 seconds. Elapsed time: 14.41 seconds; current allocated memory: 1.957 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Block_entry28_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Block_entry28_proc'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.23 seconds. CPU system time: 0.03 seconds. Elapsed time: 0.43 seconds; current allocated memory: 1.961 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'hls_dummy' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/x_in' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_0' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_1' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_2' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_3' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_4' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_5' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_6' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_7' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_8' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_9' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_10' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_11' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_12' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_13' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_14' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_15' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_16' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_17' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_18' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_19' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_20' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_21' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_22' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_23' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_24' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_25' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_26' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_27' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_28' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_29' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_30' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_31' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_32' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_33' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_34' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_35' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_36' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_37' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_38' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_39' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_40' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_41' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_42' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_43' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_44' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_45' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_46' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_47' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_48' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_49' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_50' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_51' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_52' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_53' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_54' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_55' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_56' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_57' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_58' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_59' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_60' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_61' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_62' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_63' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_64' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_65' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_66' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_67' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_68' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_69' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_70' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_71' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_72' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_73' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_74' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_75' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_76' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_77' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_78' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'hls_dummy/layer2_out_79' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'hls_dummy' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'hls_dummy'.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_1_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_2_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_3_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_reduce_out_4_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_c12_channel_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_1_c13_channel_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_2_c14_channel_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_3_c15_channel_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_4_c16_channel_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_5_c17_channel_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_6_c18_channel_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_7_c19_channel_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_8_c20_channel_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_9_c21_channel_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_c_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_1_c_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_2_c_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_3_c_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_4_c_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_5_c_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_6_c_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_7_c_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_8_c_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_hash_reduce_out_9_c_U(hls_dummy_fifo_w4_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_conv1_out_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_conv1_out_1_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_conv1_out_2_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_conv1_out_3_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'sparse_arr_feat_conv1_out_4_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_1_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_2_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_3_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_4_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_5_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_6_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_7_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_8_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_9_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_10_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_11_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_12_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_13_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_14_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_15_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_16_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_17_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_18_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_19_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_20_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_21_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_22_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_23_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_24_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_25_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_26_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_27_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_28_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_29_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_30_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_31_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_32_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_33_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_34_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_35_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_36_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_37_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_38_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_39_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_40_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_41_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_42_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_43_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_44_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_45_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_46_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_47_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_48_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_49_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_50_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_51_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_52_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_53_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_54_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_55_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_56_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_57_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_58_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_59_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_60_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_61_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_62_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_63_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_64_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_65_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_66_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_67_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_68_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_69_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_70_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_71_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_72_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_73_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_74_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_75_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_76_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_77_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_78_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'flatten_out_79_U(hls_dummy_fifo_w8_d2_S)' using Shift Registers.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0.65 seconds. CPU system time: 0.11 seconds. Elapsed time: 23.02 seconds; current allocated memory: 1.969 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 6.09 seconds. CPU system time: 0.15 seconds. Elapsed time: 7.61 seconds; current allocated memory: 1.976 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 2.61 seconds. CPU system time: 0.05 seconds. Elapsed time: 2.81 seconds; current allocated memory: 1.991 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for hls_dummy.
+INFO: [VLOG 209-307] Generating Verilog RTL for hls_dummy.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 297.80 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 374.37 seconds. CPU system time: 4.23 seconds. Elapsed time: 455.49 seconds; current allocated memory: 555.480 MB.
+***** C/RTL SYNTHESIS COMPLETED IN 0h7m35s *****
+***** VIVADO SYNTHESIS *****
+
+****** Vivado v2023.1 (64-bit)
+  **** SW Build 3865809 on Sun May  7 15:04:56 MDT 2023
+  **** IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+  **** SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source vivado_synth.tcl
+# set tcldir [file dirname [info script]]
+# source [file join $tcldir project.tcl]
+## variable project_name
+## set project_name "hls_dummy"
+## variable backend
+## set backend "vitis"
+## variable part
+## set part "xcu250-figd2104-2L-e"
+## variable clock_period
+## set clock_period 5
+## variable clock_uncertainty
+## set clock_uncertainty 27%
+## variable version
+## set version "1.0.0"
+## variable maximum_size
+## set maximum_size 4096
+# add_files ${project_name}_prj/solution1/syn/verilog
+add_files: Time (s): cpu = 00:00:05 ; elapsed = 00:00:57 . Memory (MB): peak = 2416.375 ; gain = 115.992 ; free physical = 783356 ; free virtual = 995516
+# synth_design -top ${project_name} -part $part
+Command: synth_design -top hls_dummy -part xcu250-figd2104-2L-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xcu250'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xcu250'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 236435
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:04 ; elapsed = 00:00:15 . Memory (MB): peak = 2880.832 ; gain = 440.617 ; free physical = 782340 ; free virtual = 994724
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_operator_s' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_operator_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_operator_s' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_operator_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_mux_80_7_4_1_1' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_mux_80_7_4_1_1.v:11]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 4 - type: integer 
+	Parameter din1_WIDTH bound to: 4 - type: integer 
+	Parameter din2_WIDTH bound to: 4 - type: integer 
+	Parameter din3_WIDTH bound to: 4 - type: integer 
+	Parameter din4_WIDTH bound to: 4 - type: integer 
+	Parameter din5_WIDTH bound to: 4 - type: integer 
+	Parameter din6_WIDTH bound to: 4 - type: integer 
+	Parameter din7_WIDTH bound to: 4 - type: integer 
+	Parameter din8_WIDTH bound to: 4 - type: integer 
+	Parameter din9_WIDTH bound to: 4 - type: integer 
+	Parameter din10_WIDTH bound to: 4 - type: integer 
+	Parameter din11_WIDTH bound to: 4 - type: integer 
+	Parameter din12_WIDTH bound to: 4 - type: integer 
+	Parameter din13_WIDTH bound to: 4 - type: integer 
+	Parameter din14_WIDTH bound to: 4 - type: integer 
+	Parameter din15_WIDTH bound to: 4 - type: integer 
+	Parameter din16_WIDTH bound to: 4 - type: integer 
+	Parameter din17_WIDTH bound to: 4 - type: integer 
+	Parameter din18_WIDTH bound to: 4 - type: integer 
+	Parameter din19_WIDTH bound to: 4 - type: integer 
+	Parameter din20_WIDTH bound to: 4 - type: integer 
+	Parameter din21_WIDTH bound to: 4 - type: integer 
+	Parameter din22_WIDTH bound to: 4 - type: integer 
+	Parameter din23_WIDTH bound to: 4 - type: integer 
+	Parameter din24_WIDTH bound to: 4 - type: integer 
+	Parameter din25_WIDTH bound to: 4 - type: integer 
+	Parameter din26_WIDTH bound to: 4 - type: integer 
+	Parameter din27_WIDTH bound to: 4 - type: integer 
+	Parameter din28_WIDTH bound to: 4 - type: integer 
+	Parameter din29_WIDTH bound to: 4 - type: integer 
+	Parameter din30_WIDTH bound to: 4 - type: integer 
+	Parameter din31_WIDTH bound to: 4 - type: integer 
+	Parameter din32_WIDTH bound to: 4 - type: integer 
+	Parameter din33_WIDTH bound to: 4 - type: integer 
+	Parameter din34_WIDTH bound to: 4 - type: integer 
+	Parameter din35_WIDTH bound to: 4 - type: integer 
+	Parameter din36_WIDTH bound to: 4 - type: integer 
+	Parameter din37_WIDTH bound to: 4 - type: integer 
+	Parameter din38_WIDTH bound to: 4 - type: integer 
+	Parameter din39_WIDTH bound to: 4 - type: integer 
+	Parameter din40_WIDTH bound to: 4 - type: integer 
+	Parameter din41_WIDTH bound to: 4 - type: integer 
+	Parameter din42_WIDTH bound to: 4 - type: integer 
+	Parameter din43_WIDTH bound to: 4 - type: integer 
+	Parameter din44_WIDTH bound to: 4 - type: integer 
+	Parameter din45_WIDTH bound to: 4 - type: integer 
+	Parameter din46_WIDTH bound to: 4 - type: integer 
+	Parameter din47_WIDTH bound to: 4 - type: integer 
+	Parameter din48_WIDTH bound to: 4 - type: integer 
+	Parameter din49_WIDTH bound to: 4 - type: integer 
+	Parameter din50_WIDTH bound to: 4 - type: integer 
+	Parameter din51_WIDTH bound to: 4 - type: integer 
+	Parameter din52_WIDTH bound to: 4 - type: integer 
+	Parameter din53_WIDTH bound to: 4 - type: integer 
+	Parameter din54_WIDTH bound to: 4 - type: integer 
+	Parameter din55_WIDTH bound to: 4 - type: integer 
+	Parameter din56_WIDTH bound to: 4 - type: integer 
+	Parameter din57_WIDTH bound to: 4 - type: integer 
+	Parameter din58_WIDTH bound to: 4 - type: integer 
+	Parameter din59_WIDTH bound to: 4 - type: integer 
+	Parameter din60_WIDTH bound to: 4 - type: integer 
+	Parameter din61_WIDTH bound to: 4 - type: integer 
+	Parameter din62_WIDTH bound to: 4 - type: integer 
+	Parameter din63_WIDTH bound to: 4 - type: integer 
+	Parameter din64_WIDTH bound to: 4 - type: integer 
+	Parameter din65_WIDTH bound to: 4 - type: integer 
+	Parameter din66_WIDTH bound to: 4 - type: integer 
+	Parameter din67_WIDTH bound to: 4 - type: integer 
+	Parameter din68_WIDTH bound to: 4 - type: integer 
+	Parameter din69_WIDTH bound to: 4 - type: integer 
+	Parameter din70_WIDTH bound to: 4 - type: integer 
+	Parameter din71_WIDTH bound to: 4 - type: integer 
+	Parameter din72_WIDTH bound to: 4 - type: integer 
+	Parameter din73_WIDTH bound to: 4 - type: integer 
+	Parameter din74_WIDTH bound to: 4 - type: integer 
+	Parameter din75_WIDTH bound to: 4 - type: integer 
+	Parameter din76_WIDTH bound to: 4 - type: integer 
+	Parameter din77_WIDTH bound to: 4 - type: integer 
+	Parameter din78_WIDTH bound to: 4 - type: integer 
+	Parameter din79_WIDTH bound to: 4 - type: integer 
+	Parameter din80_WIDTH bound to: 7 - type: integer 
+	Parameter dout_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_mux_80_7_4_1_1' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_mux_80_7_4_1_1.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:7]
+	Parameter DataWidth bound to: 8 - type: integer 
+	Parameter AddressWidth bound to: 4 - type: integer 
+	Parameter AddressRange bound to: 9 - type: integer 
+INFO: [Synth 8-3876] $readmem data file './hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.dat' is read successfully [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:141]
+INFO: [Synth 8-3876] $readmem data file './hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.dat' is read successfully [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:142]
+INFO: [Synth 8-3876] $readmem data file './hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.dat' is read successfully [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:143]
+INFO: [Synth 8-3876] $readmem data file './hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.dat' is read successfully [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:144]
+INFO: [Synth 8-3876] $readmem data file './hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.dat' is read successfully [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:145]
+INFO: [Synth 8-3876] $readmem data file './hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.dat' is read successfully [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:146]
+INFO: [Synth 8-3876] $readmem data file './hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.dat' is read successfully [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:147]
+INFO: [Synth 8-3876] $readmem data file './hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.dat' is read successfully [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:148]
+INFO: [Synth 8-3876] $readmem data file './hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.dat' is read successfully [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:149]
+INFO: [Synth 8-3876] $readmem data file './hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.dat' is read successfully [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:150]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb.v:7]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_mul_8s_7ns_14_1_1' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_mul_8s_7ns_14_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 8 - type: integer 
+	Parameter din1_WIDTH bound to: 7 - type: integer 
+	Parameter dout_WIDTH bound to: 14 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_mul_8s_7ns_14_1_1' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_mul_8s_7ns_14_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_mul_8s_8s_14_1_1' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_mul_8s_8s_14_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 8 - type: integer 
+	Parameter din1_WIDTH bound to: 8 - type: integer 
+	Parameter dout_WIDTH bound to: 14 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_mul_8s_8s_14_1_1' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_mul_8s_8s_14_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_flow_control_loop_pipe_sequential_init' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_flow_control_loop_pipe_sequential_init' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_flow_control_loop_pipe_sequential_init.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_Block_entry28_proc' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_Block_entry28_proc.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_Block_entry28_proc' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_Block_entry28_proc.v:9]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w8_d2_S' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w8_d2_S.v:11]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w8_d2_S_ShiftReg' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w8_d2_S.v:120]
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter ADDR_WIDTH bound to: 1 - type: integer 
+	Parameter DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w8_d2_S_ShiftReg' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w8_d2_S.v:120]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w8_d2_S' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w8_d2_S.v:11]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w4_d2_S' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w4_d2_S.v:11]
+INFO: [Synth 8-6157] synthesizing module 'hls_dummy_fifo_w4_d2_S_ShiftReg' [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w4_d2_S.v:120]
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+	Parameter ADDR_WIDTH bound to: 1 - type: integer 
+	Parameter DEPTH bound to: 2 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w4_d2_S_ShiftReg' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w4_d2_S.v:120]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy_fifo_w4_d2_S' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy_fifo_w4_d2_S.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'hls_dummy' (0#1) [/home/coder/sparse-pixels/hls_proj/scaling/8b/flatten/flatten-c1-out80/flatten-p5-c1-out80/hls_dummy_prj/solution1/syn/verilog/hls_dummy.v:9]
+WARNING: [Synth 8-7129] Port reset in module hls_dummy_fifo_w8_d2_S_ShiftReg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module hls_dummy_fifo_w4_d2_S_ShiftReg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_0_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_0_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_0_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_0_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_1_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_1_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_1_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_1_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_2_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_2_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_2_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_2_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_3_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_3_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_3_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_3_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_4_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_4_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_4_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_4_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_5_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_5_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_5_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_5_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_6_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_6_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_6_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_6_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_7_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_7_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_7_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_7_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_8_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_8_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_8_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_8_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_9_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_9_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_9_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_9_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_c_num_data_valid[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_c_num_data_valid[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_c_fifo_cap[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_c_fifo_cap[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_1_c_num_data_valid[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_1_c_num_data_valid[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_1_c_fifo_cap[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_1_c_fifo_cap[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_2_c_num_data_valid[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_2_c_num_data_valid[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_2_c_fifo_cap[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_2_c_fifo_cap[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_3_c_num_data_valid[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_3_c_num_data_valid[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_3_c_fifo_cap[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_3_c_fifo_cap[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_4_c_num_data_valid[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_4_c_num_data_valid[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_4_c_fifo_cap[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_4_c_fifo_cap[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_5_c_num_data_valid[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_5_c_num_data_valid[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_5_c_fifo_cap[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_5_c_fifo_cap[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_6_c_num_data_valid[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_6_c_num_data_valid[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_6_c_fifo_cap[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_6_c_fifo_cap[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_7_c_num_data_valid[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_7_c_num_data_valid[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_7_c_fifo_cap[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_7_c_fifo_cap[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_8_c_num_data_valid[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_8_c_num_data_valid[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_8_c_fifo_cap[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_8_c_fifo_cap[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_9_c_num_data_valid[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_9_c_num_data_valid[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_9_c_fifo_cap[1] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_reduce_out_9_c_fifo_cap[0] in module hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:16 ; elapsed = 00:00:32 . Memory (MB): peak = 3275.457 ; gain = 835.242 ; free physical = 781850 ; free virtual = 994279
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:34 . Memory (MB): peak = 3275.457 ; gain = 835.242 ; free physical = 781950 ; free virtual = 994387
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 12288 (col length:96)
+BRAMs: 5376 (col length: RAMB18 384 RAMB36 192)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port sparse_arr_hash_0_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_0_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_0_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_0_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_1_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_1_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_1_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_1_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_2_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_2_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_2_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_2_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_3_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_3_num_data_valid[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_3_fifo_cap[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_3_fifo_cap[0] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port sparse_arr_hash_4_num_data_valid[1] in module hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:07 ; elapsed = 00:03:20 . Memory (MB): peak = 4371.648 ; gain = 1931.434 ; free physical = 762650 ; free virtual = 980804
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:09 ; elapsed = 00:03:22 . Memory (MB): peak = 4371.648 ; gain = 1931.434 ; free physical = 762633 ; free virtual = 980792
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:12 ; elapsed = 00:03:25 . Memory (MB): peak = 4371.648 ; gain = 1931.434 ; free physical = 762672 ; free virtual = 980831
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:16 ; elapsed = 00:03:29 . Memory (MB): peak = 4371.648 ; gain = 1931.434 ; free physical = 762637 ; free virtual = 980795
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:16 ; elapsed = 00:03:30 . Memory (MB): peak = 4371.648 ; gain = 1931.434 ; free physical = 762637 ; free virtual = 980795
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:17 ; elapsed = 00:03:30 . Memory (MB): peak = 4371.648 ; gain = 1931.434 ; free physical = 762643 ; free virtual = 980802
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:17 ; elapsed = 00:03:30 . Memory (MB): peak = 4371.648 ; gain = 1931.434 ; free physical = 762678 ; free virtual = 980837
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:18 ; elapsed = 00:03:31 . Memory (MB): peak = 4371.648 ; gain = 1931.434 ; free physical = 762619 ; free virtual = 980778
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:18 ; elapsed = 00:03:31 . Memory (MB): peak = 4371.648 ; gain = 1931.434 ; free physical = 762619 ; free virtual = 980778
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY8 |   165|
+|3     |LUT1   |   174|
+|4     |LUT2   |   476|
+|5     |LUT3   |  1198|
+|6     |LUT4   |  2732|
+|7     |LUT5   |  1921|
+|8     |LUT6   |  4484|
+|9     |MUXF7  |     3|
+|10    |FDRE   |  6196|
+|11    |FDSE   |   343|
+|12    |IBUF   |   644|
+|13    |OBUF   |   723|
++------+-------+------+
+
+Report Instance Areas: 
++------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+------+
+|      |Instance                                                                        |Module                                                                                     |Cells |
++------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+------+
+|1     |top                                                                             |                                                                                           | 19060|
+|2     |  Block_entry28_proc_U0                                                         |hls_dummy_Block_entry28_proc                                                               |   640|
+|3     |  flatten_out_10_U                                                              |hls_dummy_fifo_w8_d2_S                                                                     |    41|
+|4     |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_238                                                        |    32|
+|5     |  flatten_out_11_U                                                              |hls_dummy_fifo_w8_d2_S_0                                                                   |    40|
+|6     |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_237                                                        |    32|
+|7     |  flatten_out_12_U                                                              |hls_dummy_fifo_w8_d2_S_1                                                                   |    40|
+|8     |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_236                                                        |    32|
+|9     |  flatten_out_13_U                                                              |hls_dummy_fifo_w8_d2_S_2                                                                   |    40|
+|10    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_235                                                        |    32|
+|11    |  flatten_out_14_U                                                              |hls_dummy_fifo_w8_d2_S_3                                                                   |    41|
+|12    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_234                                                        |    32|
+|13    |  flatten_out_15_U                                                              |hls_dummy_fifo_w8_d2_S_4                                                                   |    41|
+|14    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_233                                                        |    32|
+|15    |  flatten_out_16_U                                                              |hls_dummy_fifo_w8_d2_S_5                                                                   |    40|
+|16    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_232                                                        |    32|
+|17    |  flatten_out_17_U                                                              |hls_dummy_fifo_w8_d2_S_6                                                                   |    40|
+|18    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_231                                                        |    32|
+|19    |  flatten_out_18_U                                                              |hls_dummy_fifo_w8_d2_S_7                                                                   |    40|
+|20    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_230                                                        |    32|
+|21    |  flatten_out_19_U                                                              |hls_dummy_fifo_w8_d2_S_8                                                                   |    41|
+|22    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_229                                                        |    32|
+|23    |  flatten_out_1_U                                                               |hls_dummy_fifo_w8_d2_S_9                                                                   |    40|
+|24    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_228                                                        |    32|
+|25    |  flatten_out_20_U                                                              |hls_dummy_fifo_w8_d2_S_10                                                                  |    41|
+|26    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_227                                                        |    32|
+|27    |  flatten_out_21_U                                                              |hls_dummy_fifo_w8_d2_S_11                                                                  |    40|
+|28    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_226                                                        |    32|
+|29    |  flatten_out_22_U                                                              |hls_dummy_fifo_w8_d2_S_12                                                                  |    40|
+|30    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_225                                                        |    32|
+|31    |  flatten_out_23_U                                                              |hls_dummy_fifo_w8_d2_S_13                                                                  |    42|
+|32    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_224                                                        |    32|
+|33    |  flatten_out_24_U                                                              |hls_dummy_fifo_w8_d2_S_14                                                                  |    40|
+|34    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_223                                                        |    32|
+|35    |  flatten_out_25_U                                                              |hls_dummy_fifo_w8_d2_S_15                                                                  |    40|
+|36    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_222                                                        |    32|
+|37    |  flatten_out_26_U                                                              |hls_dummy_fifo_w8_d2_S_16                                                                  |    40|
+|38    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_221                                                        |    32|
+|39    |  flatten_out_27_U                                                              |hls_dummy_fifo_w8_d2_S_17                                                                  |    42|
+|40    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_220                                                        |    32|
+|41    |  flatten_out_28_U                                                              |hls_dummy_fifo_w8_d2_S_18                                                                  |    40|
+|42    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_219                                                        |    32|
+|43    |  flatten_out_29_U                                                              |hls_dummy_fifo_w8_d2_S_19                                                                  |    41|
+|44    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_218                                                        |    32|
+|45    |  flatten_out_2_U                                                               |hls_dummy_fifo_w8_d2_S_20                                                                  |    40|
+|46    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_217                                                        |    32|
+|47    |  flatten_out_30_U                                                              |hls_dummy_fifo_w8_d2_S_21                                                                  |    40|
+|48    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_216                                                        |    32|
+|49    |  flatten_out_31_U                                                              |hls_dummy_fifo_w8_d2_S_22                                                                  |    40|
+|50    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_215                                                        |    32|
+|51    |  flatten_out_32_U                                                              |hls_dummy_fifo_w8_d2_S_23                                                                  |    40|
+|52    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_214                                                        |    32|
+|53    |  flatten_out_33_U                                                              |hls_dummy_fifo_w8_d2_S_24                                                                  |    43|
+|54    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_213                                                        |    32|
+|55    |  flatten_out_34_U                                                              |hls_dummy_fifo_w8_d2_S_25                                                                  |    40|
+|56    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_212                                                        |    32|
+|57    |  flatten_out_35_U                                                              |hls_dummy_fifo_w8_d2_S_26                                                                  |    40|
+|58    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_211                                                        |    32|
+|59    |  flatten_out_36_U                                                              |hls_dummy_fifo_w8_d2_S_27                                                                  |    40|
+|60    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_210                                                        |    32|
+|61    |  flatten_out_37_U                                                              |hls_dummy_fifo_w8_d2_S_28                                                                  |    40|
+|62    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_209                                                        |    32|
+|63    |  flatten_out_38_U                                                              |hls_dummy_fifo_w8_d2_S_29                                                                  |    44|
+|64    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_208                                                        |    32|
+|65    |  flatten_out_39_U                                                              |hls_dummy_fifo_w8_d2_S_30                                                                  |    40|
+|66    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_207                                                        |    32|
+|67    |  flatten_out_3_U                                                               |hls_dummy_fifo_w8_d2_S_31                                                                  |    40|
+|68    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_206                                                        |    32|
+|69    |  flatten_out_40_U                                                              |hls_dummy_fifo_w8_d2_S_32                                                                  |    42|
+|70    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_205                                                        |    32|
+|71    |  flatten_out_41_U                                                              |hls_dummy_fifo_w8_d2_S_33                                                                  |    40|
+|72    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_204                                                        |    32|
+|73    |  flatten_out_42_U                                                              |hls_dummy_fifo_w8_d2_S_34                                                                  |    40|
+|74    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_203                                                        |    32|
+|75    |  flatten_out_43_U                                                              |hls_dummy_fifo_w8_d2_S_35                                                                  |    40|
+|76    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_202                                                        |    32|
+|77    |  flatten_out_44_U                                                              |hls_dummy_fifo_w8_d2_S_36                                                                  |    40|
+|78    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_201                                                        |    32|
+|79    |  flatten_out_45_U                                                              |hls_dummy_fifo_w8_d2_S_37                                                                  |    42|
+|80    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_200                                                        |    32|
+|81    |  flatten_out_46_U                                                              |hls_dummy_fifo_w8_d2_S_38                                                                  |    40|
+|82    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_199                                                        |    32|
+|83    |  flatten_out_47_U                                                              |hls_dummy_fifo_w8_d2_S_39                                                                  |    40|
+|84    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_198                                                        |    32|
+|85    |  flatten_out_48_U                                                              |hls_dummy_fifo_w8_d2_S_40                                                                  |    41|
+|86    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_197                                                        |    32|
+|87    |  flatten_out_49_U                                                              |hls_dummy_fifo_w8_d2_S_41                                                                  |    41|
+|88    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_196                                                        |    32|
+|89    |  flatten_out_4_U                                                               |hls_dummy_fifo_w8_d2_S_42                                                                  |    40|
+|90    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_195                                                        |    32|
+|91    |  flatten_out_50_U                                                              |hls_dummy_fifo_w8_d2_S_43                                                                  |    40|
+|92    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_194                                                        |    32|
+|93    |  flatten_out_51_U                                                              |hls_dummy_fifo_w8_d2_S_44                                                                  |    41|
+|94    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_193                                                        |    32|
+|95    |  flatten_out_52_U                                                              |hls_dummy_fifo_w8_d2_S_45                                                                  |    40|
+|96    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_192                                                        |    32|
+|97    |  flatten_out_53_U                                                              |hls_dummy_fifo_w8_d2_S_46                                                                  |    40|
+|98    |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_191                                                        |    32|
+|99    |  flatten_out_54_U                                                              |hls_dummy_fifo_w8_d2_S_47                                                                  |    40|
+|100   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_190                                                        |    32|
+|101   |  flatten_out_55_U                                                              |hls_dummy_fifo_w8_d2_S_48                                                                  |    40|
+|102   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_189                                                        |    32|
+|103   |  flatten_out_56_U                                                              |hls_dummy_fifo_w8_d2_S_49                                                                  |    44|
+|104   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_188                                                        |    32|
+|105   |  flatten_out_57_U                                                              |hls_dummy_fifo_w8_d2_S_50                                                                  |    40|
+|106   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_187                                                        |    32|
+|107   |  flatten_out_58_U                                                              |hls_dummy_fifo_w8_d2_S_51                                                                  |    40|
+|108   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_186                                                        |    32|
+|109   |  flatten_out_59_U                                                              |hls_dummy_fifo_w8_d2_S_52                                                                  |    40|
+|110   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_185                                                        |    32|
+|111   |  flatten_out_5_U                                                               |hls_dummy_fifo_w8_d2_S_53                                                                  |    40|
+|112   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_184                                                        |    32|
+|113   |  flatten_out_60_U                                                              |hls_dummy_fifo_w8_d2_S_54                                                                  |    40|
+|114   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_183                                                        |    32|
+|115   |  flatten_out_61_U                                                              |hls_dummy_fifo_w8_d2_S_55                                                                  |    40|
+|116   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_182                                                        |    32|
+|117   |  flatten_out_62_U                                                              |hls_dummy_fifo_w8_d2_S_56                                                                  |    42|
+|118   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_181                                                        |    32|
+|119   |  flatten_out_63_U                                                              |hls_dummy_fifo_w8_d2_S_57                                                                  |    40|
+|120   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_180                                                        |    32|
+|121   |  flatten_out_64_U                                                              |hls_dummy_fifo_w8_d2_S_58                                                                  |    41|
+|122   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_179                                                        |    32|
+|123   |  flatten_out_65_U                                                              |hls_dummy_fifo_w8_d2_S_59                                                                  |    43|
+|124   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_178                                                        |    32|
+|125   |  flatten_out_66_U                                                              |hls_dummy_fifo_w8_d2_S_60                                                                  |    41|
+|126   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_177                                                        |    32|
+|127   |  flatten_out_67_U                                                              |hls_dummy_fifo_w8_d2_S_61                                                                  |    40|
+|128   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_176                                                        |    32|
+|129   |  flatten_out_68_U                                                              |hls_dummy_fifo_w8_d2_S_62                                                                  |    41|
+|130   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_175                                                        |    32|
+|131   |  flatten_out_69_U                                                              |hls_dummy_fifo_w8_d2_S_63                                                                  |    40|
+|132   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_174                                                        |    32|
+|133   |  flatten_out_6_U                                                               |hls_dummy_fifo_w8_d2_S_64                                                                  |    41|
+|134   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_173                                                        |    32|
+|135   |  flatten_out_70_U                                                              |hls_dummy_fifo_w8_d2_S_65                                                                  |    40|
+|136   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_172                                                        |    32|
+|137   |  flatten_out_71_U                                                              |hls_dummy_fifo_w8_d2_S_66                                                                  |    40|
+|138   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_171                                                        |    32|
+|139   |  flatten_out_72_U                                                              |hls_dummy_fifo_w8_d2_S_67                                                                  |    42|
+|140   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_170                                                        |    32|
+|141   |  flatten_out_73_U                                                              |hls_dummy_fifo_w8_d2_S_68                                                                  |    40|
+|142   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_169                                                        |    32|
+|143   |  flatten_out_74_U                                                              |hls_dummy_fifo_w8_d2_S_69                                                                  |    40|
+|144   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_168                                                        |    32|
+|145   |  flatten_out_75_U                                                              |hls_dummy_fifo_w8_d2_S_70                                                                  |    40|
+|146   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_167                                                        |    32|
+|147   |  flatten_out_76_U                                                              |hls_dummy_fifo_w8_d2_S_71                                                                  |    40|
+|148   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_166                                                        |    32|
+|149   |  flatten_out_77_U                                                              |hls_dummy_fifo_w8_d2_S_72                                                                  |    41|
+|150   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_165                                                        |    32|
+|151   |  flatten_out_78_U                                                              |hls_dummy_fifo_w8_d2_S_73                                                                  |    40|
+|152   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_164                                                        |    32|
+|153   |  flatten_out_79_U                                                              |hls_dummy_fifo_w8_d2_S_74                                                                  |    42|
+|154   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_163                                                        |    32|
+|155   |  flatten_out_7_U                                                               |hls_dummy_fifo_w8_d2_S_75                                                                  |    40|
+|156   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_162                                                        |    32|
+|157   |  flatten_out_8_U                                                               |hls_dummy_fifo_w8_d2_S_76                                                                  |    40|
+|158   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_161                                                        |    32|
+|159   |  flatten_out_9_U                                                               |hls_dummy_fifo_w8_d2_S_77                                                                  |    40|
+|160   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_160                                                        |    32|
+|161   |  flatten_out_U                                                                 |hls_dummy_fifo_w8_d2_S_78                                                                  |    40|
+|162   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_159                                                        |    32|
+|163   |  sparse_arr_feat_conv1_out_1_U                                                 |hls_dummy_fifo_w8_d2_S_79                                                                  |    43|
+|164   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_158                                                        |    34|
+|165   |  sparse_arr_feat_conv1_out_2_U                                                 |hls_dummy_fifo_w8_d2_S_80                                                                  |   628|
+|166   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_157                                                        |   599|
+|167   |  sparse_arr_feat_conv1_out_3_U                                                 |hls_dummy_fifo_w8_d2_S_81                                                                  |    36|
+|168   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_156                                                        |    26|
+|169   |  sparse_arr_feat_conv1_out_4_U                                                 |hls_dummy_fifo_w8_d2_S_82                                                                  |    41|
+|170   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_155                                                        |    30|
+|171   |  sparse_arr_feat_conv1_out_U                                                   |hls_dummy_fifo_w8_d2_S_83                                                                  |    33|
+|172   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_154                                                        |    24|
+|173   |  sparse_arr_feat_reduce_out_1_U                                                |hls_dummy_fifo_w8_d2_S_84                                                                  |   270|
+|174   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_153                                                        |   261|
+|175   |  sparse_arr_feat_reduce_out_2_U                                                |hls_dummy_fifo_w8_d2_S_85                                                                  |   236|
+|176   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_152                                                        |   227|
+|177   |  sparse_arr_feat_reduce_out_3_U                                                |hls_dummy_fifo_w8_d2_S_86                                                                  |   202|
+|178   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_151                                                        |   193|
+|179   |  sparse_arr_feat_reduce_out_4_U                                                |hls_dummy_fifo_w8_d2_S_87                                                                  |   171|
+|180   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg_150                                                        |   159|
+|181   |  sparse_arr_feat_reduce_out_U                                                  |hls_dummy_fifo_w8_d2_S_88                                                                  |   304|
+|182   |    U_hls_dummy_fifo_w8_d2_S_ShiftReg                                           |hls_dummy_fifo_w8_d2_S_ShiftReg                                                            |   295|
+|183   |  sparse_arr_hash_reduce_out_1_c13_channel_U                                    |hls_dummy_fifo_w4_d2_S                                                                     |    77|
+|184   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_149                                                        |    68|
+|185   |  sparse_arr_hash_reduce_out_1_c_U                                              |hls_dummy_fifo_w4_d2_S_89                                                                  |    22|
+|186   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_148                                                        |    13|
+|187   |  sparse_arr_hash_reduce_out_2_c14_channel_U                                    |hls_dummy_fifo_w4_d2_S_90                                                                  |    70|
+|188   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_147                                                        |    61|
+|189   |  sparse_arr_hash_reduce_out_2_c_U                                              |hls_dummy_fifo_w4_d2_S_91                                                                  |    22|
+|190   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_146                                                        |    13|
+|191   |  sparse_arr_hash_reduce_out_3_c15_channel_U                                    |hls_dummy_fifo_w4_d2_S_92                                                                  |    86|
+|192   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_145                                                        |    77|
+|193   |  sparse_arr_hash_reduce_out_3_c_U                                              |hls_dummy_fifo_w4_d2_S_93                                                                  |    24|
+|194   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_144                                                        |    15|
+|195   |  sparse_arr_hash_reduce_out_4_c16_channel_U                                    |hls_dummy_fifo_w4_d2_S_94                                                                  |    40|
+|196   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_143                                                        |    31|
+|197   |  sparse_arr_hash_reduce_out_4_c_U                                              |hls_dummy_fifo_w4_d2_S_95                                                                  |    23|
+|198   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_142                                                        |    13|
+|199   |  sparse_arr_hash_reduce_out_5_c17_channel_U                                    |hls_dummy_fifo_w4_d2_S_96                                                                  |    44|
+|200   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_141                                                        |    35|
+|201   |  sparse_arr_hash_reduce_out_5_c_U                                              |hls_dummy_fifo_w4_d2_S_97                                                                  |    22|
+|202   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_140                                                        |    13|
+|203   |  sparse_arr_hash_reduce_out_6_c18_channel_U                                    |hls_dummy_fifo_w4_d2_S_98                                                                  |    83|
+|204   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_139                                                        |    74|
+|205   |  sparse_arr_hash_reduce_out_6_c_U                                              |hls_dummy_fifo_w4_d2_S_99                                                                  |    22|
+|206   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_138                                                        |    13|
+|207   |  sparse_arr_hash_reduce_out_7_c19_channel_U                                    |hls_dummy_fifo_w4_d2_S_100                                                                 |    63|
+|208   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_137                                                        |    52|
+|209   |  sparse_arr_hash_reduce_out_7_c_U                                              |hls_dummy_fifo_w4_d2_S_101                                                                 |    23|
+|210   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_136                                                        |    13|
+|211   |  sparse_arr_hash_reduce_out_8_c20_channel_U                                    |hls_dummy_fifo_w4_d2_S_102                                                                 |   144|
+|212   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_135                                                        |   135|
+|213   |  sparse_arr_hash_reduce_out_8_c_U                                              |hls_dummy_fifo_w4_d2_S_103                                                                 |    22|
+|214   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_134                                                        |    13|
+|215   |  sparse_arr_hash_reduce_out_9_c21_channel_U                                    |hls_dummy_fifo_w4_d2_S_104                                                                 |    40|
+|216   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_133                                                        |    31|
+|217   |  sparse_arr_hash_reduce_out_9_c_U                                              |hls_dummy_fifo_w4_d2_S_105                                                                 |    22|
+|218   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_132                                                        |    13|
+|219   |  sparse_arr_hash_reduce_out_c12_channel_U                                      |hls_dummy_fifo_w4_d2_S_106                                                                 |    58|
+|220   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg_131                                                        |    49|
+|221   |  sparse_arr_hash_reduce_out_c_U                                                |hls_dummy_fifo_w4_d2_S_107                                                                 |    22|
+|222   |    U_hls_dummy_fifo_w4_d2_S_ShiftReg                                           |hls_dummy_fifo_w4_d2_S_ShiftReg                                                            |    13|
+|223   |  sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_U0            |hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s                |  1415|
+|224   |    mul_8s_7ns_14_1_1_U10                                                       |hls_dummy_mul_8s_7ns_14_1_1                                                                |     8|
+|225   |    mul_8s_7ns_14_1_1_U16                                                       |hls_dummy_mul_8s_7ns_14_1_1_108                                                            |     8|
+|226   |    mul_8s_7ns_14_1_1_U22                                                       |hls_dummy_mul_8s_7ns_14_1_1_109                                                            |     8|
+|227   |    mul_8s_7ns_14_1_1_U28                                                       |hls_dummy_mul_8s_7ns_14_1_1_110                                                            |     8|
+|228   |    mul_8s_7ns_14_1_1_U34                                                       |hls_dummy_mul_8s_7ns_14_1_1_111                                                            |     8|
+|229   |    mul_8s_8s_14_1_1_U11                                                        |hls_dummy_mul_8s_8s_14_1_1                                                                 |    23|
+|230   |    mul_8s_8s_14_1_1_U12                                                        |hls_dummy_mul_8s_8s_14_1_1_112                                                             |    22|
+|231   |    mul_8s_8s_14_1_1_U13                                                        |hls_dummy_mul_8s_8s_14_1_1_113                                                             |    22|
+|232   |    mul_8s_8s_14_1_1_U14                                                        |hls_dummy_mul_8s_8s_14_1_1_114                                                             |    34|
+|233   |    mul_8s_8s_14_1_1_U15                                                        |hls_dummy_mul_8s_8s_14_1_1_115                                                             |    17|
+|234   |    mul_8s_8s_14_1_1_U17                                                        |hls_dummy_mul_8s_8s_14_1_1_116                                                             |    22|
+|235   |    mul_8s_8s_14_1_1_U18                                                        |hls_dummy_mul_8s_8s_14_1_1_117                                                             |    22|
+|236   |    mul_8s_8s_14_1_1_U19                                                        |hls_dummy_mul_8s_8s_14_1_1_118                                                             |    35|
+|237   |    mul_8s_8s_14_1_1_U20                                                        |hls_dummy_mul_8s_8s_14_1_1_119                                                             |    17|
+|238   |    mul_8s_8s_14_1_1_U21                                                        |hls_dummy_mul_8s_8s_14_1_1_120                                                             |    16|
+|239   |    mul_8s_8s_14_1_1_U23                                                        |hls_dummy_mul_8s_8s_14_1_1_121                                                             |    22|
+|240   |    mul_8s_8s_14_1_1_U24                                                        |hls_dummy_mul_8s_8s_14_1_1_122                                                             |    35|
+|241   |    mul_8s_8s_14_1_1_U25                                                        |hls_dummy_mul_8s_8s_14_1_1_123                                                             |    17|
+|242   |    mul_8s_8s_14_1_1_U26                                                        |hls_dummy_mul_8s_8s_14_1_1_124                                                             |    16|
+|243   |    mul_8s_8s_14_1_1_U27                                                        |hls_dummy_mul_8s_8s_14_1_1_125                                                             |    16|
+|244   |    mul_8s_8s_14_1_1_U29                                                        |hls_dummy_mul_8s_8s_14_1_1_126                                                             |    35|
+|245   |    mul_8s_8s_14_1_1_U30                                                        |hls_dummy_mul_8s_8s_14_1_1_127                                                             |    17|
+|246   |    mul_8s_8s_14_1_1_U31                                                        |hls_dummy_mul_8s_8s_14_1_1_128                                                             |    16|
+|247   |    mul_8s_8s_14_1_1_U32                                                        |hls_dummy_mul_8s_8s_14_1_1_129                                                             |    16|
+|248   |    mul_8s_8s_14_1_1_U33                                                        |hls_dummy_mul_8s_8s_14_1_1_130                                                             |    29|
+|249   |    w2_U                                                                        |hls_dummy_sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_5_1_1_3_s_w2_ROM_AUTObkb |   589|
+|250   |  sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_U0                      |hls_dummy_sparse_flatten_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_s                          |  6494|
+|251   |    grp_sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr_fu_786 |hls_dummy_sparse_flatten_ap_fixed_ap_uint_10_10_8_1_5_Pipeline_FillFlatArr                 |  5516|
+|252   |      flow_control_loop_pipe_sequential_init_U                                  |hls_dummy_flow_control_loop_pipe_sequential_init                                           |    10|
+|253   |  sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4_U0               |hls_dummy_sparse_input_reduce_ap_fixed_8_2_5_3_0_ap_uint_10_10_8_1_5_4                     |  2908|
++------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:18 ; elapsed = 00:03:31 . Memory (MB): peak = 4371.648 ; gain = 1931.434 ; free physical = 762619 ; free virtual = 980778
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 165 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:20 ; elapsed = 00:03:37 . Memory (MB): peak = 4375.559 ; gain = 1935.344 ; free physical = 775234 ; free virtual = 993393
+Synthesis Optimization Complete : Time (s): cpu = 00:01:20 ; elapsed = 00:03:37 . Memory (MB): peak = 4375.559 ; gain = 1935.344 ; free physical = 775234 ; free virtual = 993393
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.14 . Memory (MB): peak = 4375.559 ; gain = 0.000 ; free physical = 775071 ; free virtual = 993229
+INFO: [Netlist 29-17] Analyzing 813 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4419.672 ; gain = 0.000 ; free physical = 775064 ; free virtual = 993223
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 645 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  IBUF => IBUF (IBUFCTRL, INBUF): 644 instances
+
+Synth Design complete | Checksum: c8957fed
+INFO: [Common 17-83] Releasing license: Synthesis
+60 Infos, 101 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:26 ; elapsed = 00:03:45 . Memory (MB): peak = 4419.672 ; gain = 2003.297 ; free physical = 775064 ; free virtual = 993223
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 16304.087; main = 3728.832; forked = 12801.963
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 21379.605; main = 4419.676; forked = 17007.953
+# opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Command: opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Attempting to get a license for feature 'Implementation' and/or device 'xcu250'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xcu250'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 4483.703 ; gain = 64.031 ; free physical = 775129 ; free virtual = 993288
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 14a99e0eb
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 4523.281 ; gain = 39.578 ; free physical = 775028 ; free virtual = 993186
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-1566] Pulled 48 inverters resulting in an inversion of 213 pins
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 926ea947
+
+Time (s): cpu = 00:00:00.73 ; elapsed = 00:00:00.42 . Memory (MB): peak = 4555.234 ; gain = 0.000 ; free physical = 775062 ; free virtual = 993221
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 48 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: f66e3305
+
+Time (s): cpu = 00:00:00.82 ; elapsed = 00:00:00.51 . Memory (MB): peak = 4555.234 ; gain = 0.000 ; free physical = 775062 ; free virtual = 993221
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 8d2d3d2e
+
+Time (s): cpu = 00:00:00.98 ; elapsed = 00:00:00.66 . Memory (MB): peak = 4555.234 ; gain = 0.000 ; free physical = 775064 ; free virtual = 993222
+INFO: [Opt 31-389] Phase Sweep created 1 cells and removed 0 cells
+
+Phase 4 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 4 Shift Register Optimization | Checksum: d04096d6
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.95 . Memory (MB): peak = 4555.234 ; gain = 0.000 ; free physical = 775069 ; free virtual = 993227
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 5 Post Processing Netlist
+Phase 5 Post Processing Netlist | Checksum: d04096d6
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 4555.234 ; gain = 0.000 ; free physical = 775069 ; free virtual = 993228
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               0  |              48  |                                              0  |
+|  Constant propagation         |               0  |               0  |                                              0  |
+|  Sweep                        |               1  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: d04096d6
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 4555.234 ; gain = 0.000 ; free physical = 775069 ; free virtual = 993228
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: d04096d6
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4555.234 ; gain = 0.000 ; free physical = 775071 ; free virtual = 993230
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: d04096d6
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4555.234 ; gain = 0.000 ; free physical = 775071 ; free virtual = 993230
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 4555.234 ; gain = 0.000 ; free physical = 775071 ; free virtual = 993230
+Ending Netlist Obfuscation Task | Checksum: d04096d6
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 4555.234 ; gain = 0.000 ; free physical = 775071 ; free virtual = 993230
+INFO: [Common 17-83] Releasing license: Implementation
+17 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:07 ; elapsed = 00:00:06 . Memory (MB): peak = 4555.234 ; gain = 135.562 ; free physical = 775071 ; free virtual = 993230
+# report_utilization -file vivado_synth.rpt -hierarchical -hierarchical_depth 1
+INFO: [Common 17-206] Exiting Vivado at Thu Jul 24 18:07:47 2025...
+***** VIVADO SYNTHESIS COMPLETED IN 0h7m44s *****
+INFO: [HLS 200-112] Total CPU user time: 483.67 seconds. Total CPU system time: 28.22 seconds. Total elapsed time: 1162.8 seconds; peak allocated memory: 1.991 GB.
+INFO: [Common 17-206] Exiting vitis_hls at Thu Jul 24 18:07:49 2025...
