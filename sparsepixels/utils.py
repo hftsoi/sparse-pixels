@@ -5,7 +5,7 @@ import matplotlib.colors as colors
 import h5py
 from pathlib import Path
 from glob import glob
-
+from matplotlib.patches import Rectangle
 
 def pool_pad_noise_inflate(img, pool_size, pool_type, target_size=None, noise_type=None, noise_level=0, inflate_factor=1):
     x = tf.convert_to_tensor(img, dtype=tf.float32)
@@ -252,7 +252,8 @@ def build_label_notebook_exact(plane_wire, h_wire, h_time, h_rms, h_g4, T_raw=T_
     x = np.fromiter((wire_to_row[int(w)] for w in h_wire), dtype=np.int64, count=h_wire.size)
     t0 = np.floor(h_time - nrms*h_rms).astype(np.int64)
     t1 = np.ceil (h_time + nrms*h_rms).astype(np.int64)
-    t0 = np.clip(t0, 0, T_raw-1); t1 = np.clip(t1, 0, T_raw-1)
+    t0 = np.clip(t0, 0, T_raw-1)
+    t1 = np.clip(t1, 0, T_raw-1)
     # neutrino first (+1)
     for xi, lo, hi, is_nu in zip(x, t0, t1, (h_g4 >= 0)):
         if is_nu: lab_full[int(xi), int(lo):int(hi)+1] = 1
@@ -434,4 +435,171 @@ def plot_plane_sample(plane_file, idx=0, p='raw', cmap='viridis',
     ax.set_title(f"plane={plane} eid={eid} (time downsample x{time_ds})")
     ax.set_xlabel("wire")
     ax.set_ylabel("time (downsampled ticks)")
-    plt.tight_layout(); plt.show()
+    plt.tight_layout()
+    plt.show()
+
+
+
+def run_window_demo(
+    plane_file,
+    indices=None, first_N=5,
+    win_t=256, win_w=512,
+    num_bkg=5,
+    prefer_zero_signal_bkg=True,
+    cmap='gist_ncar', vmin=0, vmax=100,
+    rng_seed=None,
+):
+    rng = np.random.default_rng(rng_seed)
+
+    def integral_image(mask_TW: np.ndarray) -> np.ndarray:
+        sat = np.cumsum(np.cumsum(mask_TW.astype(np.int32), axis=0), axis=1)
+        return np.pad(sat, ((1,0),(1,0)), mode='constant')
+
+    def rect_sum(sat: np.ndarray, t0: int, w0: int, h: int, w: int) -> int:
+        t1, w1 = t0 + h, w0 + w
+        return int(sat[t1, w1] - sat[t0, w1] - sat[t1, w0] + sat[t0, w0])
+
+    def find_best_signal_window(sigm_TW: np.ndarray, win_t: int, win_w: int):
+        T, W = sigm_TW.shape
+        sat = integral_image(sigm_TW)
+        sums = (sat[win_t:, win_w:] - sat[:-win_t, win_w:] - sat[win_t:, :-win_w] + sat[:-win_t, :-win_w])
+        r, c = np.unravel_index(int(np.argmax(sums)), sums.shape)
+        return int(r), int(c), int(sums[r, c])
+
+    def rects_overlap(a, b):
+        t0a, w0a, ha, wa = a
+        t0b, w0b, hb, wb = b
+        if t0a + ha <= t0b or t0b + hb <= t0a: return False
+        if w0a + wa <= w0b or w0b + wb <= w0a: return False
+        return True
+
+    def sample_background_windows(sat_sig, T, W, win_t, win_w, sig_rect, K=5, zero_sig_only=True, max_trials_per_window=4000):
+        candidates, used, tries = [], [sig_rect], 0
+        def rand_pos():
+            return int(rng.integers(0, T - win_t + 1)), int(rng.integers(0, W - win_w + 1))
+        
+        # random zero-signal
+        while len(candidates) < K and tries < max_trials_per_window * K:
+            t0, w0 = rand_pos()
+            rect = (t0, w0, win_t, win_w)
+            if any(rects_overlap(rect, u) for u in used):
+                tries += 1
+                continue
+            c = rect_sum(sat_sig, t0, w0, win_t, win_w)
+            if (zero_sig_only and c == 0) or (not zero_sig_only):
+                candidates.append((t0, w0, int(c)))
+                used.append(rect)
+            tries += 1
+
+        # fallback minimal-signal
+        if zero_sig_only and len(candidates) < K:
+            need = K - len(candidates)
+            step_t, step_w = max(1, win_t//2), max(1, win_w//2)
+            mins = []
+            for t0 in range(0, T - win_t + 1, step_t):
+                for w0 in range(0, W - win_w + 1, step_w):
+                    rect = (t0, w0, win_t, win_w)
+                    if any(rects_overlap(rect, u) for u in used):
+                        continue
+                    c = rect_sum(sat_sig, t0, w0, win_t, win_w)
+                    mins.append((c, t0, w0))
+            if mins:
+                mins.sort(key=lambda x: x[0])
+                for c, t0, w0 in mins[:need]:
+                    candidates.append((t0, w0, int(c)))
+                    used.append((t0, w0, win_t, win_w))
+        return candidates[:K]
+
+    def overlay_rect(ax, t0, w0, h, w, color, lw=2, label=None):
+        ax.add_patch(Rectangle((w0, t0), w, h, fill=False, ec=color, lw=lw, label=label))
+
+    def mask_rgba(sig, bkg, alpha_sig=0.9, alpha_bkg=0.9):
+        T, W = sig.shape
+        rgba = np.zeros((T, W, 4), dtype=np.float32)
+        rgba[..., 0] = (sig > 0).astype(np.float32)
+        rgba[..., 2] = (bkg > 0).astype(np.float32)
+        rgba[..., 3] = np.clip(alpha_sig*(sig>0) + alpha_bkg*(bkg>0), 0.0, 1.0)
+        return rgba
+
+    with h5py.File(plane_file, "r") as g:
+        N = g["image"].shape[0]
+        use_idx = indices if indices is not None else list(range(min(first_N, N)))
+        plane = int(g.attrs["plane"])
+        tds = int(g.attrs["time_downsample"])
+
+        for idx in use_idx:
+            img = g["image"][idx]
+            sigm = g["sigmask"][idx]
+            bkgm = g["bkgmask"][idx]
+            eid = tuple(g["event_id"][idx])
+            src = g["source_file"][idx]
+            if isinstance(src, (bytes, bytearray)):
+                src = src.decode("utf-8","ignore")
+
+            # find signal window + sample bkg
+            T, W = img.shape
+            t0, w0, best = find_best_signal_window(sigm, win_t, win_w)
+            sig_rect = (t0, w0, win_t, win_w)
+            sat_sig = integral_image(sigm)
+            bkg_list = sample_background_windows(sat_sig, T, W, win_t, win_w, sig_rect, K=num_bkg, zero_sig_only=prefer_zero_signal_bkg)
+
+            # crops
+            def crop(t, w): 
+                return (img[t:t+win_t, w:w+win_w],
+                        sigm[t:t+win_t, w:w+win_w],
+                        bkgm[t:t+win_t, w:w+win_w])
+            sig_img, sig_sig, sig_bkg = crop(t0, w0)
+            bkg_tiles = []
+            for tb, wb, cb in bkg_list:
+                im, sg, bk = crop(tb, wb)
+                bkg_tiles.append((im, sg, bk, tb, wb, cb))
+
+            total_sig = int(sigm.sum())
+            cap_frac = float(best) / max(1, total_sig)
+
+            print(f"[{Path(plane_file).name}] idx={idx} eid={eid} "
+                  f"total_sig={total_sig}, in_win={best} ({cap_frac:.1%}), "
+                  f"bkg_found={len(bkg_tiles)}")
+
+            # plot
+            fig, ax = plt.subplots(figsize=(14,6))
+            imshow = ax.imshow(img, origin='lower', aspect='auto', cmap=cmap, vmin=vmin, vmax=vmax)
+            #plt.colorbar(imshow, ax=ax).set_label("ADC (downsampled)")
+            overlay_rect(ax, t0, w0, win_t, win_w, 'red', 2, 'signal window')
+            for i, (_,_,_, tb, wb, _) in enumerate(bkg_tiles):
+                overlay_rect(ax, tb, wb, win_t, win_w, 'blue', 1.5, 'bkg' if i==0 else None)
+            ax.set_title(f"plane={plane} eid={eid} (time x{tds})")
+            ax.set_xlabel("wire")
+            ax.set_ylabel("time (downsampled ticks)")
+            if ax.get_legend_handles_labels()[0]:
+                ax.legend(loc='upper right')
+            plt.tight_layout()
+            plt.show()
+
+            tiles = [("signal", (sig_img, sig_sig, sig_bkg, t0, w0, best))]
+            tiles += [(f"bkg {i+1}", bt) for i, bt in enumerate(bkg_tiles)]
+            rows, cols = 2, 3
+            fig, axes = plt.subplots(rows, cols, figsize=(15,8), constrained_layout=True)
+            for k, ax in enumerate(axes.flatten()):
+                if k >= len(tiles):
+                    ax.axis('off')
+                    continue
+                name, (im, sg, bk, tb, wb, cb) = tiles[k]
+                ax.imshow(im, origin='lower', aspect='auto', cmap=cmap, vmin=vmin, vmax=vmax)
+                ax.set_title(f"{name} (sigpix={int(sg.sum())})")
+                ax.set_xlabel("wire")
+                ax.set_ylabel("time")
+            plt.show()
+
+            fig, axes = plt.subplots(rows, cols, figsize=(15,8), constrained_layout=True)
+            for k, ax in enumerate(axes.flatten()):
+                if k >= len(tiles):
+                    ax.axis('off')
+                    continue
+                name, (im, sg, bk, tb, wb, cb) = tiles[k]
+                ax.set_facecolor('white')
+                ax.imshow(mask_rgba(sg, bk, 0.9, 0.9), origin='lower', aspect='auto', interpolation='nearest')
+                ax.set_title(f"{name} (sigpix={int(sg.sum())})")
+                ax.set_xlabel("wire")
+                ax.set_ylabel("time")
+            plt.show()
