@@ -440,6 +440,111 @@ def plot_plane_sample(plane_file, idx=0, p='raw', cmap='viridis',
 
 
 
+
+def _ensure_parent_dir(path):
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+
+def _signal_counts(plane_file, chunk=1024):
+    with h5py.File(plane_file, "r") as g:
+        N = g["sigmask"].shape[0]
+        counts = np.zeros(N, dtype=np.int64)
+        for s in range(0, N, chunk):
+            e = min(N, s + chunk)
+            sm = g["sigmask"][s:e]
+            counts[s:e] = sm.reshape(e - s, -1).sum(axis=1)
+    return counts
+
+def _create_empty_like(in_path, out_path, overwrite=True):
+    _ensure_parent_dir(out_path)
+    p = Path(out_path)
+    if p.exists():
+        if not overwrite:
+            raise FileExistsError(f"{out_path} exists..")
+        p.unlink()
+
+    with h5py.File(in_path, "r") as fin, h5py.File(out_path, "w") as fout:
+        for k, v in fin.attrs.items():
+            fout.attrs[k] = v
+
+        def mk(name, src, first_dim=0):
+            maxshape = (None,) + src.shape[1:]
+            chunks = (1,) + src.shape[1:]
+            comp = src.compression or "gzip"
+            fout.create_dataset(
+                name,
+                shape=(first_dim,) + src.shape[1:],
+                maxshape=maxshape,
+                chunks=chunks,
+                dtype=src.dtype,
+                compression=comp, )
+
+        mk("image", fin["image"])
+        mk("sigmask", fin["sigmask"])
+        mk("bkgmask", fin["bkgmask"])
+
+        fout.create_dataset("event_id", shape=(0, 3), maxshape=(None, 3), chunks=(1024, 3), dtype=fin["event_id"].dtype, compression="gzip")
+        fout.create_dataset("event_idx_in_file", shape=(0,), maxshape=(None,), chunks=(1024,), dtype=fin["event_idx_in_file"].dtype, compression="gzip")
+        fout.create_dataset("source_file", shape=(0,), maxshape=(None,), chunks=(1024,), dtype=fin["source_file"].dtype, compression="gzip")
+
+def _append_batch(out_path, batch):
+    with h5py.File(out_path, "a") as g:
+        n = g["image"].shape[0]
+        m = batch["image"].shape[0]
+        for name in ("image", "sigmask", "bkgmask"):
+            g[name].resize((n + m,) + g[name].shape[1:])
+            g[name][n:n + m] = batch[name]
+        for name in ("event_id", "event_idx_in_file", "source_file"):
+            g[name].resize((n + m,) + g[name].shape[1:])
+            g[name][n:n + m] = batch[name]
+
+def write_slim_plane_ge_threshold(in_plane_file,
+                                  out_plane_file,
+                                  threshold,
+                                  count_chunk=512,
+                                  copy_batch=128,
+                                  overwrite=True,
+                                  verbose=True):
+    counts = _signal_counts(in_plane_file, chunk=count_chunk)
+    keep_idx = np.where(counts >= threshold)[0]
+
+    if verbose:
+        N = counts.size
+        pct = (keep_idx.size / N) if N else 0.0
+        print(f"{Path(in_plane_file).name}: N={N}, threshold >= {threshold} -> keep {keep_idx.size} ({pct:.1%})")
+
+    _create_empty_like(in_plane_file, out_plane_file, overwrite=overwrite)
+
+    if keep_idx.size == 0:
+        if verbose:
+            print(f"nothing to keep, wrote empty file to {out_plane_file}")
+        return
+
+    with h5py.File(in_plane_file, "r") as fin:
+        Nsrc = fin["image"].shape[0]
+        if not np.all((0 <= keep_idx) & (keep_idx < Nsrc)):
+            raise IndexError("keep_idx out of range.")
+
+        for s in range(0, keep_idx.size, copy_batch):
+            idx = keep_idx[s:s + copy_batch]
+            batch = dict(
+                image = fin["image"][idx],
+                sigmask = fin["sigmask"][idx],
+                bkgmask = fin["bkgmask"][idx],
+                event_id = fin["event_id"][idx],
+                event_idx_in_file = fin["event_idx_in_file"][idx],
+                source_file = fin["source_file"][idx],
+            )
+            _append_batch(out_plane_file, batch)
+
+            if verbose and ((s // copy_batch) % 50 == 0 or s + copy_batch >= keep_idx.size):
+                print(f"  copied {min(s + copy_batch, keep_idx.size)}/{keep_idx.size}")
+    if verbose:
+        print(f"done: wrote {keep_idx.size} rows -> {out_plane_file}")
+
+
+
+
+
 def run_window_demo(
     plane_file,
     indices=None, first_N=5,
