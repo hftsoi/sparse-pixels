@@ -447,7 +447,7 @@ def run_window_demo(
     num_bkg=5,
     prefer_zero_signal_bkg=True,
     cmap='gist_ncar', vmin=0, vmax=100,
-    rng_seed=None,
+    rng_seed=123,
 ):
     rng = np.random.default_rng(rng_seed)
 
@@ -603,3 +603,200 @@ def run_window_demo(
                 ax.set_xlabel("wire")
                 ax.set_ylabel("time")
             plt.show()
+
+
+
+def write_patches_from_slim_file(
+    in_plane_file,
+    out_sig_file=None,
+    out_bkg_file=None,
+    win_t=256, win_w=512,
+    num_bkg=5,
+    prefer_zero_signal_bkg=True,
+    copy_batch=128,
+    overwrite=True,
+    verbose=True,
+    rng_seed=123,
+):
+    rng = np.random.default_rng(rng_seed)
+    in_p = Path(in_plane_file)
+    if out_sig_file is None:
+        out_sig_file = in_p.with_suffix("").as_posix() + f"_patches_sig_t{win_t}w{win_w}.h5"
+    if out_bkg_file is None:
+        out_bkg_file = in_p.with_suffix("").as_posix() + f"_patches_bkg_t{win_t}w{win_w}.h5"
+
+    def integral_image(mask_TW):
+        sat = np.cumsum(np.cumsum(mask_TW.astype(np.int32), axis=0), axis=1)
+        return np.pad(sat, ((1,0),(1,0)), mode='constant')
+
+    def rect_sum(sat, t0, w0, h, w):
+        t1, w1 = t0 + h, w0 + w
+        return int(sat[t1, w1] - sat[t0, w1] - sat[t1, w0] + sat[t0, w0])
+
+    def find_best_signal_window(sigm_TW, win_t, win_w):
+        T, W = sigm_TW.shape
+        sat = integral_image(sigm_TW)
+        sums = (sat[win_t:, win_w:] - sat[:-win_t, win_w:] - sat[win_t:, :-win_w] + sat[:-win_t, :-win_w])
+        r, c = np.unravel_index(int(np.argmax(sums)), sums.shape)
+        return int(r), int(c), int(sums[r, c])
+
+    def rects_overlap(a, b):
+        t0a, w0a, ha, wa = a
+        t0b, w0b, hb, wb = b
+        if t0a + ha <= t0b or t0b + hb <= t0a: return False
+        if w0a + wa <= w0b or w0b + wb <= w0a: return False
+        return True
+
+    def sample_background_windows(sat_sig, T, W, win_t, win_w, sig_rect, K=5, zero_sig_only=True, max_trials_per_window=4000):
+        candidates, used, tries = [], [sig_rect], 0
+        def rand_pos():
+            return int(rng.integers(0, T - win_t + 1)), int(rng.integers(0, W - win_w + 1))
+        while len(candidates) < K and tries < max_trials_per_window * K:
+            t0, w0 = rand_pos()
+            rect = (t0, w0, win_t, win_w)
+            if any(rects_overlap(rect, u) for u in used):
+                tries += 1
+                continue
+            c = rect_sum(sat_sig, t0, w0, win_t, win_w)
+            if (zero_sig_only and c == 0) or (not zero_sig_only):
+                candidates.append((t0, w0, int(c)))
+                used.append(rect)
+            tries += 1
+        if zero_sig_only and len(candidates) < K:
+            need = K - len(candidates)
+            step_t, step_w = max(1, win_t//2), max(1, win_w//2)
+            mins = []
+            for t0 in range(0, T - win_t + 1, step_t):
+                for w0 in range(0, W - win_w + 1, step_w):
+                    rect = (t0, w0, win_t, win_w)
+                    if any(rects_overlap(rect, u) for u in used):
+                        continue
+                    c = rect_sum(sat_sig, t0, w0, win_t, win_w)
+                    mins.append((c, t0, w0))
+            if mins:
+                mins.sort(key=lambda x: x[0])
+                for c, t0, w0 in mins[:need]:
+                    candidates.append((t0, w0, int(c)))
+                    used.append((t0, w0, win_t, win_w))
+        return candidates[:K]
+
+    def create_patch_file(out_path, plane_attr, time_ds_attr, win_t, win_w):
+        p = Path(out_path)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        if p.exists():
+            if not overwrite:
+                raise FileExistsError(f"{out_path} exists...")
+            p.unlink()
+        with h5py.File(out_path, "w") as g:
+            g.attrs["plane"] = int(plane_attr)
+            g.attrs["time_downsample"] = int(time_ds_attr)
+            g.attrs["win_t"] = int(win_t)
+            g.attrs["win_w"] = int(win_w)
+            maxshape = (None, win_t, win_w)
+            chunks = (1, win_t, win_w)
+            g.create_dataset("image", shape=(0, win_t, win_w), maxshape=maxshape, chunks=chunks, dtype="float32", compression="gzip")
+            g.create_dataset("sigmask", shape=(0, win_t, win_w), maxshape=maxshape, chunks=chunks, dtype="uint8", compression="gzip")
+            g.create_dataset("bkgmask", shape=(0, win_t, win_w), maxshape=maxshape, chunks=chunks, dtype="uint8", compression="gzip")
+            g.create_dataset("event_id", shape=(0,3), maxshape=(None,3), chunks=(1024,3), dtype="int32", compression="gzip")
+            g.create_dataset("event_idx_in_file", shape=(0,), maxshape=(None,), chunks=(1024,), dtype="int64", compression="gzip")
+            g.create_dataset("source_file", shape=(0,), maxshape=(None,), chunks=(1024,), dtype=h5py.string_dtype(encoding="utf-8"), compression="gzip")
+            g.create_dataset("win_origin", shape=(0,2), maxshape=(None,2), chunks=(1024,2), dtype="int32", compression="gzip")
+            g.create_dataset("sigpix_in_win", shape=(0,), maxshape=(None,), chunks=(1024,), dtype="int32", compression="gzip")
+            g.create_dataset("total_sigpix_evt", shape=(0,), maxshape=(None,), chunks=(1024,), dtype="int32", compression="gzip")
+            g.create_dataset("capture_fraction", shape=(0,), maxshape=(None,), chunks=(1024,), dtype="float32", compression="gzip")
+
+    def append_patch_batch(out_path, batch):
+        with h5py.File(out_path, "a") as g:
+            n = g["image"].shape[0]
+            m = batch["image"].shape[0]
+            for k in ("image","sigmask","bkgmask"):
+                g[k].resize((n+m,)+g[k].shape[1:])
+                g[k][n:n+m] = batch[k]
+            for k in ("event_id","event_idx_in_file","source_file", "win_origin", "sigpix_in_win", "total_sigpix_evt", "capture_fraction"):
+                g[k].resize((n+m,)+g[k].shape[1:])
+                g[k][n:n+m] = batch[k]
+
+    if verbose:
+        print(f"\n>> patching {in_plane_file}\n  sig -> {out_sig_file}\n  bkg -> {out_bkg_file}")
+
+    with h5py.File(in_plane_file, "r") as fin:
+        N = fin["image"].shape[0]
+        plane = int(fin.attrs["plane"])
+        time_ds = int(fin.attrs["time_downsample"])
+
+        create_patch_file(out_sig_file, plane, time_ds, win_t, win_w)
+        create_patch_file(out_bkg_file, plane, time_ds, win_t, win_w)
+
+        sig_buf = {k: [] for k in ("image","sigmask","bkgmask","event_id","event_idx_in_file",
+                                   "source_file","win_origin","sigpix_in_win","total_sigpix_evt","capture_fraction")}
+        bkg_buf = {k: [] for k in ("image","sigmask","bkgmask","event_id","event_idx_in_file",
+                                   "source_file","win_origin","sigpix_in_win","total_sigpix_evt","capture_fraction")}
+
+        def flush(force=False):
+            if sig_buf["image"] and (force or len(sig_buf["image"]) >= copy_batch):
+                batch = {k: (np.asarray(v, dtype=object) if k=="source_file" else np.asarray(v)) for k,v in sig_buf.items()}
+                append_patch_batch(out_sig_file, batch)
+                for k in sig_buf:
+                    sig_buf[k].clear()
+            if bkg_buf["image"] and (force or len(bkg_buf["image"]) >= copy_batch):
+                batch = {k: (np.asarray(v, dtype=object) if k=="source_file" else np.asarray(v)) for k,v in bkg_buf.items()}
+                append_patch_batch(out_bkg_file, batch)
+                for k in bkg_buf:
+                    bkg_buf[k].clear()
+
+        for idx in range(N):
+            img = fin["image"][idx]
+            sigm = fin["sigmask"][idx]
+            bkgm = fin["bkgmask"][idx]
+            eid = tuple(fin["event_id"][idx])
+            src = fin["source_file"][idx]
+            if isinstance(src, (bytes, bytearray)):
+                src = src.decode("utf-8","ignore")
+            evt_i = int(fin["event_idx_in_file"][idx])
+
+            T, W = img.shape
+            t0, w0, sig_in_win = find_best_signal_window(sigm, win_t, win_w)
+            sig_rect = (t0, w0, win_t, win_w)
+            sat_sig = integral_image(sigm)
+
+            # signal crop
+            sig_img = img [t0:t0+win_t, w0:w0+win_w]
+            sig_sigm = sigm[t0:t0+win_t, w0:w0+win_w]
+            sig_bkgm = bkgm[t0:t0+win_t, w0:w0+win_w]
+            total_sig = int(sigm.sum())
+            cap_frac = float(sig_in_win)/max(1,total_sig)
+
+            sig_buf["image"].append(sig_img.astype(np.float32))
+            sig_buf["sigmask"].append(sig_sigm.astype(np.uint8))
+            sig_buf["bkgmask"].append(sig_bkgm.astype(np.uint8))
+            sig_buf["event_id"].append(np.asarray(eid, dtype=np.int32))
+            sig_buf["event_idx_in_file"].append(np.int64(evt_i))
+            sig_buf["source_file"].append(str(src))
+            sig_buf["win_origin"].append(np.asarray([t0, w0], dtype=np.int32))
+            sig_buf["sigpix_in_win"].append(np.int32(sig_in_win))
+            sig_buf["total_sigpix_evt"].append(np.int32(total_sig))
+            sig_buf["capture_fraction"].append(np.float32(cap_frac))
+
+            # background crop
+            for (tb, wb, c) in sample_background_windows(sat_sig, T, W, win_t, win_w, sig_rect, K=num_bkg, zero_sig_only=prefer_zero_signal_bkg):
+                bkg_img = img [tb:tb+win_t, wb:wb+win_w]
+                bkg_sigm = sigm[tb:tb+win_t, wb:wb+win_w]
+                bkg_bkgm = bkgm[tb:tb+win_t, wb:wb+win_w]
+                bkg_buf["image"].append(bkg_img.astype(np.float32))
+                bkg_buf["sigmask"].append(bkg_sigm.astype(np.uint8))
+                bkg_buf["bkgmask"].append(bkg_bkgm.astype(np.uint8))
+                bkg_buf["event_id"].append(np.asarray(eid, dtype=np.int32))
+                bkg_buf["event_idx_in_file"].append(np.int64(evt_i))
+                bkg_buf["source_file"].append(str(src))
+                bkg_buf["win_origin"].append(np.asarray([tb, wb], dtype=np.int32))
+                bkg_buf["sigpix_in_win"].append(np.int32(int(bkg_sigm.sum())))
+                bkg_buf["total_sigpix_evt"].append(np.int32(total_sig))
+                bkg_buf["capture_fraction"].append(np.float32(float(bkg_sigm.sum())/max(1,total_sig)))
+
+            flush(force=False)
+            if verbose and ((idx+1) % 200 == 0 or idx+1 == N):
+                print(f"  processed {idx+1}/{N}")
+        flush(force=True)
+    if verbose:
+        print("done!\n")
+
