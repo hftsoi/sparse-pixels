@@ -985,3 +985,152 @@ def preview_patches(
             #fig.suptitle(supt, y=1.02, fontsize=10)
             plt.show()
 
+
+
+
+
+def preview_patches_with_pooling(
+    patch_file, max_examples=5, start_idx=0,
+    pool_t=1, pool_w=1,
+    cmap='gist_ncar',
+    vmin_raw=0, vmax_raw=100,
+    vmin_pool=0, vmax_pool=100,
+    thr=0, vmin_thr=0, vmax_thr=100,
+    alpha_sig=0.9, alpha_bkg=0.9,
+):
+    def _mask_rgba(sig, bkg, a_s=0.9, a_b=0.9):
+        T, W = sig.shape
+        rgba = np.zeros((T, W, 4), dtype=np.float32)
+        rgba[..., 0] = (sig > 0).astype(np.float32) # red
+        rgba[..., 2] = (bkg > 0).astype(np.float32) # blue
+        rgba[..., 3] = np.clip(a_s*(sig>0) + a_b*(bkg>0), 0.0, 1.0)
+        return rgba
+
+    def _mask_rgba_with_keep(sig, bkg, keep, a_s=0.9, a_b=0.9):
+        T, W = sig.shape
+        rgba = np.zeros((T, W, 4), dtype=np.float32)
+        rgba[..., 0] = (sig > 0).astype(np.float32)
+        rgba[..., 2] = (bkg > 0).astype(np.float32)
+        alpha = np.clip(a_s*(sig>0) + a_b*(bkg>0), 0.0, 1.0)
+        rgba[..., 3] = alpha * (keep.astype(np.float32))
+        return rgba
+
+    def _pool_sum_2d(a_TW, pt, pw):
+        if pt == 1 and pw == 1:
+            return a_TW
+        T, W = a_TW.shape
+        Tt, Wt = (T // pt) * pt, (W // pw) * pw
+        a = a_TW[:Tt, :Wt]
+        return a.reshape(Tt//pt, pt, Wt//pw, pw).sum(axis=(1,3))
+
+    def _pool_or_2d(m_TW, pt, pw):
+        if pt == 1 and pw == 1:
+            return (m_TW > 0).astype(np.uint8)
+        T, W = m_TW.shape
+        Tt, Wt = (T // pt) * pt, (W // pw) * pw
+        m = (m_TW[:Tt, :Wt] > 0).astype(np.uint8)
+        return m.reshape(Tt//pt, pt, Wt//pw, pw).max(axis=(1,3)).astype(np.uint8)
+
+    patch_file = str(patch_file)
+    with h5py.File(patch_file, "r") as g:
+        N = g["image"].shape[0]
+        end = min(start_idx + max_examples, N)
+        if start_idx >= N:
+            print(f"{Path(patch_file).name}: start_idx={start_idx} >= N={N}, nothing there..")
+            return
+
+        plane = int(g.attrs.get("plane", -1))
+        time_ds = int(g.attrs.get("time_downsample", 6))
+        win_t = int(g.attrs.get("win_t", g["image"].shape[1]))
+        win_w = int(g.attrs.get("win_w", g["image"].shape[2]))
+
+        for idx in range(start_idx, end):
+            img = g["image"][idx]
+            sigm = g["sigmask"][idx]
+            bkgm = g["bkgmask"][idx]
+
+            eid = tuple(g["event_id"][idx])
+            src = g["source_file"][idx]
+            if isinstance(src, (bytes, bytearray)):
+                src = src.decode("utf-8", "ignore")
+            evt_i = int(g["event_idx_in_file"][idx])
+
+            sig_in_win = int(g["sigpix_in_win"][idx]) if "sigpix_in_win" in g else int(sigm.sum())
+            tot_sig_evt = int(g["total_sigpix_evt"][idx]) if "total_sigpix_evt" in g else sig_in_win
+            bkg_in_win = int(bkgm.sum())
+            total_in_win = int(sigm.sum() + bkgm.sum())
+
+            #print(f"idx={idx} | eid={eid} | src={src} | evt_idx={evt_i} | "
+            #      f"sig_in_window / sig_in_evt = {sig_in_win} / {tot_sig_evt} | "
+            #      f"bkg_in_window = {bkg_in_win} | total_in_window = {total_in_win}")
+
+            # pooled
+            img_p = _pool_sum_2d(img, pool_t, pool_w)
+            sig_p = _pool_or_2d(sigm, pool_t, pool_w)
+            bkg_p = _pool_or_2d(bkgm, pool_t, pool_w)
+
+            total_hits_raw = int((sigm > 0).sum() + (bkgm > 0).sum())
+            total_hits_pooled = int((sig_p > 0).sum() + (bkg_p > 0).sum())
+
+            # threshold
+            has_thr = thr is not None
+            if has_thr:
+                img_thr = img_p.copy()
+                img_thr[img_thr < thr] = 0
+                keep = (img_p >= thr)
+                total_hits_thr = int((sig_p[keep] > 0).sum() + (bkg_p[keep] > 0).sum())
+
+            # rows: raw, pooled, thresholded pooled
+            nrows = 3 if has_thr else 2
+            fig, axes = plt.subplots(nrows, 2, figsize=(16, 12 if has_thr else 8), constrained_layout=True, sharex=False, sharey=False)
+
+            # row 0: raw intensity
+            ax = axes[0,0]
+            im = ax.imshow(img, origin='lower', aspect='auto', cmap=cmap, vmin=vmin_raw, vmax=vmax_raw)
+            ax.set_xlabel("wire", fontsize=13)
+            ax.set_ylabel("time", fontsize=13)
+            cb = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.02)
+            #cb.set_label("ADC", fontsize=11)
+
+            # row 0: raw mask
+            ax = axes[0,1]
+            ax.set_facecolor('white')
+            ax.imshow(_mask_rgba(sigm, bkgm, alpha_sig, alpha_bkg), origin='lower', aspect='auto', interpolation='nearest')
+            #ax.set_xlabel("wire", fontsize=13)
+            #ax.set_ylabel("time", fontsize=13)
+            ax.set_title(f"total hits={total_hits_raw} / ({img.shape[0]}x{img.shape[1]})", fontsize=12)
+
+            # row 1: pooled intensity
+            ax = axes[1,0]
+            im2 = ax.imshow(img_p, origin='lower', aspect='auto', cmap=cmap, vmin=vmin_pool, vmax=vmax_pool)
+            ax.set_xlabel("wire", fontsize=13)
+            ax.set_ylabel("time", fontsize=13)
+            cb2 = plt.colorbar(im2, ax=ax, fraction=0.046, pad=0.02)
+            #cb2.set_label(f"ADC", fontsize=11)
+
+            # row 1: pooled mask
+            ax = axes[1,1]
+            ax.set_facecolor('white')
+            ax.imshow(_mask_rgba(sig_p, bkg_p, alpha_sig, alpha_bkg), origin='lower', aspect='auto', interpolation='nearest')
+            #ax.set_xlabel("wire", fontsize=13)
+            #ax.set_ylabel("time", fontsize=13)
+            ax.set_title(f"total hits = {total_hits_pooled} / ({img_p.shape[0]}x{img_p.shape[1]})  [pool={pool_t}x{pool_w}]", fontsize=12)
+
+            # row 2: thresholded intensity + mask
+            if has_thr:
+                ax = axes[2,0]
+                im3 = ax.imshow(img_thr, origin='lower', aspect='auto', cmap=cmap, vmin=vmin_thr, vmax=vmax_thr)
+                ax.set_xlabel("wire", fontsize=13)
+                ax.set_ylabel("time", fontsize=13)
+                cb3 = plt.colorbar(im3, ax=ax, fraction=0.046, pad=0.02)
+                #cb3.set_label(f"ADC, thr={thr}", fontsize=11)
+
+                ax = axes[2,1]
+                ax.set_facecolor('white')
+                ax.imshow(_mask_rgba_with_keep(sig_p, bkg_p, keep, alpha_sig, alpha_bkg), origin='lower', aspect='auto', interpolation='nearest')
+                #ax.set_xlabel("wire", fontsize=13)
+                #ax.set_ylabel("time", fontsize=13)
+                ax.set_title(f"total hits = {total_hits_thr} / ({img_p.shape[0]}x{img_p.shape[1]})  [pool={pool_t}x{pool_w}, threshold={thr}]", fontsize=12)
+            plt.show()
+
+
