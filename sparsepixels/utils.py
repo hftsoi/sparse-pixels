@@ -905,3 +905,83 @@ def write_patches_from_slim_file(
     if verbose:
         print("done!\n")
 
+
+
+
+
+def preview_patches(
+    patch_file,
+    max_examples=6,
+    start_idx=0,
+    cmap='gist_ncar',
+    vmin=0, vmax=100,
+    alpha_sig=0.9, alpha_bkg=0.9,
+):
+    def _mask_rgba(sig, bkg, a_s=0.9, a_b=0.9):
+        T, W = sig.shape
+        rgba = np.zeros((T, W, 4), dtype=np.float32)
+        rgba[..., 0] = (sig > 0).astype(np.float32) # red
+        rgba[..., 2] = (bkg > 0).astype(np.float32) # blue
+        rgba[..., 3] = np.clip(a_s*(sig>0) + a_b*(bkg>0), 0.0, 1.0)
+        return rgba
+
+    patch_file = str(patch_file)
+    with h5py.File(patch_file, "r") as g:
+        N = g["image"].shape[0]
+        plane = int(g.attrs.get("plane", -1))
+        time_ds = int(g.attrs.get("time_downsample", 6))
+        win_t = int(g.attrs.get("win_t", g["image"].shape[1]))
+        win_w = int(g.attrs.get("win_w", g["image"].shape[2]))
+
+        end = min(start_idx + max_examples, N)
+        if start_idx >= N:
+            print(f"{Path(patch_file).name}: start_idx={start_idx} >= N={N}, nothing there..")
+            return
+
+        for idx in range(start_idx, end):
+            img = g["image"][idx]
+            sigm = g["sigmask"][idx]
+            bkgm = g["bkgmask"][idx]
+
+            eid = tuple(g["event_id"][idx])
+            src = g["source_file"][idx]
+            if isinstance(src, (bytes, bytearray)):
+                src = src.decode("utf-8", "ignore")
+            evt_i = int(g["event_idx_in_file"][idx])
+
+            win_origin = g["win_origin"][idx] if "win_origin" in g else np.array([-1,-1], dtype=np.int32)
+            sig_in_win = int(g["sigpix_in_win"][idx]) if "sigpix_in_win" in g else int(sigm.sum())
+            tot_sig = int(g["total_sigpix_evt"][idx]) if "total_sigpix_evt" in g else sig_in_win
+            cap_frac = float(g["capture_fraction"][idx]) if "capture_fraction" in g else (float(sig_in_win)/max(1,tot_sig))
+
+            bkg_in_win = int(bkgm.sum())
+            total_in_win = int(sigm.sum() + bkgm.sum())
+
+            print(#f"idx={idx} | eid={eid} | src={src} | evt_idx={evt_i} | "
+                  #f"win_origin={tuple(map(int,win_origin))} "
+                  f"sig_in_window / sig_in_evt = {sig_in_win} / {tot_sig} | "
+                  f"bkg_in_window = {bkg_in_win} | total_in_window = {total_in_win}")
+
+            fig, axes = plt.subplots(1, 2, figsize=(16, 4), constrained_layout=True, sharex=True, sharey=True)
+
+            # raw
+            ax = axes[0]
+            im = ax.imshow(img, origin='lower', aspect='auto', cmap=cmap, vmin=vmin, vmax=vmax)
+            #ax.set_title("raw intensity")
+            ax.set_xlabel("wire", fontsize=15)
+            ax.set_ylabel("time", fontsize=15)
+            #cb = plt.colorbar(im, ax=ax)
+            #cb.set_label("ADC (downsampled)")
+
+            # mask overlay on white
+            ax = axes[1]
+            ax.set_facecolor('white')
+            rgba = _mask_rgba(sigm, bkgm, alpha_sig, alpha_bkg)
+            ax.imshow(rgba, origin='lower', aspect='auto', interpolation='nearest')
+            #ax.set_title("mask overlay (red=sig, blue=bkg)")
+            ax.set_xlabel("wire", fontsize=15)
+
+            #supt = (f"{Path(patch_file).name} plane={plane} eid={eid} window={win_t}x{win_w}")
+            #fig.suptitle(supt, y=1.02, fontsize=10)
+            plt.show()
+
