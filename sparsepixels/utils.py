@@ -13,15 +13,18 @@ def pool_pad_noise_inflate(img, pool_size, pool_type, target_size=None, noise_ty
 
     k_h = k_w = pool_size
 
-    if pool_type == 'max':
-        pooled = tf.nn.max_pool2d(x, ksize=[1, k_h, k_w, 1], strides=[1, k_h, k_w, 1], padding='VALID')
-    elif pool_type in ('avg'):
-        pooled = tf.nn.avg_pool2d(x, ksize=[1, k_h, k_w, 1], strides=[1, k_h, k_w, 1], padding='VALID')
+    if pool_size is not None:
+        if pool_type == 'max':
+            pooled = tf.nn.max_pool2d(x, ksize=[1, k_h, k_w, 1], strides=[1, k_h, k_w, 1], padding='VALID')
+        elif pool_type in ('avg'):
+            pooled = tf.nn.avg_pool2d(x, ksize=[1, k_h, k_w, 1], strides=[1, k_h, k_w, 1], padding='VALID')
+    else:
+        pooled = x
 
     old_h = tf.shape(x)[1]
     old_w = tf.shape(x)[2]
-    new_h  = tf.shape(pooled)[1]
-    new_w  = tf.shape(pooled)[2]
+    new_h = tf.shape(pooled)[1]
+    new_w = tf.shape(pooled)[2]
 
     if target_size is None:
         target_h, target_w = old_h, old_w
@@ -45,8 +48,9 @@ def pool_pad_noise_inflate(img, pool_size, pool_type, target_size=None, noise_ty
         constant_values=0
     )
 
-    max_per_img = tf.reduce_max(padded, axis=[1,2,3], keepdims=True)
-    padded = tf.math.divide_no_nan(padded, max_per_img)
+    if target_size is not None:
+        max_per_img = tf.reduce_max(padded, axis=[1,2,3], keepdims=True)
+        padded = tf.math.divide_no_nan(padded, max_per_img)
 
     if inflate_factor != 1.0:
         h, w = tf.shape(padded)[1], tf.shape(padded)[2]
