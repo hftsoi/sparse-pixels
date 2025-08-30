@@ -234,6 +234,10 @@ void sparse_pooling_avg(data_T sparse_arr_feat_in[N_sparse * n_chan],
     else if (pool_size == 4) { pool_size_recip = 0.25; }
     else if (pool_size == 5) { pool_size_recip = 0.2; }
     else if (pool_size == 6) { pool_size_recip = 0.16667; }
+    else if (pool_size == 7) { pool_size_recip = 0.14286; }
+    else if (pool_size == 8) { pool_size_recip = 0.125; }
+    else if (pool_size == 9) { pool_size_recip = 0.11111; }
+    else if (pool_size == 10) { pool_size_recip = 0.1; }
 
     // First compute the pooled postitions for all pixels.
     // This is needed here separately first since we need to do nested loops over it later.
