@@ -1,0 +1,184 @@
+================================================================
+== Design Size Report
+================================================================
+
+* Instructions per Function for each Compilation Phase
++------------------------------------------------+-------------------------+----------------------+----------------------+----------------------+----------------------+
+| Function                                       | Location                | Compile/Link         | Unroll/Inline        | Performance/Pipeline | Optimizations        |
++------------------------------------------------+-------------------------+----------------------+----------------------+----------------------+----------------------+
+| + myhls                                        | myhls.cpp:336           | 539,486 *            | 627,119 *            | 189,354 *            | 169,385 *            |
+|  + sparse_input_reduce<ap_fixed...             | myhls.cpp:54            | 519,347              | 216,400              |  91,037              |  72,237              |
+|     value_idx_pair                             | myhls.cpp:29            |      19              |                      |                      |                      |
+|   + find_active<value_idx_pair<a...            | myhls.cpp:34            | 518,840              |                      |                      |                      |
+|    + find_active<value_idx_pair<a...           | myhls.cpp:34            | 338,776              |                      |                      |                      |
+|     + find_active<value_idx_pair<a...          | myhls.cpp:34            | 338,608 (2 calls)    |                      |                      |                      |
+|      + find_active<value_idx_pair<a...         | myhls.cpp:34            | 338,272 (4 calls)    |                      |                      |                      |
+|       + find_active<value_idx_pair<a...        | myhls.cpp:34            | 337,600 (8 calls)    |                      |                      |                      |
+|        + find_active<value_idx_pair<a...       | myhls.cpp:34            | 336,256 (16 calls)   |                      |                      |                      |
+|         + find_active<value_idx_pair<a...      | myhls.cpp:34            | 333,568 (32 calls)   |                      |                      |                      |
+|          + find_active<value_idx_pair<a...     | myhls.cpp:34            | 328,192 (64 calls)   |                      |                      |                      |
+|           + find_active<value_idx_pair<a...    | myhls.cpp:34            | 317,440 (128 calls)  |                      |                      |                      |
+|            + find_active<value_idx_pair<a...   | myhls.cpp:34            | 295,936 (256 calls)  |                      |                      |                      |
+|             + find_active<value_idx_pair<a...  | myhls.cpp:34            | 252,928 (512 calls)  |                      |                      |                      |
+|              + find_active<value_idx_pair<a... | myhls.cpp:34            | 166,912 (1024 calls) |                      |                      |                      |
+|               + operator()                     | myhls.cpp:13            | 153,600 (1024 calls) |                      |                      |                      |
+|                  value_idx_pair                | myhls.cpp:29            |  19,456 (1024 calls) |                      |                      |                      |
+|              + operator()                      | myhls.cpp:13            |  76,800 (512 calls)  |                      |                      |                      |
+|                 value_idx_pair                 | myhls.cpp:29            |   9,728 (512 calls)  |                      |                      |                      |
+|             + operator()                       | myhls.cpp:13            |  38,400 (256 calls)  |                      |                      |                      |
+|                value_idx_pair                  | myhls.cpp:29            |   4,864 (256 calls)  |                      |                      |                      |
+|            + operator()                        | myhls.cpp:13            |  19,200 (128 calls)  |                      |                      |                      |
+|               value_idx_pair                   | myhls.cpp:29            |   2,432 (128 calls)  |                      |                      |                      |
+|           + operator()                         | myhls.cpp:13            |   9,600 (64 calls)   |                      |                      |                      |
+|              value_idx_pair                    | myhls.cpp:29            |   1,216 (64 calls)   |                      |                      |                      |
+|          + operator()                          | myhls.cpp:13            |   4,800 (32 calls)   |                      |                      |                      |
+|             value_idx_pair                     | myhls.cpp:29            |     608 (32 calls)   |                      |                      |                      |
+|         + operator()                           | myhls.cpp:13            |   2,400 (16 calls)   |                      |                      |                      |
+|            value_idx_pair                      | myhls.cpp:29            |     304 (16 calls)   |                      |                      |                      |
+|        + operator()                            | myhls.cpp:13            |   1,200 (8 calls)    |                      |                      |                      |
+|           value_idx_pair                       | myhls.cpp:29            |     152 (8 calls)    |                      |                      |                      |
+|       + operator()                             | myhls.cpp:13            |     600 (4 calls)    |                      |                      |                      |
+|          value_idx_pair                        | myhls.cpp:29            |      76 (4 calls)    |                      |                      |                      |
+|      + operator()                              | myhls.cpp:13            |     300 (2 calls)    |                      |                      |                      |
+|         value_idx_pair                         | myhls.cpp:29            |      38 (2 calls)    |                      |                      |                      |
+|     + operator()                               | myhls.cpp:13            |     150              |                      |                      |                      |
+|        value_idx_pair                          | myhls.cpp:29            |      19              |                      |                      |                      |
+|    + find_active<value_idx_pair<a...           | myhls.cpp:34            | 179,896              |                      |                      |                      |
+|     + find_active<value_idx_pair<a...          | myhls.cpp:34            | 169,304              |                      |                      |                      |
+|      + find_active<value_idx_pair<a...         | myhls.cpp:34            | 169,136 (2 calls)    |                      |                      |                      |
+|       + find_active<value_idx_pair<a...        | myhls.cpp:34            | 168,800 (4 calls)    |                      |                      |                      |
+|        + find_active<value_idx_pair<a...       | myhls.cpp:34            | 168,128 (8 calls)    |                      |                      |                      |
+|         + find_active<value_idx_pair<a...      | myhls.cpp:34            | 166,784 (16 calls)   |                      |                      |                      |
+|          + find_active<value_idx_pair<a...     | myhls.cpp:34            | 164,096 (32 calls)   |                      |                      |                      |
+|           + find_active<value_idx_pair<a...    | myhls.cpp:34            | 158,720 (64 calls)   |                      |                      |                      |
+|            + find_active<value_idx_pair<a...   | myhls.cpp:34            | 147,968 (128 calls)  |                      |                      |                      |
+|             + find_active<value_idx_pair<a...  | myhls.cpp:34            | 126,464 (256 calls)  |                      |                      |                      |
+|              + find_active<value_idx_pair<a... | myhls.cpp:34            |  83,456 (512 calls)  |                      |                      |                      |
+|               + operator()                     | myhls.cpp:13            |  76,800 (512 calls)  |                      |                      |                      |
+|                  value_idx_pair                | myhls.cpp:29            |   9,728 (512 calls)  |                      |                      |                      |
+|              + operator()                      | myhls.cpp:13            |  38,400 (256 calls)  |                      |                      |                      |
+|                 value_idx_pair                 | myhls.cpp:29            |   4,864 (256 calls)  |                      |                      |                      |
+|             + operator()                       | myhls.cpp:13            |  19,200 (128 calls)  |                      |                      |                      |
+|                value_idx_pair                  | myhls.cpp:29            |   2,432 (128 calls)  |                      |                      |                      |
+|            + operator()                        | myhls.cpp:13            |   9,600 (64 calls)   |                      |                      |                      |
+|               value_idx_pair                   | myhls.cpp:29            |   1,216 (64 calls)   |                      |                      |                      |
+|           + operator()                         | myhls.cpp:13            |   4,800 (32 calls)   |                      |                      |                      |
+|              value_idx_pair                    | myhls.cpp:29            |     608 (32 calls)   |                      |                      |                      |
+|          + operator()                          | myhls.cpp:13            |   2,400 (16 calls)   |                      |                      |                      |
+|             value_idx_pair                     | myhls.cpp:29            |     304 (16 calls)   |                      |                      |                      |
+|         + operator()                           | myhls.cpp:13            |   1,200 (8 calls)    |                      |                      |                      |
+|            value_idx_pair                      | myhls.cpp:29            |     152 (8 calls)    |                      |                      |                      |
+|        + operator()                            | myhls.cpp:13            |     600 (4 calls)    |                      |                      |                      |
+|           value_idx_pair                       | myhls.cpp:29            |      76 (4 calls)    |                      |                      |                      |
+|       + operator()                             | myhls.cpp:13            |     300 (2 calls)    |                      |                      |                      |
+|          value_idx_pair                        | myhls.cpp:29            |      38 (2 calls)    |                      |                      |                      |
+|      + operator()                              | myhls.cpp:13            |     150              |                      |                      |                      |
+|         value_idx_pair                         | myhls.cpp:29            |      19              |                      |                      |                      |
+|     + find_active<value_idx_pair<a...          | myhls.cpp:34            |  10,424              |                      |                      |                      |
+|      + find_active<value_idx_pair<a...         | myhls.cpp:34            |  10,256 (2 calls)    |                      |                      |                      |
+|       + find_active<value_idx_pair<a...        | myhls.cpp:34            |   9,920 (4 calls)    |                      |                      |                      |
+|        + find_active<value_idx_pair<a...       | myhls.cpp:34            |   9,248 (8 calls)    |                      |                      |                      |
+|         + find_active<value_idx_pair<a...      | myhls.cpp:34            |   7,904 (16 calls)   |                      |                      |                      |
+|          + find_active<value_idx_pair<a...     | myhls.cpp:34            |   5,216 (32 calls)   |                      |                      |                      |
+|           + operator()                         | myhls.cpp:13            |   4,800 (32 calls)   |                      |                      |                      |
+|              value_idx_pair                    | myhls.cpp:29            |     608 (32 calls)   |                      |                      |                      |
+|          + operator()                          | myhls.cpp:13            |   2,400 (16 calls)   |                      |                      |                      |
+|             value_idx_pair                     | myhls.cpp:29            |     304 (16 calls)   |                      |                      |                      |
+|         + operator()                           | myhls.cpp:13            |   1,200 (8 calls)    |                      |                      |                      |
+|            value_idx_pair                      | myhls.cpp:29            |     152 (8 calls)    |                      |                      |                      |
+|        + operator()                            | myhls.cpp:13            |     600 (4 calls)    |                      |                      |                      |
+|           value_idx_pair                       | myhls.cpp:29            |      76 (4 calls)    |                      |                      |                      |
+|       + operator()                             | myhls.cpp:13            |     300 (2 calls)    |                      |                      |                      |
+|          value_idx_pair                        | myhls.cpp:29            |      38 (2 calls)    |                      |                      |                      |
+|      + operator()                              | myhls.cpp:13            |     150              |                      |                      |                      |
+|         value_idx_pair                         | myhls.cpp:29            |      19              |                      |                      |                      |
+|     + operator()                               | myhls.cpp:13            |     150              |                      |                      |                      |
+|        value_idx_pair                          | myhls.cpp:29            |      19              |                      |                      |                      |
+|    + operator()                                | myhls.cpp:13            |     150              |                      |                      |                      |
+|       value_idx_pair                           | myhls.cpp:29            |      19              |                      |                      |                      |
+|     operator()                                 | myhls.cpp:13            |                      |  78,375 (3135 calls) |  43,890 (3135 calls) |  43,890 (3135 calls) |
+|  + sparse_conv<ap_fixed<16, 6, ...             | myhls.cpp:154           |   3,730              |  99,781              |  36,457              |  36,457              |
+|     mult_for_sparse_conv_kernel<...            | myhls.cpp:124           |   1,845              |                      |                      |                      |
+|    sparse_relu<ap_ufixed<16, 6,...             | myhls.cpp:206           |     451              |     577              |     253              |     254              |
+|  + sparse_conv<ap_ufixed<16, 6,...             | myhls.cpp:154           |   3,982              |  64,189              |  28,783              |  28,783              |
+|     mult_for_sparse_conv_kernel<...            | myhls.cpp:124           |   1,845              |                      |                      |                      |
+|    sparse_relu<ap_ufixed<16, 6,...             | myhls.cpp:206           |     451              |     193              |      85              |      86              |
+|    sparse_pooling_avg<ap_ufixed...             | myhls.cpp:220           |   2,644              |  10,862              |   1,867              |   1,867              |
+|    sparse_flatten<ap_ufixed<16,...             | myhls.cpp:303           |     491              |     921              |   3,044              |   3,056              |
+|  + dense<ap_ufixed<16, 6, AP_RN...             | nnet_dense.h:41         |     655              |                      |                      |                      |
+|   + dense                                      | nnet_dense.h:50         |     653              |                      |                      |                      |
+|    + dense_latency<ap_ufixed<16, ...           | nnet_dense_latency.h:13 |     651              |                      |                      |                      |
+|       product                                  | nnet_mult.h:70          |     151              |                      |                      |                      |
+|       cast<ap_ufixed<16, 6, AP_RND...          | nnet_mult.h:110         |       3              |                      |                      |                      |
+|    relu<ap_fixed<41, 22, AP_TRN...             | nnet_activation.h:39    |     826              |   1,681              |   1,041              |   1,042              |
+|  + dense<ap_ufixed<16, 6, AP_RN...             | nnet_dense.h:41         |     665              |                      |                      |                      |
+|   + dense                                      | nnet_dense.h:50         |     663              |                      |                      |                      |
+|    + dense_latency<ap_ufixed<16, ...           | nnet_dense_latency.h:13 |     661              |                      |                      |                      |
+|       product                                  | nnet_mult.h:70          |     151              |                      |                      |                      |
+|       cast<ap_ufixed<16, 6, AP_RND...          | nnet_mult.h:110         |       3              |                      |                      |                      |
+|  + softmax<ap_fixed<28, 10, AP_...             | nnet_activation.h:379   |   5,474              |                      |                      |                      |
+|   + softmax_stable<ap_fixed<28, ...            | nnet_activation.h:216   |   5,472              |                      |                      |                      |
+|    + init_exp_table<ap_fixed<28, ...           | nnet_activation.h:149   |   1,223              |                      |                      |                      |
+|       softmax_real_val_from_idx<ap...          | nnet_activation.h:133   |     446              |                      |                      |                      |
+|       exp_fcn_float                            | nnet_activation.h:131   |       4              |                      |                      |                      |
+|    + init_invert_table<ap_fixed<1...           | nnet_activation.h:160   |   1,471              |                      |                      |                      |
+|       softmax_real_val_from_idx<ap...          | nnet_activation.h:133   |     698              |                      |                      |                      |
+|    + reduce<ap_fixed<28, 10, AP_T...           | nnet_common.h:37        |     122              |                      |                      |                      |
+|     + reduce<ap_fixed<28, 10, AP_T...          | nnet_common.h:37        |      89              |                      |                      |                      |
+|      + reduce<ap_fixed<28, 10, AP_T...         | nnet_common.h:37        |      60 (2 calls)    |                      |                      |                      |
+|         operator()                             | nnet_common.h:66        |      40 (2 calls)    |                      |                      |                      |
+|        operator()                              | nnet_common.h:66        |      20              |                      |                      |                      |
+|       reduce<ap_fixed<28, 10, AP_T...          | nnet_common.h:37        |       4              |                      |                      |                      |
+|       operator()                               | nnet_common.h:66        |      20              |                      |                      |                      |
+|      softmax_idx_from_real_val<ap...           | nnet_activation.h:141   |     110              |                      |                      |                      |
+|    + reduce<ap_fixed<18, 8, AP_RN...           | nnet_common.h:37        |   1,346              |                      |                      |                      |
+|     + reduce<ap_fixed<18, 8, AP_RN...          | nnet_common.h:37        |   1,007              |                      |                      |                      |
+|      + reduce<ap_fixed<18, 8, AP_RN...         | nnet_common.h:37        |     672 (2 calls)    |                      |                      |                      |
+|         operator()                             | nnet_common.h:51        |     652 (2 calls)    |                      |                      |                      |
+|        operator()                              | nnet_common.h:51        |     326              |                      |                      |                      |
+|       reduce<ap_fixed<18, 8, AP_RN...          | nnet_common.h:37        |       4              |                      |                      |                      |
+|       operator()                               | nnet_common.h:51        |     326              |                      |                      |                      |
+|      softmax_idx_from_real_val<ap...           | nnet_activation.h:141   |     110              |                      |                      |                      |
+|  + dense_latency<ap_ufixed<16, ...             | nnet_dense_latency.h:13 |                      | 224,998              |  23,834              |  23,835              |
+|     cast<ap_ufixed<16, 6, AP_RND...            | nnet_mult.h:110         |                      |      60 (20 calls)   |                      |                      |
+|  + dense_latency<ap_ufixed<16, ...             | nnet_dense_latency.h:13 |                      |   6,328              |   1,037              |   1,038              |
+|     cast<ap_ufixed<16, 6, AP_RND...            | nnet_mult.h:110         |                      |      15 (5 calls)    |                      |                      |
+|  + softmax_stable<ap_fixed<28, ...             | nnet_activation.h:216   |                      |     997              |     296              |     292              |
+|   + reduce<ap_fixed<28, 10, AP_T...            | nnet_common.h:37        |                      |      87              |                      |                      |
+|    + reduce<ap_fixed<28, 10, AP_T...           | nnet_common.h:37        |                      |      63              |                      |                      |
+|     + reduce<ap_fixed<28, 10, AP_T...          | nnet_common.h:37        |                      |      42 (2 calls)    |                      |                      |
+|        operator()                              | nnet_common.h:66        |                      |      32 (2 calls)    |                      |                      |
+|       operator()                               | nnet_common.h:66        |                      |      16              |                      |                      |
+|      reduce<ap_fixed<28, 10, AP_T...           | nnet_common.h:37        |                      |       2              |                      |                      |
+|      operator()                                | nnet_common.h:66        |                      |      17              |                      |                      |
+|     softmax_idx_from_real_val<ap...            | nnet_activation.h:141   |                      |      40 (5 calls)    |                      |                      |
+|   + reduce<ap_fixed<18, 8, AP_RN...            | nnet_common.h:37        |                      |     327              |                      |                      |
+|    + reduce<ap_fixed<18, 8, AP_RN...           | nnet_common.h:37        |                      |     244              |                      |                      |
+|     + reduce<ap_fixed<18, 8, AP_RN...          | nnet_common.h:37        |                      |     164 (2 calls)    |                      |                      |
+|        operator()                              | nnet_common.h:51        |                      |     146 (2 calls)    |                      |                      |
+|       operator()                               | nnet_common.h:51        |                      |      73              |                      |                      |
+|      reduce<ap_fixed<18, 8, AP_RN...           | nnet_common.h:37        |                      |       3              |                      |                      |
+|      operator()                                | nnet_common.h:51        |                      |      73              |                      |                      |
+|     softmax_idx_from_real_val<ap...            | nnet_activation.h:141   |                      |       8              |                      |                      |
+|     reduce<ap_fixed<18, 8, AP_RN...            | nnet_common.h:37        |                      |                      |      76              |      76              |
++------------------------------------------------+-------------------------+----------------------+----------------------+----------------------+----------------------+
+    * - Exceeded design size warning message threshold
+
+* Description of Compilation Phases
++----------------------+------------------------------------------------------------+
+| Compilation Phase    | Description                                                |
++----------------------+------------------------------------------------------------+
+| Compile/Link         | All functions are compiled and linked into a single design |
+| Unroll/Inline        | After user unroll and inline pragmas are applied           |
+| Performance/Pipeline | After performance and pipeline pragmas are applied         |
+| Optimizations        | After high level synthesis optimizations                   |
++----------------------+------------------------------------------------------------+
+
+* Design Size Message Settings
++---------------------------------------------+--------+------------------------------------------------------------------+
+| Message Setting                             | Value  | Description                                                      |
++---------------------------------------------+--------+------------------------------------------------------------------+
+| config_compile -design_size_maximum_warning | 100000 | Show a warning when total design instructions exceeds this value |
++---------------------------------------------+--------+------------------------------------------------------------------+
+
+
