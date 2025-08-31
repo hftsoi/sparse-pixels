@@ -1,0 +1,365 @@
+
+
+================================================================
+== Vivado HLS Report for 'shift_line_buffer_array_ap_ufixed_8_1_5_3_0_1u_config2_s'
+================================================================
+* Date:           Sat Aug 30 21:35:26 2025
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        myhls_prj
+* Solution:       solution1
+* Product family: virtexuplus
+* Target device:  xcu250-figd2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 5.00 ns | 4.277 ns |   0.62 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        1|        1| 5.000 ns | 5.000 ns |    1|    1| function |
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+------+
+|         Name        | BRAM_18K| DSP48E|    FF   |   LUT   | URAM |
++---------------------+---------+-------+---------+---------+------+
+|DSP                  |        -|      -|        -|        -|     -|
+|Expression           |        -|      -|        0|        6|     -|
+|FIFO                 |        -|      -|        -|        -|     -|
+|Instance             |        -|      -|        -|        -|     -|
+|Memory               |        0|      -|      512|      512|     -|
+|Multiplexer          |        -|      -|        -|        -|     -|
+|Register             |        -|      -|      594|        -|     -|
++---------------------+---------+-------+---------+---------+------+
+|Total                |        0|      0|     1106|      518|     0|
++---------------------+---------+-------+---------+---------+------+
+|Available SLR        |     1344|   3072|   864000|   432000|   320|
++---------------------+---------+-------+---------+---------+------+
+|Utilization SLR (%)  |        0|      0|    ~0   |    ~0   |     0|
++---------------------+---------+-------+---------+---------+------+
+|Available            |     5376|  12288|  3456000|  1728000|  1280|
++---------------------+---------+-------+---------+---------+------+
+|Utilization (%)      |        0|      0|    ~0   |    ~0   |     0|
++---------------------+---------+-------+---------+---------+------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    +------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |            Memory            |                                      Module                                      | BRAM_18K| FF | LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |line_buffer_Array_V_0_0_U     |shift_line_buffer_array_ap_ufixed_8_1_5_3_0_1u_config2_s_line_buffer_Array_V_bkb  |        0|  64|  64|    0|    64|    8|     1|          512|
+    |line_buffer_Array_V_1325_0_U  |shift_line_buffer_array_ap_ufixed_8_1_5_3_0_1u_config2_s_line_buffer_Array_V_bkb  |        0|  64|  64|    0|    64|    8|     1|          512|
+    |line_buffer_Array_V_2326_0_U  |shift_line_buffer_array_ap_ufixed_8_1_5_3_0_1u_config2_s_line_buffer_Array_V_bkb  |        0|  64|  64|    0|    64|    8|     1|          512|
+    |line_buffer_Array_V_3_0_U     |shift_line_buffer_array_ap_ufixed_8_1_5_3_0_1u_config2_s_line_buffer_Array_V_bkb  |        0|  64|  64|    0|    64|    8|     1|          512|
+    |line_buffer_Array_V_4_0_U     |shift_line_buffer_array_ap_ufixed_8_1_5_3_0_1u_config2_s_line_buffer_Array_V_bkb  |        0|  64|  64|    0|    64|    8|     1|          512|
+    |line_buffer_Array_V_5_0_U     |shift_line_buffer_array_ap_ufixed_8_1_5_3_0_1u_config2_s_line_buffer_Array_V_bkb  |        0|  64|  64|    0|    64|    8|     1|          512|
+    |line_buffer_Array_V_6_0_U     |shift_line_buffer_array_ap_ufixed_8_1_5_3_0_1u_config2_s_line_buffer_Array_V_bkb  |        0|  64|  64|    0|    64|    8|     1|          512|
+    |line_buffer_Array_V_7_0_U     |shift_line_buffer_array_ap_ufixed_8_1_5_3_0_1u_config2_s_line_buffer_Array_V_bkb  |        0|  64|  64|    0|    64|    8|     1|          512|
+    +------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |Total                         |                                                                                  |        0| 512| 512|    0|   512|   64|     8|         4096|
+    +------------------------------+----------------------------------------------------------------------------------+---------+----+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------------------+----------+-------+---+----+------------+------------+
+    |        Variable Name        | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------------------+----------+-------+---+----+------------+------------+
+    |ap_block_pp0_stage0_11001    |    and   |      0|  0|   2|           1|           1|
+    |ap_block_pp0_stage0_subdone  |    or    |      0|  0|   2|           1|           1|
+    |ap_enable_pp0                |    xor   |      0|  0|   2|           1|           2|
+    +-----------------------------+----------+-------+---+----+------------+------------+
+    |Total                        |          |      0|  0|   6|           3|           4|
+    +-----------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    +------------------------------------+---+----+-----+-----------+
+    |                Name                | FF| LUT| Bits| Const Bits|
+    +------------------------------------+---+----+-----+-----------+
+    |DataOut_V_reg_1494                  |  8|   0|    8|          0|
+    |ap_CS_fsm                           |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1             |  1|   0|    1|          0|
+    |in_elem_data_V_read_1_reg_1489      |  8|   0|    8|          0|
+    |kernel_window_10_V_read_2_reg_1444  |  8|   0|    8|          0|
+    |kernel_window_11_V_read_2_reg_1439  |  8|   0|    8|          0|
+    |kernel_window_12_V_read_2_reg_1434  |  8|   0|    8|          0|
+    |kernel_window_13_V_read_2_reg_1429  |  8|   0|    8|          0|
+    |kernel_window_14_V_read_2_reg_1424  |  8|   0|    8|          0|
+    |kernel_window_15_V_read_2_reg_1419  |  8|   0|    8|          0|
+    |kernel_window_16_V_read_2_reg_1414  |  8|   0|    8|          0|
+    |kernel_window_17_V_read_2_reg_1409  |  8|   0|    8|          0|
+    |kernel_window_19_V_read_2_reg_1404  |  8|   0|    8|          0|
+    |kernel_window_1_V_read_1_reg_1484   |  8|   0|    8|          0|
+    |kernel_window_20_V_read_2_reg_1399  |  8|   0|    8|          0|
+    |kernel_window_21_V_read_2_reg_1394  |  8|   0|    8|          0|
+    |kernel_window_22_V_read_2_reg_1389  |  8|   0|    8|          0|
+    |kernel_window_23_V_read_2_reg_1384  |  8|   0|    8|          0|
+    |kernel_window_24_V_read_2_reg_1379  |  8|   0|    8|          0|
+    |kernel_window_25_V_read_2_reg_1374  |  8|   0|    8|          0|
+    |kernel_window_26_V_read_2_reg_1369  |  8|   0|    8|          0|
+    |kernel_window_28_V_read_1_reg_1364  |  8|   0|    8|          0|
+    |kernel_window_29_V_read_1_reg_1359  |  8|   0|    8|          0|
+    |kernel_window_2_V_read_1_reg_1479   |  8|   0|    8|          0|
+    |kernel_window_30_V_read_2_reg_1354  |  8|   0|    8|          0|
+    |kernel_window_31_V_read_2_reg_1349  |  8|   0|    8|          0|
+    |kernel_window_32_V_read_2_reg_1344  |  8|   0|    8|          0|
+    |kernel_window_33_V_read_2_reg_1339  |  8|   0|    8|          0|
+    |kernel_window_34_V_read_2_reg_1334  |  8|   0|    8|          0|
+    |kernel_window_35_V_read_2_reg_1329  |  8|   0|    8|          0|
+    |kernel_window_37_V_read_2_reg_1324  |  8|   0|    8|          0|
+    |kernel_window_38_V_read_2_reg_1319  |  8|   0|    8|          0|
+    |kernel_window_39_V_read_2_reg_1314  |  8|   0|    8|          0|
+    |kernel_window_3_V_read_2_reg_1474   |  8|   0|    8|          0|
+    |kernel_window_40_V_read_2_reg_1309  |  8|   0|    8|          0|
+    |kernel_window_41_V_read_2_reg_1304  |  8|   0|    8|          0|
+    |kernel_window_42_V_read_2_reg_1299  |  8|   0|    8|          0|
+    |kernel_window_43_V_read_2_reg_1294  |  8|   0|    8|          0|
+    |kernel_window_44_V_read_2_reg_1289  |  8|   0|    8|          0|
+    |kernel_window_46_V_read_2_reg_1284  |  8|   0|    8|          0|
+    |kernel_window_47_V_read_2_reg_1279  |  8|   0|    8|          0|
+    |kernel_window_48_V_read_2_reg_1274  |  8|   0|    8|          0|
+    |kernel_window_49_V_read_2_reg_1269  |  8|   0|    8|          0|
+    |kernel_window_4_V_read_2_reg_1469   |  8|   0|    8|          0|
+    |kernel_window_50_V_read_2_reg_1264  |  8|   0|    8|          0|
+    |kernel_window_51_V_read_2_reg_1259  |  8|   0|    8|          0|
+    |kernel_window_52_V_read_2_reg_1254  |  8|   0|    8|          0|
+    |kernel_window_53_V_read_2_reg_1249  |  8|   0|    8|          0|
+    |kernel_window_55_V_read_1_reg_1244  |  8|   0|    8|          0|
+    |kernel_window_56_V_read_1_reg_1239  |  8|   0|    8|          0|
+    |kernel_window_57_V_read_2_reg_1234  |  8|   0|    8|          0|
+    |kernel_window_58_V_read_2_reg_1229  |  8|   0|    8|          0|
+    |kernel_window_59_V_read_2_reg_1224  |  8|   0|    8|          0|
+    |kernel_window_5_V_read_2_reg_1464   |  8|   0|    8|          0|
+    |kernel_window_60_V_read_2_reg_1219  |  8|   0|    8|          0|
+    |kernel_window_61_V_read_2_reg_1214  |  8|   0|    8|          0|
+    |kernel_window_62_V_read_2_reg_1209  |  8|   0|    8|          0|
+    |kernel_window_64_V_read_2_reg_1204  |  8|   0|    8|          0|
+    |kernel_window_65_V_read_2_reg_1199  |  8|   0|    8|          0|
+    |kernel_window_66_V_read_2_reg_1194  |  8|   0|    8|          0|
+    |kernel_window_67_V_read_2_reg_1189  |  8|   0|    8|          0|
+    |kernel_window_68_V_read_2_reg_1184  |  8|   0|    8|          0|
+    |kernel_window_69_V_read_2_reg_1179  |  8|   0|    8|          0|
+    |kernel_window_6_V_read_2_reg_1459   |  8|   0|    8|          0|
+    |kernel_window_70_V_read_2_reg_1174  |  8|   0|    8|          0|
+    |kernel_window_71_V_read_2_reg_1169  |  8|   0|    8|          0|
+    |kernel_window_73_V_read_2_reg_1164  |  8|   0|    8|          0|
+    |kernel_window_74_V_read_2_reg_1159  |  8|   0|    8|          0|
+    |kernel_window_75_V_read_2_reg_1154  |  8|   0|    8|          0|
+    |kernel_window_76_V_read_2_reg_1149  |  8|   0|    8|          0|
+    |kernel_window_77_V_read_2_reg_1144  |  8|   0|    8|          0|
+    |kernel_window_78_V_read_2_reg_1139  |  8|   0|    8|          0|
+    |kernel_window_79_V_read_2_reg_1134  |  8|   0|    8|          0|
+    |kernel_window_7_V_read_2_reg_1454   |  8|   0|    8|          0|
+    |kernel_window_80_V_read_2_reg_1129  |  8|   0|    8|          0|
+    |kernel_window_8_V_read_2_reg_1449   |  8|   0|    8|          0|
+    +------------------------------------+---+----+-----+-----------+
+    |Total                               |594|   0|  594|          0|
+    +------------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-------------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+|        RTL Ports        | Dir | Bits|  Protocol  |                          Source Object                          |    C Type    |
++-------------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+|ap_clk                   |  in |    1| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_rst                   |  in |    1| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_start                 |  in |    1| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_done                  | out |    1| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_idle                  | out |    1| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_ready                 | out |    1| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_ce                    |  in |    1| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_0              | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_1              | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_2              | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_3              | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_4              | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_5              | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_6              | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_7              | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_8              | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_9              | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_10             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_11             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_12             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_13             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_14             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_15             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_16             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_17             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_18             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_19             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_20             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_21             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_22             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_23             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_24             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_25             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_26             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_27             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_28             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_29             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_30             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_31             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_32             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_33             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_34             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_35             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_36             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_37             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_38             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_39             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_40             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_41             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_42             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_43             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_44             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_45             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_46             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_47             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_48             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_49             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_50             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_51             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_52             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_53             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_54             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_55             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_56             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_57             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_58             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_59             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_60             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_61             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_62             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_63             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_64             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_65             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_66             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_67             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_68             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_69             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_70             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_71             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_72             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_73             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_74             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_75             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_76             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_77             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_78             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_79             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|ap_return_80             | out |    8| ap_ctrl_hs | shift_line_buffer<array<ap_ufixed<8, 1, 5, 3, 0>, 1u>, config2> | return value |
+|in_elem_data_V_read      |  in |    8|   ap_none  |                       in_elem_data_V_read                       |    scalar    |
+|kernel_window_1_V_read   |  in |    8|   ap_none  |                      kernel_window_1_V_read                     |    scalar    |
+|kernel_window_2_V_read   |  in |    8|   ap_none  |                      kernel_window_2_V_read                     |    scalar    |
+|kernel_window_3_V_read   |  in |    8|   ap_none  |                      kernel_window_3_V_read                     |    scalar    |
+|kernel_window_4_V_read   |  in |    8|   ap_none  |                      kernel_window_4_V_read                     |    scalar    |
+|kernel_window_5_V_read   |  in |    8|   ap_none  |                      kernel_window_5_V_read                     |    scalar    |
+|kernel_window_6_V_read   |  in |    8|   ap_none  |                      kernel_window_6_V_read                     |    scalar    |
+|kernel_window_7_V_read   |  in |    8|   ap_none  |                      kernel_window_7_V_read                     |    scalar    |
+|kernel_window_8_V_read   |  in |    8|   ap_none  |                      kernel_window_8_V_read                     |    scalar    |
+|kernel_window_10_V_read  |  in |    8|   ap_none  |                     kernel_window_10_V_read                     |    scalar    |
+|kernel_window_11_V_read  |  in |    8|   ap_none  |                     kernel_window_11_V_read                     |    scalar    |
+|kernel_window_12_V_read  |  in |    8|   ap_none  |                     kernel_window_12_V_read                     |    scalar    |
+|kernel_window_13_V_read  |  in |    8|   ap_none  |                     kernel_window_13_V_read                     |    scalar    |
+|kernel_window_14_V_read  |  in |    8|   ap_none  |                     kernel_window_14_V_read                     |    scalar    |
+|kernel_window_15_V_read  |  in |    8|   ap_none  |                     kernel_window_15_V_read                     |    scalar    |
+|kernel_window_16_V_read  |  in |    8|   ap_none  |                     kernel_window_16_V_read                     |    scalar    |
+|kernel_window_17_V_read  |  in |    8|   ap_none  |                     kernel_window_17_V_read                     |    scalar    |
+|kernel_window_19_V_read  |  in |    8|   ap_none  |                     kernel_window_19_V_read                     |    scalar    |
+|kernel_window_20_V_read  |  in |    8|   ap_none  |                     kernel_window_20_V_read                     |    scalar    |
+|kernel_window_21_V_read  |  in |    8|   ap_none  |                     kernel_window_21_V_read                     |    scalar    |
+|kernel_window_22_V_read  |  in |    8|   ap_none  |                     kernel_window_22_V_read                     |    scalar    |
+|kernel_window_23_V_read  |  in |    8|   ap_none  |                     kernel_window_23_V_read                     |    scalar    |
+|kernel_window_24_V_read  |  in |    8|   ap_none  |                     kernel_window_24_V_read                     |    scalar    |
+|kernel_window_25_V_read  |  in |    8|   ap_none  |                     kernel_window_25_V_read                     |    scalar    |
+|kernel_window_26_V_read  |  in |    8|   ap_none  |                     kernel_window_26_V_read                     |    scalar    |
+|kernel_window_28_V_read  |  in |    8|   ap_none  |                     kernel_window_28_V_read                     |    scalar    |
+|kernel_window_29_V_read  |  in |    8|   ap_none  |                     kernel_window_29_V_read                     |    scalar    |
+|kernel_window_30_V_read  |  in |    8|   ap_none  |                     kernel_window_30_V_read                     |    scalar    |
+|kernel_window_31_V_read  |  in |    8|   ap_none  |                     kernel_window_31_V_read                     |    scalar    |
+|kernel_window_32_V_read  |  in |    8|   ap_none  |                     kernel_window_32_V_read                     |    scalar    |
+|kernel_window_33_V_read  |  in |    8|   ap_none  |                     kernel_window_33_V_read                     |    scalar    |
+|kernel_window_34_V_read  |  in |    8|   ap_none  |                     kernel_window_34_V_read                     |    scalar    |
+|kernel_window_35_V_read  |  in |    8|   ap_none  |                     kernel_window_35_V_read                     |    scalar    |
+|kernel_window_37_V_read  |  in |    8|   ap_none  |                     kernel_window_37_V_read                     |    scalar    |
+|kernel_window_38_V_read  |  in |    8|   ap_none  |                     kernel_window_38_V_read                     |    scalar    |
+|kernel_window_39_V_read  |  in |    8|   ap_none  |                     kernel_window_39_V_read                     |    scalar    |
+|kernel_window_40_V_read  |  in |    8|   ap_none  |                     kernel_window_40_V_read                     |    scalar    |
+|kernel_window_41_V_read  |  in |    8|   ap_none  |                     kernel_window_41_V_read                     |    scalar    |
+|kernel_window_42_V_read  |  in |    8|   ap_none  |                     kernel_window_42_V_read                     |    scalar    |
+|kernel_window_43_V_read  |  in |    8|   ap_none  |                     kernel_window_43_V_read                     |    scalar    |
+|kernel_window_44_V_read  |  in |    8|   ap_none  |                     kernel_window_44_V_read                     |    scalar    |
+|kernel_window_46_V_read  |  in |    8|   ap_none  |                     kernel_window_46_V_read                     |    scalar    |
+|kernel_window_47_V_read  |  in |    8|   ap_none  |                     kernel_window_47_V_read                     |    scalar    |
+|kernel_window_48_V_read  |  in |    8|   ap_none  |                     kernel_window_48_V_read                     |    scalar    |
+|kernel_window_49_V_read  |  in |    8|   ap_none  |                     kernel_window_49_V_read                     |    scalar    |
+|kernel_window_50_V_read  |  in |    8|   ap_none  |                     kernel_window_50_V_read                     |    scalar    |
+|kernel_window_51_V_read  |  in |    8|   ap_none  |                     kernel_window_51_V_read                     |    scalar    |
+|kernel_window_52_V_read  |  in |    8|   ap_none  |                     kernel_window_52_V_read                     |    scalar    |
+|kernel_window_53_V_read  |  in |    8|   ap_none  |                     kernel_window_53_V_read                     |    scalar    |
+|kernel_window_55_V_read  |  in |    8|   ap_none  |                     kernel_window_55_V_read                     |    scalar    |
+|kernel_window_56_V_read  |  in |    8|   ap_none  |                     kernel_window_56_V_read                     |    scalar    |
+|kernel_window_57_V_read  |  in |    8|   ap_none  |                     kernel_window_57_V_read                     |    scalar    |
+|kernel_window_58_V_read  |  in |    8|   ap_none  |                     kernel_window_58_V_read                     |    scalar    |
+|kernel_window_59_V_read  |  in |    8|   ap_none  |                     kernel_window_59_V_read                     |    scalar    |
+|kernel_window_60_V_read  |  in |    8|   ap_none  |                     kernel_window_60_V_read                     |    scalar    |
+|kernel_window_61_V_read  |  in |    8|   ap_none  |                     kernel_window_61_V_read                     |    scalar    |
+|kernel_window_62_V_read  |  in |    8|   ap_none  |                     kernel_window_62_V_read                     |    scalar    |
+|kernel_window_64_V_read  |  in |    8|   ap_none  |                     kernel_window_64_V_read                     |    scalar    |
+|kernel_window_65_V_read  |  in |    8|   ap_none  |                     kernel_window_65_V_read                     |    scalar    |
+|kernel_window_66_V_read  |  in |    8|   ap_none  |                     kernel_window_66_V_read                     |    scalar    |
+|kernel_window_67_V_read  |  in |    8|   ap_none  |                     kernel_window_67_V_read                     |    scalar    |
+|kernel_window_68_V_read  |  in |    8|   ap_none  |                     kernel_window_68_V_read                     |    scalar    |
+|kernel_window_69_V_read  |  in |    8|   ap_none  |                     kernel_window_69_V_read                     |    scalar    |
+|kernel_window_70_V_read  |  in |    8|   ap_none  |                     kernel_window_70_V_read                     |    scalar    |
+|kernel_window_71_V_read  |  in |    8|   ap_none  |                     kernel_window_71_V_read                     |    scalar    |
+|kernel_window_73_V_read  |  in |    8|   ap_none  |                     kernel_window_73_V_read                     |    scalar    |
+|kernel_window_74_V_read  |  in |    8|   ap_none  |                     kernel_window_74_V_read                     |    scalar    |
+|kernel_window_75_V_read  |  in |    8|   ap_none  |                     kernel_window_75_V_read                     |    scalar    |
+|kernel_window_76_V_read  |  in |    8|   ap_none  |                     kernel_window_76_V_read                     |    scalar    |
+|kernel_window_77_V_read  |  in |    8|   ap_none  |                     kernel_window_77_V_read                     |    scalar    |
+|kernel_window_78_V_read  |  in |    8|   ap_none  |                     kernel_window_78_V_read                     |    scalar    |
+|kernel_window_79_V_read  |  in |    8|   ap_none  |                     kernel_window_79_V_read                     |    scalar    |
+|kernel_window_80_V_read  |  in |    8|   ap_none  |                     kernel_window_80_V_read                     |    scalar    |
++-------------------------+-----+-----+------------+-----------------------------------------------------------------+--------------+
+
