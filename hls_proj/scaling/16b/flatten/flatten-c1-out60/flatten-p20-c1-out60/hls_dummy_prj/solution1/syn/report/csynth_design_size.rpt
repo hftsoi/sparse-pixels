@@ -1,0 +1,86 @@
+================================================================
+== Design Size Report
+================================================================
+
+* Instructions per Function for each Compilation Phase
++------------------------------------------+-------------------+-------------------+-------------------+----------------------+-------------------+
+| Function                                 | Location          | Compile/Link      | Unroll/Inline     | Performance/Pipeline | Optimizations     |
++------------------------------------------+-------------------+-------------------+-------------------+----------------------+-------------------+
+| + hls_dummy                              | hls_dummy.cpp:336 | 13,086            | 54,923            | 21,350               | 20,722            |
+|  + sparse_input_reduce<ap_fixed...       | hls_dummy.cpp:54  | 10,269            |  4,156            |  1,898               |  1,554            |
+|     value_idx_pair                       | hls_dummy.cpp:29  |     19            |                   |                      |                   |
+|   + find_active<value_idx_pair<a...      | hls_dummy.cpp:34  |  9,762            |                   |                      |                   |
+|    + find_active<value_idx_pair<a...     | hls_dummy.cpp:34  |  5,128            |                   |                      |                   |
+|     + find_active<value_idx_pair<a...    | hls_dummy.cpp:34  |  4,960 (2 calls)  |                   |                      |                   |
+|      + find_active<value_idx_pair<a...   | hls_dummy.cpp:34  |  4,624 (4 calls)  |                   |                      |                   |
+|       + find_active<value_idx_pair<a...  | hls_dummy.cpp:34  |  3,952 (8 calls)  |                   |                      |                   |
+|        + find_active<value_idx_pair<a... | hls_dummy.cpp:34  |  2,608 (16 calls) |                   |                      |                   |
+|         + operator()                     | hls_dummy.cpp:13  |  2,400 (16 calls) |                   |                      |                   |
+|            value_idx_pair                | hls_dummy.cpp:29  |    304 (16 calls) |                   |                      |                   |
+|        + operator()                      | hls_dummy.cpp:13  |  1,200 (8 calls)  |                   |                      |                   |
+|           value_idx_pair                 | hls_dummy.cpp:29  |    152 (8 calls)  |                   |                      |                   |
+|       + operator()                       | hls_dummy.cpp:13  |    600 (4 calls)  |                   |                      |                   |
+|          value_idx_pair                  | hls_dummy.cpp:29  |     76 (4 calls)  |                   |                      |                   |
+|      + operator()                        | hls_dummy.cpp:13  |    300 (2 calls)  |                   |                      |                   |
+|         value_idx_pair                   | hls_dummy.cpp:29  |     38 (2 calls)  |                   |                      |                   |
+|     + operator()                         | hls_dummy.cpp:13  |    150            |                   |                      |                   |
+|        value_idx_pair                    | hls_dummy.cpp:29  |     19            |                   |                      |                   |
+|    + find_active<value_idx_pair<a...     | hls_dummy.cpp:34  |  4,466            |                   |                      |                   |
+|     + find_active<value_idx_pair<a...    | hls_dummy.cpp:34  |  2,480            |                   |                      |                   |
+|      + find_active<value_idx_pair<a...   | hls_dummy.cpp:34  |  2,312 (2 calls)  |                   |                      |                   |
+|       + find_active<value_idx_pair<a...  | hls_dummy.cpp:34  |  1,976 (4 calls)  |                   |                      |                   |
+|        + find_active<value_idx_pair<a... | hls_dummy.cpp:34  |  1,304 (8 calls)  |                   |                      |                   |
+|         + operator()                     | hls_dummy.cpp:13  |  1,200 (8 calls)  |                   |                      |                   |
+|            value_idx_pair                | hls_dummy.cpp:29  |    152 (8 calls)  |                   |                      |                   |
+|        + operator()                      | hls_dummy.cpp:13  |    600 (4 calls)  |                   |                      |                   |
+|           value_idx_pair                 | hls_dummy.cpp:29  |     76 (4 calls)  |                   |                      |                   |
+|       + operator()                       | hls_dummy.cpp:13  |    300 (2 calls)  |                   |                      |                   |
+|          value_idx_pair                  | hls_dummy.cpp:29  |     38 (2 calls)  |                   |                      |                   |
+|      + operator()                        | hls_dummy.cpp:13  |    150            |                   |                      |                   |
+|         value_idx_pair                   | hls_dummy.cpp:29  |     19            |                   |                      |                   |
+|     + find_active<value_idx_pair<a...    | hls_dummy.cpp:34  |  1,818            |                   |                      |                   |
+|      + find_active<value_idx_pair<a...   | hls_dummy.cpp:34  |  1,156            |                   |                      |                   |
+|       + find_active<value_idx_pair<a...  | hls_dummy.cpp:34  |    988 (2 calls)  |                   |                      |                   |
+|        + find_active<value_idx_pair<a... | hls_dummy.cpp:34  |    652 (4 calls)  |                   |                      |                   |
+|         + operator()                     | hls_dummy.cpp:13  |    600 (4 calls)  |                   |                      |                   |
+|            value_idx_pair                | hls_dummy.cpp:29  |     76 (4 calls)  |                   |                      |                   |
+|        + operator()                      | hls_dummy.cpp:13  |    300 (2 calls)  |                   |                      |                   |
+|           value_idx_pair                 | hls_dummy.cpp:29  |     38 (2 calls)  |                   |                      |                   |
+|       + operator()                       | hls_dummy.cpp:13  |    150            |                   |                      |                   |
+|          value_idx_pair                  | hls_dummy.cpp:29  |     19            |                   |                      |                   |
+|      + find_active<value_idx_pair<a...   | hls_dummy.cpp:34  |    494            |                   |                      |                   |
+|       + find_active<value_idx_pair<a...  | hls_dummy.cpp:34  |    326 (2 calls)  |                   |                      |                   |
+|        + operator()                      | hls_dummy.cpp:13  |    300 (2 calls)  |                   |                      |                   |
+|           value_idx_pair                 | hls_dummy.cpp:29  |     38 (2 calls)  |                   |                      |                   |
+|       + operator()                       | hls_dummy.cpp:13  |    150            |                   |                      |                   |
+|          value_idx_pair                  | hls_dummy.cpp:29  |     19            |                   |                      |                   |
+|      + operator()                        | hls_dummy.cpp:13  |    150            |                   |                      |                   |
+|         value_idx_pair                   | hls_dummy.cpp:29  |     19            |                   |                      |                   |
+|     + operator()                         | hls_dummy.cpp:13  |    150            |                   |                      |                   |
+|        value_idx_pair                    | hls_dummy.cpp:29  |     19            |                   |                      |                   |
+|    + operator()                          | hls_dummy.cpp:13  |    150            |                   |                      |                   |
+|       value_idx_pair                     | hls_dummy.cpp:29  |     19            |                   |                      |                   |
+|     operator()                           | hls_dummy.cpp:13  |                   |  1,475 (59 calls) |    826 (59 calls)    |    826 (59 calls) |
+|  + sparse_conv<ap_fixed<16, 6, ...       | hls_dummy.cpp:154 |  2,025            | 50,061            | 17,981               | 17,981            |
+|     mult_for_sparse_conv_kernel<...      | hls_dummy.cpp:124 |  1,029            |                   |                      |                   |
+|    sparse_flatten<ap_fixed<16, ...       | hls_dummy.cpp:303 |    239            |    377            |    784               |    796            |
++------------------------------------------+-------------------+-------------------+-------------------+----------------------+-------------------+
+
+* Description of Compilation Phases
++----------------------+------------------------------------------------------------+
+| Compilation Phase    | Description                                                |
++----------------------+------------------------------------------------------------+
+| Compile/Link         | All functions are compiled and linked into a single design |
+| Unroll/Inline        | After user unroll and inline pragmas are applied           |
+| Performance/Pipeline | After performance and pipeline pragmas are applied         |
+| Optimizations        | After high level synthesis optimizations                   |
++----------------------+------------------------------------------------------------+
+
+* Design Size Message Settings
++---------------------------------------------+--------+------------------------------------------------------------------+
+| Message Setting                             | Value  | Description                                                      |
++---------------------------------------------+--------+------------------------------------------------------------------+
+| config_compile -design_size_maximum_warning | 100000 | Show a warning when total design instructions exceeds this value |
++---------------------------------------------+--------+------------------------------------------------------------------+
+
+
