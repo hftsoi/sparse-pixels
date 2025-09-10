@@ -1,0 +1,1084 @@
+
+
+================================================================
+== Synthesis Summary Report of 'hls_dummy'
+================================================================
++ General Information: 
+    * Date:           Mon Sep  8 18:27:39 2025
+    * Version:        2023.1 (Build 3854077 on May  4 2023)
+    * Project:        hls_dummy_prj
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcu250-figd2104-2L-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-----------------------------------------------------------------------+------+------+---------+---------+----------+---------+------+----------+------+-----------+------------+-------------+-----+
+    |                                Modules                                | Issue|      | Latency | Latency | Iteration|         | Trip |          |      |           |            |             |     |
+    |                                & Loops                                | Type | Slack| (cycles)|   (ns)  |  Latency | Interval| Count| Pipelined| BRAM |    DSP    |     FF     |     LUT     | URAM|
+    +-----------------------------------------------------------------------+------+------+---------+---------+----------+---------+------+----------+------+-----------+------------+-------------+-----+
+    |+ hls_dummy*                                                           |     -|  0.10|       28|  140.000|         -|       24|     -|  dataflow|     -|  100 (~0%)|  5461 (~0%)|   28544 (1%)|    -|
+    | + sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4     |     -|  0.40|       23|  115.000|         -|       23|     -|        no|     -|          -|  2584 (~0%)|  11511 (~0%)|    -|
+    |  o MaxPixelsLoop                                                      |    II|  3.65|       21|  105.000|         3|        2|    10|       yes|     -|          -|           -|            -|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    |   + operator_s                                                        |    II|  2.57|        0|    0.000|         -|        1|     -|       yes|     -|          -|           -|    100 (~0%)|    -|
+    | + sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_10_1_1_3_s  |     -|  0.10|        3|   15.000|         -|        3|     -|        no|     -|  100 (~0%)|  1715 (~0%)|  15702 (~0%)|    -|
+    | + Block_entry26_proc                                                  |     -|  2.22|        0|    0.000|         -|        0|     -|        no|     -|          -|   162 (~0%)|    101 (~0%)|    -|
+    +-----------------------------------------------------------------------+------+------+---------+---------+----------+---------+------+----------+------+-----------+------------+-------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* Other Ports
++--------------+--------+-----------+----------+
+| Port         | Mode   | Direction | Bitwidth |
++--------------+--------+-----------+----------+
+| layer2_out_0 | ap_vld | out       | 16       |
+| layer2_out_1 | ap_vld | out       | 16       |
+| layer2_out_2 | ap_vld | out       | 16       |
+| layer2_out_3 | ap_vld | out       | 16       |
+| layer2_out_4 | ap_vld | out       | 16       |
+| layer2_out_5 | ap_vld | out       | 16       |
+| layer2_out_6 | ap_vld | out       | 16       |
+| layer2_out_7 | ap_vld | out       | 16       |
+| layer2_out_8 | ap_vld | out       | 16       |
+| layer2_out_9 | ap_vld | out       | 16       |
+| x_in         | ap_vld | in        | 1600     |
++--------------+--------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++------------+-----------+--------------------------------------+
+| Argument   | Direction | Datatype                             |
++------------+-----------+--------------------------------------+
+| x_in       | in        | ap_fixed<16, 6, AP_TRN, AP_WRAP, 0>* |
+| layer2_out | out       | ap_fixed<16, 6, AP_TRN, AP_WRAP, 0>* |
++------------+-----------+--------------------------------------+
+
+* SW-to-HW Mapping
++------------+---------------------+---------+
+| Argument   | HW Interface        | HW Type |
++------------+---------------------+---------+
+| x_in       | x_in                | port    |
+| x_in       | x_in_ap_vld         | port    |
+| layer2_out | layer2_out_0        | port    |
+| layer2_out | layer2_out_0_ap_vld | port    |
+| layer2_out | layer2_out_1        | port    |
+| layer2_out | layer2_out_1_ap_vld | port    |
+| layer2_out | layer2_out_2        | port    |
+| layer2_out | layer2_out_2_ap_vld | port    |
+| layer2_out | layer2_out_3        | port    |
+| layer2_out | layer2_out_3_ap_vld | port    |
+| layer2_out | layer2_out_4        | port    |
+| layer2_out | layer2_out_4_ap_vld | port    |
+| layer2_out | layer2_out_5        | port    |
+| layer2_out | layer2_out_5_ap_vld | port    |
+| layer2_out | layer2_out_6        | port    |
+| layer2_out | layer2_out_6_ap_vld | port    |
+| layer2_out | layer2_out_7        | port    |
+| layer2_out | layer2_out_7_ap_vld | port    |
+| layer2_out | layer2_out_8        | port    |
+| layer2_out | layer2_out_8_ap_vld | port    |
+| layer2_out | layer2_out_9        | port    |
+| layer2_out | layer2_out_9_ap_vld | port    |
++------------+---------------------+---------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++-----------------------------------------------------------------------+-----+--------+-------------------------------+------+--------+---------+
+| Name                                                                  | DSP | Pragma | Variable                      | Op   | Impl   | Latency |
++-----------------------------------------------------------------------+-----+--------+-------------------------------+------+--------+---------+
+| + hls_dummy                                                           | 100 |        |                               |      |        |         |
+|   sparse_arr_feat_reduce_out_U                                        | -   |        | sparse_arr_feat_reduce_out    | fifo | srl    | 0       |
+|   sparse_arr_feat_reduce_out_1_U                                      | -   |        | sparse_arr_feat_reduce_out_1  | fifo | srl    | 0       |
+|   sparse_arr_feat_reduce_out_2_U                                      | -   |        | sparse_arr_feat_reduce_out_2  | fifo | srl    | 0       |
+|   sparse_arr_feat_reduce_out_3_U                                      | -   |        | sparse_arr_feat_reduce_out_3  | fifo | srl    | 0       |
+|   sparse_arr_feat_reduce_out_4_U                                      | -   |        | sparse_arr_feat_reduce_out_4  | fifo | srl    | 0       |
+|   sparse_arr_feat_reduce_out_5_U                                      | -   |        | sparse_arr_feat_reduce_out_5  | fifo | srl    | 0       |
+|   sparse_arr_feat_reduce_out_6_U                                      | -   |        | sparse_arr_feat_reduce_out_6  | fifo | srl    | 0       |
+|   sparse_arr_feat_reduce_out_7_U                                      | -   |        | sparse_arr_feat_reduce_out_7  | fifo | srl    | 0       |
+|   sparse_arr_feat_reduce_out_8_U                                      | -   |        | sparse_arr_feat_reduce_out_8  | fifo | srl    | 0       |
+|   sparse_arr_feat_reduce_out_9_U                                      | -   |        | sparse_arr_feat_reduce_out_9  | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_U                                        | -   |        | sparse_arr_hash_reduce_out    | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_1_U                                      | -   |        | sparse_arr_hash_reduce_out_1  | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_2_U                                      | -   |        | sparse_arr_hash_reduce_out_2  | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_3_U                                      | -   |        | sparse_arr_hash_reduce_out_3  | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_4_U                                      | -   |        | sparse_arr_hash_reduce_out_4  | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_5_U                                      | -   |        | sparse_arr_hash_reduce_out_5  | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_6_U                                      | -   |        | sparse_arr_hash_reduce_out_6  | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_7_U                                      | -   |        | sparse_arr_hash_reduce_out_7  | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_8_U                                      | -   |        | sparse_arr_hash_reduce_out_8  | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_9_U                                      | -   |        | sparse_arr_hash_reduce_out_9  | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_10_U                                     | -   |        | sparse_arr_hash_reduce_out_10 | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_11_U                                     | -   |        | sparse_arr_hash_reduce_out_11 | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_12_U                                     | -   |        | sparse_arr_hash_reduce_out_12 | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_13_U                                     | -   |        | sparse_arr_hash_reduce_out_13 | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_14_U                                     | -   |        | sparse_arr_hash_reduce_out_14 | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_15_U                                     | -   |        | sparse_arr_hash_reduce_out_15 | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_16_U                                     | -   |        | sparse_arr_hash_reduce_out_16 | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_17_U                                     | -   |        | sparse_arr_hash_reduce_out_17 | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_18_U                                     | -   |        | sparse_arr_hash_reduce_out_18 | fifo | srl    | 0       |
+|   sparse_arr_hash_reduce_out_19_U                                     | -   |        | sparse_arr_hash_reduce_out_19 | fifo | srl    | 0       |
+|   sparse_arr_feat_conv1_out_U                                         | -   |        | sparse_arr_feat_conv1_out     | fifo | srl    | 0       |
+|   sparse_arr_feat_conv1_out_1_U                                       | -   |        | sparse_arr_feat_conv1_out_1   | fifo | srl    | 0       |
+|   sparse_arr_feat_conv1_out_2_U                                       | -   |        | sparse_arr_feat_conv1_out_2   | fifo | srl    | 0       |
+|   sparse_arr_feat_conv1_out_3_U                                       | -   |        | sparse_arr_feat_conv1_out_3   | fifo | srl    | 0       |
+|   sparse_arr_feat_conv1_out_4_U                                       | -   |        | sparse_arr_feat_conv1_out_4   | fifo | srl    | 0       |
+|   sparse_arr_feat_conv1_out_5_U                                       | -   |        | sparse_arr_feat_conv1_out_5   | fifo | srl    | 0       |
+|   sparse_arr_feat_conv1_out_6_U                                       | -   |        | sparse_arr_feat_conv1_out_6   | fifo | srl    | 0       |
+|   sparse_arr_feat_conv1_out_7_U                                       | -   |        | sparse_arr_feat_conv1_out_7   | fifo | srl    | 0       |
+|   sparse_arr_feat_conv1_out_8_U                                       | -   |        | sparse_arr_feat_conv1_out_8   | fifo | srl    | 0       |
+|   sparse_arr_feat_conv1_out_9_U                                       | -   |        | sparse_arr_feat_conv1_out_9   | fifo | srl    | 0       |
+|  + sparse_input_reduce_ap_fixed_16_6_5_3_0_ap_uint_10_10_10_1_10_4    | 0   |        |                               |      |        |         |
+|    add_ln94_fu_4814_p2                                                | -   |        | add_ln94                      | add  | fabric | 0       |
+|  + sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_10_1_1_3_s | 100 |        |                               |      |        |         |
+|    mul_16s_11ns_26_1_1_U10                                            | 1   |        | mul_ln148                     | mul  | auto   | 0       |
+|    offset_h_fu_1363_p2                                                | -   |        | offset_h                      | sub  | fabric | 0       |
+|    offset_w_fu_1381_p2                                                | -   |        | offset_w                      | sub  | fabric | 0       |
+|    add_ln134_fu_1391_p2                                               | -   |        | add_ln134                     | add  | fabric | 0       |
+|    add_ln134_1_fu_1403_p2                                             | -   |        | add_ln134_1                   | add  | fabric | 0       |
+|    row_fu_1419_p2                                                     | -   |        | row                           | sub  | fabric | 0       |
+|    sub_ln138_fu_1441_p2                                               | -   |        | sub_ln138                     | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U11                                             | 1   |        | mul_ln148_1                   | mul  | auto   | 0       |
+|    offset_h_1_fu_1461_p2                                              | -   |        | offset_h_1                    | sub  | fabric | 0       |
+|    offset_w_1_fu_1475_p2                                              | -   |        | offset_w_1                    | sub  | fabric | 0       |
+|    add_ln134_2_fu_1485_p2                                             | -   |        | add_ln134_2                   | add  | fabric | 0       |
+|    add_ln134_3_fu_1497_p2                                             | -   |        | add_ln134_3                   | add  | fabric | 0       |
+|    row_1_fu_1513_p2                                                   | -   |        | row_1                         | sub  | fabric | 0       |
+|    sub_ln138_1_fu_1535_p2                                             | -   |        | sub_ln138_1                   | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U12                                             | 1   |        | mul_ln148_2                   | mul  | auto   | 0       |
+|    offset_h_2_fu_1555_p2                                              | -   |        | offset_h_2                    | sub  | fabric | 0       |
+|    offset_w_2_fu_1569_p2                                              | -   |        | offset_w_2                    | sub  | fabric | 0       |
+|    add_ln134_4_fu_1579_p2                                             | -   |        | add_ln134_4                   | add  | fabric | 0       |
+|    add_ln134_5_fu_1591_p2                                             | -   |        | add_ln134_5                   | add  | fabric | 0       |
+|    row_2_fu_1607_p2                                                   | -   |        | row_2                         | sub  | fabric | 0       |
+|    sub_ln138_2_fu_1629_p2                                             | -   |        | sub_ln138_2                   | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U13                                             | 1   |        | mul_ln148_3                   | mul  | auto   | 0       |
+|    offset_h_3_fu_1649_p2                                              | -   |        | offset_h_3                    | sub  | fabric | 0       |
+|    offset_w_3_fu_1663_p2                                              | -   |        | offset_w_3                    | sub  | fabric | 0       |
+|    add_ln134_6_fu_1673_p2                                             | -   |        | add_ln134_6                   | add  | fabric | 0       |
+|    add_ln134_7_fu_1685_p2                                             | -   |        | add_ln134_7                   | add  | fabric | 0       |
+|    row_3_fu_1701_p2                                                   | -   |        | row_3                         | sub  | fabric | 0       |
+|    sub_ln138_3_fu_1723_p2                                             | -   |        | sub_ln138_3                   | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U14                                             | 1   |        | mul_ln148_4                   | mul  | auto   | 0       |
+|    offset_h_4_fu_1743_p2                                              | -   |        | offset_h_4                    | sub  | fabric | 0       |
+|    offset_w_4_fu_1757_p2                                              | -   |        | offset_w_4                    | sub  | fabric | 0       |
+|    add_ln134_8_fu_1767_p2                                             | -   |        | add_ln134_8                   | add  | fabric | 0       |
+|    add_ln134_9_fu_1779_p2                                             | -   |        | add_ln134_9                   | add  | fabric | 0       |
+|    row_4_fu_1795_p2                                                   | -   |        | row_4                         | sub  | fabric | 0       |
+|    sub_ln138_4_fu_1817_p2                                             | -   |        | sub_ln138_4                   | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U15                                             | 1   |        | mul_ln148_5                   | mul  | auto   | 0       |
+|    offset_h_5_fu_1837_p2                                              | -   |        | offset_h_5                    | sub  | fabric | 0       |
+|    offset_w_5_fu_1851_p2                                              | -   |        | offset_w_5                    | sub  | fabric | 0       |
+|    add_ln134_10_fu_1861_p2                                            | -   |        | add_ln134_10                  | add  | fabric | 0       |
+|    add_ln134_11_fu_1873_p2                                            | -   |        | add_ln134_11                  | add  | fabric | 0       |
+|    row_5_fu_1889_p2                                                   | -   |        | row_5                         | sub  | fabric | 0       |
+|    sub_ln138_5_fu_1911_p2                                             | -   |        | sub_ln138_5                   | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U16                                             | 1   |        | mul_ln148_6                   | mul  | auto   | 0       |
+|    offset_h_6_fu_1931_p2                                              | -   |        | offset_h_6                    | sub  | fabric | 0       |
+|    offset_w_6_fu_1945_p2                                              | -   |        | offset_w_6                    | sub  | fabric | 0       |
+|    add_ln134_12_fu_1955_p2                                            | -   |        | add_ln134_12                  | add  | fabric | 0       |
+|    add_ln134_13_fu_1967_p2                                            | -   |        | add_ln134_13                  | add  | fabric | 0       |
+|    row_6_fu_1983_p2                                                   | -   |        | row_6                         | sub  | fabric | 0       |
+|    sub_ln138_6_fu_2005_p2                                             | -   |        | sub_ln138_6                   | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U17                                             | 1   |        | mul_ln148_7                   | mul  | auto   | 0       |
+|    offset_h_7_fu_2025_p2                                              | -   |        | offset_h_7                    | sub  | fabric | 0       |
+|    offset_w_7_fu_2039_p2                                              | -   |        | offset_w_7                    | sub  | fabric | 0       |
+|    add_ln134_14_fu_2049_p2                                            | -   |        | add_ln134_14                  | add  | fabric | 0       |
+|    add_ln134_15_fu_2061_p2                                            | -   |        | add_ln134_15                  | add  | fabric | 0       |
+|    row_7_fu_2077_p2                                                   | -   |        | row_7                         | sub  | fabric | 0       |
+|    sub_ln138_7_fu_2099_p2                                             | -   |        | sub_ln138_7                   | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U18                                             | 1   |        | mul_ln148_8                   | mul  | auto   | 0       |
+|    offset_h_8_fu_2119_p2                                              | -   |        | offset_h_8                    | sub  | fabric | 0       |
+|    offset_w_8_fu_2133_p2                                              | -   |        | offset_w_8                    | sub  | fabric | 0       |
+|    add_ln134_16_fu_2143_p2                                            | -   |        | add_ln134_16                  | add  | fabric | 0       |
+|    add_ln134_17_fu_2155_p2                                            | -   |        | add_ln134_17                  | add  | fabric | 0       |
+|    row_8_fu_2171_p2                                                   | -   |        | row_8                         | sub  | fabric | 0       |
+|    sub_ln138_8_fu_2193_p2                                             | -   |        | sub_ln138_8                   | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U19                                             | 1   |        | mul_ln148_9                   | mul  | auto   | 0       |
+|    add_ln194_fu_9645_p2                                               | -   |        | add_ln194                     | add  | fabric | 0       |
+|    acc_11_fu_12706_p2                                                 | -   |        | acc_11                        | add  | fabric | 0       |
+|    offset_h_9_fu_2216_p2                                              | -   |        | offset_h_9                    | sub  | fabric | 0       |
+|    offset_w_9_fu_2226_p2                                              | -   |        | offset_w_9                    | sub  | fabric | 0       |
+|    add_ln134_18_fu_2236_p2                                            | -   |        | add_ln134_18                  | add  | fabric | 0       |
+|    add_ln134_19_fu_2248_p2                                            | -   |        | add_ln134_19                  | add  | fabric | 0       |
+|    row_9_fu_2264_p2                                                   | -   |        | row_9                         | sub  | fabric | 0       |
+|    sub_ln138_9_fu_2286_p2                                             | -   |        | sub_ln138_9                   | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U20                                             | 1   |        | mul_ln148_10                  | mul  | auto   | 0       |
+|    mul_16s_11ns_26_1_1_U21                                            | 1   |        | mul_ln148_11                  | mul  | auto   | 0       |
+|    offset_h_10_fu_2303_p2                                             | -   |        | offset_h_10                   | sub  | fabric | 0       |
+|    offset_w_10_fu_2313_p2                                             | -   |        | offset_w_10                   | sub  | fabric | 0       |
+|    add_ln134_20_fu_2323_p2                                            | -   |        | add_ln134_20                  | add  | fabric | 0       |
+|    add_ln134_21_fu_2335_p2                                            | -   |        | add_ln134_21                  | add  | fabric | 0       |
+|    row_10_fu_2351_p2                                                  | -   |        | row_10                        | sub  | fabric | 0       |
+|    sub_ln138_10_fu_2373_p2                                            | -   |        | sub_ln138_10                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U22                                             | 1   |        | mul_ln148_12                  | mul  | auto   | 0       |
+|    offset_h_11_fu_2390_p2                                             | -   |        | offset_h_11                   | sub  | fabric | 0       |
+|    offset_w_11_fu_2400_p2                                             | -   |        | offset_w_11                   | sub  | fabric | 0       |
+|    add_ln134_22_fu_2410_p2                                            | -   |        | add_ln134_22                  | add  | fabric | 0       |
+|    add_ln134_23_fu_2422_p2                                            | -   |        | add_ln134_23                  | add  | fabric | 0       |
+|    row_11_fu_2438_p2                                                  | -   |        | row_11                        | sub  | fabric | 0       |
+|    sub_ln138_11_fu_2460_p2                                            | -   |        | sub_ln138_11                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U23                                             | 1   |        | mul_ln148_13                  | mul  | auto   | 0       |
+|    offset_h_12_fu_2477_p2                                             | -   |        | offset_h_12                   | sub  | fabric | 0       |
+|    offset_w_12_fu_2487_p2                                             | -   |        | offset_w_12                   | sub  | fabric | 0       |
+|    add_ln134_24_fu_2497_p2                                            | -   |        | add_ln134_24                  | add  | fabric | 0       |
+|    add_ln134_25_fu_2509_p2                                            | -   |        | add_ln134_25                  | add  | fabric | 0       |
+|    row_12_fu_2525_p2                                                  | -   |        | row_12                        | sub  | fabric | 0       |
+|    sub_ln138_12_fu_2547_p2                                            | -   |        | sub_ln138_12                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U24                                             | 1   |        | mul_ln148_14                  | mul  | auto   | 0       |
+|    offset_h_13_fu_2564_p2                                             | -   |        | offset_h_13                   | sub  | fabric | 0       |
+|    offset_w_13_fu_2574_p2                                             | -   |        | offset_w_13                   | sub  | fabric | 0       |
+|    add_ln134_26_fu_2584_p2                                            | -   |        | add_ln134_26                  | add  | fabric | 0       |
+|    add_ln134_27_fu_2596_p2                                            | -   |        | add_ln134_27                  | add  | fabric | 0       |
+|    row_13_fu_2612_p2                                                  | -   |        | row_13                        | sub  | fabric | 0       |
+|    sub_ln138_13_fu_2634_p2                                            | -   |        | sub_ln138_13                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U25                                             | 1   |        | mul_ln148_15                  | mul  | auto   | 0       |
+|    offset_h_14_fu_2651_p2                                             | -   |        | offset_h_14                   | sub  | fabric | 0       |
+|    offset_w_14_fu_2661_p2                                             | -   |        | offset_w_14                   | sub  | fabric | 0       |
+|    add_ln134_28_fu_2671_p2                                            | -   |        | add_ln134_28                  | add  | fabric | 0       |
+|    add_ln134_29_fu_2683_p2                                            | -   |        | add_ln134_29                  | add  | fabric | 0       |
+|    row_14_fu_2699_p2                                                  | -   |        | row_14                        | sub  | fabric | 0       |
+|    sub_ln138_14_fu_2721_p2                                            | -   |        | sub_ln138_14                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U26                                             | 1   |        | mul_ln148_16                  | mul  | auto   | 0       |
+|    offset_h_15_fu_2738_p2                                             | -   |        | offset_h_15                   | sub  | fabric | 0       |
+|    offset_w_15_fu_2748_p2                                             | -   |        | offset_w_15                   | sub  | fabric | 0       |
+|    add_ln134_30_fu_2758_p2                                            | -   |        | add_ln134_30                  | add  | fabric | 0       |
+|    add_ln134_31_fu_2770_p2                                            | -   |        | add_ln134_31                  | add  | fabric | 0       |
+|    row_15_fu_2786_p2                                                  | -   |        | row_15                        | sub  | fabric | 0       |
+|    sub_ln138_15_fu_2808_p2                                            | -   |        | sub_ln138_15                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U27                                             | 1   |        | mul_ln148_17                  | mul  | auto   | 0       |
+|    offset_h_16_fu_2825_p2                                             | -   |        | offset_h_16                   | sub  | fabric | 0       |
+|    offset_w_16_fu_2835_p2                                             | -   |        | offset_w_16                   | sub  | fabric | 0       |
+|    add_ln134_32_fu_2845_p2                                            | -   |        | add_ln134_32                  | add  | fabric | 0       |
+|    add_ln134_33_fu_2857_p2                                            | -   |        | add_ln134_33                  | add  | fabric | 0       |
+|    row_16_fu_2873_p2                                                  | -   |        | row_16                        | sub  | fabric | 0       |
+|    sub_ln138_16_fu_2895_p2                                            | -   |        | sub_ln138_16                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U28                                             | 1   |        | mul_ln148_18                  | mul  | auto   | 0       |
+|    offset_h_17_fu_2912_p2                                             | -   |        | offset_h_17                   | sub  | fabric | 0       |
+|    offset_w_17_fu_2922_p2                                             | -   |        | offset_w_17                   | sub  | fabric | 0       |
+|    add_ln134_34_fu_2932_p2                                            | -   |        | add_ln134_34                  | add  | fabric | 0       |
+|    add_ln134_35_fu_2944_p2                                            | -   |        | add_ln134_35                  | add  | fabric | 0       |
+|    row_17_fu_2960_p2                                                  | -   |        | row_17                        | sub  | fabric | 0       |
+|    sub_ln138_17_fu_2982_p2                                            | -   |        | sub_ln138_17                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U29                                             | 1   |        | mul_ln148_19                  | mul  | auto   | 0       |
+|    add_ln194_9_fu_9979_p2                                             | -   |        | add_ln194_9                   | add  | fabric | 0       |
+|    acc_26_fu_12752_p2                                                 | -   |        | acc_26                        | add  | fabric | 0       |
+|    offset_h_18_fu_3005_p2                                             | -   |        | offset_h_18                   | sub  | fabric | 0       |
+|    offset_w_18_fu_3015_p2                                             | -   |        | offset_w_18                   | sub  | fabric | 0       |
+|    add_ln134_36_fu_3025_p2                                            | -   |        | add_ln134_36                  | add  | fabric | 0       |
+|    add_ln134_37_fu_3037_p2                                            | -   |        | add_ln134_37                  | add  | fabric | 0       |
+|    row_18_fu_3053_p2                                                  | -   |        | row_18                        | sub  | fabric | 0       |
+|    sub_ln138_18_fu_3075_p2                                            | -   |        | sub_ln138_18                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U30                                             | 1   |        | mul_ln148_20                  | mul  | auto   | 0       |
+|    offset_h_19_fu_3092_p2                                             | -   |        | offset_h_19                   | sub  | fabric | 0       |
+|    offset_w_19_fu_3102_p2                                             | -   |        | offset_w_19                   | sub  | fabric | 0       |
+|    add_ln134_38_fu_3112_p2                                            | -   |        | add_ln134_38                  | add  | fabric | 0       |
+|    add_ln134_39_fu_3124_p2                                            | -   |        | add_ln134_39                  | add  | fabric | 0       |
+|    row_19_fu_3140_p2                                                  | -   |        | row_19                        | sub  | fabric | 0       |
+|    sub_ln138_19_fu_3162_p2                                            | -   |        | sub_ln138_19                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U31                                             | 1   |        | mul_ln148_21                  | mul  | auto   | 0       |
+|    mul_16s_11ns_26_1_1_U32                                            | 1   |        | mul_ln148_22                  | mul  | auto   | 0       |
+|    offset_h_20_fu_3179_p2                                             | -   |        | offset_h_20                   | sub  | fabric | 0       |
+|    offset_w_20_fu_3189_p2                                             | -   |        | offset_w_20                   | sub  | fabric | 0       |
+|    add_ln134_40_fu_3199_p2                                            | -   |        | add_ln134_40                  | add  | fabric | 0       |
+|    add_ln134_41_fu_3211_p2                                            | -   |        | add_ln134_41                  | add  | fabric | 0       |
+|    row_20_fu_3227_p2                                                  | -   |        | row_20                        | sub  | fabric | 0       |
+|    sub_ln138_20_fu_3249_p2                                            | -   |        | sub_ln138_20                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U33                                             | 1   |        | mul_ln148_23                  | mul  | auto   | 0       |
+|    offset_h_21_fu_3266_p2                                             | -   |        | offset_h_21                   | sub  | fabric | 0       |
+|    offset_w_21_fu_3276_p2                                             | -   |        | offset_w_21                   | sub  | fabric | 0       |
+|    add_ln134_42_fu_3286_p2                                            | -   |        | add_ln134_42                  | add  | fabric | 0       |
+|    add_ln134_43_fu_3298_p2                                            | -   |        | add_ln134_43                  | add  | fabric | 0       |
+|    row_21_fu_3314_p2                                                  | -   |        | row_21                        | sub  | fabric | 0       |
+|    sub_ln138_21_fu_3336_p2                                            | -   |        | sub_ln138_21                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U34                                             | 1   |        | mul_ln148_24                  | mul  | auto   | 0       |
+|    offset_h_22_fu_3353_p2                                             | -   |        | offset_h_22                   | sub  | fabric | 0       |
+|    offset_w_22_fu_3363_p2                                             | -   |        | offset_w_22                   | sub  | fabric | 0       |
+|    add_ln134_44_fu_3373_p2                                            | -   |        | add_ln134_44                  | add  | fabric | 0       |
+|    add_ln134_45_fu_3385_p2                                            | -   |        | add_ln134_45                  | add  | fabric | 0       |
+|    row_22_fu_3401_p2                                                  | -   |        | row_22                        | sub  | fabric | 0       |
+|    sub_ln138_22_fu_3423_p2                                            | -   |        | sub_ln138_22                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U35                                             | 1   |        | mul_ln148_25                  | mul  | auto   | 0       |
+|    offset_h_23_fu_3440_p2                                             | -   |        | offset_h_23                   | sub  | fabric | 0       |
+|    offset_w_23_fu_3450_p2                                             | -   |        | offset_w_23                   | sub  | fabric | 0       |
+|    add_ln134_46_fu_3460_p2                                            | -   |        | add_ln134_46                  | add  | fabric | 0       |
+|    add_ln134_47_fu_3472_p2                                            | -   |        | add_ln134_47                  | add  | fabric | 0       |
+|    row_23_fu_3488_p2                                                  | -   |        | row_23                        | sub  | fabric | 0       |
+|    sub_ln138_23_fu_3510_p2                                            | -   |        | sub_ln138_23                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U36                                             | 1   |        | mul_ln148_26                  | mul  | auto   | 0       |
+|    offset_h_24_fu_3527_p2                                             | -   |        | offset_h_24                   | sub  | fabric | 0       |
+|    offset_w_24_fu_3537_p2                                             | -   |        | offset_w_24                   | sub  | fabric | 0       |
+|    add_ln134_48_fu_3547_p2                                            | -   |        | add_ln134_48                  | add  | fabric | 0       |
+|    add_ln134_49_fu_3559_p2                                            | -   |        | add_ln134_49                  | add  | fabric | 0       |
+|    row_24_fu_3575_p2                                                  | -   |        | row_24                        | sub  | fabric | 0       |
+|    sub_ln138_24_fu_3597_p2                                            | -   |        | sub_ln138_24                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U37                                             | 1   |        | mul_ln148_27                  | mul  | auto   | 0       |
+|    offset_h_25_fu_3614_p2                                             | -   |        | offset_h_25                   | sub  | fabric | 0       |
+|    offset_w_25_fu_3624_p2                                             | -   |        | offset_w_25                   | sub  | fabric | 0       |
+|    add_ln134_50_fu_3634_p2                                            | -   |        | add_ln134_50                  | add  | fabric | 0       |
+|    add_ln134_51_fu_3646_p2                                            | -   |        | add_ln134_51                  | add  | fabric | 0       |
+|    row_25_fu_3662_p2                                                  | -   |        | row_25                        | sub  | fabric | 0       |
+|    sub_ln138_25_fu_3684_p2                                            | -   |        | sub_ln138_25                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U38                                             | 1   |        | mul_ln148_28                  | mul  | auto   | 0       |
+|    offset_h_26_fu_3701_p2                                             | -   |        | offset_h_26                   | sub  | fabric | 0       |
+|    offset_w_26_fu_3711_p2                                             | -   |        | offset_w_26                   | sub  | fabric | 0       |
+|    add_ln134_52_fu_3721_p2                                            | -   |        | add_ln134_52                  | add  | fabric | 0       |
+|    add_ln134_53_fu_3733_p2                                            | -   |        | add_ln134_53                  | add  | fabric | 0       |
+|    row_26_fu_3749_p2                                                  | -   |        | row_26                        | sub  | fabric | 0       |
+|    sub_ln138_26_fu_3771_p2                                            | -   |        | sub_ln138_26                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U39                                             | 1   |        | mul_ln148_29                  | mul  | auto   | 0       |
+|    add_ln194_18_fu_10313_p2                                           | -   |        | add_ln194_18                  | add  | fabric | 0       |
+|    acc_41_fu_12798_p2                                                 | -   |        | acc_41                        | add  | fabric | 0       |
+|    offset_h_27_fu_3794_p2                                             | -   |        | offset_h_27                   | sub  | fabric | 0       |
+|    offset_w_27_fu_3804_p2                                             | -   |        | offset_w_27                   | sub  | fabric | 0       |
+|    add_ln134_54_fu_3814_p2                                            | -   |        | add_ln134_54                  | add  | fabric | 0       |
+|    add_ln134_55_fu_3826_p2                                            | -   |        | add_ln134_55                  | add  | fabric | 0       |
+|    row_27_fu_3842_p2                                                  | -   |        | row_27                        | sub  | fabric | 0       |
+|    sub_ln138_27_fu_3864_p2                                            | -   |        | sub_ln138_27                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U40                                             | 1   |        | mul_ln148_30                  | mul  | auto   | 0       |
+|    offset_h_28_fu_3881_p2                                             | -   |        | offset_h_28                   | sub  | fabric | 0       |
+|    offset_w_28_fu_3891_p2                                             | -   |        | offset_w_28                   | sub  | fabric | 0       |
+|    add_ln134_56_fu_3901_p2                                            | -   |        | add_ln134_56                  | add  | fabric | 0       |
+|    add_ln134_57_fu_3913_p2                                            | -   |        | add_ln134_57                  | add  | fabric | 0       |
+|    row_28_fu_3929_p2                                                  | -   |        | row_28                        | sub  | fabric | 0       |
+|    sub_ln138_28_fu_3951_p2                                            | -   |        | sub_ln138_28                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U41                                             | 1   |        | mul_ln148_31                  | mul  | auto   | 0       |
+|    offset_h_29_fu_3968_p2                                             | -   |        | offset_h_29                   | sub  | fabric | 0       |
+|    offset_w_29_fu_3978_p2                                             | -   |        | offset_w_29                   | sub  | fabric | 0       |
+|    add_ln134_58_fu_3988_p2                                            | -   |        | add_ln134_58                  | add  | fabric | 0       |
+|    add_ln134_59_fu_4000_p2                                            | -   |        | add_ln134_59                  | add  | fabric | 0       |
+|    row_29_fu_4016_p2                                                  | -   |        | row_29                        | sub  | fabric | 0       |
+|    sub_ln138_29_fu_4038_p2                                            | -   |        | sub_ln138_29                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U42                                             | 1   |        | mul_ln148_32                  | mul  | auto   | 0       |
+|    mul_16s_11ns_26_1_1_U43                                            | 1   |        | mul_ln148_33                  | mul  | auto   | 0       |
+|    offset_h_30_fu_4055_p2                                             | -   |        | offset_h_30                   | sub  | fabric | 0       |
+|    offset_w_30_fu_4065_p2                                             | -   |        | offset_w_30                   | sub  | fabric | 0       |
+|    add_ln134_60_fu_4075_p2                                            | -   |        | add_ln134_60                  | add  | fabric | 0       |
+|    add_ln134_61_fu_4087_p2                                            | -   |        | add_ln134_61                  | add  | fabric | 0       |
+|    row_30_fu_4103_p2                                                  | -   |        | row_30                        | sub  | fabric | 0       |
+|    sub_ln138_30_fu_4125_p2                                            | -   |        | sub_ln138_30                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U44                                             | 1   |        | mul_ln148_34                  | mul  | auto   | 0       |
+|    offset_h_31_fu_4142_p2                                             | -   |        | offset_h_31                   | sub  | fabric | 0       |
+|    offset_w_31_fu_4152_p2                                             | -   |        | offset_w_31                   | sub  | fabric | 0       |
+|    add_ln134_62_fu_4162_p2                                            | -   |        | add_ln134_62                  | add  | fabric | 0       |
+|    add_ln134_63_fu_4174_p2                                            | -   |        | add_ln134_63                  | add  | fabric | 0       |
+|    row_31_fu_4190_p2                                                  | -   |        | row_31                        | sub  | fabric | 0       |
+|    sub_ln138_31_fu_4212_p2                                            | -   |        | sub_ln138_31                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U45                                             | 1   |        | mul_ln148_35                  | mul  | auto   | 0       |
+|    offset_h_32_fu_4229_p2                                             | -   |        | offset_h_32                   | sub  | fabric | 0       |
+|    offset_w_32_fu_4239_p2                                             | -   |        | offset_w_32                   | sub  | fabric | 0       |
+|    add_ln134_64_fu_4249_p2                                            | -   |        | add_ln134_64                  | add  | fabric | 0       |
+|    add_ln134_65_fu_4261_p2                                            | -   |        | add_ln134_65                  | add  | fabric | 0       |
+|    row_32_fu_4277_p2                                                  | -   |        | row_32                        | sub  | fabric | 0       |
+|    sub_ln138_32_fu_4299_p2                                            | -   |        | sub_ln138_32                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U46                                             | 1   |        | mul_ln148_36                  | mul  | auto   | 0       |
+|    offset_h_33_fu_4316_p2                                             | -   |        | offset_h_33                   | sub  | fabric | 0       |
+|    offset_w_33_fu_4326_p2                                             | -   |        | offset_w_33                   | sub  | fabric | 0       |
+|    add_ln134_66_fu_4336_p2                                            | -   |        | add_ln134_66                  | add  | fabric | 0       |
+|    add_ln134_67_fu_4348_p2                                            | -   |        | add_ln134_67                  | add  | fabric | 0       |
+|    row_33_fu_4364_p2                                                  | -   |        | row_33                        | sub  | fabric | 0       |
+|    sub_ln138_33_fu_4386_p2                                            | -   |        | sub_ln138_33                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U47                                             | 1   |        | mul_ln148_37                  | mul  | auto   | 0       |
+|    offset_h_34_fu_4403_p2                                             | -   |        | offset_h_34                   | sub  | fabric | 0       |
+|    offset_w_34_fu_4413_p2                                             | -   |        | offset_w_34                   | sub  | fabric | 0       |
+|    add_ln134_68_fu_4423_p2                                            | -   |        | add_ln134_68                  | add  | fabric | 0       |
+|    add_ln134_69_fu_4435_p2                                            | -   |        | add_ln134_69                  | add  | fabric | 0       |
+|    row_34_fu_4451_p2                                                  | -   |        | row_34                        | sub  | fabric | 0       |
+|    sub_ln138_34_fu_4473_p2                                            | -   |        | sub_ln138_34                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U48                                             | 1   |        | mul_ln148_38                  | mul  | auto   | 0       |
+|    offset_h_35_fu_4490_p2                                             | -   |        | offset_h_35                   | sub  | fabric | 0       |
+|    offset_w_35_fu_4500_p2                                             | -   |        | offset_w_35                   | sub  | fabric | 0       |
+|    add_ln134_70_fu_4510_p2                                            | -   |        | add_ln134_70                  | add  | fabric | 0       |
+|    add_ln134_71_fu_4522_p2                                            | -   |        | add_ln134_71                  | add  | fabric | 0       |
+|    row_35_fu_4538_p2                                                  | -   |        | row_35                        | sub  | fabric | 0       |
+|    sub_ln138_35_fu_4560_p2                                            | -   |        | sub_ln138_35                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U49                                             | 1   |        | mul_ln148_39                  | mul  | auto   | 0       |
+|    add_ln194_27_fu_10647_p2                                           | -   |        | add_ln194_27                  | add  | fabric | 0       |
+|    acc_56_fu_12844_p2                                                 | -   |        | acc_56                        | add  | fabric | 0       |
+|    offset_h_36_fu_4583_p2                                             | -   |        | offset_h_36                   | sub  | fabric | 0       |
+|    offset_w_36_fu_4593_p2                                             | -   |        | offset_w_36                   | sub  | fabric | 0       |
+|    add_ln134_72_fu_4603_p2                                            | -   |        | add_ln134_72                  | add  | fabric | 0       |
+|    add_ln134_73_fu_4615_p2                                            | -   |        | add_ln134_73                  | add  | fabric | 0       |
+|    row_36_fu_4631_p2                                                  | -   |        | row_36                        | sub  | fabric | 0       |
+|    sub_ln138_36_fu_4653_p2                                            | -   |        | sub_ln138_36                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U50                                             | 1   |        | mul_ln148_40                  | mul  | auto   | 0       |
+|    offset_h_37_fu_4670_p2                                             | -   |        | offset_h_37                   | sub  | fabric | 0       |
+|    offset_w_37_fu_4680_p2                                             | -   |        | offset_w_37                   | sub  | fabric | 0       |
+|    add_ln134_74_fu_4690_p2                                            | -   |        | add_ln134_74                  | add  | fabric | 0       |
+|    add_ln134_75_fu_4702_p2                                            | -   |        | add_ln134_75                  | add  | fabric | 0       |
+|    row_37_fu_4718_p2                                                  | -   |        | row_37                        | sub  | fabric | 0       |
+|    sub_ln138_37_fu_4740_p2                                            | -   |        | sub_ln138_37                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U51                                             | 1   |        | mul_ln148_41                  | mul  | auto   | 0       |
+|    offset_h_38_fu_4757_p2                                             | -   |        | offset_h_38                   | sub  | fabric | 0       |
+|    offset_w_38_fu_4767_p2                                             | -   |        | offset_w_38                   | sub  | fabric | 0       |
+|    add_ln134_76_fu_4777_p2                                            | -   |        | add_ln134_76                  | add  | fabric | 0       |
+|    add_ln134_77_fu_4789_p2                                            | -   |        | add_ln134_77                  | add  | fabric | 0       |
+|    row_38_fu_4805_p2                                                  | -   |        | row_38                        | sub  | fabric | 0       |
+|    sub_ln138_38_fu_4827_p2                                            | -   |        | sub_ln138_38                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U52                                             | 1   |        | mul_ln148_42                  | mul  | auto   | 0       |
+|    offset_h_39_fu_4844_p2                                             | -   |        | offset_h_39                   | sub  | fabric | 0       |
+|    offset_w_39_fu_4854_p2                                             | -   |        | offset_w_39                   | sub  | fabric | 0       |
+|    add_ln134_78_fu_4864_p2                                            | -   |        | add_ln134_78                  | add  | fabric | 0       |
+|    add_ln134_79_fu_4876_p2                                            | -   |        | add_ln134_79                  | add  | fabric | 0       |
+|    row_39_fu_4892_p2                                                  | -   |        | row_39                        | sub  | fabric | 0       |
+|    sub_ln138_39_fu_4914_p2                                            | -   |        | sub_ln138_39                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U53                                             | 1   |        | mul_ln148_43                  | mul  | auto   | 0       |
+|    mul_16s_11ns_26_1_1_U54                                            | 1   |        | mul_ln148_44                  | mul  | auto   | 0       |
+|    offset_h_40_fu_4931_p2                                             | -   |        | offset_h_40                   | sub  | fabric | 0       |
+|    offset_w_40_fu_4941_p2                                             | -   |        | offset_w_40                   | sub  | fabric | 0       |
+|    add_ln134_80_fu_4951_p2                                            | -   |        | add_ln134_80                  | add  | fabric | 0       |
+|    add_ln134_81_fu_4963_p2                                            | -   |        | add_ln134_81                  | add  | fabric | 0       |
+|    row_40_fu_4979_p2                                                  | -   |        | row_40                        | sub  | fabric | 0       |
+|    sub_ln138_40_fu_5001_p2                                            | -   |        | sub_ln138_40                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U55                                             | 1   |        | mul_ln148_45                  | mul  | auto   | 0       |
+|    offset_h_41_fu_5018_p2                                             | -   |        | offset_h_41                   | sub  | fabric | 0       |
+|    offset_w_41_fu_5028_p2                                             | -   |        | offset_w_41                   | sub  | fabric | 0       |
+|    add_ln134_82_fu_5038_p2                                            | -   |        | add_ln134_82                  | add  | fabric | 0       |
+|    add_ln134_83_fu_5050_p2                                            | -   |        | add_ln134_83                  | add  | fabric | 0       |
+|    row_41_fu_5066_p2                                                  | -   |        | row_41                        | sub  | fabric | 0       |
+|    sub_ln138_41_fu_5088_p2                                            | -   |        | sub_ln138_41                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U56                                             | 1   |        | mul_ln148_46                  | mul  | auto   | 0       |
+|    offset_h_42_fu_5105_p2                                             | -   |        | offset_h_42                   | sub  | fabric | 0       |
+|    offset_w_42_fu_5115_p2                                             | -   |        | offset_w_42                   | sub  | fabric | 0       |
+|    add_ln134_84_fu_5125_p2                                            | -   |        | add_ln134_84                  | add  | fabric | 0       |
+|    add_ln134_85_fu_5137_p2                                            | -   |        | add_ln134_85                  | add  | fabric | 0       |
+|    row_42_fu_5153_p2                                                  | -   |        | row_42                        | sub  | fabric | 0       |
+|    sub_ln138_42_fu_5175_p2                                            | -   |        | sub_ln138_42                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U57                                             | 1   |        | mul_ln148_47                  | mul  | auto   | 0       |
+|    offset_h_43_fu_5192_p2                                             | -   |        | offset_h_43                   | sub  | fabric | 0       |
+|    offset_w_43_fu_5202_p2                                             | -   |        | offset_w_43                   | sub  | fabric | 0       |
+|    add_ln134_86_fu_5212_p2                                            | -   |        | add_ln134_86                  | add  | fabric | 0       |
+|    add_ln134_87_fu_5224_p2                                            | -   |        | add_ln134_87                  | add  | fabric | 0       |
+|    row_43_fu_5240_p2                                                  | -   |        | row_43                        | sub  | fabric | 0       |
+|    sub_ln138_43_fu_5262_p2                                            | -   |        | sub_ln138_43                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U58                                             | 1   |        | mul_ln148_48                  | mul  | auto   | 0       |
+|    offset_h_44_fu_5279_p2                                             | -   |        | offset_h_44                   | sub  | fabric | 0       |
+|    offset_w_44_fu_5289_p2                                             | -   |        | offset_w_44                   | sub  | fabric | 0       |
+|    add_ln134_88_fu_5299_p2                                            | -   |        | add_ln134_88                  | add  | fabric | 0       |
+|    add_ln134_89_fu_5311_p2                                            | -   |        | add_ln134_89                  | add  | fabric | 0       |
+|    row_44_fu_5327_p2                                                  | -   |        | row_44                        | sub  | fabric | 0       |
+|    sub_ln138_44_fu_5349_p2                                            | -   |        | sub_ln138_44                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U59                                             | 1   |        | mul_ln148_49                  | mul  | auto   | 0       |
+|    add_ln194_36_fu_10981_p2                                           | -   |        | add_ln194_36                  | add  | fabric | 0       |
+|    acc_71_fu_12890_p2                                                 | -   |        | acc_71                        | add  | fabric | 0       |
+|    offset_h_45_fu_5372_p2                                             | -   |        | offset_h_45                   | sub  | fabric | 0       |
+|    offset_w_45_fu_5382_p2                                             | -   |        | offset_w_45                   | sub  | fabric | 0       |
+|    add_ln134_90_fu_5392_p2                                            | -   |        | add_ln134_90                  | add  | fabric | 0       |
+|    add_ln134_91_fu_5404_p2                                            | -   |        | add_ln134_91                  | add  | fabric | 0       |
+|    row_45_fu_5420_p2                                                  | -   |        | row_45                        | sub  | fabric | 0       |
+|    sub_ln138_45_fu_5442_p2                                            | -   |        | sub_ln138_45                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U60                                             | 1   |        | mul_ln148_50                  | mul  | auto   | 0       |
+|    offset_h_46_fu_5459_p2                                             | -   |        | offset_h_46                   | sub  | fabric | 0       |
+|    offset_w_46_fu_5469_p2                                             | -   |        | offset_w_46                   | sub  | fabric | 0       |
+|    add_ln134_92_fu_5479_p2                                            | -   |        | add_ln134_92                  | add  | fabric | 0       |
+|    add_ln134_93_fu_5491_p2                                            | -   |        | add_ln134_93                  | add  | fabric | 0       |
+|    row_46_fu_5507_p2                                                  | -   |        | row_46                        | sub  | fabric | 0       |
+|    sub_ln138_46_fu_5529_p2                                            | -   |        | sub_ln138_46                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U61                                             | 1   |        | mul_ln148_51                  | mul  | auto   | 0       |
+|    offset_h_47_fu_5546_p2                                             | -   |        | offset_h_47                   | sub  | fabric | 0       |
+|    offset_w_47_fu_5556_p2                                             | -   |        | offset_w_47                   | sub  | fabric | 0       |
+|    add_ln134_94_fu_5566_p2                                            | -   |        | add_ln134_94                  | add  | fabric | 0       |
+|    add_ln134_95_fu_5578_p2                                            | -   |        | add_ln134_95                  | add  | fabric | 0       |
+|    row_47_fu_5594_p2                                                  | -   |        | row_47                        | sub  | fabric | 0       |
+|    sub_ln138_47_fu_5616_p2                                            | -   |        | sub_ln138_47                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U62                                             | 1   |        | mul_ln148_52                  | mul  | auto   | 0       |
+|    offset_h_48_fu_5633_p2                                             | -   |        | offset_h_48                   | sub  | fabric | 0       |
+|    offset_w_48_fu_5643_p2                                             | -   |        | offset_w_48                   | sub  | fabric | 0       |
+|    add_ln134_96_fu_5653_p2                                            | -   |        | add_ln134_96                  | add  | fabric | 0       |
+|    add_ln134_97_fu_5665_p2                                            | -   |        | add_ln134_97                  | add  | fabric | 0       |
+|    row_48_fu_5681_p2                                                  | -   |        | row_48                        | sub  | fabric | 0       |
+|    sub_ln138_48_fu_5703_p2                                            | -   |        | sub_ln138_48                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U63                                             | 1   |        | mul_ln148_53                  | mul  | auto   | 0       |
+|    offset_h_49_fu_5720_p2                                             | -   |        | offset_h_49                   | sub  | fabric | 0       |
+|    offset_w_49_fu_5730_p2                                             | -   |        | offset_w_49                   | sub  | fabric | 0       |
+|    add_ln134_98_fu_5740_p2                                            | -   |        | add_ln134_98                  | add  | fabric | 0       |
+|    add_ln134_99_fu_5752_p2                                            | -   |        | add_ln134_99                  | add  | fabric | 0       |
+|    row_49_fu_5768_p2                                                  | -   |        | row_49                        | sub  | fabric | 0       |
+|    sub_ln138_49_fu_5790_p2                                            | -   |        | sub_ln138_49                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U64                                             | 1   |        | mul_ln148_54                  | mul  | auto   | 0       |
+|    mul_16s_11ns_26_1_1_U65                                            | 1   |        | mul_ln148_55                  | mul  | auto   | 0       |
+|    offset_h_50_fu_5807_p2                                             | -   |        | offset_h_50                   | sub  | fabric | 0       |
+|    offset_w_50_fu_5817_p2                                             | -   |        | offset_w_50                   | sub  | fabric | 0       |
+|    add_ln134_100_fu_5827_p2                                           | -   |        | add_ln134_100                 | add  | fabric | 0       |
+|    add_ln134_101_fu_5839_p2                                           | -   |        | add_ln134_101                 | add  | fabric | 0       |
+|    row_50_fu_5855_p2                                                  | -   |        | row_50                        | sub  | fabric | 0       |
+|    sub_ln138_50_fu_5877_p2                                            | -   |        | sub_ln138_50                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U66                                             | 1   |        | mul_ln148_56                  | mul  | auto   | 0       |
+|    offset_h_51_fu_5894_p2                                             | -   |        | offset_h_51                   | sub  | fabric | 0       |
+|    offset_w_51_fu_5904_p2                                             | -   |        | offset_w_51                   | sub  | fabric | 0       |
+|    add_ln134_102_fu_5914_p2                                           | -   |        | add_ln134_102                 | add  | fabric | 0       |
+|    add_ln134_103_fu_5926_p2                                           | -   |        | add_ln134_103                 | add  | fabric | 0       |
+|    row_51_fu_5942_p2                                                  | -   |        | row_51                        | sub  | fabric | 0       |
+|    sub_ln138_51_fu_5964_p2                                            | -   |        | sub_ln138_51                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U67                                             | 1   |        | mul_ln148_57                  | mul  | auto   | 0       |
+|    offset_h_52_fu_5981_p2                                             | -   |        | offset_h_52                   | sub  | fabric | 0       |
+|    offset_w_52_fu_5991_p2                                             | -   |        | offset_w_52                   | sub  | fabric | 0       |
+|    add_ln134_104_fu_6001_p2                                           | -   |        | add_ln134_104                 | add  | fabric | 0       |
+|    add_ln134_105_fu_6013_p2                                           | -   |        | add_ln134_105                 | add  | fabric | 0       |
+|    row_52_fu_6029_p2                                                  | -   |        | row_52                        | sub  | fabric | 0       |
+|    sub_ln138_52_fu_6051_p2                                            | -   |        | sub_ln138_52                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U68                                             | 1   |        | mul_ln148_58                  | mul  | auto   | 0       |
+|    offset_h_53_fu_6068_p2                                             | -   |        | offset_h_53                   | sub  | fabric | 0       |
+|    offset_w_53_fu_6078_p2                                             | -   |        | offset_w_53                   | sub  | fabric | 0       |
+|    add_ln134_106_fu_6088_p2                                           | -   |        | add_ln134_106                 | add  | fabric | 0       |
+|    add_ln134_107_fu_6100_p2                                           | -   |        | add_ln134_107                 | add  | fabric | 0       |
+|    row_53_fu_6116_p2                                                  | -   |        | row_53                        | sub  | fabric | 0       |
+|    sub_ln138_53_fu_6138_p2                                            | -   |        | sub_ln138_53                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U69                                             | 1   |        | mul_ln148_59                  | mul  | auto   | 0       |
+|    add_ln194_45_fu_11315_p2                                           | -   |        | add_ln194_45                  | add  | fabric | 0       |
+|    acc_86_fu_12936_p2                                                 | -   |        | acc_86                        | add  | fabric | 0       |
+|    offset_h_54_fu_6161_p2                                             | -   |        | offset_h_54                   | sub  | fabric | 0       |
+|    offset_w_54_fu_6171_p2                                             | -   |        | offset_w_54                   | sub  | fabric | 0       |
+|    add_ln134_108_fu_6181_p2                                           | -   |        | add_ln134_108                 | add  | fabric | 0       |
+|    add_ln134_109_fu_6193_p2                                           | -   |        | add_ln134_109                 | add  | fabric | 0       |
+|    row_54_fu_6209_p2                                                  | -   |        | row_54                        | sub  | fabric | 0       |
+|    sub_ln138_54_fu_6231_p2                                            | -   |        | sub_ln138_54                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U70                                             | 1   |        | mul_ln148_60                  | mul  | auto   | 0       |
+|    offset_h_55_fu_6248_p2                                             | -   |        | offset_h_55                   | sub  | fabric | 0       |
+|    offset_w_55_fu_6258_p2                                             | -   |        | offset_w_55                   | sub  | fabric | 0       |
+|    add_ln134_110_fu_6268_p2                                           | -   |        | add_ln134_110                 | add  | fabric | 0       |
+|    add_ln134_111_fu_6280_p2                                           | -   |        | add_ln134_111                 | add  | fabric | 0       |
+|    row_55_fu_6296_p2                                                  | -   |        | row_55                        | sub  | fabric | 0       |
+|    sub_ln138_55_fu_6318_p2                                            | -   |        | sub_ln138_55                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U71                                             | 1   |        | mul_ln148_61                  | mul  | auto   | 0       |
+|    offset_h_56_fu_6335_p2                                             | -   |        | offset_h_56                   | sub  | fabric | 0       |
+|    offset_w_56_fu_6345_p2                                             | -   |        | offset_w_56                   | sub  | fabric | 0       |
+|    add_ln134_112_fu_6355_p2                                           | -   |        | add_ln134_112                 | add  | fabric | 0       |
+|    add_ln134_113_fu_6367_p2                                           | -   |        | add_ln134_113                 | add  | fabric | 0       |
+|    row_56_fu_6383_p2                                                  | -   |        | row_56                        | sub  | fabric | 0       |
+|    sub_ln138_56_fu_6405_p2                                            | -   |        | sub_ln138_56                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U72                                             | 1   |        | mul_ln148_62                  | mul  | auto   | 0       |
+|    offset_h_57_fu_6422_p2                                             | -   |        | offset_h_57                   | sub  | fabric | 0       |
+|    offset_w_57_fu_6432_p2                                             | -   |        | offset_w_57                   | sub  | fabric | 0       |
+|    add_ln134_114_fu_6442_p2                                           | -   |        | add_ln134_114                 | add  | fabric | 0       |
+|    add_ln134_115_fu_6454_p2                                           | -   |        | add_ln134_115                 | add  | fabric | 0       |
+|    row_57_fu_6470_p2                                                  | -   |        | row_57                        | sub  | fabric | 0       |
+|    sub_ln138_57_fu_6492_p2                                            | -   |        | sub_ln138_57                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U73                                             | 1   |        | mul_ln148_63                  | mul  | auto   | 0       |
+|    offset_h_58_fu_6509_p2                                             | -   |        | offset_h_58                   | sub  | fabric | 0       |
+|    offset_w_58_fu_6519_p2                                             | -   |        | offset_w_58                   | sub  | fabric | 0       |
+|    add_ln134_116_fu_6529_p2                                           | -   |        | add_ln134_116                 | add  | fabric | 0       |
+|    add_ln134_117_fu_6541_p2                                           | -   |        | add_ln134_117                 | add  | fabric | 0       |
+|    row_58_fu_6557_p2                                                  | -   |        | row_58                        | sub  | fabric | 0       |
+|    sub_ln138_58_fu_6579_p2                                            | -   |        | sub_ln138_58                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U74                                             | 1   |        | mul_ln148_64                  | mul  | auto   | 0       |
+|    offset_h_59_fu_6596_p2                                             | -   |        | offset_h_59                   | sub  | fabric | 0       |
+|    offset_w_59_fu_6606_p2                                             | -   |        | offset_w_59                   | sub  | fabric | 0       |
+|    add_ln134_118_fu_6616_p2                                           | -   |        | add_ln134_118                 | add  | fabric | 0       |
+|    add_ln134_119_fu_6628_p2                                           | -   |        | add_ln134_119                 | add  | fabric | 0       |
+|    row_59_fu_6644_p2                                                  | -   |        | row_59                        | sub  | fabric | 0       |
+|    sub_ln138_59_fu_6666_p2                                            | -   |        | sub_ln138_59                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U75                                             | 1   |        | mul_ln148_65                  | mul  | auto   | 0       |
+|    mul_16s_11ns_26_1_1_U76                                            | 1   |        | mul_ln148_66                  | mul  | auto   | 0       |
+|    offset_h_60_fu_6683_p2                                             | -   |        | offset_h_60                   | sub  | fabric | 0       |
+|    offset_w_60_fu_6693_p2                                             | -   |        | offset_w_60                   | sub  | fabric | 0       |
+|    add_ln134_120_fu_6703_p2                                           | -   |        | add_ln134_120                 | add  | fabric | 0       |
+|    add_ln134_121_fu_6715_p2                                           | -   |        | add_ln134_121                 | add  | fabric | 0       |
+|    row_60_fu_6731_p2                                                  | -   |        | row_60                        | sub  | fabric | 0       |
+|    sub_ln138_60_fu_6753_p2                                            | -   |        | sub_ln138_60                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U77                                             | 1   |        | mul_ln148_67                  | mul  | auto   | 0       |
+|    offset_h_61_fu_6770_p2                                             | -   |        | offset_h_61                   | sub  | fabric | 0       |
+|    offset_w_61_fu_6780_p2                                             | -   |        | offset_w_61                   | sub  | fabric | 0       |
+|    add_ln134_122_fu_6790_p2                                           | -   |        | add_ln134_122                 | add  | fabric | 0       |
+|    add_ln134_123_fu_6802_p2                                           | -   |        | add_ln134_123                 | add  | fabric | 0       |
+|    row_61_fu_6818_p2                                                  | -   |        | row_61                        | sub  | fabric | 0       |
+|    sub_ln138_61_fu_6840_p2                                            | -   |        | sub_ln138_61                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U78                                             | 1   |        | mul_ln148_68                  | mul  | auto   | 0       |
+|    offset_h_62_fu_6857_p2                                             | -   |        | offset_h_62                   | sub  | fabric | 0       |
+|    offset_w_62_fu_6867_p2                                             | -   |        | offset_w_62                   | sub  | fabric | 0       |
+|    add_ln134_124_fu_6877_p2                                           | -   |        | add_ln134_124                 | add  | fabric | 0       |
+|    add_ln134_125_fu_6889_p2                                           | -   |        | add_ln134_125                 | add  | fabric | 0       |
+|    row_62_fu_6905_p2                                                  | -   |        | row_62                        | sub  | fabric | 0       |
+|    sub_ln138_62_fu_6927_p2                                            | -   |        | sub_ln138_62                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U79                                             | 1   |        | mul_ln148_69                  | mul  | auto   | 0       |
+|    add_ln194_54_fu_11649_p2                                           | -   |        | add_ln194_54                  | add  | fabric | 0       |
+|    acc_101_fu_12982_p2                                                | -   |        | acc_101                       | add  | fabric | 0       |
+|    offset_h_63_fu_6950_p2                                             | -   |        | offset_h_63                   | sub  | fabric | 0       |
+|    offset_w_63_fu_6960_p2                                             | -   |        | offset_w_63                   | sub  | fabric | 0       |
+|    add_ln134_126_fu_6970_p2                                           | -   |        | add_ln134_126                 | add  | fabric | 0       |
+|    add_ln134_127_fu_6982_p2                                           | -   |        | add_ln134_127                 | add  | fabric | 0       |
+|    row_63_fu_6998_p2                                                  | -   |        | row_63                        | sub  | fabric | 0       |
+|    sub_ln138_63_fu_7020_p2                                            | -   |        | sub_ln138_63                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U80                                             | 1   |        | mul_ln148_70                  | mul  | auto   | 0       |
+|    offset_h_64_fu_7037_p2                                             | -   |        | offset_h_64                   | sub  | fabric | 0       |
+|    offset_w_64_fu_7047_p2                                             | -   |        | offset_w_64                   | sub  | fabric | 0       |
+|    add_ln134_128_fu_7057_p2                                           | -   |        | add_ln134_128                 | add  | fabric | 0       |
+|    add_ln134_129_fu_7069_p2                                           | -   |        | add_ln134_129                 | add  | fabric | 0       |
+|    row_64_fu_7085_p2                                                  | -   |        | row_64                        | sub  | fabric | 0       |
+|    sub_ln138_64_fu_7107_p2                                            | -   |        | sub_ln138_64                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U81                                             | 1   |        | mul_ln148_71                  | mul  | auto   | 0       |
+|    offset_h_65_fu_7124_p2                                             | -   |        | offset_h_65                   | sub  | fabric | 0       |
+|    offset_w_65_fu_7134_p2                                             | -   |        | offset_w_65                   | sub  | fabric | 0       |
+|    add_ln134_130_fu_7144_p2                                           | -   |        | add_ln134_130                 | add  | fabric | 0       |
+|    add_ln134_131_fu_7156_p2                                           | -   |        | add_ln134_131                 | add  | fabric | 0       |
+|    row_65_fu_7172_p2                                                  | -   |        | row_65                        | sub  | fabric | 0       |
+|    sub_ln138_65_fu_7194_p2                                            | -   |        | sub_ln138_65                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U82                                             | 1   |        | mul_ln148_72                  | mul  | auto   | 0       |
+|    offset_h_66_fu_7211_p2                                             | -   |        | offset_h_66                   | sub  | fabric | 0       |
+|    offset_w_66_fu_7221_p2                                             | -   |        | offset_w_66                   | sub  | fabric | 0       |
+|    add_ln134_132_fu_7231_p2                                           | -   |        | add_ln134_132                 | add  | fabric | 0       |
+|    add_ln134_133_fu_7243_p2                                           | -   |        | add_ln134_133                 | add  | fabric | 0       |
+|    row_66_fu_7259_p2                                                  | -   |        | row_66                        | sub  | fabric | 0       |
+|    sub_ln138_66_fu_7281_p2                                            | -   |        | sub_ln138_66                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U83                                             | 1   |        | mul_ln148_73                  | mul  | auto   | 0       |
+|    offset_h_67_fu_7298_p2                                             | -   |        | offset_h_67                   | sub  | fabric | 0       |
+|    offset_w_67_fu_7308_p2                                             | -   |        | offset_w_67                   | sub  | fabric | 0       |
+|    add_ln134_134_fu_7318_p2                                           | -   |        | add_ln134_134                 | add  | fabric | 0       |
+|    add_ln134_135_fu_7330_p2                                           | -   |        | add_ln134_135                 | add  | fabric | 0       |
+|    row_67_fu_7346_p2                                                  | -   |        | row_67                        | sub  | fabric | 0       |
+|    sub_ln138_67_fu_7368_p2                                            | -   |        | sub_ln138_67                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U84                                             | 1   |        | mul_ln148_74                  | mul  | auto   | 0       |
+|    offset_h_68_fu_7385_p2                                             | -   |        | offset_h_68                   | sub  | fabric | 0       |
+|    offset_w_68_fu_7395_p2                                             | -   |        | offset_w_68                   | sub  | fabric | 0       |
+|    add_ln134_136_fu_7405_p2                                           | -   |        | add_ln134_136                 | add  | fabric | 0       |
+|    add_ln134_137_fu_7417_p2                                           | -   |        | add_ln134_137                 | add  | fabric | 0       |
+|    row_68_fu_7433_p2                                                  | -   |        | row_68                        | sub  | fabric | 0       |
+|    sub_ln138_68_fu_7455_p2                                            | -   |        | sub_ln138_68                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U85                                             | 1   |        | mul_ln148_75                  | mul  | auto   | 0       |
+|    offset_h_69_fu_7472_p2                                             | -   |        | offset_h_69                   | sub  | fabric | 0       |
+|    offset_w_69_fu_7482_p2                                             | -   |        | offset_w_69                   | sub  | fabric | 0       |
+|    add_ln134_138_fu_7492_p2                                           | -   |        | add_ln134_138                 | add  | fabric | 0       |
+|    add_ln134_139_fu_7504_p2                                           | -   |        | add_ln134_139                 | add  | fabric | 0       |
+|    row_69_fu_7520_p2                                                  | -   |        | row_69                        | sub  | fabric | 0       |
+|    sub_ln138_69_fu_7542_p2                                            | -   |        | sub_ln138_69                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U86                                             | 1   |        | mul_ln148_76                  | mul  | auto   | 0       |
+|    mul_16s_11ns_26_1_1_U87                                            | 1   |        | mul_ln148_77                  | mul  | auto   | 0       |
+|    offset_h_70_fu_7559_p2                                             | -   |        | offset_h_70                   | sub  | fabric | 0       |
+|    offset_w_70_fu_7569_p2                                             | -   |        | offset_w_70                   | sub  | fabric | 0       |
+|    add_ln134_140_fu_7579_p2                                           | -   |        | add_ln134_140                 | add  | fabric | 0       |
+|    add_ln134_141_fu_7591_p2                                           | -   |        | add_ln134_141                 | add  | fabric | 0       |
+|    row_70_fu_7607_p2                                                  | -   |        | row_70                        | sub  | fabric | 0       |
+|    sub_ln138_70_fu_7629_p2                                            | -   |        | sub_ln138_70                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U88                                             | 1   |        | mul_ln148_78                  | mul  | auto   | 0       |
+|    offset_h_71_fu_7646_p2                                             | -   |        | offset_h_71                   | sub  | fabric | 0       |
+|    offset_w_71_fu_7656_p2                                             | -   |        | offset_w_71                   | sub  | fabric | 0       |
+|    add_ln134_142_fu_7666_p2                                           | -   |        | add_ln134_142                 | add  | fabric | 0       |
+|    add_ln134_143_fu_7678_p2                                           | -   |        | add_ln134_143                 | add  | fabric | 0       |
+|    row_71_fu_7694_p2                                                  | -   |        | row_71                        | sub  | fabric | 0       |
+|    sub_ln138_71_fu_7716_p2                                            | -   |        | sub_ln138_71                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U89                                             | 1   |        | mul_ln148_79                  | mul  | auto   | 0       |
+|    add_ln194_63_fu_11983_p2                                           | -   |        | add_ln194_63                  | add  | fabric | 0       |
+|    acc_116_fu_13028_p2                                                | -   |        | acc_116                       | add  | fabric | 0       |
+|    offset_h_72_fu_7739_p2                                             | -   |        | offset_h_72                   | sub  | fabric | 0       |
+|    offset_w_72_fu_7749_p2                                             | -   |        | offset_w_72                   | sub  | fabric | 0       |
+|    add_ln134_144_fu_7759_p2                                           | -   |        | add_ln134_144                 | add  | fabric | 0       |
+|    add_ln134_145_fu_7771_p2                                           | -   |        | add_ln134_145                 | add  | fabric | 0       |
+|    row_72_fu_7787_p2                                                  | -   |        | row_72                        | sub  | fabric | 0       |
+|    sub_ln138_72_fu_7809_p2                                            | -   |        | sub_ln138_72                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U90                                             | 1   |        | mul_ln148_80                  | mul  | auto   | 0       |
+|    offset_h_73_fu_7826_p2                                             | -   |        | offset_h_73                   | sub  | fabric | 0       |
+|    offset_w_73_fu_7836_p2                                             | -   |        | offset_w_73                   | sub  | fabric | 0       |
+|    add_ln134_146_fu_7846_p2                                           | -   |        | add_ln134_146                 | add  | fabric | 0       |
+|    add_ln134_147_fu_7858_p2                                           | -   |        | add_ln134_147                 | add  | fabric | 0       |
+|    row_73_fu_7874_p2                                                  | -   |        | row_73                        | sub  | fabric | 0       |
+|    sub_ln138_73_fu_7896_p2                                            | -   |        | sub_ln138_73                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U91                                             | 1   |        | mul_ln148_81                  | mul  | auto   | 0       |
+|    offset_h_74_fu_7913_p2                                             | -   |        | offset_h_74                   | sub  | fabric | 0       |
+|    offset_w_74_fu_7923_p2                                             | -   |        | offset_w_74                   | sub  | fabric | 0       |
+|    add_ln134_148_fu_7933_p2                                           | -   |        | add_ln134_148                 | add  | fabric | 0       |
+|    add_ln134_149_fu_7945_p2                                           | -   |        | add_ln134_149                 | add  | fabric | 0       |
+|    row_74_fu_7961_p2                                                  | -   |        | row_74                        | sub  | fabric | 0       |
+|    sub_ln138_74_fu_7983_p2                                            | -   |        | sub_ln138_74                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U92                                             | 1   |        | mul_ln148_82                  | mul  | auto   | 0       |
+|    offset_h_75_fu_8000_p2                                             | -   |        | offset_h_75                   | sub  | fabric | 0       |
+|    offset_w_75_fu_8010_p2                                             | -   |        | offset_w_75                   | sub  | fabric | 0       |
+|    add_ln134_150_fu_8020_p2                                           | -   |        | add_ln134_150                 | add  | fabric | 0       |
+|    add_ln134_151_fu_8032_p2                                           | -   |        | add_ln134_151                 | add  | fabric | 0       |
+|    row_75_fu_8048_p2                                                  | -   |        | row_75                        | sub  | fabric | 0       |
+|    sub_ln138_75_fu_8070_p2                                            | -   |        | sub_ln138_75                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U93                                             | 1   |        | mul_ln148_83                  | mul  | auto   | 0       |
+|    offset_h_76_fu_8087_p2                                             | -   |        | offset_h_76                   | sub  | fabric | 0       |
+|    offset_w_76_fu_8097_p2                                             | -   |        | offset_w_76                   | sub  | fabric | 0       |
+|    add_ln134_152_fu_8107_p2                                           | -   |        | add_ln134_152                 | add  | fabric | 0       |
+|    add_ln134_153_fu_8119_p2                                           | -   |        | add_ln134_153                 | add  | fabric | 0       |
+|    row_76_fu_8135_p2                                                  | -   |        | row_76                        | sub  | fabric | 0       |
+|    sub_ln138_76_fu_8157_p2                                            | -   |        | sub_ln138_76                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U94                                             | 1   |        | mul_ln148_84                  | mul  | auto   | 0       |
+|    offset_h_77_fu_8174_p2                                             | -   |        | offset_h_77                   | sub  | fabric | 0       |
+|    offset_w_77_fu_8184_p2                                             | -   |        | offset_w_77                   | sub  | fabric | 0       |
+|    add_ln134_154_fu_8194_p2                                           | -   |        | add_ln134_154                 | add  | fabric | 0       |
+|    add_ln134_155_fu_8206_p2                                           | -   |        | add_ln134_155                 | add  | fabric | 0       |
+|    row_77_fu_8222_p2                                                  | -   |        | row_77                        | sub  | fabric | 0       |
+|    sub_ln138_77_fu_8244_p2                                            | -   |        | sub_ln138_77                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U95                                             | 1   |        | mul_ln148_85                  | mul  | auto   | 0       |
+|    offset_h_78_fu_8261_p2                                             | -   |        | offset_h_78                   | sub  | fabric | 0       |
+|    offset_w_78_fu_8271_p2                                             | -   |        | offset_w_78                   | sub  | fabric | 0       |
+|    add_ln134_156_fu_8281_p2                                           | -   |        | add_ln134_156                 | add  | fabric | 0       |
+|    add_ln134_157_fu_8293_p2                                           | -   |        | add_ln134_157                 | add  | fabric | 0       |
+|    row_78_fu_8309_p2                                                  | -   |        | row_78                        | sub  | fabric | 0       |
+|    sub_ln138_78_fu_8331_p2                                            | -   |        | sub_ln138_78                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U96                                             | 1   |        | mul_ln148_86                  | mul  | auto   | 0       |
+|    offset_h_79_fu_8348_p2                                             | -   |        | offset_h_79                   | sub  | fabric | 0       |
+|    offset_w_79_fu_8358_p2                                             | -   |        | offset_w_79                   | sub  | fabric | 0       |
+|    add_ln134_158_fu_8368_p2                                           | -   |        | add_ln134_158                 | add  | fabric | 0       |
+|    add_ln134_159_fu_8380_p2                                           | -   |        | add_ln134_159                 | add  | fabric | 0       |
+|    row_79_fu_8396_p2                                                  | -   |        | row_79                        | sub  | fabric | 0       |
+|    sub_ln138_79_fu_8418_p2                                            | -   |        | sub_ln138_79                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U97                                             | 1   |        | mul_ln148_87                  | mul  | auto   | 0       |
+|    mul_16s_11ns_26_1_1_U98                                            | 1   |        | mul_ln148_88                  | mul  | auto   | 0       |
+|    offset_h_80_fu_8435_p2                                             | -   |        | offset_h_80                   | sub  | fabric | 0       |
+|    offset_w_80_fu_8445_p2                                             | -   |        | offset_w_80                   | sub  | fabric | 0       |
+|    add_ln134_160_fu_8455_p2                                           | -   |        | add_ln134_160                 | add  | fabric | 0       |
+|    add_ln134_161_fu_8467_p2                                           | -   |        | add_ln134_161                 | add  | fabric | 0       |
+|    row_80_fu_8483_p2                                                  | -   |        | row_80                        | sub  | fabric | 0       |
+|    sub_ln138_80_fu_8505_p2                                            | -   |        | sub_ln138_80                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U99                                             | 1   |        | mul_ln148_89                  | mul  | auto   | 0       |
+|    add_ln194_72_fu_12317_p2                                           | -   |        | add_ln194_72                  | add  | fabric | 0       |
+|    acc_131_fu_13074_p2                                                | -   |        | acc_131                       | add  | fabric | 0       |
+|    offset_h_81_fu_8528_p2                                             | -   |        | offset_h_81                   | sub  | fabric | 0       |
+|    offset_w_81_fu_8538_p2                                             | -   |        | offset_w_81                   | sub  | fabric | 0       |
+|    add_ln134_162_fu_8548_p2                                           | -   |        | add_ln134_162                 | add  | fabric | 0       |
+|    add_ln134_163_fu_8560_p2                                           | -   |        | add_ln134_163                 | add  | fabric | 0       |
+|    row_81_fu_8576_p2                                                  | -   |        | row_81                        | sub  | fabric | 0       |
+|    sub_ln138_81_fu_8598_p2                                            | -   |        | sub_ln138_81                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U100                                            | 1   |        | mul_ln148_90                  | mul  | auto   | 0       |
+|    offset_h_82_fu_8615_p2                                             | -   |        | offset_h_82                   | sub  | fabric | 0       |
+|    offset_w_82_fu_8625_p2                                             | -   |        | offset_w_82                   | sub  | fabric | 0       |
+|    add_ln134_164_fu_8635_p2                                           | -   |        | add_ln134_164                 | add  | fabric | 0       |
+|    add_ln134_165_fu_8647_p2                                           | -   |        | add_ln134_165                 | add  | fabric | 0       |
+|    row_82_fu_8663_p2                                                  | -   |        | row_82                        | sub  | fabric | 0       |
+|    sub_ln138_82_fu_8685_p2                                            | -   |        | sub_ln138_82                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U101                                            | 1   |        | mul_ln148_91                  | mul  | auto   | 0       |
+|    offset_h_83_fu_8702_p2                                             | -   |        | offset_h_83                   | sub  | fabric | 0       |
+|    offset_w_83_fu_8712_p2                                             | -   |        | offset_w_83                   | sub  | fabric | 0       |
+|    add_ln134_166_fu_8722_p2                                           | -   |        | add_ln134_166                 | add  | fabric | 0       |
+|    add_ln134_167_fu_8734_p2                                           | -   |        | add_ln134_167                 | add  | fabric | 0       |
+|    row_83_fu_8750_p2                                                  | -   |        | row_83                        | sub  | fabric | 0       |
+|    sub_ln138_83_fu_8772_p2                                            | -   |        | sub_ln138_83                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U102                                            | 1   |        | mul_ln148_92                  | mul  | auto   | 0       |
+|    offset_h_84_fu_8789_p2                                             | -   |        | offset_h_84                   | sub  | fabric | 0       |
+|    offset_w_84_fu_8799_p2                                             | -   |        | offset_w_84                   | sub  | fabric | 0       |
+|    add_ln134_168_fu_8809_p2                                           | -   |        | add_ln134_168                 | add  | fabric | 0       |
+|    add_ln134_169_fu_8821_p2                                           | -   |        | add_ln134_169                 | add  | fabric | 0       |
+|    row_84_fu_8837_p2                                                  | -   |        | row_84                        | sub  | fabric | 0       |
+|    sub_ln138_84_fu_8859_p2                                            | -   |        | sub_ln138_84                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U103                                            | 1   |        | mul_ln148_93                  | mul  | auto   | 0       |
+|    offset_h_85_fu_8876_p2                                             | -   |        | offset_h_85                   | sub  | fabric | 0       |
+|    offset_w_85_fu_8886_p2                                             | -   |        | offset_w_85                   | sub  | fabric | 0       |
+|    add_ln134_170_fu_8896_p2                                           | -   |        | add_ln134_170                 | add  | fabric | 0       |
+|    add_ln134_171_fu_8908_p2                                           | -   |        | add_ln134_171                 | add  | fabric | 0       |
+|    row_85_fu_8924_p2                                                  | -   |        | row_85                        | sub  | fabric | 0       |
+|    sub_ln138_85_fu_8946_p2                                            | -   |        | sub_ln138_85                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U104                                            | 1   |        | mul_ln148_94                  | mul  | auto   | 0       |
+|    offset_h_86_fu_8963_p2                                             | -   |        | offset_h_86                   | sub  | fabric | 0       |
+|    offset_w_86_fu_8973_p2                                             | -   |        | offset_w_86                   | sub  | fabric | 0       |
+|    add_ln134_172_fu_8983_p2                                           | -   |        | add_ln134_172                 | add  | fabric | 0       |
+|    add_ln134_173_fu_8995_p2                                           | -   |        | add_ln134_173                 | add  | fabric | 0       |
+|    row_86_fu_9011_p2                                                  | -   |        | row_86                        | sub  | fabric | 0       |
+|    sub_ln138_86_fu_9033_p2                                            | -   |        | sub_ln138_86                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U105                                            | 1   |        | mul_ln148_95                  | mul  | auto   | 0       |
+|    offset_h_87_fu_9050_p2                                             | -   |        | offset_h_87                   | sub  | fabric | 0       |
+|    offset_w_87_fu_9060_p2                                             | -   |        | offset_w_87                   | sub  | fabric | 0       |
+|    add_ln134_174_fu_9070_p2                                           | -   |        | add_ln134_174                 | add  | fabric | 0       |
+|    add_ln134_175_fu_9082_p2                                           | -   |        | add_ln134_175                 | add  | fabric | 0       |
+|    row_87_fu_9098_p2                                                  | -   |        | row_87                        | sub  | fabric | 0       |
+|    sub_ln138_87_fu_9120_p2                                            | -   |        | sub_ln138_87                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U106                                            | 1   |        | mul_ln148_96                  | mul  | auto   | 0       |
+|    offset_h_88_fu_9137_p2                                             | -   |        | offset_h_88                   | sub  | fabric | 0       |
+|    offset_w_88_fu_9147_p2                                             | -   |        | offset_w_88                   | sub  | fabric | 0       |
+|    add_ln134_176_fu_9157_p2                                           | -   |        | add_ln134_176                 | add  | fabric | 0       |
+|    add_ln134_177_fu_9169_p2                                           | -   |        | add_ln134_177                 | add  | fabric | 0       |
+|    row_88_fu_9185_p2                                                  | -   |        | row_88                        | sub  | fabric | 0       |
+|    sub_ln138_88_fu_9207_p2                                            | -   |        | sub_ln138_88                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U107                                            | 1   |        | mul_ln148_97                  | mul  | auto   | 0       |
+|    offset_h_89_fu_9224_p2                                             | -   |        | offset_h_89                   | sub  | fabric | 0       |
+|    offset_w_89_fu_9234_p2                                             | -   |        | offset_w_89                   | sub  | fabric | 0       |
+|    add_ln134_178_fu_9244_p2                                           | -   |        | add_ln134_178                 | add  | fabric | 0       |
+|    add_ln134_179_fu_9256_p2                                           | -   |        | add_ln134_179                 | add  | fabric | 0       |
+|    row_89_fu_9272_p2                                                  | -   |        | row_89                        | sub  | fabric | 0       |
+|    sub_ln138_89_fu_9294_p2                                            | -   |        | sub_ln138_89                  | sub  | fabric | 0       |
+|    mul_16s_15s_26_1_1_U108                                            | 1   |        | mul_ln148_98                  | mul  | auto   | 0       |
+|    mul_16s_11ns_26_1_1_U109                                           | 1   |        | mul_ln148_99                  | mul  | auto   | 0       |
+|    add_ln194_81_fu_12651_p2                                           | -   |        | add_ln194_81                  | add  | fabric | 0       |
+|    acc_146_fu_13120_p2                                                | -   |        | acc_146                       | add  | fabric | 0       |
++-----------------------------------------------------------------------+-----+--------+-------------------------------+------+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++-----------------------------------------------------------------------+------+------+--------+----------+---------+------+---------+
+| Name                                                                  | BRAM | URAM | Pragma | Variable | Storage | Impl | Latency |
++-----------------------------------------------------------------------+------+------+--------+----------+---------+------+---------+
+| + hls_dummy                                                           | 0    | 0    |        |          |         |      |         |
+|  + sparse_conv_ap_fixed_ap_fixed_ap_uint_ap_fixed_ap_fixed_10_1_1_3_s | 0    | 0    |        |          |         |      |         |
+|    w2_U                                                               | -    | -    |        | w2       | rom_np  | auto | 1       |
++-----------------------------------------------------------------------+------+------+--------+----------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Pragmas with Warnings
++----------+-----------------------------------+-----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Type     | Options                           | Location                                                                                | Messages                                                                                                                                                                           |
++----------+-----------------------------------+-----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dataflow |                                   | firmware/hls_dummy.cpp:345 in hls_dummy                                                 | Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region |
+| resource | variable=weights core=ROM_nP_BRAM | firmware/nnet_utils/nnet_dense_resource.h:33 in dense_resource_rf_leq_nin, weights      | 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead                                                                                                         |
+| resource | variable=weights core=ROM_nP_BRAM | firmware/nnet_utils/nnet_dense_resource.h:107 in dense_resource_rf_gt_nin_rem0, weights | 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead                                                                                                         |
+| resource | variable=weights core=ROM_nP_BRAM | firmware/nnet_utils/nnet_dense_resource.h:189 in dense_resource_rf_gt_nin, weights      | 'Resource pragma' is deprecated, use 'bind_op/bind_storage pragma' instead                                                                                                         |
++----------+-----------------------------------+-----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+* Valid Pragma Syntax
++----------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+| Type                 | Options                                                               | Location                                                                                       |
++----------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+| inline               |                                                                       | firmware/hls_dummy.cpp:35 in find_active                                                       |
+| array_partition      | variable=j_h_arr type=complete dim=0                                  | firmware/hls_dummy.cpp:68 in sparse_input_reduce, j_h_arr                                      |
+| array_partition      | variable=j_w_arr type=complete dim=0                                  | firmware/hls_dummy.cpp:69 in sparse_input_reduce, j_w_arr                                      |
+| array_partition      | variable=pair_arr type=complete dim=0                                 | firmware/hls_dummy.cpp:70 in sparse_input_reduce, pair_arr                                     |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:75 in sparse_input_reduce                                               |
+| pipeline             |                                                                       | firmware/hls_dummy.cpp:95 in sparse_input_reduce                                               |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:105 in sparse_input_reduce                                              |
+| inline               |                                                                       | firmware/hls_dummy.cpp:130 in mult_for_sparse_conv_kernel                                      |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:147 in mult_for_sparse_conv_kernel                                      |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:171 in sparse_conv                                                      |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:175 in sparse_conv                                                      |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:182 in sparse_conv                                                      |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:188 in sparse_conv                                                      |
+| pipeline             |                                                                       | firmware/hls_dummy.cpp:207 in sparse_relu                                                      |
+| array_partition      | variable=hash_tmp type=complete dim=0                                 | firmware/hls_dummy.cpp:240 in sparse_pooling_avg, hash_tmp                                     |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:243 in sparse_pooling_avg                                               |
+| array_partition      | variable=sparse_arr_feat_in_copy type=complete dim=0                  | firmware/hls_dummy.cpp:253 in sparse_pooling_avg, sparse_arr_feat_in_copy                      |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:255 in sparse_pooling_avg                                               |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:263 in sparse_pooling_avg                                               |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:271 in sparse_pooling_avg                                               |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:277 in sparse_pooling_avg                                               |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:310 in sparse_flatten                                                   |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:316 in sparse_flatten                                                   |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:324 in sparse_flatten                                                   |
+| array_reshape        | variable=x_in complete dim=0                                          | firmware/hls_dummy.cpp:342 in hls_dummy, x_in                                                  |
+| array_partition      | variable=layer2_out complete dim=0                                    | firmware/hls_dummy.cpp:343 in hls_dummy, layer2_out                                            |
+| interface            | ap_vld port=x_in,layer2_out                                           | firmware/hls_dummy.cpp:344 in hls_dummy, x_in,layer2_out                                       |
+| array_partition      | variable=sparse_arr_feat_reduce_out complete dim=0                    | firmware/hls_dummy.cpp:364 in hls_dummy, sparse_arr_feat_reduce_out                            |
+| array_partition      | variable=sparse_arr_hash_reduce_out complete dim=0                    | firmware/hls_dummy.cpp:365 in hls_dummy, sparse_arr_hash_reduce_out                            |
+| array_partition      | variable=sparse_arr_feat_conv1_out complete dim=0                     | firmware/hls_dummy.cpp:369 in hls_dummy, sparse_arr_feat_conv1_out                             |
+| unroll               |                                                                       | firmware/hls_dummy.cpp:373 in hls_dummy                                                        |
+| array_partition      | variable=data_buf complete dim=0                                      | firmware/nnet_utils/nnet_conv1d_latency.h:19 in conv_1d_latency_cl, data_buf                   |
+| array_partition      | variable=mult complete                                                | firmware/nnet_utils/nnet_conv1d_latency.h:22 in conv_1d_latency_cl, mult                       |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_conv1d_latency.h:25 in conv_1d_latency_cl, acc                        |
+| array_partition      | variable=weights complete                                             | firmware/nnet_utils/nnet_conv1d_latency.h:27 in conv_1d_latency_cl, weights                    |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_conv1d_latency.h:28 in conv_1d_latency_cl, biases                     |
+| allocation           | operation instances=mul limit=CONFIG_T::mult_config::multiplier_limit | firmware/nnet_utils/nnet_conv1d_latency.h:31 in conv_1d_latency_cl                             |
+| pipeline             | II=CONFIG_T::reuse_factor rewind                                      | firmware/nnet_utils/nnet_conv1d_latency.h:35 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:41 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:48 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:52 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:62 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:69 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:72 in conv_1d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:80 in conv_1d_latency_cl                             |
+| array_partition      | variable=mult complete dim=0                                          | firmware/nnet_utils/nnet_conv1d_latency.h:98 in pointwise_conv_1d_latency_cl, mult             |
+| array_partition      | variable=acc complete dim=0                                           | firmware/nnet_utils/nnet_conv1d_latency.h:99 in pointwise_conv_1d_latency_cl, acc              |
+| function_instantiate | variable=weights,biases                                               | firmware/nnet_utils/nnet_conv1d_latency.h:102 in pointwise_conv_1d_latency_cl, weights,biases  |
+| pipeline             | II=CONFIG_T::reuse_factor                                             | firmware/nnet_utils/nnet_conv1d_latency.h:105 in pointwise_conv_1d_latency_cl                  |
+| array_partition      | variable=weights complete dim=0                                       | firmware/nnet_utils/nnet_conv1d_latency.h:106 in pointwise_conv_1d_latency_cl, weights         |
+| array_partition      | variable=biases complete dim=0                                        | firmware/nnet_utils/nnet_conv1d_latency.h:107 in pointwise_conv_1d_latency_cl, biases          |
+| allocation           | operation instances=mul limit=CONFIG_T::mult_config::multiplier_limit | firmware/nnet_utils/nnet_conv1d_latency.h:110 in pointwise_conv_1d_latency_cl                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:119 in pointwise_conv_1d_latency_cl                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:138 in pointwise_conv_1d_latency_cl                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv1d_latency.h:160 in pointwise_conv_1d_latency_cl                  |
+| array_partition      | variable=data_buf complete dim=0                                      | firmware/nnet_utils/nnet_conv2d_latency.h:20 in conv_2d_latency_cl, data_buf                   |
+| array_partition      | variable=mult complete                                                | firmware/nnet_utils/nnet_conv2d_latency.h:23 in conv_2d_latency_cl, mult                       |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_conv2d_latency.h:26 in conv_2d_latency_cl, acc                        |
+| array_partition      | variable=weights complete                                             | firmware/nnet_utils/nnet_conv2d_latency.h:28 in conv_2d_latency_cl, weights                    |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_conv2d_latency.h:29 in conv_2d_latency_cl, biases                     |
+| allocation           | operation instances=mul limit=CONFIG_T::mult_config::multiplier_limit | firmware/nnet_utils/nnet_conv2d_latency.h:32 in conv_2d_latency_cl                             |
+| pipeline             | II=CONFIG_T::reuse_factor rewind                                      | firmware/nnet_utils/nnet_conv2d_latency.h:36 in conv_2d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_latency.h:42 in conv_2d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_latency.h:49 in conv_2d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_latency.h:53 in conv_2d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_latency.h:63 in conv_2d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_latency.h:70 in conv_2d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_latency.h:73 in conv_2d_latency_cl                             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_latency.h:81 in conv_2d_latency_cl                             |
+| array_partition      | variable=data_buf complete dim=0                                      | firmware/nnet_utils/nnet_conv2d_resource.h:33 in conv_2d_resource_cl, data_buf                 |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_conv2d_resource.h:35 in conv_2d_resource_cl, biases                   |
+| array_partition      | variable=acc complete dim=0                                           | firmware/nnet_utils/nnet_conv2d_resource.h:38 in conv_2d_resource_cl, acc                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_resource.h:48 in conv_2d_resource_cl                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_resource.h:52 in conv_2d_resource_cl                           |
+| pipeline             | II=1 rewind                                                           | firmware/nnet_utils/nnet_conv2d_resource.h:59 in conv_2d_resource_cl                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_resource.h:67 in conv_2d_resource_cl                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_resource.h:71 in conv_2d_resource_cl                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_resource.h:95 in conv_2d_resource_cl                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv2d_resource.h:99 in conv_2d_resource_cl                           |
+| array_partition      | variable = line_buffer complete dim = 2                               | firmware/nnet_utils/nnet_conv2d_stream.h:21 in conv_2d_buffer_latency_cl                       |
+| loop_flatten         |                                                                       | firmware/nnet_utils/nnet_conv2d_stream.h:27 in conv_2d_buffer_latency_cl                       |
+| pipeline             | II=CONFIG_T::reuse_factor                                             | firmware/nnet_utils/nnet_conv2d_stream.h:28 in conv_2d_buffer_latency_cl                       |
+| array_partition      | variable = line_buffer complete dim = 2                               | firmware/nnet_utils/nnet_conv2d_stream.h:48 in conv_2d_buffer_resource_cl                      |
+| loop_flatten         |                                                                       | firmware/nnet_utils/nnet_conv2d_stream.h:54 in conv_2d_buffer_resource_cl                      |
+| inline               | recursive                                                             | firmware/nnet_utils/nnet_conv2d_stream.h:73 in conv_2d_cl                                      |
+| inline               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:17 in scale_index_k_gte_s                               |
+| inline               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:38 in scale_index_k_lt_s                                |
+| inline               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:61 in scale_index                                       |
+| inline               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:74 in scale_index                                       |
+| inline               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:84 in mult_buffer                                       |
+| array_partition      | variable = data complete                                              | firmware/nnet_utils/nnet_conv_stream.h:87 in mult_buffer                                       |
+| array_partition      | variable = res complete                                               | firmware/nnet_utils/nnet_conv_stream.h:89 in mult_buffer                                       |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:93 in mult_buffer                                       |
+| inline               | recursive                                                             | firmware/nnet_utils/nnet_conv_stream.h:97 in mult_buffer                                       |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:103 in mult_buffer                                      |
+| inline               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:129 in compute_output_encoded                           |
+| pipeline             | II = CONFIG_T::reuse_factor                                           | firmware/nnet_utils/nnet_conv_stream.h:133 in compute_output_encoded                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:136 in compute_output_encoded                           |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:139 in compute_output_encoded                           |
+| inline               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:156 in kernel_shift_1d                                  |
+| pipeline             | II = 1                                                                | firmware/nnet_utils/nnet_conv_stream.h:162 in kernel_shift_1d                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:165 in kernel_shift_1d                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:175 in kernel_shift_1d                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:184 in kernel_shift_2d                                  |
+| pipeline             | II = 1                                                                | firmware/nnet_utils/nnet_conv_stream.h:190 in kernel_shift_2d                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:206 in kernel_shift_2d                                  |
+| pipeline             |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:221 in shift_line_buffer                                |
+| array_partition      | variable = shift_buffer complete dim = 0                              | firmware/nnet_utils/nnet_conv_stream.h:225 in shift_line_buffer                                |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:229 in shift_line_buffer                                |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:240 in shift_line_buffer                                |
+| inline               | OFF                                                                   | firmware/nnet_utils/nnet_conv_stream.h:258 in compute_output_buffer_2d                         |
+| array_partition      | variable = kernel_data complete                                       | firmware/nnet_utils/nnet_conv_stream.h:272 in compute_output_buffer_2d                         |
+| array_partition      | variable = res_out complete dim = 0                                   | firmware/nnet_utils/nnet_conv_stream.h:275 in compute_output_buffer_2d                         |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:294 in compute_output_buffer_2d                         |
+| inline               | OFF                                                                   | firmware/nnet_utils/nnet_conv_stream.h:328 in compute_output_buffer_1d                         |
+| array_partition      | variable = kernel_data complete                                       | firmware/nnet_utils/nnet_conv_stream.h:338 in compute_output_buffer_1d                         |
+| array_partition      | variable = res_out complete dim = 0                                   | firmware/nnet_utils/nnet_conv_stream.h:341 in compute_output_buffer_1d                         |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_conv_stream.h:360 in compute_output_buffer_1d                         |
+| inline               |                                                                       | firmware/nnet_utils/nnet_dense.h:44 in dense                                                   |
+| inline               |                                                                       | firmware/nnet_utils/nnet_dense.h:53 in dense                                                   |
+| inline               |                                                                       | firmware/nnet_utils/nnet_dense.h:64 in dense                                                   |
+| inline               |                                                                       | firmware/nnet_utils/nnet_dense.h:75 in dense                                                   |
+| function_instantiate | variable=weights,biases                                               | firmware/nnet_utils/nnet_dense_latency.h:21 in dense_latency, weights,biases                   |
+| pipeline             | II=CONFIG_T::reuse_factor                                             | firmware/nnet_utils/nnet_dense_latency.h:26 in dense_latency                                   |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_dense_latency.h:29 in dense_latency, biases                           |
+| array_partition      | variable=mult complete                                                | firmware/nnet_utils/nnet_dense_latency.h:30 in dense_latency, mult                             |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_dense_latency.h:31 in dense_latency, acc                              |
+| allocation           | operation instances=mul limit=CONFIG_T::multiplier_limit              | firmware/nnet_utils/nnet_dense_latency.h:33 in dense_latency                                   |
+| function_instantiate | variable=weights,biases                                               | firmware/nnet_utils/nnet_dense_resource.h:28 in dense_resource_rf_leq_nin, weights,biases      |
+| array_reshape        | variable=weights block factor=block_factor                            | firmware/nnet_utils/nnet_dense_resource.h:29 in dense_resource_rf_leq_nin, weights             |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_dense_resource.h:30 in dense_resource_rf_leq_nin, biases              |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_dense_resource.h:37 in dense_resource_rf_leq_nin, acc                 |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:41 in dense_resource_rf_leq_nin                      |
+| pipeline             | II=1 rewind                                                           | firmware/nnet_utils/nnet_dense_resource.h:47 in dense_resource_rf_leq_nin                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:56 in dense_resource_rf_leq_nin                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:81 in dense_resource_rf_leq_nin                      |
+| function_instantiate | variable=weights,biases                                               | firmware/nnet_utils/nnet_dense_resource.h:102 in dense_resource_rf_gt_nin_rem0, weights,biases |
+| array_reshape        | variable=weights block factor=block_factor                            | firmware/nnet_utils/nnet_dense_resource.h:103 in dense_resource_rf_gt_nin_rem0, weights        |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_dense_resource.h:104 in dense_resource_rf_gt_nin_rem0, biases         |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_dense_resource.h:111 in dense_resource_rf_gt_nin_rem0, acc            |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:115 in dense_resource_rf_gt_nin_rem0                 |
+| pipeline             | II=1 rewind                                                           | firmware/nnet_utils/nnet_dense_resource.h:136 in dense_resource_rf_gt_nin_rem0                 |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:143 in dense_resource_rf_gt_nin_rem0                 |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:163 in dense_resource_rf_gt_nin_rem0                 |
+| function_instantiate | variable=weights,biases                                               | firmware/nnet_utils/nnet_dense_resource.h:184 in dense_resource_rf_gt_nin, weights,biases      |
+| array_reshape        | variable=weights block factor=block_factor                            | firmware/nnet_utils/nnet_dense_resource.h:185 in dense_resource_rf_gt_nin, weights             |
+| array_partition      | variable=biases complete                                              | firmware/nnet_utils/nnet_dense_resource.h:186 in dense_resource_rf_gt_nin, biases              |
+| array_partition      | variable=acc complete                                                 | firmware/nnet_utils/nnet_dense_resource.h:193 in dense_resource_rf_gt_nin, acc                 |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:197 in dense_resource_rf_gt_nin                      |
+| pipeline             | II=1 rewind                                                           | firmware/nnet_utils/nnet_dense_resource.h:203 in dense_resource_rf_gt_nin                      |
+| array_partition      | variable=tmpmult complete                                             | firmware/nnet_utils/nnet_dense_resource.h:205 in dense_resource_rf_gt_nin, tmpmult             |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:209 in dense_resource_rf_gt_nin                      |
+| array_partition      | variable=mult complete                                                | firmware/nnet_utils/nnet_dense_resource.h:219 in dense_resource_rf_gt_nin, mult                |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:223 in dense_resource_rf_gt_nin                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:229 in dense_resource_rf_gt_nin                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:239 in dense_resource_rf_gt_nin                      |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_dense_resource.h:249 in dense_resource_rf_gt_nin                      |
+| inline               | recursive                                                             | firmware/nnet_utils/nnet_dense_resource.h:259 in dense_resource                                |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:25 in product                                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:34 in product                                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:46 in product                                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:58 in product                                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:72 in product                                                  |
+| inline               |                                                                       | firmware/nnet_utils/nnet_mult.h:82 in product                                                  |
+| unroll               |                                                                       | firmware/nnet_utils/nnet_types.h:28 in operator=                                               |
++----------------------+-----------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
+
+
