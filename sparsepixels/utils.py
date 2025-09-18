@@ -122,11 +122,11 @@ def plot_sparsemnist(x_original, x_modified1, x_modified2, x_modified3, n_exampl
     plt.show()
 
 
-def plot_jetimage(x, y, n_examples, threshold=0, normalized=False):
+def plot_jetimage(x, y, n_examples, threshold=0, normalized=False, figname=None):
     classes = ['g','q','W','Z','t']
     class_indices = []
     for i in range(5):
-        idx = np.where(y[:, i]==1)[0][:n_examples]
+        idx = np.where(y[:, i]==1)[0][n_examples:n_examples+1]#[:n_examples]
         class_indices.append(idx)
     class_indices = np.array(class_indices).T.flatten()
 
@@ -152,13 +152,16 @@ def plot_jetimage(x, y, n_examples, threshold=0, normalized=False):
                 origin='lower',
                 extent=[0, img.shape[0], 0, img.shape[1]]
             )
-        ax.set_title(f'{classes[i % 5]} [active={nonzero_count}/({img.shape[0]}*{img.shape[1]})]', fontsize=16)
+        #ax.set_title(f'{classes[i % 5]} [active={nonzero_count}/({img.shape[0]}*{img.shape[1]})]', fontsize=16)
+        ax.set_title(f'{classes[i % 5]}', fontsize=16)
         #ax.set_xlabel("delta eta", fontsize=16)
         #ax.set_ylabel("delta phi", fontsize=16)
 
         cbar = fig.colorbar(im, ax=ax, fraction=0.05, pad=0.01)
         cbar.ax.tick_params(labelsize=16)
-    plt.show()
+    #plt.show()
+    if figname is not None:
+        plt.savefig(f'plots/{figname}')
 
 
 
@@ -674,12 +677,12 @@ def run_window_demo(
             fig, ax = plt.subplots(figsize=(14,6))
             imshow = ax.imshow(img, origin='lower', aspect='auto', cmap=cmap, vmin=vmin, vmax=vmax)
             #plt.colorbar(imshow, ax=ax).set_label("ADC (downsampled)")
-            overlay_rect(ax, t0, w0, win_t, win_w, 'red', 2, 'signal window')
+            overlay_rect(ax, t0, w0, win_t, win_w, 'red', 2, 'sig window')
             for i, (_,_,_, tb, wb, _) in enumerate(bkg_tiles):
-                overlay_rect(ax, tb, wb, win_t, win_w, 'blue', 1.5, 'bkg' if i==0 else None)
-            ax.set_title(f"plane={plane} eid={eid} (time x{tds})")
+                overlay_rect(ax, tb, wb, win_t, win_w, 'blue', 1.5, 'bkg window' if i==0 else None)
+            #ax.set_title(f"plane={plane} eid={eid} (time x{tds})")
             ax.set_xlabel("wire")
-            ax.set_ylabel("time (downsampled ticks)")
+            ax.set_ylabel("time")
             if ax.get_legend_handles_labels()[0]:
                 ax.legend(loc='upper right')
             plt.tight_layout()
