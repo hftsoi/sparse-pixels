@@ -559,7 +559,7 @@ def run_window_demo(
     num_bkg=5,
     prefer_zero_signal_bkg=True,
     cmap='gist_ncar', vmin=0, vmax=100,
-    rng_seed=123,
+    rng_seed=123, figname=None
 ):
     rng = np.random.default_rng(rng_seed)
 
@@ -679,13 +679,15 @@ def run_window_demo(
             #plt.colorbar(imshow, ax=ax).set_label("ADC (downsampled)")
             overlay_rect(ax, t0, w0, win_t, win_w, 'red', 2, 'sig window')
             for i, (_,_,_, tb, wb, _) in enumerate(bkg_tiles):
-                overlay_rect(ax, tb, wb, win_t, win_w, 'blue', 1.5, 'bkg window' if i==0 else None)
+                overlay_rect(ax, tb, wb, win_t, win_w, 'orange', 1.5, 'bkg window' if i==0 else None)
             #ax.set_title(f"plane={plane} eid={eid} (time x{tds})")
             ax.set_xlabel("wire")
             ax.set_ylabel("time")
             if ax.get_legend_handles_labels()[0]:
                 ax.legend(loc='upper right')
             plt.tight_layout()
+            if figname is not None:
+                plt.savefig(f'plots/{figname}')
             plt.show()
 
             tiles = [("signal", (sig_img, sig_sig, sig_bkg, t0, w0, best))]
@@ -1003,7 +1005,7 @@ def preview_patches_with_pooling(
     vmin_raw=0, vmax_raw=100,
     vmin_pool=0, vmax_pool=100,
     thr=0, vmin_thr=0, vmax_thr=100,
-    alpha_sig=0.9, alpha_bkg=0.9,
+    alpha_sig=0.9, alpha_bkg=0.9, figname=None
 ):
     def _mask_rgba(sig, bkg, a_s=0.9, a_b=0.9):
         T, W = sig.shape
@@ -1089,10 +1091,12 @@ def preview_patches_with_pooling(
 
             # rows: raw, pooled, thresholded pooled
             nrows = 3 if has_thr else 2
-            fig, axes = plt.subplots(nrows, 2, figsize=(16, 12 if has_thr else 8), constrained_layout=True, sharex=False, sharey=False)
+            #fig, axes = plt.subplots(nrows, 2, figsize=(16, 12 if has_thr else 8), constrained_layout=True, sharex=False, sharey=False)
+            fig, axes = plt.subplots(nrows, 1, figsize=(8, 12 if has_thr else 8), constrained_layout=True, sharex=False, sharey=False)
 
             # row 0: raw intensity
-            ax = axes[0,0]
+            #ax = axes[0,0]
+            ax = axes[0]
             im = ax.imshow(img, origin='lower', aspect='auto', cmap=cmap, vmin=vmin_raw, vmax=vmax_raw)
             ax.set_xlabel("wire", fontsize=13)
             ax.set_ylabel("time", fontsize=13)
@@ -1100,15 +1104,16 @@ def preview_patches_with_pooling(
             #cb.set_label("ADC", fontsize=11)
 
             # row 0: raw mask
-            ax = axes[0,1]
-            ax.set_facecolor('white')
-            ax.imshow(_mask_rgba(sigm, bkgm, alpha_sig, alpha_bkg), origin='lower', aspect='auto', interpolation='nearest')
+            #ax = axes[0,1]
+            #ax.set_facecolor('white')
+            #ax.imshow(_mask_rgba(sigm, bkgm, alpha_sig, alpha_bkg), origin='lower', aspect='auto', interpolation='nearest')
             #ax.set_xlabel("wire", fontsize=13)
             #ax.set_ylabel("time", fontsize=13)
-            ax.set_title(f"total hits={total_hits_raw} / ({img.shape[0]}x{img.shape[1]})", fontsize=12)
+            #ax.set_title(f"total hits={total_hits_raw} / ({img.shape[0]}x{img.shape[1]})", fontsize=12)
 
             # row 1: pooled intensity
-            ax = axes[1,0]
+            #ax = axes[1,0]
+            ax = axes[1]
             im2 = ax.imshow(img_p, origin='lower', aspect='auto', cmap=cmap, vmin=vmin_pool, vmax=vmax_pool)
             ax.set_xlabel("wire", fontsize=13)
             ax.set_ylabel("time", fontsize=13)
@@ -1116,28 +1121,31 @@ def preview_patches_with_pooling(
             #cb2.set_label(f"ADC", fontsize=11)
 
             # row 1: pooled mask
-            ax = axes[1,1]
-            ax.set_facecolor('white')
-            ax.imshow(_mask_rgba(sig_p, bkg_p, alpha_sig, alpha_bkg), origin='lower', aspect='auto', interpolation='nearest')
+            #ax = axes[1,1]
+            #ax.set_facecolor('white')
+            #ax.imshow(_mask_rgba(sig_p, bkg_p, alpha_sig, alpha_bkg), origin='lower', aspect='auto', interpolation='nearest')
             #ax.set_xlabel("wire", fontsize=13)
             #ax.set_ylabel("time", fontsize=13)
-            ax.set_title(f"total hits = {total_hits_pooled} / ({img_p.shape[0]}x{img_p.shape[1]})  [pool={pool_t}x{pool_w}]", fontsize=12)
+            #ax.set_title(f"total hits = {total_hits_pooled} / ({img_p.shape[0]}x{img_p.shape[1]})  [pool={pool_t}x{pool_w}]", fontsize=12)
 
             # row 2: thresholded intensity + mask
             if has_thr:
-                ax = axes[2,0]
+                #ax = axes[2,0]
+                ax = axes[2]
                 im3 = ax.imshow(img_thr, origin='lower', aspect='auto', cmap=cmap, vmin=vmin_thr, vmax=vmax_thr)
                 ax.set_xlabel("wire", fontsize=13)
                 ax.set_ylabel("time", fontsize=13)
                 cb3 = plt.colorbar(im3, ax=ax, fraction=0.046, pad=0.02)
                 #cb3.set_label(f"ADC, thr={thr}", fontsize=11)
 
-                ax = axes[2,1]
-                ax.set_facecolor('white')
-                ax.imshow(_mask_rgba_with_keep(sig_p, bkg_p, keep, alpha_sig, alpha_bkg), origin='lower', aspect='auto', interpolation='nearest')
+                #ax = axes[2,1]
+                #ax.set_facecolor('white')
+                #ax.imshow(_mask_rgba_with_keep(sig_p, bkg_p, keep, alpha_sig, alpha_bkg), origin='lower', aspect='auto', interpolation='nearest')
                 #ax.set_xlabel("wire", fontsize=13)
                 #ax.set_ylabel("time", fontsize=13)
-                ax.set_title(f"total hits = {total_hits_thr} / ({img_p.shape[0]}x{img_p.shape[1]})  [pool={pool_t}x{pool_w}, threshold={thr}]", fontsize=12)
+                #ax.set_title(f"total hits = {total_hits_thr} / ({img_p.shape[0]}x{img_p.shape[1]})  [pool={pool_t}x{pool_w}, threshold={thr}]", fontsize=12)
+            if figname is not None:
+                plt.savefig(f'plots/{figname}')
             plt.show()
 
 
