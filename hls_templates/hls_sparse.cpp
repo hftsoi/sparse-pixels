@@ -80,7 +80,7 @@ void sparse_input_reduce(data_T input_arr[N_h * N_w * N_c],
         int pixels_per_channel = N_h * N_w;
         //int j_c = j / pixels_per_channel + 1;
         int remainder = j % pixels_per_channel;
-        int j_h = remainder / N_h + 1;
+        int j_h = remainder / N_w + 1;
         int j_w = remainder % N_w + 1;
 
         j_h_arr[j] = j_h;
