@@ -1,5 +1,3 @@
-> **Note:** code in preparation, will be packaged, stay tuned:)
-
 <p align="center">
   <img src="https://raw.githubusercontent.com/hftsoi/sparse-pixels/main/docs/figs/sparsepixels.png" width="900"/>
 </p>
@@ -12,6 +10,7 @@
 
 # SparsePixels: Efficient convolution for sparse data on FPGAs
 
+> **Note:** code packaging in preparation, stay tuned :)
 
 ## Installation
 
