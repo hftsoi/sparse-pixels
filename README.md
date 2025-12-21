@@ -7,8 +7,9 @@
   <img src="docs/figs/cnn_sparse.gif" width="400" />
 </p>
 
-
 # SparsePixels: Efficient convolution for sparse data on FPGAs
+
+[![arXiv](https://img.shields.io/badge/arXiv-2512.06208-b31b1b.svg?style=flat-square)](https://arxiv.org/abs/2512.06208)
 
 > **Note:** code packaging in preparation, stay tuned :)
 
