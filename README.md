@@ -14,10 +14,14 @@
 # SparsePixels: Efficient convolution for sparse data on FPGAs
 
 [![arXiv](https://img.shields.io/badge/arXiv-2512.06208-b31b1b.svg?style=flat-square)](https://arxiv.org/abs/2512.06208)
+[![PyPI - Version](https://img.shields.io/pypi/v/sparsepixels?color=orange&style=flat-square)](https://pypi.org/project/sparsepixels)
 
 > **Note:** code packaging in preparation, stay tuned :)
 
 ## Installation
+```
+pip install sparsepixels
+```
 
 ## Getting Started
 
