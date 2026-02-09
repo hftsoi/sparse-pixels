@@ -16,9 +16,10 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2512.06208-b31b1b.svg?style=flat-square)](https://arxiv.org/abs/2512.06208)
 [![PyPI - Version](https://img.shields.io/pypi/v/sparsepixels?color=orange&style=flat-square)](https://pypi.org/project/sparsepixels)
 
-> **Note:** we are actively working on integrating into hls4ml (first qkeras with keras2, and then HGQ with keras3), we are also working on a major upgrade with partial paralleliztion and streaming for sparse layers in HLS. stay tuned!!
+> **Note:** we are actively working on making this usable soon, before integrating into hls4ml (first qkeras with keras2, and then HGQ with keras3), we are also working on a major upgrade with partial paralleliztion and streaming for sparse layers in HLS. stay tuned!!
 
 ## Installation
+With Python 3.10 or 3.11 (for now):
 ```
 pip install sparsepixels
 ```
