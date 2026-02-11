@@ -45,12 +45,12 @@ def build_cnn(is_sparse, B=16, I=6, n_max_pixels=None):
     return keras.Model(x_in, x)
 
 
-cnn_full = build_cnn(is_sparse=False)
-cnn_full.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss='categorical_crossentropy', metrics = ['accuracy'])
+def test_build_full_cnn():
+    cnn_full = build_cnn(is_sparse=False)
+    cnn_full.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss='categorical_crossentropy', metrics = ['accuracy'])
+    cnn_full.summary()
 
-print(cnn_full.summary())
-
-cnn_sparse = build_cnn(is_sparse=True, n_max_pixels=20)
-cnn_sparse.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss='categorical_crossentropy', metrics = ['accuracy'])
-
-print(cnn_sparse.summary())
+def test_build_sparse_cnn():
+    cnn_sparse = build_cnn(is_sparse=True, n_max_pixels=20)
+    cnn_sparse.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), loss='categorical_crossentropy', metrics = ['accuracy'])
+    cnn_sparse.summary()
