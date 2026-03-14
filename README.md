@@ -35,7 +35,6 @@ import keras
 from keras.layers import Flatten, Activation, ReLU
 from hgq.layers import QConv2D, QDense
 from hgq.config import QuantizerConfigScope, LayerConfigScope
-from hgq.quantizer.config import QuantizerConfig
 from sparsepixels.layers import InputReduce, QConv2DSparse, AveragePooling2DSparse
 ```
 
@@ -53,8 +52,7 @@ with (
     x, keep_mask = InputReduce(n_max_pixels=20, threshold=0.1, name='input_reduce')(x_in)
 
     # Sparse convolution
-    x = QConv2DSparse(filters=3, kernel_size=3, name='conv1', padding='same', strides=1,
-                      bq_conf=QuantizerConfig('default', 'bias'))([x, keep_mask])
+    x = QConv2DSparse(filters=3, kernel_size=3, name='conv1', padding='same', strides=1)([x, keep_mask])
     x = ReLU(name='relu1')(x)
 
     # Sparse pooling

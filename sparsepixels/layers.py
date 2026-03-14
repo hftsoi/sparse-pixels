@@ -1,6 +1,7 @@
 import keras
 from hgq.layers import QConv2D
 from hgq.quantizer import Quantizer
+from hgq.quantizer.config import QuantizerConfig
 from keras import ops
 from keras.layers import AveragePooling2D, MaxPooling2D
 
@@ -61,7 +62,8 @@ class RemoveDilatedPixels(keras.layers.Layer):
 class QConv2DSparse(keras.layers.Layer):
     def __init__(self, *conv_args, **conv_kwargs):
         super().__init__(name=conv_kwargs.get("name", None))
-        self._bq_conf = conv_kwargs.pop("bq_conf", None)
+        self._use_bias = conv_kwargs.pop("use_bias", True)
+        self._bq_conf = conv_kwargs.pop("bq_conf", None) or QuantizerConfig("default", "bias")
 
         conv_kwargs["use_bias"] = False
         conv_kwargs.setdefault("enable_iq", False)
@@ -69,17 +71,15 @@ class QConv2DSparse(keras.layers.Layer):
         self.masker = RemoveDilatedPixels()
 
     def build(self, input_shape):
-        self.sparse_bias = self.add_weight(
-            name="sparse_bias",
-            shape=(self.conv.filters,),
-            initializer="zeros",
-            trainable=True,
-        )
-        if self._bq_conf is not None:
+        if self._use_bias:
+            self.sparse_bias = self.add_weight(
+                name="sparse_bias",
+                shape=(self.conv.filters,),
+                initializer="zeros",
+                trainable=True,
+            )
             self._bq = Quantizer(self._bq_conf, name=f"{self.name}_bq")
             self._bq.build((self.conv.filters,))
-        else:
-            self._bq = None
         super().build(input_shape)
 
     def call(self, inputs, **kwargs):
@@ -87,13 +87,11 @@ class QConv2DSparse(keras.layers.Layer):
         x = self.masker((x, keep_mask))
         y = self.conv(x, **kwargs)
 
-        b = self.sparse_bias
-        if self._bq is not None:
-            b = self._bq(b)
-        b = ops.reshape(b, (1, 1, 1, -1))
-
-        non_zero = ops.cast(y != 0, y.dtype)
-        y = y + b * non_zero
+        if self._use_bias:
+            b = self._bq(self.sparse_bias)
+            b = ops.reshape(b, (1, 1, 1, -1))
+            non_zero = ops.cast(y != 0, y.dtype)
+            y = y + b * non_zero
 
         y = self.masker((y, keep_mask))
         return y
@@ -101,14 +99,16 @@ class QConv2DSparse(keras.layers.Layer):
     def get_config(self):
         cfg = super().get_config()
         cfg["conv_config"] = self.conv.get_config()
+        cfg["use_bias"] = self._use_bias
         cfg["bq_conf"] = self._bq_conf
         return cfg
 
     @classmethod
     def from_config(cls, config):
         conv_cfg = config.pop("conv_config")
+        use_bias = config.pop("use_bias", True)
         bq_conf = config.pop("bq_conf", None)
-        return cls(**conv_cfg, bq_conf=bq_conf)
+        return cls(**conv_cfg, use_bias=use_bias, bq_conf=bq_conf)
 
 
 class AveragePooling2DSparse(keras.layers.Layer):

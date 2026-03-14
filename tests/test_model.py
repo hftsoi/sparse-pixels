@@ -2,7 +2,6 @@ import keras
 from keras.layers import Flatten, Activation, AveragePooling2D, ReLU
 from hgq.layers import QConv2D, QDense
 from hgq.config import QuantizerConfigScope, LayerConfigScope
-from hgq.quantizer.config import QuantizerConfig
 from sparsepixels.layers import InputReduce, QConv2DSparse, AveragePooling2DSparse
 
 
@@ -19,13 +18,11 @@ def build_cnn(is_sparse, n_max_pixels=None):
             x = x_in
 
         if is_sparse:
-            x = QConv2DSparse(filters=1, kernel_size=7, name='conv1', padding='same', strides=1,
-                              bq_conf=QuantizerConfig('default', 'bias'))([x, keep_mask])
+            x = QConv2DSparse(filters=1, kernel_size=7, name='conv1', padding='same', strides=1)([x, keep_mask])
             x = ReLU(name='relu1')(x)
             x, keep_mask = AveragePooling2DSparse(4, name='pool1')([x, keep_mask])
 
-            x = QConv2DSparse(filters=3, kernel_size=5, name='conv2', padding='same', strides=1,
-                              bq_conf=QuantizerConfig('default', 'bias'))([x, keep_mask])
+            x = QConv2DSparse(filters=3, kernel_size=5, name='conv2', padding='same', strides=1)([x, keep_mask])
             x = ReLU(name='relu2')(x)
             x, keep_mask = AveragePooling2DSparse(2, name='pool2')([x, keep_mask])
         else:
