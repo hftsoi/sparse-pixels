@@ -1,54 +1,79 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hftsoi/sparse-pixels/main/docs/figs/logo.png" width="300" />
-</p>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hftsoi/sparse-pixels/main/docs/figs/sparsepixels.png" width="900"/>
-</p>
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hftsoi/sparse-pixels/main/docs/figs/cnn_standard.gif" width="400" />
-  <img src="https://raw.githubusercontent.com/hftsoi/sparse-pixels/main/docs/figs/cnn_sparse.gif" width="400" />
-</p>
+
+
+
 
 # SparsePixels: Efficient convolution for sparse data on FPGAs
 
-[![arXiv](https://img.shields.io/badge/arXiv-2512.06208-b31b1b.svg?style=flat-square)](https://arxiv.org/abs/2512.06208)
-[![PyPI - Version](https://img.shields.io/pypi/v/sparsepixels?color=orange&style=flat-square)](https://pypi.org/project/sparsepixels)
+[arXiv](https://arxiv.org/abs/2512.06208)
+[PyPI - Version](https://pypi.org/project/sparsepixels)
 
-> **Note:** we are actively working on making this usable soon, before integrating into hls4ml (first qkeras with keras2, and then HGQ with keras3), we are also working on a major upgrade with partial paralleliztion and streaming for sparse layers in HLS. stay tuned!!
+> **Note:** We are actively working on hls4ml integration to auto-convert sparse models to HLS, along with a major upgrade with partial parallelization and streaming for sparse layers in HLS. Stay tuned!
 
 ## Installation
-With Python 3.10 or 3.11 (for now):
+
+With Python >= 3.10:
+
 ```
 pip install sparsepixels
 ```
 
+A Keras 3 backend (TensorFlow, JAX, or PyTorch) must also be installed, e.g.:
+
+```
+pip install tensorflow
+```
+
 ## Getting Started
-On the model training in Python, import sparse layers:
+
+Import sparse layers and quantization library (HGQ2):
+
+```python
+import keras
+from keras.layers import Flatten, Activation, ReLU
+from hgq.layers import QConv2D, QDense
+from hgq.config import QuantizerConfigScope, LayerConfigScope
+from hgq.quantizer.config import QuantizerConfig
+from sparsepixels.layers import InputReduce, QConv2DSparse, AveragePooling2DSparse
 ```
-from sparsepixels.layers import *
+
+Build an example sparse CNN within HGQ2 quantization scopes:
+
+```python
+with (
+    QuantizerConfigScope(place='all', default_q_type='kbi', overflow_mode='SAT_SYM'),
+    QuantizerConfigScope(place='datalane', default_q_type='kif', overflow_mode='WRAP'),
+    LayerConfigScope(enable_ebops=False, enable_iq=False),
+):
+    x_in = keras.Input(shape=(x_train.shape[1], x_train.shape[2], x_train.shape[3]), name='x_in')
+
+    # Sparse input reduction: retain up to n_max_pixels active pixels
+    x, keep_mask = InputReduce(n_max_pixels=20, threshold=0.1, name='input_reduce')(x_in)
+
+    # Sparse convolution
+    x = QConv2DSparse(filters=3, kernel_size=3, name='conv1', padding='same', strides=1,
+                      bq_conf=QuantizerConfig('default', 'bias'))([x, keep_mask])
+    x = ReLU(name='relu1')(x)
+
+    # Sparse pooling
+    x, keep_mask = AveragePooling2DSparse(2, name='pool1')([x, keep_mask])
+
+    x = Flatten(name='flatten')(x)
+    x = QDense(10, name='dense1', activation='relu')(x)
+    x = Activation('softmax', name='softmax')(x)
+
+model = keras.Model(x_in, x)
 ```
-Sparse input reduction:
-```
-x_in = keras.Input(shape=(x_train.shape[1], x_train.shape[2], x_train.shape[3]), name='x_in')
-x, keep_mask = InputReduce(n_max_pixels=n_max_pixels, threshold=threshold, name='input_reduce')(x_in)
-```
-Sparse convolution:
-```
-x = QConv2DSparse(filters=1, kernel_size=7, use_bias=True, name='conv1', padding='same', strides=1,
-                          kernel_quantizer=quantizer, bias_quantizer=quantizer)([x, keep_mask])
-```
-Sparse pooling:
-```
-x, keep_mask = AveragePooling2DSparse(4, name='pool1')([x, keep_mask])
-```
+
 We are working on hls4ml integration that auto parses the sparse layers into HLS.
 
 ## Documentation
 
 ## Citation
+
 If you find this useful in your research, please consider citing:
+
 ```
 @article{Tsoi:2025nvg,
     author = "Tsoi, Ho Fung and Rankin, Dylan and Loncar, Vladimir and Harris, Philip",
@@ -60,3 +85,4 @@ If you find this useful in your research, please consider citing:
     year = "2025"
 }
 ```
+
