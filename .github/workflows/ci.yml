@@ -13,10 +13,12 @@ jobs:
       - uses: actions/checkout@v6
       - uses: astral-sh/ruff-action@v3
         with:
-          args: check sparsepixels/
+          args: check
+          src: sparsepixels/
       - uses: astral-sh/ruff-action@v3
         with:
-          args: format --check sparsepixels/
+          args: format --check
+          src: sparsepixels/
 
   test:
     runs-on: ubuntu-latest
