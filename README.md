@@ -1,13 +1,20 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hftsoi/sparse-pixels/main/docs/figs/logo.png" width="300" />
+</p>
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hftsoi/sparse-pixels/main/docs/figs/sparsepixels.png" width="900"/>
+</p>
 
-
-
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hftsoi/sparse-pixels/main/docs/figs/cnn_standard.gif" width="400" />
+  <img src="https://raw.githubusercontent.com/hftsoi/sparse-pixels/main/docs/figs/cnn_sparse.gif" width="400" />
+</p>
 
 # SparsePixels: Efficient convolution for sparse data on FPGAs
 
-[arXiv](https://arxiv.org/abs/2512.06208)
-[PyPI - Version](https://pypi.org/project/sparsepixels)
+[![arXiv](https://img.shields.io/badge/arXiv-2512.06208-b31b1b.svg?style=flat-square)](https://arxiv.org/abs/2512.06208)
+[![PyPI - Version](https://img.shields.io/pypi/v/sparsepixels?color=orange&style=flat-square)](https://pypi.org/project/sparsepixels)
 
 > **Note:** We are actively working on hls4ml integration to auto-convert sparse models to HLS, along with a major upgrade with partial parallelization and streaming for sparse layers in HLS. Stay tuned!
 
