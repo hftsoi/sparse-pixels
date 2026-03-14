@@ -19,12 +19,6 @@ With Python >= 3.10:
 pip install sparsepixels
 ```
 
-A Keras 3 backend (TensorFlow, JAX, or PyTorch) must also be installed, e.g.:
-
-```
-pip install tensorflow
-```
-
 ## Getting Started
 
 Import sparse layers and quantization library (HGQ2):
