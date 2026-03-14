@@ -1,9 +1,8 @@
 import keras
-from keras import ops
-from keras.layers import AveragePooling2D, MaxPooling2D
 from hgq.layers import QConv2D
 from hgq.quantizer import Quantizer
-from hgq.quantizer.config import QuantizerConfig
+from keras import ops
+from keras.layers import AveragePooling2D, MaxPooling2D
 
 
 class InputReduce(keras.layers.Layer):
@@ -37,10 +36,12 @@ class InputReduce(keras.layers.Layer):
 
     def get_config(self):
         config = super().get_config()
-        config.update({
-            "n_max_pixels": self.n_max_pixels,
-            "threshold": self.threshold,
-        })
+        config.update(
+            {
+                "n_max_pixels": self.n_max_pixels,
+                "threshold": self.threshold,
+            }
+        )
         return config
 
 
