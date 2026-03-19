@@ -47,7 +47,7 @@ signal to counteract (we will fix that in future release soon).
 with (
     QuantizerConfigScope(place='all', default_q_type='kbi', overflow_mode='SAT_SYM'),
     QuantizerConfigScope(place='datalane', default_q_type='kif', overflow_mode='WRAP'),
-    LayerConfigScope(enable_ebops=False, enable_iq=False),
+    LayerConfigScope(enable_ebops=False, enable_iq=False), # for now and can be enabled after fix soon
 ):
     x_in = keras.Input(shape=(28, 28, 1), name='x_in')
 
