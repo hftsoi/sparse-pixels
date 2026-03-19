@@ -64,8 +64,10 @@ class QConv2DSparse(keras.layers.Layer):
         super().__init__(name=conv_kwargs.get("name", None))
         self._use_bias = conv_kwargs.pop("use_bias", True)
         self._bq_conf = conv_kwargs.pop("bq_conf", None) or QuantizerConfig("default", "bias")
+        self._activation = keras.activations.get(conv_kwargs.pop("activation", None))
 
         conv_kwargs["use_bias"] = False
+        conv_kwargs["activation"] = None
         self.conv = QConv2D(*conv_args, **conv_kwargs)
         self.masker = RemoveDilatedPixels()
 
@@ -92,6 +94,9 @@ class QConv2DSparse(keras.layers.Layer):
             non_zero = ops.cast(y != 0, y.dtype)
             y = y + b * non_zero
 
+        if self._activation is not None:
+            y = self._activation(y)
+
         y = self.masker((y, keep_mask))
         return y
 
@@ -100,6 +105,7 @@ class QConv2DSparse(keras.layers.Layer):
         cfg["conv_config"] = self.conv.get_config()
         cfg["use_bias"] = self._use_bias
         cfg["bq_conf"] = self._bq_conf
+        cfg["activation"] = keras.activations.serialize(self._activation)
         return cfg
 
     @classmethod
@@ -107,7 +113,8 @@ class QConv2DSparse(keras.layers.Layer):
         conv_cfg = config.pop("conv_config")
         use_bias = config.pop("use_bias", True)
         bq_conf = config.pop("bq_conf", None)
-        return cls(**conv_cfg, use_bias=use_bias, bq_conf=bq_conf)
+        activation = config.pop("activation", None)
+        return cls(**conv_cfg, use_bias=use_bias, bq_conf=bq_conf, activation=activation)
 
 
 class AveragePooling2DSparse(keras.layers.Layer):
