@@ -1149,3 +1149,101 @@ def preview_patches_with_pooling(
             plt.show()
 
 
+def _fmt_bits(bits_tensor):
+    b = np.array(bits_tensor).flatten()
+    if b.size == 1:
+        v = f"{b[0]:.1f}"
+        return v, v, v
+    return f"{np.mean(b):.1f}", f"{np.min(b):.1f}", f"{np.max(b):.1f}"
+
+def _get_layer_info(layer):
+    if hasattr(layer, 'conv') and hasattr(layer.conv, '_kq'):
+        core = layer.conv
+        kernel = core.kernel
+        bias = getattr(layer, 'sparse_bias', None)
+        bq = getattr(layer, '_bq', None)
+    elif hasattr(layer, '_kq'):
+        core = layer
+        kernel = core.kernel
+        bias = core.bias if core.use_bias else None
+        bq = getattr(core, '_bq', None)
+    else:
+        return None
+    kq = getattr(core, '_kq', None)
+    iq = getattr(core, '_iq', None)
+    ebops = float(core._ebops) if getattr(core, '_ebops', None) is not None else None
+    return dict(name=layer.name, n_kernel=int(np.prod(kernel.shape)),
+                n_bias=int(np.prod(bias.shape)) if bias is not None else 0,
+                kq=kq, bq=bq, iq=iq, ebops=ebops)
+
+def print_quantization(model):
+    print(f"\nModel: {model.name}")
+    h = (f"{'Layer':<12} {'#Kernel':>8} {'#Bias':>6}"
+         f"  {'K mean':>6} {'min':>5} {'max':>5}"
+         f"  {'B mean':>6} {'min':>5} {'max':>5}"
+         f"  {'I mean':>6} {'min':>5} {'max':>5}"
+         f"  {'eBOPs':>8}")
+    print(h)
+    print("-" * len(h))
+    total_ebops = 0
+    for layer in model.layers:
+        info = _get_layer_info(layer)
+        if info is None:
+            continue
+        km, klo, khi = _fmt_bits(info['kq'].bits) if info['kq'] else ("-", "-", "-")
+        bm, blo, bhi = _fmt_bits(info['bq'].bits) if info['bq'] else ("-", "-", "-")
+        im, ilo, ihi = _fmt_bits(info['iq'].bits) if info['iq'] else ("-", "-", "-")
+        if info['ebops'] is not None:
+            total_ebops += info['ebops']
+            es = f"{info['ebops']:.0f}"
+        else:
+            es = "-"
+        print(f"{info['name']:<12} {info['n_kernel']:>8} {info['n_bias']:>6}"
+              f"  {km:>6} {klo:>5} {khi:>5}"
+              f"  {bm:>6} {blo:>5} {bhi:>5}"
+              f"  {im:>6} {ilo:>5} {ihi:>5}"
+              f"  {es:>8}")
+    print("-" * len(h))
+    print(f"{'Total eBOPs':>{len(h)-8}}{total_ebops:>8.0f}")
+
+
+def plot_quantization(models, figsize=(14, 3)):
+    categories = [
+        ('kq', 'Kernel bits'),
+        ('bq', 'Bias bits'),
+        ('iq', 'Input bits'),
+    ]
+    fig, axes = plt.subplots(len(models), len(categories),
+                             figsize=(figsize[0], figsize[1] * len(models)),
+                             squeeze=False, constrained_layout=True)
+    for row, model in enumerate(models):
+        infos = [(info['name'], info) for layer in model.layers
+                 if (info := _get_layer_info(layer)) is not None]
+        colors = plt.cm.tab10(np.linspace(0, 1, max(len(infos), 1)))
+        for col, (key, title) in enumerate(categories):
+            ax = axes[row][col]
+            names, data = [], []
+            for (name, info), color in zip(infos, colors):
+                q = info[key]
+                if q is None:
+                    continue
+                names.append(name)
+                data.append(np.array(q.bits).flatten())
+            if not data:
+                ax.text(0.5, 0.5, 'N/A', transform=ax.transAxes,
+                        ha='center', va='center', fontsize=14, color='gray')
+                ax.set_title(f'{model.name} — {title}')
+                continue
+            parts = ax.violinplot(data, positions=range(len(data)), vert=False,
+                                  showmedians=True, showextrema=False)
+            used_colors = [c for (_, info), c in zip(infos, colors) if info[key] is not None]
+            for body, c in zip(parts['bodies'], used_colors):
+                body.set_facecolor(c)
+                body.set_alpha(0.7)
+            parts['cmedians'].set_color('black')
+            ax.set_yticks(range(len(names)))
+            ax.set_yticklabels(names)
+            ax.set_xlabel('Bitwidth')
+            ax.set_xlim(-0.5, 6.5)
+            ax.set_title(f'{model.name} — {title}')
+    plt.show()

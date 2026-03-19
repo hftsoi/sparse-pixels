@@ -38,7 +38,10 @@ from hgq.config import QuantizerConfigScope, LayerConfigScope
 from sparsepixels.layers import InputReduce, QConv2DSparse, AveragePooling2DSparse
 ```
 
-Build an example sparse CNN within HGQ2 quantization scopes:
+Build an example sparse CNN within HGQ2 quantization scopes. For sparse models, input
+quantization and eBOPs are disabled for now (`enable_iq=False, enable_ebops=False`) because the input
+quantizer's internal regularizer degrades precision too fast for sparse data's weak gradient
+signal to counteract (we will fix that in future release soon).
 
 ```python
 with (
@@ -46,7 +49,7 @@ with (
     QuantizerConfigScope(place='datalane', default_q_type='kif', overflow_mode='WRAP'),
     LayerConfigScope(enable_ebops=False, enable_iq=False),
 ):
-    x_in = keras.Input(shape=(x_train.shape[1], x_train.shape[2], x_train.shape[3]), name='x_in')
+    x_in = keras.Input(shape=(28, 28, 1), name='x_in')
 
     # Sparse input reduction: retain up to n_max_pixels active pixels
     x, keep_mask = InputReduce(n_max_pixels=20, threshold=0.1, name='input_reduce')(x_in)

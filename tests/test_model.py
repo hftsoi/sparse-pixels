@@ -9,7 +9,7 @@ def build_cnn(is_sparse, n_max_pixels=None):
     with (
         QuantizerConfigScope(place='all', default_q_type='kbi', overflow_mode='SAT_SYM'),
         QuantizerConfigScope(place='datalane', default_q_type='kif', overflow_mode='WRAP'),
-        LayerConfigScope(enable_ebops=False, enable_iq=False),
+        LayerConfigScope(enable_ebops=not is_sparse, enable_iq=not is_sparse, beta0=1e-5),
     ):
         x_in = keras.Input(shape=(32, 32, 1), name='x_in')
         if is_sparse:

@@ -66,7 +66,6 @@ class QConv2DSparse(keras.layers.Layer):
         self._bq_conf = conv_kwargs.pop("bq_conf", None) or QuantizerConfig("default", "bias")
 
         conv_kwargs["use_bias"] = False
-        conv_kwargs.setdefault("enable_iq", False)
         self.conv = QConv2D(*conv_args, **conv_kwargs)
         self.masker = RemoveDilatedPixels()
 
