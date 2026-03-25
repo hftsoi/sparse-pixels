@@ -2,14 +2,16 @@ import keras
 from keras.layers import Flatten, Activation, AveragePooling2D
 from hgq.layers import QConv2D, QDense
 from hgq.config import QuantizerConfigScope, LayerConfigScope
+from hgq.quantizer.config import QuantizerConfig
 from sparsepixels.layers import InputReduce, QConv2DSparse, AveragePooling2DSparse
 
 
 def build_cnn(is_sparse, n_max_pixels=None):
+    iq_conf = QuantizerConfig(place='datalane', q_type='kif', i0=4, f0=8, overflow_mode='WRAP')
     with (
         QuantizerConfigScope(place='all', default_q_type='kbi', overflow_mode='SAT_SYM'),
         QuantizerConfigScope(place='datalane', default_q_type='kif', overflow_mode='WRAP'),
-        LayerConfigScope(enable_ebops=not is_sparse, enable_iq=not is_sparse, beta0=1e-5),
+        LayerConfigScope(enable_ebops=True, enable_iq=True, beta0=1e-5),
     ):
         x_in = keras.Input(shape=(32, 32, 1), name='x_in')
         if is_sparse:
@@ -19,26 +21,26 @@ def build_cnn(is_sparse, n_max_pixels=None):
 
         if is_sparse:
             x = QConv2DSparse(filters=1, kernel_size=7, name='conv1', padding='same', strides=1,
-                              activation='relu')([x, keep_mask])
+                              activation='relu', iq_conf=iq_conf)([x, keep_mask])
             x, keep_mask = AveragePooling2DSparse(4, name='pool1')([x, keep_mask])
 
             x = QConv2DSparse(filters=3, kernel_size=5, name='conv2', padding='same', strides=1,
-                              activation='relu')([x, keep_mask])
+                              activation='relu', iq_conf=iq_conf)([x, keep_mask])
             x, keep_mask = AveragePooling2DSparse(2, name='pool2')([x, keep_mask])
         else:
             x = QConv2D(filters=1, kernel_size=7, name='conv1', padding='same', strides=1,
-                        activation='relu')(x)
+                        activation='relu', iq_conf=iq_conf)(x)
             x = AveragePooling2D(4, name='pool1')(x)
 
             x = QConv2D(filters=3, kernel_size=5, name='conv2', padding='same', strides=1,
-                        activation='relu')(x)
+                        activation='relu', iq_conf=iq_conf)(x)
             x = AveragePooling2D(2, name='pool2')(x)
 
         x = Flatten(name='flatten')(x)
 
-        x = QDense(36, name='dense1', activation='relu')(x)
+        x = QDense(36, name='dense1', activation='relu', iq_conf=iq_conf)(x)
 
-        x = QDense(10, name='dense2')(x)
+        x = QDense(10, name='dense2', iq_conf=iq_conf)(x)
         x = Activation('softmax', name='softmax')(x)
 
     return keras.Model(x_in, x)
