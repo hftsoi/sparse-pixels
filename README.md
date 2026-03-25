@@ -35,19 +35,21 @@ import keras
 from keras.layers import Flatten, Activation
 from hgq.layers import QConv2D, QDense
 from hgq.config import QuantizerConfigScope, LayerConfigScope
+from hgq.quantizer.config import QuantizerConfig
 from sparsepixels.layers import InputReduce, QConv2DSparse, AveragePooling2DSparse
 ```
 
-Build an example sparse CNN within HGQ2 quantization scopes. For sparse models, input
-quantization and eBOPs are disabled for now (`enable_iq=False, enable_ebops=False`) because the input
-quantizer's internal regularizer degrades precision too fast for sparse data's weak gradient
-signal to counteract (we will fix that in future release soon).
+Build an example sparse CNN within HGQ2 quantization scopes. A custom input quantizer
+config with higher initial fractional bits (`f0=8`) is used to prevent the default (`f0=2`)
+from zeroing out sparse signals in early training epochs:
 
 ```python
+iq_conf = QuantizerConfig(place='datalane', q_type='kif', i0=4, f0=8, overflow_mode='WRAP')
+
 with (
     QuantizerConfigScope(place='all', default_q_type='kbi', overflow_mode='SAT_SYM'),
     QuantizerConfigScope(place='datalane', default_q_type='kif', overflow_mode='WRAP'),
-    LayerConfigScope(enable_ebops=False, enable_iq=False), # for now and can be enabled after fix soon
+    LayerConfigScope(enable_ebops=True, enable_iq=True, beta0=1e-5),
 ):
     x_in = keras.Input(shape=(28, 28, 1), name='x_in')
 
@@ -56,13 +58,13 @@ with (
 
     # Sparse convolution
     x = QConv2DSparse(filters=3, kernel_size=3, name='conv1', padding='same', strides=1,
-                      activation='relu')([x, keep_mask])
+                      activation='relu', iq_conf=iq_conf)([x, keep_mask])
 
     # Sparse pooling
     x, keep_mask = AveragePooling2DSparse(2, name='pool1')([x, keep_mask])
 
     x = Flatten(name='flatten')(x)
-    x = QDense(10, name='dense1', activation='relu')(x)
+    x = QDense(10, name='dense1', activation='relu', iq_conf=iq_conf)(x)
     x = Activation('softmax', name='softmax')(x)
 
 model = keras.Model(x_in, x)
