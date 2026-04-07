@@ -1,0 +1,116 @@
+Backend: Vitis
+ClockPeriod: 5
+ClockUncertainty: 27%
+HLSConfig:
+  LayerName:
+    conv1:
+      Precision:
+        accum: auto
+        bias: auto
+        result: auto
+        weight: auto
+      Trace: true
+    conv1_iq:
+      Precision:
+        result: auto
+      Trace: true
+    conv1_relu:
+      Precision:
+        result: auto
+      Trace: true
+    conv2:
+      Precision:
+        accum: auto
+        bias: auto
+        result: auto
+        weight: auto
+      Trace: true
+    conv2_iq:
+      Precision:
+        result: auto
+      Trace: true
+    conv2_relu:
+      Precision:
+        result: auto
+      Trace: true
+    dense1:
+      Precision:
+        bias: auto
+        result: auto
+        weight: auto
+      Trace: true
+    dense1_iq:
+      Precision:
+        result: auto
+      Trace: true
+    dense1_relu:
+      Precision:
+        result: auto
+      Trace: true
+    dense2:
+      Precision:
+        bias: auto
+        result: auto
+        weight: auto
+      Trace: true
+    dense2_iq:
+      Precision:
+        result: auto
+      Trace: true
+    flatten:
+      Precision:
+        result: auto
+      Trace: true
+    input_reduce:
+      Precision:
+        result: auto
+      Trace: true
+    pool1:
+      Precision:
+        accum: auto
+        result: auto
+      Trace: true
+    pool2:
+      Precision:
+        accum: auto
+        result: auto
+      Trace: true
+    softmax:
+      Precision:
+        result: auto
+      Trace: true
+    x_in:
+      Precision:
+        result: auto
+      Trace: true
+  Model:
+    BitExact: null
+    BramFactor: 1000000000
+    Precision:
+      default: fixed<16,6>
+    ReuseFactor: 1
+    Strategy: Latency
+    TraceOutput: false
+IOType: io_parallel
+InputData: null
+InputShapes:
+  x_in:
+  - 48
+  - 48
+  - 1
+KerasModel: !keras_model 'hls_proj_test/cnn_sparse/keras_model.keras'
+OutputDir: hls_proj_test/cnn_sparse
+OutputPredictions: null
+OutputShapes:
+  layer17_out:
+  - 10
+Part: xcvu13p-flga2577-2-e
+ProjectName: myproject
+Stamp: 53b96bfa
+Version: 1.0.0
+WriterConfig:
+  Namespace: null
+  TBOutputStream: both
+  WriteEmulationConstants: false
+  WriteTar: false
+  WriteWeightsTxt: true
