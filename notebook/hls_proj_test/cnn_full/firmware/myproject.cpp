@@ -19,9 +19,9 @@ void myproject(
 #ifndef __SYNTHESIS__
     static bool loaded_weights = false;
     if (!loaded_weights) {
-        nnet::load_weights_from_txt<conv1_weight_t, 98>(w3, "w3.txt");
-        nnet::load_weights_from_txt<conv1_bias_t, 2>(b3, "b3.txt");
-        nnet::load_weights_from_txt<conv2_weight_t, 150>(w7, "w7.txt");
+        nnet::load_weights_from_txt<conv1_weight_t, 49>(w3, "w3.txt");
+        nnet::load_weights_from_txt<conv1_bias_t, 1>(b3, "b3.txt");
+        nnet::load_weights_from_txt<conv2_weight_t, 75>(w7, "w7.txt");
         nnet::load_weights_from_txt<conv2_bias_t, 3>(b7, "b7.txt");
         nnet::load_weights_from_txt<dense1_weight_t, 3888>(w12, "w12.txt");
         nnet::load_weights_from_txt<dense1_bias_t, 36>(b12, "b12.txt");
@@ -38,16 +38,16 @@ void myproject(
     conv1_iq_t layer2_out[48*48*1];
     #pragma HLS ARRAY_PARTITION variable=layer2_out complete dim=0
 
-    conv1_t layer3_out[48*48*2];
+    conv1_t layer3_out[48*48*1];
     #pragma HLS ARRAY_PARTITION variable=layer3_out complete dim=0
 
-    conv1_relu_t layer4_out[48*48*2];
+    conv1_relu_t layer4_out[48*48*1];
     #pragma HLS ARRAY_PARTITION variable=layer4_out complete dim=0
 
-    pool1_t layer5_out[12*12*2];
+    pool1_t layer5_out[12*12*1];
     #pragma HLS ARRAY_PARTITION variable=layer5_out complete dim=0
 
-    conv2_iq_t layer6_out[12*12*2];
+    conv2_iq_t layer6_out[12*12*1];
     #pragma HLS ARRAY_PARTITION variable=layer6_out complete dim=0
 
     conv2_t layer7_out[12*12*3];
@@ -82,22 +82,22 @@ void myproject(
 
     nnet::conv_2d_cl<conv1_iq_t, conv1_t, config3>(layer2_out, layer3_out, w3, b3); // conv1
 #ifndef __SYNTHESIS__
-    nnet::save_layer_output<conv1_t>(layer3_out, "conv1", 48*48*2);
+    nnet::save_layer_output<conv1_t>(layer3_out, "conv1", 48*48*1);
 #endif
 
     nnet::relu<conv1_t, conv1_relu_t, relu_config4>(layer3_out, layer4_out); // conv1_relu
 #ifndef __SYNTHESIS__
-    nnet::save_layer_output<conv1_relu_t>(layer4_out, "conv1_relu", 48*48*2);
+    nnet::save_layer_output<conv1_relu_t>(layer4_out, "conv1_relu", 48*48*1);
 #endif
 
     nnet::pooling2d_cl<conv1_relu_t, pool1_t, config5>(layer4_out, layer5_out); // pool1
 #ifndef __SYNTHESIS__
-    nnet::save_layer_output<pool1_t>(layer5_out, "pool1", 12*12*2);
+    nnet::save_layer_output<pool1_t>(layer5_out, "pool1", 12*12*1);
 #endif
 
     nnet::conv2_iq<pool1_t, conv2_iq_t>(layer5_out, layer6_out); // conv2_iq
 #ifndef __SYNTHESIS__
-    nnet::save_layer_output<conv2_iq_t>(layer6_out, "conv2_iq", 12*12*2);
+    nnet::save_layer_output<conv2_iq_t>(layer6_out, "conv2_iq", 12*12*1);
 #endif
 
     nnet::conv_2d_cl<conv2_iq_t, conv2_t, config7>(layer6_out, layer7_out, w7, b7); // conv2

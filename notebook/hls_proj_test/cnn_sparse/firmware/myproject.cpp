@@ -19,9 +19,9 @@ void myproject(
 #ifndef __SYNTHESIS__
     static bool loaded_weights = false;
     if (!loaded_weights) {
-        nnet::load_weights_from_txt<conv1_weight_t, 98>(w4, "w4.txt");
-        nnet::load_weights_from_txt<conv1_bias_t, 2>(b4, "b4.txt");
-        nnet::load_weights_from_txt<conv2_weight_t, 150>(w8, "w8.txt");
+        nnet::load_weights_from_txt<conv1_weight_t, 49>(w4, "w4.txt");
+        nnet::load_weights_from_txt<conv1_bias_t, 1>(b4, "b4.txt");
+        nnet::load_weights_from_txt<conv2_weight_t, 75>(w8, "w8.txt");
         nnet::load_weights_from_txt<conv2_bias_t, 3>(b8, "b8.txt");
         nnet::load_weights_from_txt<dense1_weight_t, 3888>(w13, "w13.txt");
         nnet::load_weights_from_txt<dense1_bias_t, 36>(b13, "b13.txt");
@@ -41,16 +41,16 @@ void myproject(
     conv1_iq_t layer3_out[20];
     #pragma HLS ARRAY_PARTITION variable=layer3_out complete dim=0
 
-    conv1_t layer4_out[40];
+    conv1_t layer4_out[20];
     #pragma HLS ARRAY_PARTITION variable=layer4_out complete dim=0
 
-    conv1_relu_t layer5_out[40];
+    conv1_relu_t layer5_out[20];
     #pragma HLS ARRAY_PARTITION variable=layer5_out complete dim=0
 
-    pool1_t layer6_out[40];
+    pool1_t layer6_out[20];
     #pragma HLS ARRAY_PARTITION variable=layer6_out complete dim=0
 
-    conv2_iq_t layer7_out[40];
+    conv2_iq_t layer7_out[20];
     #pragma HLS ARRAY_PARTITION variable=layer7_out complete dim=0
 
     conv2_t layer8_out[60];
@@ -93,29 +93,29 @@ sparse_input_reduce<x_in_t, input_reduce_t, ap_uint<6>, 48, 48, 1, 20>(x_in, thr
     nnet::save_layer_output<conv1_iq_t>(layer3_out, "conv1_iq", 20);
 #endif
 
-    sparse_conv<conv1_iq_t, conv1_t, ap_uint<6>, conv1_weight_t, conv1_bias_t, conv1_accum_t, 20, 1, 2, 7>(layer3_out, layer4_out, sparse_hash_input_reduce, w4, b4); // conv1
+    sparse_conv<conv1_iq_t, conv1_t, ap_uint<6>, conv1_weight_t, conv1_bias_t, conv1_accum_t, 20, 1, 1, 7>(layer3_out, layer4_out, sparse_hash_input_reduce, w4, b4); // conv1
 #ifndef __SYNTHESIS__
-    nnet::save_layer_output<conv1_t>(layer4_out, "conv1", 40);
+    nnet::save_layer_output<conv1_t>(layer4_out, "conv1", 20);
 #endif
 
-    sparse_relu<conv1_t, conv1_relu_t, 20, 2>(layer4_out, layer5_out); // conv1_relu
+    sparse_relu<conv1_t, conv1_relu_t, 20, 1>(layer4_out, layer5_out); // conv1_relu
 #ifndef __SYNTHESIS__
-    nnet::save_layer_output<conv1_relu_t>(layer5_out, "conv1_relu", 40);
+    nnet::save_layer_output<conv1_relu_t>(layer5_out, "conv1_relu", 20);
 #endif
 
     ap_uint<6> sparse_hash_pool1[20 * 2];
 #pragma HLS ARRAY_PARTITION variable=sparse_hash_pool1 complete dim=0
-sparse_pooling_avg<conv1_relu_t, pool1_t, ap_uint<6>, pool1_accum_t, 20, 2, 4>(layer5_out, layer6_out, sparse_hash_input_reduce, sparse_hash_pool1); // pool1
+sparse_pooling_avg<conv1_relu_t, pool1_t, ap_uint<6>, pool1_accum_t, 20, 1, 4>(layer5_out, layer6_out, sparse_hash_input_reduce, sparse_hash_pool1); // pool1
 #ifndef __SYNTHESIS__
-    nnet::save_layer_output<pool1_t>(layer6_out, "pool1", 40);
+    nnet::save_layer_output<pool1_t>(layer6_out, "pool1", 20);
 #endif
 
     nnet::conv2_iq<pool1_t, conv2_iq_t>(layer6_out, layer7_out); // conv2_iq
 #ifndef __SYNTHESIS__
-    nnet::save_layer_output<conv2_iq_t>(layer7_out, "conv2_iq", 40);
+    nnet::save_layer_output<conv2_iq_t>(layer7_out, "conv2_iq", 20);
 #endif
 
-    sparse_conv<conv2_iq_t, conv2_t, ap_uint<6>, conv2_weight_t, conv2_bias_t, conv2_accum_t, 20, 2, 3, 5>(layer7_out, layer8_out, sparse_hash_pool1, w8, b8); // conv2
+    sparse_conv<conv2_iq_t, conv2_t, ap_uint<6>, conv2_weight_t, conv2_bias_t, conv2_accum_t, 20, 1, 3, 5>(layer7_out, layer8_out, sparse_hash_pool1, w8, b8); // conv2
 #ifndef __SYNTHESIS__
     nnet::save_layer_output<conv2_t>(layer8_out, "conv2", 60);
 #endif

@@ -26,10 +26,10 @@ void allocate_trace_storage(size_t element_size) {
     nnet::trace_outputs = new std::map<std::string, void *>;
     nnet::trace_type_size = element_size;
     nnet::trace_outputs->insert(std::pair<std::string, void *>("conv1_iq", (void *) malloc(48*48*1 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv1", (void *) malloc(48*48*2 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv1_relu", (void *) malloc(48*48*2 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("pool1", (void *) malloc(12*12*2 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv2_iq", (void *) malloc(12*12*2 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv1", (void *) malloc(48*48*1 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv1_relu", (void *) malloc(48*48*1 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("pool1", (void *) malloc(12*12*1 * element_size)));
+    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv2_iq", (void *) malloc(12*12*1 * element_size)));
     nnet::trace_outputs->insert(std::pair<std::string, void *>("conv2", (void *) malloc(12*12*3 * element_size)));
     nnet::trace_outputs->insert(std::pair<std::string, void *>("conv2_relu", (void *) malloc(12*12*3 * element_size)));
     nnet::trace_outputs->insert(std::pair<std::string, void *>("pool2", (void *) malloc(6*6*3 * element_size)));
