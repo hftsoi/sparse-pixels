@@ -39,7 +39,7 @@ struct config2 {
 struct config4 {
     static const unsigned n_sparse = 20;
     static const unsigned n_chan = 1;
-    static const unsigned n_filt = 1;
+    static const unsigned n_filt = 2;
     static const unsigned kernel_size = 7;
     typedef conv1_accum_t accum_t;
 };
@@ -47,13 +47,13 @@ struct config4 {
 // conv1_relu
 struct config5 {
     static const unsigned n_sparse = 20;
-    static const unsigned n_chan = 1;
+    static const unsigned n_chan = 2;
 };
 
 // pool1
 struct config6 {
     static const unsigned n_sparse = 20;
-    static const unsigned n_chan = 1;
+    static const unsigned n_chan = 2;
     static const unsigned pool_size = 4;
     typedef pool1_accum_t accum_t;
 };
@@ -61,7 +61,7 @@ struct config6 {
 // conv2
 struct config8 {
     static const unsigned n_sparse = 20;
-    static const unsigned n_chan = 1;
+    static const unsigned n_chan = 2;
     static const unsigned n_filt = 3;
     static const unsigned kernel_size = 5;
     typedef conv2_accum_t accum_t;
@@ -96,8 +96,8 @@ struct config13 : nnet::dense_config {
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned strategy = nnet::latency;
     static const unsigned reuse_factor = 1;
-    static const unsigned n_zeros = 3086;
-    static const unsigned n_nonzeros = 802;
+    static const unsigned n_zeros = 3053;
+    static const unsigned n_nonzeros = 835;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef dense1_accum_t accum_t;
@@ -126,8 +126,8 @@ struct config16 : nnet::dense_config {
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned strategy = nnet::latency;
     static const unsigned reuse_factor = 1;
-    static const unsigned n_zeros = 97;
-    static const unsigned n_nonzeros = 263;
+    static const unsigned n_zeros = 83;
+    static const unsigned n_nonzeros = 277;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef dense2_accum_t accum_t;

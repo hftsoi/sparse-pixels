@@ -25,22 +25,6 @@ void allocate_trace_storage(size_t element_size) {
     nnet::trace_enabled = true;
     nnet::trace_outputs = new std::map<std::string, void *>;
     nnet::trace_type_size = element_size;
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("input_reduce", (void *) malloc(20 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv1_iq", (void *) malloc(20 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv1", (void *) malloc(20 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv1_relu", (void *) malloc(20 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("pool1", (void *) malloc(20 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv2_iq", (void *) malloc(20 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv2", (void *) malloc(60 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("conv2_relu", (void *) malloc(60 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("pool2", (void *) malloc(60 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("flatten", (void *) malloc(108 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("dense1_iq", (void *) malloc(108 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("dense1", (void *) malloc(36 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("dense1_relu", (void *) malloc(36 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("dense2_iq", (void *) malloc(36 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("dense2", (void *) malloc(10 * element_size)));
-    nnet::trace_outputs->insert(std::pair<std::string, void *>("softmax", (void *) malloc(10 * element_size)));
 }
 
 void free_trace_storage() {

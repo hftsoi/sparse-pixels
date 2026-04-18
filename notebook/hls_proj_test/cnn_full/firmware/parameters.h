@@ -32,10 +32,10 @@
 // conv1
 struct config3_mult : nnet::dense_config {
     static const unsigned n_in = 49;
-    static const unsigned n_out = 1;
+    static const unsigned n_out = 2;
     static const unsigned reuse_factor = 1;
     static const unsigned strategy = nnet::latency;
-    static const unsigned n_zeros = 24;
+    static const unsigned n_zeros = 44;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     typedef conv1_accum_t accum_t;
     typedef conv1_bias_t bias_t;
@@ -57,13 +57,13 @@ struct config3 : nnet::conv2d_config {
     static const unsigned filt_height = 7;
     static const unsigned filt_width = 7;
     static const unsigned kernel_size = filt_height * filt_width;
-    static const unsigned n_filt = 1;
+    static const unsigned n_filt = 2;
     static const unsigned stride_height = 1;
     static const unsigned stride_width = 1;
     static const unsigned out_height = 48;
     static const unsigned out_width = 48;
     static const unsigned reuse_factor = 1;
-    static const unsigned n_zeros = 24;
+    static const unsigned n_zeros = 44;
     static const unsigned multiplier_limit =
         DIV_ROUNDUP(kernel_size * n_chan * n_filt, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
@@ -89,7 +89,7 @@ const ap_uint<config3::filt_height * config3::filt_width> config3::pixels[] = {0
 
 // conv1_relu
 struct relu_config4 : nnet::activ_config {
-    static const unsigned n_in = 2304;
+    static const unsigned n_in = 4608;
     static const unsigned table_size = 16384;
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned reuse_factor = 1;
@@ -100,7 +100,7 @@ struct relu_config4 : nnet::activ_config {
 struct config5 : nnet::pooling2d_config {
     static const unsigned in_height = 48;
     static const unsigned in_width = 48;
-    static const unsigned n_filt = 1;
+    static const unsigned n_filt = 2;
     static const unsigned stride_height = 4;
     static const unsigned stride_width = 4;
     static const unsigned pool_height = 4;
@@ -125,11 +125,11 @@ struct config5 : nnet::pooling2d_config {
 
 // conv2
 struct config7_mult : nnet::dense_config {
-    static const unsigned n_in = 25;
+    static const unsigned n_in = 50;
     static const unsigned n_out = 3;
     static const unsigned reuse_factor = 1;
     static const unsigned strategy = nnet::latency;
-    static const unsigned n_zeros = 30;
+    static const unsigned n_zeros = 104;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     typedef conv2_accum_t accum_t;
     typedef conv2_bias_t bias_t;
@@ -147,7 +147,7 @@ struct config7 : nnet::conv2d_config {
     static const unsigned pad_right = 2;
     static const unsigned in_height = 12;
     static const unsigned in_width = 12;
-    static const unsigned n_chan = 1;
+    static const unsigned n_chan = 2;
     static const unsigned filt_height = 5;
     static const unsigned filt_width = 5;
     static const unsigned kernel_size = filt_height * filt_width;
@@ -157,7 +157,7 @@ struct config7 : nnet::conv2d_config {
     static const unsigned out_height = 12;
     static const unsigned out_width = 12;
     static const unsigned reuse_factor = 1;
-    static const unsigned n_zeros = 30;
+    static const unsigned n_zeros = 104;
     static const unsigned multiplier_limit =
         DIV_ROUNDUP(kernel_size * n_chan * n_filt, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
@@ -184,7 +184,7 @@ const ap_uint<config7::filt_height * config7::filt_width> config7::pixels[] = {0
 // conv2_relu
 struct relu_config8 : nnet::activ_config {
     static const unsigned n_in = 432;
-    static const unsigned table_size = 4096;
+    static const unsigned table_size = 8192;
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned reuse_factor = 1;
     typedef conv2_relu_table_t table_t;
@@ -224,8 +224,8 @@ struct config12 : nnet::dense_config {
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned strategy = nnet::latency;
     static const unsigned reuse_factor = 1;
-    static const unsigned n_zeros = 2848;
-    static const unsigned n_nonzeros = 1040;
+    static const unsigned n_zeros = 3015;
+    static const unsigned n_nonzeros = 873;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef dense1_accum_t accum_t;
@@ -241,7 +241,7 @@ struct config12 : nnet::dense_config {
 // dense1_relu
 struct relu_config13 : nnet::activ_config {
     static const unsigned n_in = 36;
-    static const unsigned table_size = 16384;
+    static const unsigned table_size = 8192;
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned reuse_factor = 1;
     typedef dense1_relu_table_t table_t;
@@ -254,8 +254,8 @@ struct config15 : nnet::dense_config {
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned strategy = nnet::latency;
     static const unsigned reuse_factor = 1;
-    static const unsigned n_zeros = 135;
-    static const unsigned n_nonzeros = 225;
+    static const unsigned n_zeros = 146;
+    static const unsigned n_nonzeros = 214;
     static const unsigned multiplier_limit = DIV_ROUNDUP(n_in * n_out, reuse_factor) - n_zeros / reuse_factor;
     static const bool store_weights_in_bram = false;
     typedef dense2_accum_t accum_t;
