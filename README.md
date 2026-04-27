@@ -70,7 +70,35 @@ with (
 model = keras.Model(x_in, x)
 ```
 
-We are working on hls4ml integration that auto parses the sparse layers into HLS.
+## Converting a trained model to HLS with hls4ml
+
+> **Note:** A [PR](https://github.com/fastmachinelearning/hls4ml/pull/1468) adding `sparsepixels` support to the official [hls4ml](https://github.com/fastmachinelearning/hls4ml) repo has been submitted but is not yet merged. In the meantime you can install hls4ml from the PR branch on this fork to try the converter:
+>
+> ```bash
+> pip install "git+https://github.com/hftsoi/hls4ml.git@sparsepixels"
+> ```
+
+Once installed, converting a trained sparsepixels model to HLS is as usual:
+
+```python
+import hls4ml
+
+hls_config = hls4ml.utils.config_from_keras_model(model, granularity='name')
+hls_config.setdefault('Model', {})['PipelineStyle'] = 'dataflow'  # use "#pragma HLS DATAFLOW" (instead of the default "#pragma HLS PIPELINE" for io_parallel)
+
+hls_model = hls4ml.converters.convert_from_keras_model(
+    model,
+    hls_config=hls_config,
+    output_dir='hls_proj/my_sparse_cnn',
+    backend='Vitis',
+    io_type='io_parallel',  # io_stream is not supported yet
+)
+hls_model.write()
+hls_model.compile()
+y_hls = hls_model.predict(x_test)
+```
+
+> **Note:** The converter currently supports only fully parallelized `io_parallel` HLS. We are working on expanding to partial parallelization and `io_stream` for larger flexibility.
 
 ## Documentation
 
