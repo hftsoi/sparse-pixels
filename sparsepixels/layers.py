@@ -72,6 +72,13 @@ class QConv2DSparse(keras.layers.Layer):
         self.masker = RemoveDilatedPixels()
 
     def build(self, input_shape):
+        # Build the wrapped conv here (eagerly, during layer build) instead of lazily inside call().
+        # Otherwise, when Keras traces call() symbolically to infer the output shape, the conv would
+        # build in graph mode and HGQ2 (>=0.1.9) runs a weight check there that evaluates a tensor as
+        # a Python bool -- which is not allowed in graph mode. See also compute_output_shape below.
+        x_shape = input_shape[0]
+        if not self.conv.built:
+            self.conv.build(x_shape)
         if self._use_bias:
             self.sparse_bias = self.add_weight(
                 name="sparse_bias",
@@ -82,6 +89,11 @@ class QConv2DSparse(keras.layers.Layer):
             self._bq = Quantizer(self._bq_conf, name=f"{self.name}_bq")
             self._bq.build((self.conv.filters,))
         super().build(input_shape)
+
+    def compute_output_shape(self, input_shape):
+        # Provide the output shape directly so Keras does not trace call() symbolically (masking
+        # preserves shape, so the output shape is the wrapped conv's output shape).
+        return self.conv.compute_output_shape(input_shape[0])
 
     def call(self, inputs, **kwargs):
         x, keep_mask = inputs
