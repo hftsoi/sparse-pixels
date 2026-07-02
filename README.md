@@ -50,13 +50,13 @@ active as the threshold rises, and what a candidate `(n, threshold)` keeps on a 
 
 ```python
 active_pixels_vs_threshold(x_train)
-plot_reduced_examples(x_train, n=20, threshold=0.1)
+plot_reduced_examples(x_train, n=20, threshold=0.1, n_examples=4)
 ```
 
 Build an example sparse CNN within HGQ2 quantization scopes. A custom input quantizer config with
 higher initial fractional bits (`f0=8`) prevents the default (`f0=2`) from zeroing out sparse signals
 in early training epochs. `InputReduce` keeps the first `n` active pixels (first channel above
-`threshold`); by default `n` and `threshold` are learned from data, and a penalty of weight `beta_n`
+`threshold`); by default `n` and `threshold` are trainable hyperparameters, and a penalty of weight `beta_n`
 nudges the budget smaller, trading a little accuracy for lower FPGA latency and resources.
 
 ```python
@@ -71,11 +71,11 @@ with (
 
     # Sparse input reduction
     x, keep_mask = InputReduce(
-        n=30,                    # initial pixel budget (and the fixed budget when learn_n=False)
-        threshold=0.1,           # initial activity threshold on the first channel
-        beta_n=1e-5,             # weight of the budget penalty
-        learn_n=True,            # learn the pixel budget from data
-        learn_threshold=True,    # learn the threshold from data
+        n=30,                    # initial pixel budget
+        threshold=0.1,           # initial activity threshold
+        beta_n=1e-5,             # weight of the pixel budget penalty
+        learn_n=True,            # trainable pixel budget
+        learn_threshold=True,    # trainable threshold
         name='input_reduce',
     )(x_in)
 
@@ -113,7 +113,7 @@ history = model.fit(x_train, y_train, validation_data=(x_val, y_val),
                     epochs=100, batch_size=128, callbacks=[early_stop, SparseTrainingMonitor()])
 
 plot_history(history, early_stopping=early_stop)   # loss breakdown, budget, threshold, EBOPS
-print_quantization(model)                          # per-layer bit-widths and EBOPS
+print_quantization(model)                          # per-layer bit-width distribution and EBOPS
 plot_quantization(model)
 
 ir = model.get_layer('input_reduce')
