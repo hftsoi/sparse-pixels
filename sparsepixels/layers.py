@@ -6,47 +6,159 @@ from keras import ops
 from keras.layers import AveragePooling2D, MaxPooling2D
 
 
+class _ClipToRange(keras.constraints.Constraint):
+    """Weight constraint that clips values to the range [lo, hi] after each update."""
+
+    def __init__(self, lo, hi):
+        self.lo = float(lo)
+        self.hi = float(hi)
+
+    def __call__(self, w):
+        return ops.clip(w, self.lo, self.hi)
+
+    def get_config(self):
+        return {"lo": self.lo, "hi": self.hi}
+
+
 class InputReduce(keras.layers.Layer):
-    def __init__(self, n_max_pixels, threshold, **kwargs):
+    """Reduce a dense image to its first n active pixels for sparse FPGA inference.
+
+    Keeps the first n pixels whose first channel is above threshold, in raster order, and zeroes the
+    rest, returning the masked image together with a 0/1 keep mask that the following sparse layers
+    use as the sparse representation.
+
+    The budget n and the threshold can be learned during training (the default) so they need not be
+    tuned by hand; set learn_n or learn_threshold to False to keep either fixed (both False gives the
+    plain, non-learnable selection). The selection is always exact -- the learnable versions only
+    shape the gradient, so the layer behaves identically at inference and stays deployable. When n is
+    learned, a penalty of weight beta_n nudges it smaller, trading a little accuracy for lower FPGA
+    latency and resources; it starts at n and stays within [1, 4*n]. After training, read the values
+    to deploy from the n_max_pixels and threshold properties.
+
+    Args:
+        n: initial pixel budget, and the fixed budget when learn_n is False.
+        threshold: initial activity threshold on the first channel, fixed when learn_threshold is False.
+        beta_n: weight of the budget penalty added to the loss (0 disables it).
+        learn_n: make the pixel budget trainable.
+        learn_threshold: make the threshold trainable.
+        tau_threshold: softness of the threshold surrogate used to obtain gradients.
+        tau_n: softness of the budget-cutoff surrogate used to obtain gradients.
+    """
+
+    def __init__(
+        self,
+        n=30,
+        threshold=0.0,
+        beta_n=1e-5,
+        learn_n=True,
+        learn_threshold=True,
+        tau_threshold=0.05,
+        tau_n=1.0,
+        **kwargs,
+    ):
         super().__init__(**kwargs)
-        self.n_max_pixels = n_max_pixels
-        self.threshold = threshold
+        self.n_init = int(n)
+        self.threshold_init = float(threshold)
+        self.beta_n = float(beta_n)
+        self.learn_n = learn_n
+        self.learn_threshold = learn_threshold
+        self.tau_threshold = float(tau_threshold)
+        self.tau_n = float(tau_n)
+
+    def build(self, input_shape):
+        if self.learn_threshold:
+            self.threshold_w = self.add_weight(
+                name="threshold",
+                shape=(),
+                initializer=keras.initializers.Constant(self.threshold_init),
+                trainable=True,
+                constraint=keras.constraints.NonNeg(),
+            )
+        if self.learn_n:
+            # Parametrize the budget as a fraction of its initial value (n = n_init * n_frac) so it
+            # moves at a useful rate under Adam; clip to [1, 4x] so it can shrink or modestly grow.
+            self.n_frac = self.add_weight(
+                name="n_frac",
+                shape=(),
+                initializer=keras.initializers.Constant(1.0),
+                trainable=True,
+                constraint=_ClipToRange(1.0 / self.n_init, 4.0),
+            )
+        super().build(input_shape)
 
     def call(self, inputs):
+        dt = inputs.dtype
         batch_size = ops.shape(inputs)[0]
         h = ops.shape(inputs)[1]
         w = ops.shape(inputs)[2]
+        score = ops.reshape(inputs[..., 0], [batch_size, h * w])
 
-        # to be consistent with hls, check only the first input channel
-        if self.threshold is not None:
-            active_flag = ops.cast(inputs[..., 0] > self.threshold, "int32")
+        thr = self.threshold_w if self.learn_threshold else ops.cast(self.threshold_init, dt)
+        n = ops.cast(self.n_init, dt) * self.n_frac if self.learn_n else ops.cast(self.n_init, dt)
+
+        # Exact selection used for the forward pass.
+        active_hard = ops.cast(score > thr, dt)
+        rank_hard = ops.cumsum(active_hard, axis=1)
+        keep_hard = active_hard * ops.cast(rank_hard <= ops.round(n), dt)
+
+        if self.learn_threshold or self.learn_n:
+            # Differentiable surrogate used only for the gradient (straight-through to the exact
+            # selection above); the score > 0 gate keeps zero background pixels out when threshold=0.
+            active_soft = ops.sigmoid((score - thr) / self.tau_threshold) * ops.cast(score > 0, dt)
+            rank_soft = ops.cumsum(active_soft, axis=1)
+            keep_soft = active_soft * ops.sigmoid((n - rank_soft) / self.tau_n)
+            keep_flat = keep_soft + ops.stop_gradient(keep_hard - keep_soft)
         else:
-            active_flag = ops.cast(inputs[..., 0] != 0, "int32")
+            keep_flat = keep_hard
 
-        active_flag_flat = ops.reshape(active_flag, [batch_size, h * w])
-        active_count = ops.cumsum(active_flag_flat, axis=1)
-
-        keep_mask_flat = ops.cast(
-            ops.logical_and(active_flag_flat == 1, active_count <= self.n_max_pixels),
-            inputs.dtype,
-        )
-        keep_mask = ops.reshape(keep_mask_flat, [batch_size, h, w, 1])
-
+        keep_mask = ops.reshape(keep_flat, [batch_size, h, w, 1])
         inputs_reduced = inputs * keep_mask
+
+        if self.learn_n:
+            self.add_loss(self.beta_n * n)
+
         return inputs_reduced, keep_mask
+
+    @property
+    def n_max_pixels(self):
+        """Integer pixel budget to deploy (the initial value until the layer is built)."""
+        if self.learn_n and self.built:
+            return int(round(self.n_init * float(ops.convert_to_numpy(self.n_frac))))
+        return self.n_init
+
+    @property
+    def threshold(self):
+        """Threshold to deploy (the initial value until the layer is built)."""
+        if self.learn_threshold and self.built:
+            return float(ops.convert_to_numpy(self.threshold_w))
+        return self.threshold_init
 
     def get_config(self):
         config = super().get_config()
         config.update(
             {
-                "n_max_pixels": self.n_max_pixels,
-                "threshold": self.threshold,
+                "n": self.n_init,
+                "threshold": self.threshold_init,
+                "beta_n": self.beta_n,
+                "learn_n": self.learn_n,
+                "learn_threshold": self.learn_threshold,
+                "tau_threshold": self.tau_threshold,
+                "tau_n": self.tau_n,
             }
         )
         return config
 
 
 class RemoveDilatedPixels(keras.layers.Layer):
+    """Re-apply the keep mask, zeroing every pixel that is not active.
+
+    Multiplies a feature map by its 0/1 keep mask (broadcast over channels) so only the kept pixels
+    carry values. Used inside the sparse layers to restore the sparse representation after a dense op.
+
+    Call args:
+        inputs: tuple (x, mask) of the feature map and its keep mask.
+    """
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -60,6 +172,23 @@ class RemoveDilatedPixels(keras.layers.Layer):
 
 
 class QConv2DSparse(keras.layers.Layer):
+    """Quantized 2D convolution that operates on the sparse (active-pixel) representation.
+
+    Wraps an HGQ QConv2D: masks the input to the active pixels, convolves, adds a separately
+    quantized per-filter bias on the nonzero outputs, applies the activation, then re-masks the
+    output. This is numerically the same as a dense quantized conv restricted to the active pixels,
+    which is what the HLS sparse_conv kernel computes.
+
+    Args:
+        *conv_args: positional arguments forwarded to hgq.layers.QConv2D (e.g. filters, kernel_size).
+        **conv_kwargs: keyword arguments forwarded to QConv2D (padding, strides, ...). use_bias,
+            activation and bq_conf are handled here: the bias has its own weight and quantizer
+            (bq_conf), and the activation is applied after the bias.
+
+    Call args:
+        inputs: tuple (x, keep_mask) of the feature map and its keep mask.
+    """
+
     def __init__(self, *conv_args, **conv_kwargs):
         super().__init__(name=conv_kwargs.get("name", None))
         self._use_bias = conv_kwargs.pop("use_bias", True)
@@ -72,10 +201,8 @@ class QConv2DSparse(keras.layers.Layer):
         self.masker = RemoveDilatedPixels()
 
     def build(self, input_shape):
-        # Build the wrapped conv here (eagerly, during layer build) instead of lazily inside call().
-        # Otherwise, when Keras traces call() symbolically to infer the output shape, the conv would
-        # build in graph mode and HGQ2 (>=0.1.9) runs a weight check there that evaluates a tensor as
-        # a Python bool -- which is not allowed in graph mode. See also compute_output_shape below.
+        # Build the wrapped conv eagerly here rather than lazily in call(): building it while Keras
+        # symbolically traces call() triggers an HGQ weight check that fails in graph mode.
         x_shape = input_shape[0]
         if not self.conv.built:
             self.conv.build(x_shape)
@@ -91,8 +218,7 @@ class QConv2DSparse(keras.layers.Layer):
         super().build(input_shape)
 
     def compute_output_shape(self, input_shape):
-        # Provide the output shape directly so Keras does not trace call() symbolically (masking
-        # preserves shape, so the output shape is the wrapped conv's output shape).
+        # Return the shape directly so Keras does not trace call() (masking preserves the shape).
         return self.conv.compute_output_shape(input_shape[0])
 
     def call(self, inputs, **kwargs):
@@ -130,6 +256,19 @@ class QConv2DSparse(keras.layers.Layer):
 
 
 class AveragePooling2DSparse(keras.layers.Layer):
+    """Average pooling on the sparse representation.
+
+    Average-pools the feature map and max-pools the keep mask, so a pooled cell stays active when any
+    of its source pixels were active. Mirrors the HLS sparse_pooling_avg kernel.
+
+    Args:
+        *pool_args: positional arguments forwarded to keras AveragePooling2D (e.g. pool_size).
+        **pool_kwargs: keyword arguments forwarded to the pooling layers.
+
+    Call args:
+        inputs: tuple (x, keep_mask) of the feature map and its keep mask.
+    """
+
     def __init__(self, *pool_args, **pool_kwargs):
         super().__init__(name=pool_kwargs.get("name", None))
         self.avg_pool = AveragePooling2D(*pool_args, **pool_kwargs)
@@ -153,6 +292,18 @@ class AveragePooling2DSparse(keras.layers.Layer):
 
 
 class MaxPooling2DSparse(keras.layers.Layer):
+    """Max pooling on the sparse representation.
+
+    Max-pools both the feature map and the keep mask. Mirrors the HLS sparse_pooling_max kernel.
+
+    Args:
+        *pool_args: positional arguments forwarded to keras MaxPooling2D (e.g. pool_size).
+        **pool_kwargs: keyword arguments forwarded to the pooling layer.
+
+    Call args:
+        inputs: tuple (x, keep_mask) of the feature map and its keep mask.
+    """
+
     def __init__(self, *pool_args, **pool_kwargs):
         super().__init__(name=pool_kwargs.get("name", None))
         self.max_pool = MaxPooling2D(*pool_args, **pool_kwargs)
