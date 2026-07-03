@@ -49,9 +49,10 @@ def set_sparse_ebops_factor(model):
     HGQ counts a conv's EBOPS as if it ran over the whole H*W feature map, which overestimates a
     sparse conv that only touches about n_max_pixels of them. This scales each sparse conv's EBOPS by
     n_max_pixels / (H*W) through HGQ's own ebops_factor, so both the reported EBOPS and the EBOPS
-    regularization loss reflect the sparse compute. Call once after building the model, before fit.
-    For a learnable budget it uses the current n_max_pixels, which is a good approximation since the
-    budget moves slowly; call it again if the budget changes a lot.
+    regularization loss reflect the sparse compute. SparseTrainingMonitor applies this automatically
+    at the start of training, so you usually do not need to call it directly -- call it manually only
+    to correct EBOPS you inspect before training, or to refresh it if a learnable budget moves a lot
+    (it uses the current n_max_pixels, a good approximation since the budget moves slowly).
 
     Returns a dict of {layer_name: factor} for the sparse convs that were adjusted.
     """
@@ -157,11 +158,18 @@ class SparseTrainingMonitor(Callback):
 
     - n_max_pixels and threshold: the learned or fixed pixel budget and threshold of the InputReduce
       layer (suffixed with the layer name when there is more than one).
-    - ebops: total EBOPS over the quantized layers, a proxy for the quantized hardware cost (sparse
-      corrected once set_sparse_ebops_factor has been applied).
+    - ebops: total EBOPS over the quantized layers, a proxy for the quantized hardware cost. This
+      monitor applies set_sparse_ebops_factor at the start of training, so the EBOPS (and its
+      regularizer) reflect the sparse (active-pixel) compute without any manual call.
     - loss_task, loss_ebops, loss_n: the training loss split into the task loss, the EBOPS penalty and
       the pixel-budget penalty, each already scaled by its weight so the three add up to the loss.
     """
+
+    def on_train_begin(self, logs=None):
+        # Fold in set_sparse_ebops_factor so the user need not call it manually. Uses the current
+        # (initial) budget, matching a manual call right before fit; call it again yourself if a
+        # learnable budget moves a lot during training.
+        set_sparse_ebops_factor(self.model)
 
     def on_epoch_end(self, epoch, logs=None):
         if logs is None:

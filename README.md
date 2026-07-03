@@ -28,20 +28,16 @@ pip install sparsepixels
 
 ## Getting Started
 
-Import the sparse layers, the quantization library (HGQ2), and the training utilities:
-
 ```python
 import keras
 from keras.layers import Flatten, Activation
-from hgq.layers import QConv2D, QDense
+from hgq.layers import QDense
 from hgq.config import QuantizerConfigScope, LayerConfigScope
 from hgq.quantizer.config import QuantizerConfig
 from sparsepixels.layers import InputReduce, QConv2DSparse, AveragePooling2DSparse, MaxPooling2DSparse
 from sparsepixels.utils import (
-    active_pixels_vs_threshold, plot_reduced_examples,
-    set_sparse_ebops_factor, cosine_lr,
-    SparseTrainingMonitor, plot_history,
-    print_quantization, plot_quantization,
+    active_pixels_vs_threshold, plot_reduced_examples, cosine_lr,
+    SparseTrainingMonitor, plot_history, print_quantization, plot_quantization,
 )
 ```
 
@@ -93,31 +89,34 @@ with (
 model = keras.Model(x_in, x)
 ```
 
-Train the model, then read out the learned sparsity to deploy. `set_sparse_ebops_factor` makes the
-EBOPS (a proxy for the quantized hardware cost) reflect the sparse compute rather than a dense one; a
-cosine-decayed learning rate together with `restore_best_weights` keeps the learned budget from
-over-compressing near the end of training. `plot_history` shows the loss breakdown, the learned
-budget/threshold and the EBOPS in one figure, and the values to deploy are `layer.n_max_pixels` and
-`layer.threshold`.
+Train the model with `SparseTrainingMonitor`. It records the loss breakdown, the learned
+budget/threshold and the EBOPS each epoch, and it corrects the EBOPS (a proxy for the quantized
+hardware cost) to the sparse compute automatically, so no extra setup is needed. The
+only sparse-specific choices are the cosine-decayed learning rate and `restore_best_weights`, which
+keep the learned budget from over-compressing near the end of training.
 
 ```python
-set_sparse_ebops_factor(model)
-
-steps_per_epoch = len(x_train) // 128
 early_stop = keras.callbacks.EarlyStopping(monitor='val_accuracy', mode='max', patience=20, restore_best_weights=True)
 model.compile(
-    optimizer=keras.optimizers.Adam(cosine_lr(1e-3, epochs=100, steps_per_epoch=steps_per_epoch)),
+    optimizer=keras.optimizers.Adam(cosine_lr(1e-3, epochs=100, steps_per_epoch=len(x_train) // 128)),
     loss='categorical_crossentropy', metrics=['accuracy'],
 )
 history = model.fit(x_train, y_train, validation_data=(x_val, y_val),
                     epochs=100, batch_size=128, callbacks=[early_stop, SparseTrainingMonitor()])
+```
 
+After training, plot the diagnostics and read out the learned sparsity to deploy. `plot_history`
+shows the loss breakdown, the learned budget/threshold and the EBOPS in one figure.
+`print_quantization` / `plot_quantization` summarize the per-layer bit-widths. The values to
+deploy are `layer.n_max_pixels` and `layer.threshold` (hls4ml converter will auto-parse these from the model).
+
+```python
 plot_history(history, early_stopping=early_stop)   # loss breakdown, budget, threshold, EBOPS
 print_quantization(model)                          # per-layer bit-width distribution and EBOPS
 plot_quantization(model)
 
 ir = model.get_layer('input_reduce')
-print(f"deploy with n_max_pixels={ir.n_max_pixels}, threshold={ir.threshold:.3f}")
+print(f"n_max_pixels={ir.n_max_pixels}, threshold={ir.threshold:.3f}")
 ```
 
 ## Converting a trained model to HLS with hls4ml
@@ -128,13 +127,31 @@ print(f"deploy with n_max_pixels={ir.n_max_pixels}, threshold={ir.threshold:.3f}
 > pip install "git+https://github.com/hftsoi/hls4ml.git@sparsepixels"
 > ```
 
-Once installed, converting a trained sparsepixels model to HLS is as usual:
+Once installed, pull a config from the trained model, optionally set the per-layer parallelization
+knobs, and convert:
 
 ```python
 import hls4ml
 
 hls_config = hls4ml.utils.config_from_keras_model(model, granularity='name')
-hls_config.setdefault('Model', {})['PipelineStyle'] = 'dataflow'  # use "#pragma HLS DATAFLOW" (instead of the default "#pragma HLS PIPELINE" for io_parallel)
+hls_config.setdefault('Model', {})['PipelineStyle'] = 'dataflow'  # "#pragma HLS DATAFLOW"
+
+# Optional per-layer parallelization knobs. Omit them for the fully-parallel, lowest-latency default.
+#   input_reduce  Variant             : 'tree' (default, lowest latency) or 'stream' (fewer resources)
+#   conv*         PixelParallelFactor : active pixels in parallel (<= n_max_pixels)
+#                 FiltParallelFactor  : filters in parallel (<= that conv's filters)
+#   pool*         PixelParallelFactor : active pixels in parallel
+#                 ChanParallelFactor  : channels in parallel
+#   flatten       ParallelFactor      : scatter positions in parallel (<= out_height * out_width)
+n_sparse = model.get_layer('input_reduce').n_max_pixels
+knobs = {
+    'input_reduce': {'Variant': 'stream'},
+    'conv1':   {'PixelParallelFactor': n_sparse, 'FiltParallelFactor': 3},
+    'pool1':   {'PixelParallelFactor': n_sparse, 'ChanParallelFactor': 3},
+    'flatten': {'ParallelFactor': 14 * 14},  # this model pools 28*28 -> 14*14
+}
+for name, cfg in knobs.items():
+    hls_config['LayerName'].setdefault(name, {}).update(cfg)
 
 hls_model = hls4ml.converters.convert_from_keras_model(
     model,
