@@ -1149,6 +1149,103 @@ def preview_patches_with_pooling(
             plt.show()
 
 
+def plot_layer_outputs(model, x_input, sample_idx=0, layer_names=None,
+                       cmap='viridis', figsize_per_ch=3):
+    """Plot channel-wise feature maps for intermediate layers of a sparse or dense CNN.
+
+    Parameters
+    ----------
+    model : keras.Model
+        The model (sparse or dense). Sparse models may have layers with
+        tuple outputs (features, mask).
+    x_input : np.ndarray
+        Full input dataset (batch, H, W, C).
+    sample_idx : int
+        Index of the sample in *x_input* to visualise.
+    layer_names : list[str] or None
+        Layer names to plot.  If *None*, auto-discovers layers whose names
+        start with common prefixes (x_in, input_reduce, conv, pool, dense).
+    cmap : str
+        Matplotlib colormap name.
+    figsize_per_ch : float
+        Width of each channel subplot in inches.
+    """
+    import keras
+
+    if layer_names is None:
+        prefixes = ('x_in', 'input_reduce', 'conv', 'pool', 'dense')
+        layer_names = [l.name for l in model.layers
+                       if any(l.name.startswith(p) for p in prefixes)]
+
+    plot_tensors = []
+    plot_names = []
+    for name in layer_names:
+        layer = model.get_layer(name)
+        output = layer.output
+        if isinstance(output, (list, tuple)):
+            plot_tensors.append(output[0])
+            plot_names.append(f'{name} (features)')
+            plot_tensors.append(output[1])
+            plot_names.append(f'{name} (mask)')
+        else:
+            plot_tensors.append(output)
+            plot_names.append(name)
+
+    probe = keras.models.Model(inputs=model.input, outputs=plot_tensors)
+    preds = probe.predict(x_input[sample_idx:sample_idx + 1], verbose=0)
+
+    if not isinstance(preds, list):
+        preds = [preds]
+
+    i = 0
+    while i < len(plot_names):
+        name = plot_names[i]
+
+        if '(features)' in name and i + 1 < len(plot_names) and '(mask)' in plot_names[i + 1]:
+            arr = preds[i][0]
+            if arr.ndim == 3:
+                h, w, c = arr.shape
+                fig, axes = plt.subplots(1, c, figsize=(c * figsize_per_ch, figsize_per_ch))
+                fig.suptitle(name.replace(' (features)', ''), fontsize=13)
+                if c == 1:
+                    axes = [axes]
+                for ch in range(c):
+                    axes[ch].imshow(arr[..., ch], cmap=cmap)
+                    axes[ch].set_title(f'ch{ch}')
+                plt.tight_layout()
+                plt.show()
+            i += 2
+            continue
+
+        arr = preds[i][0]
+        if arr.ndim == 1:
+            fig, ax = plt.subplots(1, 1, figsize=(max(len(arr) * 0.3, 4), figsize_per_ch))
+            fig.suptitle(name, fontsize=13)
+            ax.bar(range(len(arr)), arr)
+            ax.set_xlabel('unit')
+            plt.tight_layout()
+            plt.show()
+        elif arr.ndim == 2:
+            fig, ax = plt.subplots(1, 1, figsize=(figsize_per_ch, figsize_per_ch))
+            fig.suptitle(name, fontsize=13)
+            ax.imshow(arr, cmap=cmap)
+            ax.set_title('ch0')
+            plt.tight_layout()
+            plt.show()
+        elif arr.ndim == 3:
+            h, w, c = arr.shape
+            fig, axes = plt.subplots(1, c, figsize=(c * figsize_per_ch, figsize_per_ch))
+            fig.suptitle(name, fontsize=13)
+            if c == 1:
+                axes = [axes]
+            for ch in range(c):
+                axes[ch].imshow(arr[..., ch], cmap=cmap)
+                axes[ch].set_title(f'ch{ch}')
+            plt.tight_layout()
+            plt.show()
+        i += 1
+
+
 def _fmt_bits(bits_tensor):
     b = np.array(bits_tensor).flatten()
     if b.size == 1:

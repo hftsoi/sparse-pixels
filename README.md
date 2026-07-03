@@ -129,13 +129,15 @@ import hls4ml
 hls_config = hls4ml.utils.config_from_keras_model(model, granularity='name')
 hls_config.setdefault('Model', {})['PipelineStyle'] = 'dataflow'  # "#pragma HLS DATAFLOW"
 
+n_max_pixels = model.get_layer('input_reduce').n_max_pixels
+
 # input reduce: 'tree' (default, lowest latency) or 'stream' (sequential, fewer resources)
-hls_config['LayerName']['input_reduce']['Variant'] = 'stream'
+hls_config['LayerName']['input_reduce']['Variant'] = 'tree'
 # conv: active pixels in parallel (<= n_max_pixels), and filters in parallel (<= that conv's filters)
-hls_config['LayerName']['conv1']['PixelParallelFactor'] = 20
+hls_config['LayerName']['conv1']['PixelParallelFactor'] = n_max_pixels
 hls_config['LayerName']['conv1']['FiltParallelFactor'] = 3
 # pool: active pixels in parallel, and channels in parallel
-hls_config['LayerName']['pool1']['PixelParallelFactor'] = 20
+hls_config['LayerName']['pool1']['PixelParallelFactor'] = n_max_pixels
 hls_config['LayerName']['pool1']['ChanParallelFactor'] = 3
 # flatten: scatter positions in parallel (<= out_height * out_width; here 28*28 pools to 14*14)
 hls_config['LayerName']['flatten']['ParallelFactor'] = 14 * 14
