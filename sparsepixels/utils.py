@@ -9,7 +9,6 @@ set_sparse_ebops_factor corrects each sparse conv's EBOPS for the fact that it o
 active pixels, so the monitored EBOPS and the EBOPS regularizer reflect the real sparse cost.
 """
 
-import keras
 import matplotlib.pyplot as plt
 import numpy as np
 from keras import ops
@@ -116,6 +115,20 @@ def _budget_reg_loss(model):
     return total
 
 
+def _masked_intensity_reg_loss(model):
+    """Sum beta_maskedE * masked_intensity over the InputReduce layers using the masked-intensity penalty."""
+    total = 0.0
+    for ir in _input_reduce_layers(model):
+        beta_maskedE = getattr(ir, "beta_maskedE", 0.0)
+        mi = getattr(ir, "_masked_intensity", None)
+        if beta_maskedE > 0 and mi is not None:
+            try:
+                total += beta_maskedE * float(ops.convert_to_numpy(mi))
+            except Exception:
+                continue
+    return total
+
+
 def _fmt_bits(bits_tensor):
     b = np.array(bits_tensor).flatten()
     if b.size == 1:
@@ -161,8 +174,10 @@ class SparseTrainingMonitor(Callback):
     - ebops: total EBOPS over the quantized layers, a proxy for the quantized hardware cost. This
       monitor applies set_sparse_ebops_factor at the start of training, so the EBOPS (and its
       regularizer) reflect the sparse (active-pixel) compute without any manual call.
-    - loss_task, loss_ebops, loss_n: the training loss split into the task loss, the EBOPS penalty and
-      the pixel-budget penalty, each already scaled by its weight so the three add up to the loss.
+    - loss_task, loss_ebops, loss_n, loss_maskedE: the training loss split into the task loss, the
+      EBOPS penalty, the pixel-budget penalty and the masked-intensity penalty (the last present only
+      when its weight beta_maskedE is nonzero), each already scaled by its weight so the parts add up to the
+      loss.
     """
 
     def on_train_begin(self, logs=None):
@@ -185,14 +200,18 @@ class SparseTrainingMonitor(Callback):
         reg_ebops = _ebops_reg_loss(self.model) if found else 0.0
         has_budget = any(getattr(ir, "learn_n", False) for ir in irs)
         reg_n = _budget_reg_loss(self.model) if has_budget else 0.0
+        has_maskedE = any(getattr(ir, "beta_maskedE", 0.0) > 0 for ir in irs)
+        reg_maskedE = _masked_intensity_reg_loss(self.model) if has_maskedE else 0.0
         if found:
             logs["ebops"] = ebops
             logs["loss_ebops"] = reg_ebops
         if has_budget:
             logs["loss_n"] = reg_n
+        if has_maskedE:
+            logs["loss_maskedE"] = reg_maskedE
         # Task loss is the total minus the (train-only) penalties, so the parts add up to the loss.
         if "loss" in logs:
-            logs["loss_task"] = logs["loss"] - reg_ebops - reg_n
+            logs["loss_task"] = logs["loss"] - reg_ebops - reg_n - reg_maskedE
 
 
 def plot_history(history, early_stopping=None, figsize=None, ncols=3):
@@ -220,7 +239,7 @@ def plot_history(history, early_stopping=None, figsize=None, ncols=3):
 
     def _is_single(k):
         return (
-            k in ("ebops", "loss_task", "loss_ebops", "loss_n")
+            k in ("ebops", "loss_task", "loss_ebops", "loss_n", "loss_maskedE")
             or k.startswith("n_max_pixels")
             or k.startswith("threshold")
         )
@@ -230,7 +249,7 @@ def plot_history(history, early_stopping=None, figsize=None, ncols=3):
     metric_keys = [k for k in h if not k.startswith("val_") and k not in skip]
     m_order = ["loss"]
     metric_keys = [k for k in m_order if k in metric_keys] + [k for k in metric_keys if k not in m_order]
-    s_order = ["loss_task", "loss_ebops", "loss_n", "n_max_pixels", "threshold", "ebops"]
+    s_order = ["loss_task", "loss_ebops", "loss_n", "loss_maskedE", "n_max_pixels", "threshold", "ebops"]
     single_keys = [k for k in s_order if k in single_keys] + [k for k in single_keys if k not in s_order]
 
     panels = metric_keys + single_keys
@@ -254,7 +273,7 @@ def plot_history(history, early_stopping=None, figsize=None, ncols=3):
             show_legend = True
         else:
             vals = list(h[key])
-            color = "tab:red" if key in ("loss_task", "loss_ebops", "loss_n") else "tab:green"
+            color = "tab:red" if key in ("loss_task", "loss_ebops", "loss_n", "loss_maskedE") else "tab:green"
             ax.plot(ep, vals, marker=".", color=color)
             # annotate first and last epoch (above the point) so the endpoints are easy to read
             for xi, yi in ((1, vals[0]), (len(vals), vals[-1])):
@@ -290,26 +309,6 @@ def plot_history(history, early_stopping=None, figsize=None, ncols=3):
         ax.axis("off")
     fig.tight_layout()
     plt.show()
-
-
-def cosine_lr(initial_learning_rate, epochs, steps_per_epoch, alpha=0.0):
-    """Cosine-decay learning-rate schedule spanning the whole training run.
-
-    A decaying rate lets the learnable budget and threshold move quickly early and then settle late,
-    instead of drifting the whole time (which is what pushes the budget to over-compress near the
-    end). Pass the result as the optimizer's learning_rate, and pair it with an EarlyStopping that
-    monitors val_accuracy with restore_best_weights so the best-validation values are the ones you
-    deploy.
-
-    Args:
-        initial_learning_rate: starting learning rate, e.g. 1e-3.
-        epochs: number of training epochs.
-        steps_per_epoch: batches per epoch, i.e. ceil(len(x_train) / batch_size).
-        alpha: final learning rate as a fraction of the initial (0 decays to about 0).
-    """
-    return keras.optimizers.schedules.CosineDecay(
-        initial_learning_rate, decay_steps=int(epochs * steps_per_epoch), alpha=alpha
-    )
 
 
 def active_pixels_vs_threshold(x, thresholds=None, channel=0, percentiles=(25, 50, 75), plot=True, ax=None):

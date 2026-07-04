@@ -32,13 +32,18 @@ class InputReduce(keras.layers.Layer):
     plain, non-learnable selection). The selection is always exact -- the learnable versions only
     shape the gradient, so the layer behaves identically at inference and stays deployable. When n is
     learned, a penalty of weight beta_n nudges it smaller, trading a little accuracy for lower FPGA
-    latency and resources; it starts at n and stays within [1, 4*n]. After training, read the values
-    to deploy from the n_max_pixels and threshold properties.
+    latency and resources; it starts at n and can range over [1, H*W]. An optional penalty of weight
+    beta_maskedE discourages masking pixel intensity, giving the threshold (and n) a restoring force so a
+    trainable threshold settles near the noise floor instead of over-masking signal. After training,
+    read the values to deploy from the n_max_pixels and threshold properties.
 
     Args:
         n: initial pixel budget, and the fixed budget when learn_n is False.
         threshold: initial activity threshold on the first channel, fixed when learn_threshold is False.
         beta_n: weight of the budget penalty added to the loss (0 disables it).
+        beta_maskedE: weight of the masked-intensity penalty (0 disables it). Penalizes the fraction of pixel
+            intensity that gets masked, so masking bright (signal) pixels is costly while masking dim
+            (noise) pixels is cheap -- an adaptive, non-vanishing restoring force against over-masking.
         learn_n: make the pixel budget trainable.
         learn_threshold: make the threshold trainable.
         tau_threshold: softness of the threshold surrogate used to obtain gradients.
@@ -49,7 +54,8 @@ class InputReduce(keras.layers.Layer):
         self,
         n=30,
         threshold=0.0,
-        beta_n=1e-5,
+        beta_n=5e-3,
+        beta_maskedE=1.0,
         learn_n=True,
         learn_threshold=True,
         tau_threshold=0.05,
@@ -60,6 +66,7 @@ class InputReduce(keras.layers.Layer):
         self.n_init = int(n)
         self.threshold_init = float(threshold)
         self.beta_n = float(beta_n)
+        self.beta_maskedE = float(beta_maskedE)
         self.learn_n = learn_n
         self.learn_threshold = learn_threshold
         self.tau_threshold = float(tau_threshold)
@@ -76,13 +83,24 @@ class InputReduce(keras.layers.Layer):
             )
         if self.learn_n:
             # Parametrize the budget as a fraction of its initial value (n = n_init * n_frac) so it
-            # moves at a useful rate under Adam; clip to [1, 4x] so it can shrink or modestly grow.
+            # moves at a useful rate under Adam; clip to [1, H*W] so it can shrink to a single pixel
+            # or grow up to keeping every pixel.
+            if input_shape[1] and input_shape[2]:
+                hi = (input_shape[1] * input_shape[2]) / self.n_init
+            else:
+                hi = 4.0
             self.n_frac = self.add_weight(
                 name="n_frac",
                 shape=(),
                 initializer=keras.initializers.Constant(1.0),
                 trainable=True,
-                constraint=_ClipToRange(1.0 / self.n_init, 4.0),
+                constraint=_ClipToRange(1.0 / self.n_init, max(1.0, hi)),
+            )
+        if self.beta_maskedE > 0:
+            # Running masked-intensity fraction, tracked (not trained) so SparseTrainingMonitor can
+            # report the penalty; refreshed each call.
+            self._masked_intensity = self.add_weight(
+                name="masked_intensity", shape=(), initializer="zeros", trainable=False
             )
         super().build(input_shape)
 
@@ -108,6 +126,15 @@ class InputReduce(keras.layers.Layer):
             rank_soft = ops.cumsum(active_soft, axis=1)
             keep_soft = active_soft * ops.sigmoid((n - rank_soft) / self.tau_n)
             keep_flat = keep_soft + ops.stop_gradient(keep_hard - keep_soft)
+
+            if self.beta_maskedE > 0:
+                # Fraction of total pixel intensity that gets masked, added straight to the loss (not
+                # through the classifier) so its gradient does not vanish for the masked pixels.
+                # Masking bright pixels costs more than masking dim ones, so this pushes the threshold
+                # back down (and n up) before it eats into signal -- an adaptive anti-over-masking term.
+                masked_frac = ops.mean(ops.sum(score * (1.0 - keep_soft), axis=1) / (ops.sum(score, axis=1) + 1e-6))
+                self.add_loss(self.beta_maskedE * masked_frac)
+                self._masked_intensity.assign(masked_frac)
         else:
             keep_flat = keep_hard
 
@@ -140,6 +167,7 @@ class InputReduce(keras.layers.Layer):
                 "n": self.n_init,
                 "threshold": self.threshold_init,
                 "beta_n": self.beta_n,
+                "beta_maskedE": self.beta_maskedE,
                 "learn_n": self.learn_n,
                 "learn_threshold": self.learn_threshold,
                 "tau_threshold": self.tau_threshold,

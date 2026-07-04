@@ -44,7 +44,7 @@ Build an example sparse CNN within HGQ2 quantization scopes. A custom input quan
 higher initial fractional bits (e.g., `f0=8`) prevents the lower default (`f0=2`) from aggressively zeroing out sparse signals
 in early training epochs. `InputReduce` keeps the first `n` active pixels (based on the first channel above
 `threshold`) in a row-major order.
-By default `n` and `threshold` are trainable hyperparameters, and `beta_n` controls the aggressiveness when driving `n` smaller for lower hardware footprint.
+By default `n` and `threshold` are trainable hyperparameters: `beta_n` controls how aggressively `n` is driven smaller for a lower hardware footprint, and `beta_maskedE` penalizes over-masking pixel intensity.
 
 ```python
 import keras
@@ -63,11 +63,12 @@ with (
     x_in = keras.Input(shape=(28, 28, 1), name='x_in')
 
     x, keep_mask = InputReduce(
-        n=30,                    # initial pixel budget
-        threshold=0.1,           # initial activity threshold
-        beta_n=1e-5,             # scale the pixel budget penalty
-        learn_n=True,            # trainable pixel budget
-        learn_threshold=True,    # trainable threshold
+        n=30,                  # initial pixel budget
+        threshold=0.1,         # initial activity threshold
+        beta_n=5e-3,           # higher -> drives the pixel budget n smaller
+        beta_maskedE=1.0,      # higher -> prevents over-masking
+        learn_n=True,          # trainable pixel budget
+        learn_threshold=True,  # trainable threshold
         name='input_reduce',
     )(x_in)
     x = QConv2DSparse(filters=3, kernel_size=3, name='conv1', padding='same', strides=1,
@@ -82,17 +83,15 @@ model = keras.Model(x_in, x)
 ```
 
 Train the model with `SparseTrainingMonitor`. It records the loss breakdown, the learned
-budget/threshold and the EBOPS each epoch, and it corrects the EBOPS (a proxy for the quantized
-hardware cost) to the sparse compute automatically. The
-only sparse-specific choices are the cosine-decayed learning rate and `restore_best_weights`, which
-keep the learned budget from over-compressing near the end of training.
+budget/threshold, the EBOPS and the masked-intensity penalty each epoch, and it corrects the EBOPS
+(a proxy for the quantized hardware cost) to the sparse compute automatically.
 
 ```python
-from sparsepixels.utils import cosine_lr, SparseTrainingMonitor
+from sparsepixels.utils import SparseTrainingMonitor
 
 early_stop = keras.callbacks.EarlyStopping(monitor='val_accuracy', mode='max', patience=20, restore_best_weights=True)
 model.compile(
-    optimizer=keras.optimizers.Adam(cosine_lr(1e-3, epochs=100, steps_per_epoch=len(x_train) // 128)),
+    optimizer=keras.optimizers.Adam(1e-3),
     loss='categorical_crossentropy', metrics=['accuracy'],
 )
 history = model.fit(x_train, y_train, validation_data=(x_val, y_val),
@@ -104,8 +103,8 @@ After training, plot the diagnostics from the monitoring tool. The final pixel b
 ```python
 from sparsepixels.utils import plot_history, print_quantization, plot_quantization
 
-plot_history(history, early_stopping=early_stop)   # loss breakdown, budget, threshold, EBOPS
-print_quantization(model)                          # per-layer bit-width distribution and EBOPS
+plot_history(history, early_stopping=early_stop)  # loss breakdown, budget, threshold, EBOPS
+print_quantization(model)                         # per-layer bit-width distribution and EBOPS
 plot_quantization(model)
 
 ir = model.get_layer('input_reduce')
