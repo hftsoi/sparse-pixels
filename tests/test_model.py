@@ -11,7 +11,7 @@ from hgq.quantizer.config import QuantizerConfig
 from keras.layers import Activation, AveragePooling2D, Flatten
 
 from sparsepixels.layers import AveragePooling2DSparse, InputReduce, QConv2DSparse
-from sparsepixels.utils import SparseTrainingMonitor, cosine_lr, plot_history, set_sparse_ebops_factor
+from sparsepixels.utils import SparseTrainingMonitor, plot_history, set_sparse_ebops_factor
 
 
 def build_cnn(is_sparse, n=20, threshold=0.0, beta_n=1e-4, learn_n=True, learn_threshold=True):
@@ -74,20 +74,19 @@ def test_sparse_cnn_fixed_mode():
 
 
 def test_sparse_cnn_trains_with_monitor():
-    # exercise the learnable path, cosine LR, EBOPS factor, monitor and plot on a tiny synthetic set
+    # exercise the learnable path, EBOPS factor, monitor and plot on a tiny synthetic set
     rng = np.random.default_rng(0)
     x = rng.random((64, 32, 32, 1)).astype('float32')
     y = keras.utils.to_categorical(np.arange(64) % 10, 10)
 
     m = build_cnn(is_sparse=True, n=20, threshold=0.3, beta_n=1e-3)
-    steps = int(np.ceil(len(x) / 32))
     m.compile(
-        optimizer=keras.optimizers.Adam(cosine_lr(1e-3, epochs=2, steps_per_epoch=steps)),
+        optimizer=keras.optimizers.Adam(1e-3),
         loss='categorical_crossentropy',
         metrics=['accuracy'],
     )
     history = m.fit(x, y, epochs=2, batch_size=32, verbose=0, callbacks=[SparseTrainingMonitor()])
 
-    for key in ('loss', 'loss_task', 'loss_ebops', 'loss_n', 'n_max_pixels', 'threshold', 'ebops'):
+    for key in ('loss', 'loss_task', 'loss_ebops', 'loss_n', 'loss_maskedE', 'n_max_pixels', 'threshold', 'ebops'):
         assert key in history.history
     plot_history(history)  # must run headless without error
