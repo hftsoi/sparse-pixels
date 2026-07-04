@@ -80,6 +80,8 @@ with (
     x = keras.layers.Activation('softmax', name='softmax')(x)
 
 model = keras.Model(x_in, x)
+model.compile(optimizer=keras.optimizers.Adam(1e-3),
+              loss='categorical_crossentropy', metrics=['accuracy'])
 ```
 
 Train the model with `SparseTrainingMonitor`. It records the loss breakdown, the learned
@@ -89,13 +91,11 @@ budget/threshold, the EBOPS and the masked-intensity penalty each epoch, and it 
 ```python
 from sparsepixels.utils import SparseTrainingMonitor
 
-early_stop = keras.callbacks.EarlyStopping(monitor='val_accuracy', mode='max', patience=20, restore_best_weights=True)
-model.compile(
-    optimizer=keras.optimizers.Adam(1e-3),
-    loss='categorical_crossentropy', metrics=['accuracy'],
-)
+early_stop = keras.callbacks.EarlyStopping(monitor='val_accuracy', mode='max',
+                                           patience=20, restore_best_weights=True)
 history = model.fit(x_train, y_train, validation_data=(x_val, y_val),
-                    epochs=100, batch_size=128, callbacks=[early_stop, SparseTrainingMonitor()])
+                    epochs=100, batch_size=128,
+                    callbacks=[early_stop, SparseTrainingMonitor()])
 ```
 
 After training, plot the diagnostics from the monitoring tool. The final pixel budget and threshold values are stored in `InputReduce`: `layer.n_max_pixels` and `layer.threshold` (hls4ml converter will auto-parse these from the model).
