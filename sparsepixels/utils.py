@@ -214,7 +214,7 @@ class SparseTrainingMonitor(Callback):
             logs["loss_task"] = logs["loss"] - reg_ebops - reg_n - reg_maskedE
 
 
-def plot_history(history, early_stopping=None, figsize=None, ncols=3):
+def plot_history(history, early_stopping=None, figsize=None, ncols=3, save_path=None):
     """Plot the training history recorded by SparseTrainingMonitor in one figure.
 
     Shows the total loss and each compiled metric (train, and validation when present), the loss
@@ -308,10 +308,14 @@ def plot_history(history, early_stopping=None, figsize=None, ncols=3):
     for ax in axes[n:]:
         ax.axis("off")
     fig.tight_layout()
+    if save_path is not None:
+        fig.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.show()
 
 
-def active_pixels_vs_threshold(x, thresholds=None, channel=0, percentiles=(25, 50, 75), plot=True, ax=None):
+def active_pixels_vs_threshold(
+    x, thresholds=None, channel=0, percentiles=(25, 50, 75), plot=True, ax=None, save_path=None
+):
     """Study how the number of active pixels per image changes with the threshold.
 
     For each candidate threshold, counts the active pixels (x[..., channel] > threshold) in every
@@ -349,7 +353,7 @@ def active_pixels_vs_threshold(x, thresholds=None, channel=0, percentiles=(25, 5
     if plot:
         owns_fig = ax is None
         if ax is None:
-            _, ax = plt.subplots(figsize=(7, 4.5))
+            fig, ax = plt.subplots(figsize=(7, 4.5))
         ax.plot(thresholds, stats["mean"], color="black", lw=2, label="mean")
         ax.plot(thresholds, stats["min"], "--", alpha=0.7, label="min")
         for p in percentiles:
@@ -361,11 +365,13 @@ def active_pixels_vs_threshold(x, thresholds=None, channel=0, percentiles=(25, 5
         ax.legend(loc="best")
         ax.grid(alpha=0.2)
         if owns_fig:
+            if save_path is not None:
+                fig.savefig(save_path, dpi=150, bbox_inches="tight")
             plt.show()
     return stats
 
 
-def plot_reduced_examples(x, n, threshold, indices=None, n_examples=5, channel=0, figsize=None):
+def plot_reduced_examples(x, n, threshold, indices=None, n_examples=5, channel=0, figsize=None, save_path=None):
     """Show what InputReduce keeps for a given budget n and threshold on a few images.
 
     Each row shows the original image and, at the same intensity scale, the pixels that are kept (the
@@ -402,6 +408,8 @@ def plot_reduced_examples(x, n, threshold, indices=None, n_examples=5, channel=0
         for a in axes[row]:
             a.axis("off")
     fig.tight_layout()
+    if save_path is not None:
+        fig.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.show()
 
 
@@ -446,7 +454,7 @@ def print_quantization(model):
     print(f"{'Total eBOPs':>{len(header) - 10}}{total_ebops:>10.0f}")
 
 
-def plot_quantization(models, figsize=(14, 3)):
+def plot_quantization(models, figsize=(14, 3), save_path=None):
     """Violin plots of the per-layer kernel, bias and input bit-width distributions.
 
     Args:
@@ -456,7 +464,7 @@ def plot_quantization(models, figsize=(14, 3)):
     if not isinstance(models, (list, tuple)):
         models = [models]
     categories = [("kq", "Kernel bits"), ("bq", "Bias bits"), ("iq", "Input bits")]
-    _, axes = plt.subplots(
+    fig, axes = plt.subplots(
         len(models),
         len(categories),
         figsize=(figsize[0], figsize[1] * len(models)),
@@ -492,4 +500,6 @@ def plot_quantization(models, figsize=(14, 3)):
             pad = max(0.5, 0.08 * (hi - lo))  # show the full band with a small margin at both ends
             ax.set_xlim(lo - pad, hi + pad)
             ax.set_title(f"{model.name} - {title}")
+    if save_path is not None:
+        fig.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.show()
