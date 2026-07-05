@@ -156,7 +156,7 @@ y_hls = hls_model.predict(x_test)
 
 ## Documentation
 
-Coming soon!
+See [here](https://hftsoi.github.io/sparse-pixels/) for documentation with walk-through guidance.
 
 ## Citation
 
