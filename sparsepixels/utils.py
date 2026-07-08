@@ -371,7 +371,9 @@ def active_pixels_vs_threshold(
     return stats
 
 
-def plot_reduced_examples(x, n, threshold, indices=None, n_examples=5, channel=0, figsize=None, save_path=None):
+def plot_reduced_examples(
+    x, n, threshold, indices=None, n_examples=5, channel=0, figsize=None, aspect=None, cmap="viridis", save_path=None
+):
     """Show what InputReduce keeps for a given budget n and threshold on a few images.
 
     Each row shows the original image and, at the same intensity scale, the pixels that are kept (the
@@ -386,11 +388,18 @@ def plot_reduced_examples(x, n, threshold, indices=None, n_examples=5, channel=0
         n_examples: number of images to show when indices is not given.
         channel: channel used to decide activity (default 0).
         figsize: optional (width, height).
+        aspect: imshow aspect: None keeps the natural pixel ratio, "auto" stretches each image to
+            fill its panel (useful for very wide images), or a float scales the pixel height.
+        cmap: colormap for the active pixels; empty pixels (at or below 0) are drawn white. For
+            binary images a reversed map like "viridis_r" makes the hits dark on white.
     """
     x = np.asarray(x)
     if indices is None:
         indices = np.arange(min(n_examples, len(x)))
     indices = list(indices)
+
+    cmap_obj = plt.get_cmap(cmap).copy()
+    cmap_obj.set_bad("white")
 
     fig, axes = plt.subplots(len(indices), 2, figsize=figsize or (6, 3 * len(indices)), squeeze=False)
     for row, idx in enumerate(indices):
@@ -401,12 +410,22 @@ def plot_reduced_examples(x, n, threshold, indices=None, n_examples=5, channel=0
         n_active, n_kept = int(active.sum()), int(keep.sum())
         vmax = float(s.max()) or 1.0
 
-        axes[row][0].imshow(s, cmap="gray", vmin=0, vmax=vmax)
-        axes[row][0].set_title(f"image #{idx}")
-        axes[row][1].imshow(np.where(keep, s, 0.0), cmap="gray", vmin=0, vmax=vmax)
-        axes[row][1].set_title(f"kept (n={n}, thr={threshold:g}): {n_kept} of {n_active} active")
-        for a in axes[row]:
-            a.axis("off")
+        panels = [
+            (s, f"image #{idx}"),
+            (np.where(keep, s, 0.0), f"kept (n={n}, thr={threshold:g}): {n_kept} of {n_active} active"),
+        ]
+        for a, (img, title) in zip(axes[row], panels):
+            a.imshow(
+                np.ma.masked_less_equal(img, 0.0),
+                cmap=cmap_obj,
+                vmin=0,
+                vmax=vmax,
+                aspect=aspect if aspect is not None else "equal",
+                interpolation="nearest",
+            )
+            a.set_title(title)
+            a.set_xticks([])
+            a.set_yticks([])
     fig.tight_layout()
     if save_path is not None:
         fig.savefig(save_path, dpi=150, bbox_inches="tight")
