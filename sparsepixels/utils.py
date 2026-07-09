@@ -9,6 +9,9 @@ set_sparse_ebops_factor corrects each sparse conv's EBOPS for the fact that it o
 active pixels, so the monitored EBOPS and the EBOPS regularizer reflect the real sparse cost.
 """
 
+import os
+
+import keras
 import matplotlib.pyplot as plt
 import numpy as np
 from keras import ops
@@ -430,6 +433,83 @@ def plot_reduced_examples(
     if save_path is not None:
         fig.savefig(save_path, dpi=150, bbox_inches="tight")
     plt.show()
+
+
+def plot_layer_outputs(model, x, index=0, layers=None, cmap="viridis", aspect="auto", max_channels=16, save_path=None):
+    """Plot every layer's output for one input image, channel by channel.
+
+    Feeds one image through the model and draws one figure per layer, with that layer's channels
+    stacked as rows on a common intensity scale (empty pixels in white) and the active-pixel count
+    annotated per channel. Use it to spot where the sparse signals get over-compressed, e.g. a
+    pooling layer merging the few active pixels of a track into far fewer, and adjust the
+    architecture accordingly.
+
+    Args:
+        model: a functional keras model.
+        x: image array of shape (N, H, W, C) or a single image (H, W, C).
+        index: which image of x to feed.
+        layers: layer names to show; defaults to every layer with a plottable output.
+        cmap: colormap for the active values; exact zeros are drawn white.
+        aspect: imshow aspect for the feature-map panels ("auto" fills each panel, None keeps the
+            natural pixel ratio, a float scales the pixel height).
+        max_channels: cap on the number of channels drawn per layer.
+        save_path: optional path; each layer's figure is saved with the layer name appended.
+    """
+    x = np.asarray(x, dtype="float32")
+    if x.ndim == 3:
+        x = x[None]
+    xb = x[index : index + 1]
+
+    outputs = {}
+    for layer in model.layers:
+        if layer.__class__.__name__ == "InputLayer":
+            continue
+        if layers is not None and layer.name not in layers:
+            continue
+        try:
+            out = layer.output
+        except Exception:
+            continue
+        if isinstance(out, (list, tuple)):
+            out = out[0]
+        outputs[layer.name] = out
+    probe = keras.Model(model.inputs, outputs)
+    acts = probe.predict(xb, verbose=0)
+
+    cmap_obj = plt.get_cmap(cmap).copy()
+    cmap_obj.set_bad("white")
+
+    for name, act in acts.items():
+        a = np.asarray(act)[0]
+        if a.ndim == 1:
+            a = a[None, :, None]
+        elif a.ndim != 3:
+            continue
+        n_ch = min(a.shape[-1], max_channels)
+        vmin, vmax = min(0.0, float(a.min())), float(a.max()) or 1.0
+
+        fig, axes = plt.subplots(n_ch, 1, figsize=(14, 0.75 * n_ch + 0.6), squeeze=False)
+        for ch in range(n_ch):
+            img, ax = a[..., ch], axes[ch][0]
+            ax.imshow(
+                np.ma.masked_equal(img, 0.0),
+                cmap=cmap_obj,
+                vmin=vmin,
+                vmax=vmax,
+                aspect=aspect if aspect is not None else "equal",
+                interpolation="nearest",
+                origin="lower",
+            )
+            ax.set_ylabel(f"ch {ch}\n{int((img != 0).sum())} act", fontsize=7, rotation=0, ha="right", va="center")
+            ax.set_xticks([])
+            ax.set_yticks([])
+        shown = f", showing {n_ch} of {a.shape[-1]} channels" if n_ch < a.shape[-1] else ""
+        axes[0][0].set_title(f"{name}: output {tuple(np.asarray(act).shape[1:])}{shown}", loc="left", fontsize=10)
+        fig.tight_layout()
+        if save_path is not None:
+            root, ext = os.path.splitext(save_path)
+            fig.savefig(f"{root}_{name}{ext or '.png'}", dpi=150, bbox_inches="tight")
+        plt.show()
 
 
 def print_quantization(model):

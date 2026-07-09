@@ -40,6 +40,8 @@ Utilities in `sparsepixels.utils` for picking a threshold and budget before trai
 
 ::: sparsepixels.utils.plot_history
 
+::: sparsepixels.utils.plot_layer_outputs
+
 ::: sparsepixels.utils.set_sparse_ebops_factor
 
 ## Quantization diagnostics

@@ -41,24 +41,24 @@ active_pixels_vs_threshold(x_train)
 plot_reduced_examples(x_train, n=20, threshold=0.1, n_examples=3)
 ```
 
-Build an example sparse CNN within HGQ2 quantization scopes. A custom input quantizer config with
-higher initial fractional bits (e.g., `f0=8`) prevents the lower default (`f0=2`) from aggressively zeroing out sparse signals
-in early training epochs. `InputReduce` keeps the first `n` active pixels (based on the first channel above
-`threshold`) in a row-major order.
+Build an example sparse CNN within HGQ2 quantization scopes. Set generous initial bit-widths at the
+scope level: sparse signals are small (and get diluted further by pooling), so the low HGQ2 defaults
+(4-bit weights, 2 fractional bits on activations) can quantize them, or entire low-magnitude
+kernels, to exact zeros at initialization and block training. Starting wide (e.g. `b0=8` for
+weights, `f0=8` for activations) keeps everything alive, and the EBOPS regularizer trims the
+bit-widths back down during training. `InputReduce` keeps the first `n` active pixels (based on the
+first channel above `threshold`) in a row-major order.
 By default `n` and `threshold` are trainable hyperparameters: `beta_n` controls how aggressively `n` is driven smaller for a lower hardware footprint, and `beta_maskedE` penalizes over-masking pixel intensity.
 
 ```python
 import keras
 from hgq.layers import QDense
 from hgq.config import QuantizerConfigScope, LayerConfigScope
-from hgq.quantizer.config import QuantizerConfig
 from sparsepixels.layers import InputReduce, QConv2DSparse, AveragePooling2DSparse, MaxPooling2DSparse
 
-iq_conf = QuantizerConfig(place='datalane', q_type='kif', i0=4, f0=8, overflow_mode='WRAP')
-
 with (
-    QuantizerConfigScope(place='all', default_q_type='kbi', overflow_mode='SAT_SYM'),
-    QuantizerConfigScope(place='datalane', default_q_type='kif', overflow_mode='WRAP'),
+    QuantizerConfigScope(place='all', default_q_type='kbi', overflow_mode='SAT_SYM', b0=8, i0=0),
+    QuantizerConfigScope(place='datalane', default_q_type='kif', overflow_mode='WRAP', i0=4, f0=8),
     LayerConfigScope(enable_ebops=True, enable_iq=True, beta0=1e-5),
 ):
     x_in = keras.Input(shape=(28, 28, 1), name='x_in')
@@ -73,11 +73,11 @@ with (
         name='input_reduce',
     )(x_in)
     x = QConv2DSparse(filters=3, kernel_size=3, name='conv1', padding='same', strides=1,
-                      activation='relu', iq_conf=iq_conf)([x, keep_mask])
+                      activation='relu')([x, keep_mask])
     x, keep_mask = AveragePooling2DSparse(2, name='pool1')([x, keep_mask])
 
     x = keras.layers.Flatten(name='flatten')(x)
-    x = QDense(10, name='dense1', activation='relu', iq_conf=iq_conf)(x)
+    x = QDense(10, name='dense1', activation='relu')(x)
     x = keras.layers.Activation('softmax', name='softmax')(x)
 
 model = keras.Model(x_in, x)
