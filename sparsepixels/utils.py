@@ -435,6 +435,36 @@ def plot_reduced_examples(
     plt.show()
 
 
+def freeze_quantization(model, freeze_budget=True):
+    """Freeze the quantization (and optionally the pixel budget) at the current learned values.
+
+    Sets every quantizer sublayer non-trainable and zeroes the WRAP integer-part decay, so the
+    bit-width configuration stays exactly fixed afterwards; optionally also freezes the InputReduce
+    budget. Use for two-stage training: after the quantization-aware stage converges, freeze,
+    recompile with a lower learning rate, and fine-tune. The weights then adapt to the final bit
+    assignment instead of a moving one, and early stopping effectively monitors the pure task loss
+    since the frozen regularizer terms are constants.
+
+    Args:
+        model: a keras model built with the quantized (HGQ) layers.
+        freeze_budget: also set InputReduce layers non-trainable (a learnable budget n stops moving).
+
+    Returns:
+        int: the number of layers set non-trainable. Remember to call model.compile again.
+    """
+    n_frozen = 0
+    for sub in model._flatten_layers(include_self=False):
+        cls = sub.__class__
+        is_quantizer = "quantizer" in cls.__module__.lower() or "Quantizer" in cls.__name__
+        if is_quantizer or (freeze_budget and isinstance(sub, InputReduce)):
+            sub.trainable = False
+            n_frozen += 1
+    for w in model.weights:
+        if "i_decay" in w.path:
+            w.assign(np.zeros(w.shape))
+    return n_frozen
+
+
 def plot_layer_outputs(model, x, index=0, layers=None, cmap="viridis", aspect="auto", max_channels=16, save_path=None):
     """Plot every layer's output for one input image, channel by channel.
 
