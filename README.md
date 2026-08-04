@@ -114,10 +114,10 @@ print(f"n_max_pixels={ir.n_max_pixels}, threshold={ir.threshold:.3f}")
 
 ## Converting a trained model to HLS with hls4ml
 
-> **Note:** A [PR](https://github.com/fastmachinelearning/hls4ml/pull/1468) adding `sparsepixels` support to the official [hls4ml](https://github.com/fastmachinelearning/hls4ml) repo has been submitted but is not yet merged. In the meantime you can install hls4ml from the PR branch on this fork to use the converter:
+> **Note:** `sparsepixels` support is part of the official [hls4ml](https://github.com/fastmachinelearning/hls4ml) repo ([PR #1468](https://github.com/fastmachinelearning/hls4ml/pull/1468), merged). It is not in a tagged release yet, so install hls4ml from the main branch:
 >
 > ```bash
-> pip install "git+https://github.com/hftsoi/hls4ml.git@sparsepixels"
+> pip install "git+https://github.com/fastmachinelearning/hls4ml.git"
 > ```
 
 Once installed, pull a config from the trained model, optionally set the per-layer parallelization

@@ -4,10 +4,10 @@ A trained SparsePixels model converts to FPGA firmware through the hls4ml integr
 
 !!! note "Installation"
 
-    hls4ml support for `sparsepixels` is in an open [pull request](https://github.com/fastmachinelearning/hls4ml/pull/1468) that is not yet merged. For now, install hls4ml from the PR branch:
+    hls4ml support for `sparsepixels` is merged into hls4ml ([PR #1468](https://github.com/fastmachinelearning/hls4ml/pull/1468)) but is not in a tagged release yet, so install hls4ml from the main branch:
 
     ``` bash
-    pip install "git+https://github.com/hftsoi/hls4ml.git@sparsepixels"
+    pip install "git+https://github.com/fastmachinelearning/hls4ml.git"
     ```
 
 ## How the firmware runs
