@@ -165,11 +165,15 @@ If you find this useful in your research, please consider citing:
 ```
 @article{Tsoi:2025nvg,
     author = "Tsoi, Ho Fung and Rankin, Dylan and Loncar, Vladimir and Harris, Philip",
-    title = "{SparsePixels: Efficient Convolution for Sparse Data on FPGAs}",
+    title = "{SparsePixels: efficient convolution for sparse data on FPGAs}",
     eprint = "2512.06208",
     archivePrefix = "arXiv",
     primaryClass = "cs.AR",
-    month = "12",
-    year = "2025"
+    doi = "10.1088/2632-2153/ae9fb5",
+    journal = "Mach. Learn. Sci. Tech.",
+    volume = "7",
+    number = "5",
+    pages = "055025",
+    year = "2026"
 }
 ```
